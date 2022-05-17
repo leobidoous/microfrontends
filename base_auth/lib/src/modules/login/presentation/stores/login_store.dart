@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:core/core.dart';
 
 import '../../../../core/enums/login_type.dart';
@@ -9,7 +7,7 @@ import '../../domain/usecases/login/login_with_email.dart';
 import '../../domain/usecases/login/login_with_phone.dart';
 import 'login_type_store.dart';
 
-class LoginStore extends NotifierStore<Exception, bool>  {
+class LoginStore extends NotifierStore<Exception, bool> {
   final ILoginWithEmailUsecase emailUsecase;
   final ILoginWithPhoneUsecase phoneUsecase;
 
@@ -45,5 +43,4 @@ class LoginStore extends NotifierStore<Exception, bool>  {
     }
     setLoading(false);
   }
-
 }

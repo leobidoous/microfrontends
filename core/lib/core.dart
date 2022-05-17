@@ -14,3 +14,4 @@ export 'package:core/src/data/drivers/connectivity_driver.dart';
 export 'package:core/src/infra/drivers/connectivity_driver.dart';
 export 'package:core/src/infra/services/connectivity_service.dart';
 export 'package:connectivity_plus/connectivity_plus.dart';
+export 'package:core/src/presentation/shared/pages/not_found/not_found_page.dart';

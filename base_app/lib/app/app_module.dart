@@ -16,6 +16,7 @@ class AppModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute(Modular.initialRoute, child: (_, args) => const SplashPage()),
     ModuleRoute(AppRoutes.home, module: HomeModule()),
-    ModuleRoute(AppRoutes.auth, module: AuthModule()),
+    ModuleRoute(AppRoutes.auth, module: AuthModule(), guards: []),
+    WildcardRoute(child: (_, args) => const NotFoundPage()),
   ];
 }

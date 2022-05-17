@@ -67,7 +67,8 @@ class AuthModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute(
       Modular.initialRoute,
-      child: (_, args) => LoginPage(loginFoward: args.data),
+      child: (_, args) => LoginPage(loginFoward: args.data ?? '/'),
     ),
+    WildcardRoute(child: (_, args) => const NotFoundPage()),
   ];
 }

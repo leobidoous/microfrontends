@@ -15,7 +15,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final LoginStore store = Modular.get<LoginStore>();
-  final identify = TextEditingController();
+  final identify = TextEditingController(text: 'leonardo@bido.com');
   final password = TextEditingController();
 
   @override
@@ -32,7 +32,15 @@ class _LoginPageState extends State<LoginPage> {
       password: password.text,
     )
         .then((value) {
-      Modular.to.pushReplacementNamed(widget.loginFoward);
+      if (store.state) {
+        Modular.to.pushReplacementNamed(widget.loginFoward);
+      } else {
+        DefaultDialog().show(
+          context,
+          Text(store.error.toString()),
+          showClose: true,
+        );
+      }
     });
   }
 
@@ -64,14 +72,14 @@ class _LoginPageState extends State<LoginPage> {
                           break;
                       }
                       return DefaultTextFieldWidget(
-                        controller: TextEditingController(),
+                        controller: identify,
                         label: label,
                       );
                     },
                   ),
                   const SizedBox(height: 16),
                   DefaultTextFieldWidget(
-                    controller: TextEditingController(),
+                    controller: password,
                     label: 'Password',
                   ),
                 ],

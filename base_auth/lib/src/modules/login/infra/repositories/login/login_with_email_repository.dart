@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'package:dartz/dartz.dart';
 
 import '../../../domain/entities/login/login_with_email_entity.dart';
 import '../../../domain/repositories/login/login_with_email_repository.dart';
