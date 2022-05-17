@@ -19,6 +19,7 @@ dependencies:
   shimmer: ^2.0.0
   sqflite: ^2.0.0+3
   flutter_svg: ^1.0.3
+  workmanager: ^0.5.0
   google_fonts: ^2.3.1
   package_info: ^2.0.2
   firebase_core: ^1.6.0
