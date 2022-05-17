@@ -1,14 +1,21 @@
-import 'package:flutter_modular/flutter_modular.dart';
+import 'package:base_auth/base_auth.dart';
+import 'package:core/core.dart';
 
-import 'modules/home/home_module.dart';
+import '../core/app_routes.dart';
+import 'modules/home/presentation/home_module.dart';
+import 'shared/pages/splash/splash_page.dart';
+import 'shared/pages/splash/splash_store.dart';
 
 class AppModule extends Module {
   @override
-  final List<Bind> binds = [];
+  final List<Bind> binds = [
+    Bind.lazySingleton((i) => SplashStore()),
+  ];
 
   @override
   final List<ModularRoute> routes = [
-    ModuleRoute(Modular.initialRoute, module: HomeModule()),
+    ChildRoute(Modular.initialRoute, child: (_, args) => const SplashPage()),
+    ModuleRoute(AppRoutes.home, module: HomeModule()),
+    ModuleRoute(AppRoutes.auth, module: AuthModule()),
   ];
-
 }
