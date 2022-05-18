@@ -3,11 +3,11 @@ import 'package:core/core.dart' show Modular;
 import 'package:flutter/material.dart';
 
 import '../../../../core/app_routes.dart';
+import '../../../../core/enums/app_theme_type.dart';
 import 'home_store.dart';
 
 class HomePage extends StatefulWidget {
-  final String title;
-  const HomePage({Key? key, this.title = 'Home'}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -39,6 +39,26 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Counter'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 12, left: 8),
+            child: InkWell(
+              onTap: () {
+                switch (store.appStore.themeStore.state) {
+                  case AppThemeType.dark:
+                    store.appStore.themeStore
+                        .changeThemeType(AppThemeType.light);
+                    break;
+                  case AppThemeType.light:
+                    store.appStore.themeStore
+                        .changeThemeType(AppThemeType.dark);
+                    break;
+                }
+              },
+              child: const Icon(Icons.change_circle_rounded),
+            ),
+          ),
+        ],
       ),
       body: const Center(child: Text('Authenticated')),
       floatingActionButton: FloatingActionButton(

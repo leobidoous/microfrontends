@@ -9,7 +9,7 @@ class DefaultDialog {
       barrierColor: Colors.black.withOpacity(0.75),
       transitionDuration: const Duration(milliseconds: 250),
       barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
-      pageBuilder: (_, animation, secondaryAnimation)  {
+      pageBuilder: (_, animation, secondaryAnimation) {
         return WillPopScope(
           onWillPop: () async => false,
           child: _DefaultDialogWidget(showClose: showClose, child: child),
@@ -48,8 +48,8 @@ class _DefaultDialogWidget extends StatelessWidget {
                       color: Theme.of(context).primaryColor.withOpacity(0.5),
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    margin: const EdgeInsets.only(bottom: 10),
-                    padding: const EdgeInsets.all(5),
+                    margin: const EdgeInsets.only(bottom: 8),
+                    padding: const EdgeInsets.all(4),
                     child: const Icon(Icons.close, color: Colors.white),
                   ),
                 ),
@@ -57,7 +57,7 @@ class _DefaultDialogWidget extends StatelessWidget {
             Flexible(
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(8),
                   border: Border.all(
                     color: Theme.of(context).cardColor,
                     width: 0.05,
@@ -71,7 +71,7 @@ class _DefaultDialogWidget extends StatelessWidget {
                   ],
                 ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(8),
                   child: Material(
                     color: Theme.of(context).dialogBackgroundColor,
                     child: child,

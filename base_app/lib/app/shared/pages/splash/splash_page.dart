@@ -18,6 +18,7 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   void initState() {
+    super.initState();
     store.getLoggedlUser().then((value) {
       if (store.state) {
         Modular.to.navigate('${AppRoutes.home}/');
@@ -28,12 +29,10 @@ class _SplashPageState extends State<SplashPage> {
         arguments: '${AppRoutes.home}/',
       );
     });
-    super.initState();
   }
 
   @override
   void dispose() {
-    // store.dispose();
     super.dispose();
   }
 
@@ -45,7 +44,6 @@ class _SplashPageState extends State<SplashPage> {
         toolbarHeight: 0,
         backgroundColor: Theme.of(context).backgroundColor,
       ),
-      backgroundColor: Theme.of(context).backgroundColor,
       body: const Center(child: DefaultLoadingWidget()),
     );
   }

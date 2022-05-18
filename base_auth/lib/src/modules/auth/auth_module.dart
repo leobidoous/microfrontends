@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 
+import '../../core/app_routes.dart';
 import '../login/data/datasources/login/local/local_login_with_email_datasource.dart';
 import '../login/data/datasources/login/local/local_login_with_phone_datasource.dart';
 import '../login/data/datasources/login/remote/remote_login_with_email_datasource.dart';
@@ -93,12 +94,8 @@ class AuthModule extends Module {
     ChildRoute(
       Modular.initialRoute,
       child: (_, args) {
-        final loginFoward = args.data != null ? args.data.toString() : '/';
-        // final loginFoward = args.data != null
-        //     ? args.data is String
-        //         ? args.data
-        //         : '/'
-        //     : '/';
+        final loginFoward =
+            args.data != null ? args.data.toString() : '${AppRoutes.home}/';
         return LoginPage(loginFoward: loginFoward);
       },
     ),

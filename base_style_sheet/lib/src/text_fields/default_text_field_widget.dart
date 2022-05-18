@@ -21,10 +21,31 @@ class _DefaultTextFieldWidgetState extends State<DefaultTextFieldWidget> {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.controller,
+      style: Theme.of(context).textTheme.headline6,
       decoration: InputDecoration(
+        isDense: true,
         labelText: widget.label,
         hintText: widget.placeholder,
-      )
+        labelStyle: Theme.of(context).textTheme.headline6,
+        hintStyle: Theme.of(context).textTheme.headline6,
+        contentPadding: const EdgeInsets.all(12),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          gapPadding: 4,
+          borderSide: BorderSide(
+            style: BorderStyle.solid,
+            color: Theme.of(context).primaryColor,
+            width: 0.75,
+          ),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: BorderSide(
+            style: BorderStyle.solid,
+            color: Theme.of(context).primaryColor,
+          ),
+        ),
+      ),
     );
   }
 }

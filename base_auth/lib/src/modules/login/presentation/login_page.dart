@@ -37,7 +37,10 @@ class _LoginPageState extends State<LoginPage> {
       } else {
         DefaultDialog().show(
           context,
-          Text(store.error.toString()),
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Text(store.error.toString()),
+          ),
           showClose: true,
         );
       }
@@ -63,16 +66,20 @@ class _LoginPageState extends State<LoginPage> {
                     store: store.typeStore,
                     builder: (_, triple) {
                       late final String label;
+                      late final String placeholder;
                       switch (store.typeStore.state) {
                         case LoginType.email:
-                          label = 'Email';
+                          label = 'E-mail';
+                          placeholder = 'Insira seu e-mail';
                           break;
                         case LoginType.phone:
                           label = 'Phone';
+                          placeholder = 'Insira seu telefone';
                           break;
                       }
                       return DefaultTextFieldWidget(
                         controller: identify,
+                        placeholder: placeholder,
                         label: label,
                       );
                     },
@@ -80,6 +87,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 16),
                   DefaultTextFieldWidget(
                     controller: password,
+                    placeholder: 'Insira sua senha',
                     label: 'Password',
                   ),
                 ],
