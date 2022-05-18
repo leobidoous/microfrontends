@@ -17,7 +17,7 @@ class LoginWithEmailRepository extends ILoginWithEmailRepository {
   });
 
   @override
-  Future<Either<Exception, Object>> call({
+  Future<Either<Exception, Unit>> call({
     required LoginWithEmailEntity login,
   }) async {
     final isOnline = await connectivityService.isOnline();

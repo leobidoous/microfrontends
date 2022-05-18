@@ -5,7 +5,7 @@ import '../../../../infra/datasources/login/local/local_login_with_email_datasou
 
 class LocalLoginWithEmailDatasource extends ILocalLoginWithEmailDatasource {
   @override
-  Future<Either<Exception, Object>> call({
+  Future<Either<Exception, Unit>> call({
     required LoginWithEmailEntity login,
   }) {
     throw UnimplementedError();

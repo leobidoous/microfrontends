@@ -1,5 +1,7 @@
-import '../../../core.dart';
+import 'package:core/core.dart';
+
 import '../../domain/repositories/logged_user_repository.dart';
+import '../datasources/logged_user_datasource.dart';
 
 class LoggedUserRepository extends ILoggedUserRepository {
   final ILoggedUserDatasource datasource;

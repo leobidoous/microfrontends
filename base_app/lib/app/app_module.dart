@@ -4,6 +4,7 @@ import 'package:core/core.dart';
 import '../core/app_routes.dart';
 import '../core/router_guards/auth_router_guards.dart';
 import '../core/router_guards/logged_router_guard.dart';
+import 'app_store.dart';
 import 'modules/home/presentation/home_module.dart';
 import 'shared/pages/splash/splash_page.dart';
 import 'shared/pages/splash/splash_store.dart';
@@ -11,6 +12,8 @@ import 'shared/pages/splash/splash_store.dart';
 class AppModule extends Module {
   @override
   final List<Bind> binds = [
+    /// Stores dependencies
+    Bind.lazySingleton((i) => AppStore()),
     Bind.lazySingleton(
       (i) => SplashStore(loggedUserUsecase: i.get<LoggedUserUsecase>()),
     ),

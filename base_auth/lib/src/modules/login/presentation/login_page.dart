@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
     )
         .then((value) {
       if (store.state) {
-        Modular.to.pushReplacementNamed(widget.loginFoward);
+        Modular.to.navigate(widget.loginFoward);
       } else {
         DefaultDialog().show(
           context,

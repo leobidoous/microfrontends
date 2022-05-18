@@ -11,6 +11,9 @@ import '../login/infra/repositories/login/login_with_phone_repository.dart';
 import '../login/presentation/login_page.dart';
 import '../login/presentation/stores/login_store.dart';
 import '../login/presentation/stores/login_type_store.dart';
+import 'data/datasources/logged_user_datasource.dart';
+import 'domain/usecases/logged_user_usecase.dart';
+import 'infra/repositories/logged_user_repository.dart';
 
 class AuthModule extends Module {
   @override
@@ -89,7 +92,15 @@ class AuthModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute(
       Modular.initialRoute,
-      child: (_, args) => LoginPage(loginFoward: args.data ?? '/'),
+      child: (_, args) {
+        final loginFoward = args.data != null ? args.data.toString() : '/';
+        // final loginFoward = args.data != null
+        //     ? args.data is String
+        //         ? args.data
+        //         : '/'
+        //     : '/';
+        return LoginPage(loginFoward: loginFoward);
+      },
     ),
     WildcardRoute(child: (_, args) => const NotFoundPage()),
   ];

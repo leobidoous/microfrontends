@@ -17,7 +17,7 @@ class LoginWithPhoneRepository extends ILoginWithPhoneRepository {
   });
 
   @override
-  Future<Either<Exception, Object>> call({
+  Future<Either<Exception, Unit>> call({
     required LoginWithPhoneEntity login,
   }) async {
     final isOnline = await connectivityService.isOnline();

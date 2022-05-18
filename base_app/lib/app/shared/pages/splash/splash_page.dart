@@ -20,10 +20,10 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     store.getLoggedlUser().then((value) {
       if (store.state) {
-        Modular.to.pushReplacementNamed('${AppRoutes.home}/');
+        Modular.to.navigate('${AppRoutes.home}/');
         return;
       }
-      Modular.to.pushReplacementNamed(
+      Modular.to.navigate(
         '${AppRoutes.auth}/',
         arguments: '${AppRoutes.home}/',
       );

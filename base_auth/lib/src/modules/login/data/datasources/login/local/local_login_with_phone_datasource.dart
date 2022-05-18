@@ -5,7 +5,7 @@ import '../../../../infra/datasources/login/local/local_login_with_phone_datasou
 
 class LocalLoginWithPhoneDatasource extends ILocalLoginWithPhoneDatasource {
   @override
-  Future<Either<Exception, Object>> call({
+  Future<Either<Exception, Unit>> call({
     required LoginWithPhoneEntity login,
   }) {
     throw UnimplementedError();

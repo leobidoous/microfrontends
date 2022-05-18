@@ -1,6 +1,8 @@
+import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart' show Modular;
 import 'package:flutter/material.dart';
-import 'package:flutter_triple/flutter_triple.dart';
+
+import '../../../../core/app_routes.dart';
 import 'home_store.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,32 +15,35 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final HomeStore store = Modular.get<HomeStore>();
+
+  void logout() {
+    store.logout().then((value) {
+      value.fold(
+        (l) => DefaultDialog().show(
+            context,
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Text(l.toString()),
+            ),
+            showClose: true),
+        (r) => Modular.to.navigate(
+          '${AppRoutes.auth}/',
+          arguments: '${AppRoutes.home}/',
+        ),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Counter'),
       ),
-      body: ScopedBuilder<HomeStore, Exception, int>(
-        store: store,
-        onState: (_, counter) {
-          return Padding(
-            padding: const EdgeInsets.all(10),
-            child: Text('$counter'),
-          );
-        },
-        onError: (context, error) => const Center(
-          child: Text(
-            'Too many clicks',
-            style: TextStyle(color: Colors.red),
-          ),
-        ),
-      ),
+      body: const Center(child: Text('Authenticated')),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          store.increment();
-        },
-        child: const Icon(Icons.add),
+        onPressed: logout,
+        child: const Icon(Icons.exit_to_app_rounded),
       ),
     );
   }

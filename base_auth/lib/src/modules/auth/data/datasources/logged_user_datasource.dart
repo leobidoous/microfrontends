@@ -1,7 +1,9 @@
+import 'package:core/core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../core.dart';
-import '../../constants/mapping_preferences.dart';
+import '../../../../core/mapping_preferences.dart';
+import '../../infra/datasources/logged_user_datasource.dart';
+
 
 class LoggedUserDatasource extends ILoggedUserDatasource {
   final LocalStorageDriver storageDriver;

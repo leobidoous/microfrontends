@@ -1,4 +1,5 @@
-import '../../../core.dart';
+import 'package:core/core.dart';
+
 import '../repositories/logged_user_repository.dart';
 
 abstract class ILoggedUserUsecase {

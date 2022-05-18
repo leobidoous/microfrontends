@@ -4,7 +4,7 @@ import '../../entities/login/login_with_phone_entity.dart';
 import '../../repositories/login/login_with_phone_repository.dart';
 
 abstract class ILoginWithPhoneUsecase {
-  Future<Either<Exception, Object>> call({required LoginWithPhoneEntity login});
+  Future<Either<Exception, Unit>> call({required LoginWithPhoneEntity login});
 }
 
 class LoginWithPhoneUsecase extends ILoginWithPhoneUsecase {
@@ -13,7 +13,7 @@ class LoginWithPhoneUsecase extends ILoginWithPhoneUsecase {
   LoginWithPhoneUsecase({required this.repository});
 
   @override
-  Future<Either<Exception, Object>> call({
+  Future<Either<Exception, Unit>> call({
     required LoginWithPhoneEntity login,
   }) {
     return repository(login: login);

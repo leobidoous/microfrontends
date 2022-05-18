@@ -1,4 +1,4 @@
-import '../../../core.dart';
+import 'package:core/core.dart';
 
 abstract class ILoggedUserDatasource {
   Future<Either<Exception, LoggedUserEntity>> getLoggedUser();

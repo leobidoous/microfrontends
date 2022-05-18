@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 
+import '../../../../../auth/infra/datasources/logged_user_datasource.dart';
 import '../../../../domain/entities/login/login_with_phone_entity.dart';
 import '../../../../infra/datasources/login/remote/remote_login_with_phone_datasource.dart';
 
@@ -9,7 +10,7 @@ class RemoteLoginWithPhoneDatasource extends IRemoteLoginWithPhoneDatasource {
   RemoteLoginWithPhoneDatasource({required this.loggedUserDatasource});
 
   @override
-  Future<Either<Exception, Object>> call({
+  Future<Either<Exception, Unit>> call({
     required LoginWithPhoneEntity login,
   }) async {
     final response = await LoadMock.fromAsset('login_mock.json');

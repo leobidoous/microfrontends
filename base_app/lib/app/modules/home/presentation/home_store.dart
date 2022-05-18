@@ -1,20 +1,12 @@
-import 'package:flutter_triple/flutter_triple.dart';
+import 'package:base_auth/base_auth.dart';
+import 'package:core/core.dart';
 
 class HomeStore extends NotifierStore<Exception, int> {
-  HomeStore() : super(0);
+  final LogoutUsecase logoutUsecase;
 
-  Future<void> increment() async {
-    setLoading(true);
+  HomeStore({required this.logoutUsecase}) : super(0);
 
-    await Future.delayed(const Duration(seconds: 1));
-
-    int value = state + 1;
-    if (value < 5) {
-      update(value);
-    } else {
-      setError(Exception('Error: state not can be > 4'));
-    }
-
-    setLoading(false);
+  Future<Either<Exception, Unit>> logout() async {
+    return logoutUsecase();
   }
 }
