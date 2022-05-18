@@ -1,16 +1,16 @@
 import 'package:core/core.dart';
 
-import 'login/data/datasources/login/local/local_login_with_email_datasource.dart';
-import 'login/data/datasources/login/local/local_login_with_phone_datasource.dart';
-import 'login/data/datasources/login/remote/remote_login_with_email_datasource.dart';
-import 'login/data/datasources/login/remote/remote_login_with_phone_datasource.dart';
-import 'login/domain/usecases/login/login_with_email.dart';
-import 'login/domain/usecases/login/login_with_phone.dart';
-import 'login/infra/repositories/login/login_with_email_repository.dart';
-import 'login/infra/repositories/login/login_with_phone_repository.dart';
-import 'login/presentation/login_page.dart';
-import 'login/presentation/stores/login_store.dart';
-import 'login/presentation/stores/login_type_store.dart';
+import '../login/data/datasources/login/local/local_login_with_email_datasource.dart';
+import '../login/data/datasources/login/local/local_login_with_phone_datasource.dart';
+import '../login/data/datasources/login/remote/remote_login_with_email_datasource.dart';
+import '../login/data/datasources/login/remote/remote_login_with_phone_datasource.dart';
+import '../login/domain/usecases/login/login_with_email.dart';
+import '../login/domain/usecases/login/login_with_phone.dart';
+import '../login/infra/repositories/login/login_with_email_repository.dart';
+import '../login/infra/repositories/login/login_with_phone_repository.dart';
+import '../login/presentation/login_page.dart';
+import '../login/presentation/stores/login_store.dart';
+import '../login/presentation/stores/login_type_store.dart';
 
 class AuthModule extends Module {
   @override
@@ -24,9 +24,27 @@ class AuthModule extends Module {
       (i) => ConnectivityService(driver: i.get<ConnectivityDriver>()),
     ),
 
+    /// Logged user dependencies
+    Bind.lazySingleton(
+      (i) => LoggedUserDatasource(storageDriver: i.get<LocalStorageDriver>()),
+    ),
+    Bind.lazySingleton(
+      (i) => LoggedUserRepository(datasource: i.get<LoggedUserDatasource>()),
+    ),
+    Bind.lazySingleton(
+      (i) => LoggedUserUsecase(repository: i.get<LoggedUserRepository>()),
+    ),
+
+    /// Local storage dependencies
+    Bind.lazySingleton((i) => LocalStorageDriver()),
+
     /// Login with phone dependencies
     Bind.lazySingleton((i) => LocalLoginWithPhoneDatasource()),
-    Bind.lazySingleton((i) => RemoteLoginWithPhoneDatasource()),
+    Bind.lazySingleton(
+      (i) => RemoteLoginWithPhoneDatasource(
+        loggedUserDatasource: i.get<LoggedUserDatasource>(),
+      ),
+    ),
     Bind.lazySingleton(
       (i) => LoginWithPhoneRepository(
         localDatasource: i.get<LocalLoginWithPhoneDatasource>(),
@@ -38,7 +56,11 @@ class AuthModule extends Module {
 
     /// Login with email dependencies
     Bind.lazySingleton((i) => LocalLoginWithEmailDatasource()),
-    Bind.lazySingleton((i) => RemoteLoginWithEmailDatasource()),
+    Bind.lazySingleton(
+      (i) => RemoteLoginWithEmailDatasource(
+        loggedUserDatasource: i.get<LoggedUserDatasource>(),
+      ),
+    ),
     Bind.lazySingleton(
       (i) => LoginWithEmailRepository(
         localDatasource: i.get<LocalLoginWithEmailDatasource>(),

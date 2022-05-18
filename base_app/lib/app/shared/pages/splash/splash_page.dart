@@ -19,16 +19,14 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     store.getLoggedlUser().then((value) {
-      Future.delayed(const Duration(milliseconds: 750)).then((_) {
-        if (store.state) {
-          Modular.to.pushReplacementNamed('${AppRoutes.home}/');
-          return;
-        }
-        Modular.to.pushReplacementNamed(
-          '${AppRoutes.auth}/',
-          arguments: '${AppRoutes.home}/',
-        );
-      });
+      if (store.state) {
+        Modular.to.pushReplacementNamed('${AppRoutes.home}/');
+        return;
+      }
+      Modular.to.pushReplacementNamed(
+        '${AppRoutes.auth}/',
+        arguments: '${AppRoutes.home}/',
+      );
     });
     super.initState();
   }

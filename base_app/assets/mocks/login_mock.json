@@ -1,6 +1,7 @@
 {
     "response": {
-        "username": "Leonardo Bidó",
-        "email": "leonardo@bido.com"
+        "name": "Leonardo Bidó",
+        "email": "leonardo@bido.com",
+        "phone": "+556299999999"
     }
 }

@@ -1,8 +1,8 @@
 import 'dart:developer';
 
-import 'package:core/core.dart';
+import 'package:dio/dio.dart';
 
-class AuthInterceptors extends Interceptor {
+class DefaultInterceptors extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     log('REQUEST[${options.method}] => PATH: ${options.path}');

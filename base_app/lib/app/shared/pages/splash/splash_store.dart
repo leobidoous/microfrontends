@@ -3,17 +3,16 @@ import 'dart:developer';
 import 'package:core/core.dart';
 
 class SplashStore extends NotifierStore<Exception, bool> with Disposable {
-  SplashStore() : super(false);
+  final ILoggedUserUsecase loggedUserUsecase;
+
+  SplashStore({required this.loggedUserUsecase}) : super(false);
 
   Future<void> getLoggedlUser() async {
     setLoading(true);
-    await Future.delayed(const Duration(seconds: 1)).then((value) {
-      // update(true);
-      setLoading(false);
-    }).catchError((onError) {
-      setLoading(false);
-      setError(Exception('Erro qualquer!'));
+    await loggedUserUsecase.getLoggedUser().then((value) {
+      value.fold((l) => setError(l), (r) => update(true));
     });
+      setLoading(false);
   }
 
   @override
