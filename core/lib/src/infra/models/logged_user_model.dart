@@ -15,13 +15,14 @@ class LoggedUserModel extends LoggedUserEntity {
     };
   }
 
-  LoggedUserEntity toEntity() {
-    return LoggedUserEntity(
-      name: name,
-      email: email,
-      phone: phone,
-    );
-  }
+  LoggedUserEntity toEntity() => this;
+  // LoggedUserEntity toEntity() {
+  //   return LoggedUserEntity(
+  //     name: name,
+  //     email: email,
+  //     phone: phone,
+  //   );
+  // }
 
   factory LoggedUserModel.fromMap(Map<String, dynamic> map) {
     return LoggedUserModel(

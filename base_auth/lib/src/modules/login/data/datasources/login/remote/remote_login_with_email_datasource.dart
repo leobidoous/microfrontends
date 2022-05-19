@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
 
-import '../../../../../auth/infra/datasources/logged_user_datasource.dart';
+import '../../../../../../../base_auth.dart';
 import '../../../../domain/entities/login/login_with_email_entity.dart';
 import '../../../../infra/datasources/login/remote/remote_login_with_email_datasource.dart';
 

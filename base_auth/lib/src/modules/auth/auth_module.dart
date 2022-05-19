@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 
+import '../../../base_auth.dart';
 import '../../core/app_routes.dart';
 import '../login/data/datasources/login/local/local_login_with_email_datasource.dart';
 import '../login/data/datasources/login/local/local_login_with_phone_datasource.dart';
@@ -12,9 +13,6 @@ import '../login/infra/repositories/login/login_with_phone_repository.dart';
 import '../login/presentation/login_page.dart';
 import '../login/presentation/stores/login_store.dart';
 import '../login/presentation/stores/login_type_store.dart';
-import 'data/datasources/logged_user_datasource.dart';
-import 'domain/usecases/logged_user_usecase.dart';
-import 'infra/repositories/logged_user_repository.dart';
 
 class AuthModule extends Module {
   @override
@@ -29,6 +27,7 @@ class AuthModule extends Module {
     ),
 
     /// Logged user dependencies
+    Bind.lazySingleton((i) => LoggedUserStore(), export: true),
     Bind.lazySingleton(
       (i) => LoggedUserDatasource(storageDriver: i.get<LocalStorageDriver>()),
     ),

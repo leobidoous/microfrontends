@@ -1,5 +1,5 @@
 import 'package:base_auth/base_auth.dart';
-import 'package:flutter_modular/flutter_modular.dart';
+import 'package:core/core.dart';
 
 import '../../../stores/app_store.dart';
 import 'home_page.dart';
@@ -8,6 +8,7 @@ import 'home_store.dart';
 class HomeModule extends Module {
   @override
   final List<Bind> binds = [
+
     /// Logout dependencies
     Bind.lazySingleton(
       (i) => LogoutDatasource(datasource: i.get<LoggedUserDatasource>()),
@@ -21,6 +22,7 @@ class HomeModule extends Module {
     Bind.lazySingleton(
       (i) => HomeStore(
         appStore: i.get<AppStore>(),
+        userStore: i.get<LoggedUserStore>(),
         logoutUsecase: i.get<LogoutUsecase>(),
       ),
     ),

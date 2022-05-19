@@ -33,6 +33,7 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   void dispose() {
+    store.dispose();
     super.dispose();
   }
 
