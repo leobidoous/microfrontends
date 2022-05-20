@@ -1,3 +1,5 @@
+import '../../../core.dart';
+
 class HttpDriverResponse {
   final dynamic data;
   final int? statusCode;
@@ -38,7 +40,7 @@ typedef CallbackType<T> = T Function();
 
 abstract class IHttpDriver {
   Future<dynamic> interceptRequests(Future request);
-  Future<HttpDriverResponse> get(
+  Future<Either<HttpDriverResponse, HttpDriverResponse>> get(
     String path, {
     Map<String, dynamic>? queryParameters,
     HttpDriverOptions? options,

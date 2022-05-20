@@ -1,11 +1,12 @@
-
 import 'package:base_style_sheet/base_style_sheet.dart';
-import 'package:core/core.dart' show LoggedUserModel, Modular;
+import 'package:core/core.dart' show Modular, TripleBuilder;
 import 'package:flutter/material.dart';
 
 import '../../../../core/app_routes.dart';
 import '../../../../core/enums/app_theme_type.dart';
-import 'home_store.dart';
+import 'components/home_product_list.dart';
+import 'components/home_promotion_list.dart';
+import 'stores/home_store.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -20,6 +21,8 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    store.productsStore.getProducts();
+    store.promotionsStore.getPromotions();
   }
 
   void logout() {
@@ -45,6 +48,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
+        backgroundColor: Colors.red,
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 12, left: 8),
@@ -66,12 +70,36 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: Center(
-        child: Text(
-          'Authenticated:\n'
-          '${LoggedUserModel.fromEntiy(store.userStore.loggedUser).toJson()}',
-          textAlign: TextAlign.center,
-        ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Text('Olá, ${store.userStore.loggedUser.name}'),
+          ),
+          HomePromotionList(),
+          const SizedBox(height: 12),
+          Expanded(child: HomeProductList()),
+        ],
+      ),
+      bottomNavigationBar: TripleBuilder(
+        store: store.bottomBarStore,
+        builder: (_, triple) {
+          return BottomNavigationBar(
+            onTap: store.bottomBarStore.changeIndex,
+            currentIndex: store.bottomBarStore.state,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'Início',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_cart_rounded),
+                label: 'Carrinho',
+              ),
+            ],
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: logout,

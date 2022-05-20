@@ -19,3 +19,4 @@ export 'package:core/src/data/drivers/dio/dio_client.dart';
 export 'package:core/src/presentation/shared/pages/not_found/not_found_page.dart';
 export 'package:core/src/domain/entities/logged_user_entity.dart';
 export 'package:core/src/infra/models/logged_user_model.dart';
+export 'package:core/src/data/drivers/dio/default_interceptors.dart';

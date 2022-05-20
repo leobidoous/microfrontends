@@ -1,11 +1,17 @@
 import 'dart:developer';
 
-import 'package:dio/dio.dart';
+import '../../../../core.dart';
 
 class DefaultInterceptors extends Interceptor {
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+  void onRequest(
+      RequestOptions options, RequestInterceptorHandler handler) async {
+    // final _client = Modular.get<DioClient>();
+    // _client.client.lock();
+    // await Future.delayed(const Duration(seconds: 2));
+    // _client.client.unlock();
     log('REQUEST[${options.method}] => PATH: ${options.path}');
+
     return super.onRequest(options, handler);
   }
 

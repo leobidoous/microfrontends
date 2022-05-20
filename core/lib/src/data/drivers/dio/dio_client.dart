@@ -1,12 +1,11 @@
 import '../../../../core.dart';
-import 'default_interceptors.dart';
 
 class DioClient extends IHttpDriver {
   final Dio client;
 
   DioClient({required this.client}) {
-    client.interceptors.add(LogInterceptor());
     client.interceptors.add(DefaultInterceptors());
+    client.interceptors.add(LogInterceptor());
   }
 
   @override
@@ -20,14 +19,30 @@ class DioClient extends IHttpDriver {
   }
 
   @override
-  Future<HttpDriverResponse> get(
+  Future<Either<HttpDriverResponse, HttpDriverResponse>> get(
     String path, {
     Map<String, dynamic>? queryParameters,
     HttpDriverOptions? options,
     HttpDriverProgressCallback? onReceiveProgress,
     Map<String, dynamic>? extraHeaders,
-  }) {
-    throw UnimplementedError();
+  }) async {
+    try {
+      final response = await client.get(
+        path,
+        queryParameters: queryParameters,
+      );
+      return Right(HttpDriverResponse(
+        data: response.data,
+        statusCode: response.statusCode,
+        statusMessage: response.statusMessage,
+      ));
+    } on DioError catch (e) {
+      return Left(HttpDriverResponse(
+        data: e.response?.data ?? 'Erro não tratado pelo Back-End',
+        statusCode: e.response?.statusCode,
+        statusMessage: e.message,
+      ));
+    }
   }
 
   @override

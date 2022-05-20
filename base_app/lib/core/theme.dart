@@ -5,14 +5,12 @@ class LightTheme {
   static final ThemeData theme = ThemeData(
     useMaterial3: true,
     primarySwatch: Colors.red,
-    backgroundColor: Colors.white54,
+    backgroundColor: Colors.white,
     brightness: Brightness.light,
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
     scaffoldBackgroundColor: Colors.white,
-    
     textTheme: TextTheme(
-      
       bodyText1: GoogleFonts.roboto(color: Colors.black),
       bodyText2: GoogleFonts.roboto(color: Colors.black),
       headline1: GoogleFonts.roboto(color: Colors.black, fontSize: 24),
@@ -29,11 +27,11 @@ class DarkTheme {
   static final ThemeData theme = ThemeData(
     useMaterial3: true,
     primarySwatch: Colors.red,
-    backgroundColor: Colors.black54,
+    backgroundColor: Colors.black,
     brightness: Brightness.light,
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
-    scaffoldBackgroundColor: Colors.black54,
+    scaffoldBackgroundColor: Colors.black,
     textTheme: TextTheme(
       bodyText1: GoogleFonts.roboto(color: Colors.white),
       bodyText2: GoogleFonts.roboto(color: Colors.white),
