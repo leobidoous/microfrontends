@@ -21,6 +21,7 @@ class LoginWithEmailRepository extends ILoginWithEmailRepository {
     required LoginWithEmailEntity login,
   }) async {
     final isOnline = await connectivityService.isOnline();
+    return remoteDatasource(login: login);
     return isOnline.fold(
       (l) => localDatasource(login: login),
       (r) => remoteDatasource(login: login),

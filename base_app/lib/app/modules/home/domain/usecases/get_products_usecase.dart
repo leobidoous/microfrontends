@@ -18,7 +18,10 @@ class GetProductsUsecase extends IGetProductsUsecase {
   @override
   Future<Either<Exception, List<ProductEntity>>> call({
     required SearchProductsFiltersEntity params,
-  }) {
+  }) async {
+    if (params.q.isEmpty) {
+      return Left(Exception('O parâmetro de busca não pode ser vazio'));
+    }
     return repository(params: params);
   }
 }

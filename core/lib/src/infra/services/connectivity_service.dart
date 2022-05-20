@@ -9,10 +9,8 @@ class ConnectivityService implements IConnectivityService {
   @override
   Future<Either<Failure, Unit>> isOnline() async {
     try {
-      var check = await driver.isOnline;
-      if (check) {
-        return const Right(unit);
-      }
+      if (await driver.isOnline) return const Right(unit);
+
       throw ConnectionError(message: 'Você está offline');
     } on Failure catch (e) {
       return Left(e);

@@ -22,3 +22,4 @@ export 'package:core/src/infra/models/logged_user_model.dart';
 export 'package:core/src/data/drivers/dio/default_interceptors.dart';
 export 'package:flutter_svg/svg.dart';
 
+
