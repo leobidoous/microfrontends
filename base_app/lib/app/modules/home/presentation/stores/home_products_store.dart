@@ -13,6 +13,7 @@ class HomeProductsStore extends NotifierStore<Exception, List<ProductEntity>> {
 
   Future<void> getProducts() async {
     setLoading(true);
+    await Future.delayed(const Duration(seconds: 1));
     usecase(params: params).then(
       (value) => value.fold((l) => setError(l), (r) => update(r)),
     );

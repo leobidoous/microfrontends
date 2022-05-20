@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../domain/entities/product_entity.dart';
 import '../stores/home_promotions_store.dart';
 import '../stores/home_store.dart';
+import 'home_product_price.dart';
 
 class HomePromotionList extends StatelessWidget {
   final HomePromotionsStore store = Modular.get<HomeStore>().promotionsStore;
@@ -12,55 +13,122 @@ class HomePromotionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(
-        parent: AlwaysScrollableScrollPhysics(),
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      scrollDirection: Axis.horizontal,
-      child: TripleBuilder(
-        store: store,
-        builder: (_, triple) {
-          if (triple.isLoading) {
-          return const Center(child: DefaultLoadingWidget());
-        } else if (triple.error != null) {
-          return SingleChildScrollView(
-            physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics(),
+    return ScopedBuilder(
+      store: store,
+      onError: (_, error) {
+        return SingleChildScrollView(
+          physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics(),
+          ),
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(error.toString()),
+              const SizedBox(height: 12),
+              DefaultButtonWidget(
+                text: 'Tentar novamente',
+                onPressed: () {
+                  store.getPromotions();
+                },
+              ),
+            ],
+          ),
+        );
+      },
+      onLoading: (_) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: const [
+            SizedBox(
+              height: 100,
+              child: Center(child: DefaultLoadingWidget()),
             ),
-            padding: const EdgeInsets.all(12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(triple.error.toString()),
-                const SizedBox(height: 12),
-                DefaultButtonWidget(
-                  text: 'Tentar novamente',
-                  onPressed: () {
-                    triple.clearError();
-                    store.getPromotions();
-                  },
-                ),
-              ],
-            ),
-          );
-        }
-          return Row(
+          ],
+        );
+      },
+      onState: (_, state) {
+        return SingleChildScrollView(
+          physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics(),
+          ),
+          padding: const EdgeInsets.all(12),
+          scrollDirection: Axis.horizontal,
+          child: Row(
             children: store.state
-                .map((e) => promotionListItem(e, isLast: e == store.state.last))
+                .map(
+                  (e) => promotionListItem(
+                    _,
+                    e,
+                    isLast: e == store.state.last,
+                  ),
+                )
                 .toList(),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 
-  Widget promotionListItem(ProductEntity product, {isLast = false}) {
+  Widget promotionListItem(BuildContext context, ProductEntity product,
+      {isLast = false}) {
     return Container(
-      height: 75,
-      width: 100,
-      color: Colors.red,
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: Colors.grey, width: 0.1),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.25),
+            spreadRadius: 2.5,
+            blurRadius: 5,
+          ),
+        ],
+      ),
       margin: EdgeInsets.only(right: isLast ? 0 : 12),
+      width: MediaQuery.of(context).size.width * .85,
+      child: Container(
+        color: Colors.grey.withOpacity(0.1),
+        child: Row(
+          children: [
+            Container(
+              color: Colors.white,
+              padding: const EdgeInsets.all(4),
+              child: Image.network(
+                product.image,
+                height: 100,
+                errorBuilder: (_, __, error) {
+                  return const Center(
+                    child: Icon(Icons.warning_rounded, color: Colors.grey),
+                  );
+                },
+              ),
+            ),
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      product.name,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.headline6?.copyWith(
+                            color: Colors.black.withOpacity(0.75),
+                            fontSize: 14,
+                          ),
+                    ),
+                    const SizedBox(height: 4),
+                    HomeProductPrice(product: product),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

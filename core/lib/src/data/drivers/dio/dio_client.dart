@@ -5,7 +5,7 @@ class DioClient extends IHttpDriver {
 
   DioClient({required this.client}) {
     client.interceptors.add(DefaultInterceptors());
-    client.interceptors.add(LogInterceptor());
+    // client.interceptors.add(LogInterceptor());
   }
 
   @override

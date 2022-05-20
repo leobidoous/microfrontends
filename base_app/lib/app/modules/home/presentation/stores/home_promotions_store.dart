@@ -10,6 +10,7 @@ class HomePromotionsStore
 
   Future<void> getPromotions() async {
     setLoading(true);
+    await Future.delayed(const Duration(seconds: 1));
     usecase().then((value) => value.fold((l) => setError(l), (r) => update(r)));
     setLoading(false);
   }

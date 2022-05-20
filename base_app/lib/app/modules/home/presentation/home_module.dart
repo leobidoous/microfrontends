@@ -1,7 +1,10 @@
 import 'package:base_auth/base_auth.dart';
 import 'package:core/core.dart';
 
+import '../../../../core/app_routes.dart';
 import '../../../stores/app_store.dart';
+import '../../cart/presentation/cart_module.dart';
+import '../../product_details/presentation/product_details_page.dart';
 import '../data/datasources/get_products_datasource.dart';
 import '../data/datasources/get_promotions_datasource.dart';
 import '../domain/usecases/get_products_usecase.dart';
@@ -67,6 +70,21 @@ class HomeModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute(Modular.initialRoute, child: (_, args) => const HomePage()),
+    ChildRoute(
+      Modular.initialRoute,
+      child: (_, args) => const HomePage(),
+      children: [
+        ModuleRoute(
+          AppRoutes.cart,
+          module: CartModule(),
+          transition: TransitionType.defaultTransition,
+        ),
+      ],
+    ),
+    ChildRoute(
+      '${AppRoutes.productDetails}/:id',
+      child: (_, args) => ProductDetailsPage(product: args.data),
+      transition: TransitionType.downToUp,
+    ),
   ];
 }

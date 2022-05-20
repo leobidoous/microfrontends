@@ -11,6 +11,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+    
+  base_style_sheet:
+    path: ../base_style_sheet
 
   dio: ^4.0.4
   dartz: ^0.10.1

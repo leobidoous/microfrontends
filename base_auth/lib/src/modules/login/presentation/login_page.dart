@@ -16,7 +16,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final LoginStore store = Modular.get<LoginStore>();
   final identify = TextEditingController(text: 'leonardo@bido.com');
-  final password = TextEditingController();
+  final password = TextEditingController(text: 'senha@123');
 
   @override
   void dispose() {
