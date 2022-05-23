@@ -22,3 +22,6 @@ export 'package:core/src/infra/models/logged_user_model.dart';
 export 'package:core/src/data/drivers/dio/default_interceptors.dart';
 export 'package:flutter_svg/svg.dart';
 export 'package:core/src/utils/formats.dart';
+export 'package:core/src/infra/drivers/preferences_storage_driver.dart';
+export 'package:core/src/data/drivers/preferences_storage_driver.dart';
+export 'package:shared_preferences/shared_preferences.dart';

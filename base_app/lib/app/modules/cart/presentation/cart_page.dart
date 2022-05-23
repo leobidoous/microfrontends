@@ -2,6 +2,7 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
+import 'cart_store.dart';
 import 'components/cart_products_list.dart';
 
 class CartPage extends StatefulWidget {
@@ -12,59 +13,87 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+  final store = Modular.get<CartStore>();
+
+  @override
+  void initState() {
+    super.initState();
+    store.getCartProducts();
+  }
+
   @override
   Widget build(BuildContext context) {
-    if (1 == int.tryParse('x')) {
-      return Center(
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          padding: const EdgeInsets.all(8),
-          child: Column(
+    return TripleBuilder(
+      store: store,
+      builder: (_, triple) {
+        if (triple.isLoading) {
+          return const Center(child: DefaultLoadingWidget());
+        } else if (triple.error != null) {
+          return Center(
+            child: RequestErrorWidget(
+              message: triple.error.toString(),
+              onPressed: () {
+                triple.clearError();
+                store.getCartProducts();
+              },
+            ),
+          );
+        }
+        if (store.state.isEmpty) return loadingCart;
+        return Scaffold(
+          extendBody: true,
+          body: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(
-                Icons.add_shopping_cart_rounded,
-                color: Colors.grey,
-                size: 100,
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12, 16, 12, 12),
+                child: Text(
+                  'Revise os detalhes do seu pedido',
+                  style: Theme.of(context).textTheme.headline4?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
               ),
-              Text(
-                'Ops, parece que voce ainda não '
-                'adicionou produtos ao seu carrinho.',
-                style: Theme.of(context).textTheme.headline4,
-                textAlign: TextAlign.center,
+              const Divider(height: 0),
+              const Expanded(child: CartProductsList()),
+              orderDetails,
+              Padding(
+                padding: const EdgeInsets.all(12),
+                child: DefaultButtonWidget(
+                  text: 'Confirmar pedido',
+                  onPressed: () {},
+                ),
               ),
             ],
           ),
+        );
+      },
+    );
+  }
+
+  Widget get loadingCart {
+    return Center(
+      child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        padding: const EdgeInsets.all(8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(
+              Icons.add_shopping_cart_rounded,
+              color: Colors.grey,
+              size: 100,
+            ),
+            Text(
+              'Ops, parece que voce ainda não '
+              'adicionou produtos ao seu carrinho.',
+              style: Theme.of(context).textTheme.headline4,
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
-      );
-    }
-    return Scaffold(
-      extendBody: true,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 16, 12, 12),
-            child: Text(
-              'Revise os detalhes do seu pedido',
-              style: Theme.of(context).textTheme.headline4?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-            ),
-          ),
-          const Divider(height: 0),
-          const Expanded(child: CartProductsList()),
-          orderDetails,
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: DefaultButtonWidget(
-              text: 'Confirmar pedido',
-              onPressed: () {},
-            ),
-          ),
-        ],
       ),
     );
   }

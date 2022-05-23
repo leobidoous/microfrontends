@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import '../../domain/entities/product_entity.dart';
+import '../../../home/domain/entities/product_entity.dart';
 import '../../domain/repositories/remove_product_from_cart_repository.dart';
 import '../datasources/remove_product_from_cart_datasource.dart';
 
@@ -10,9 +10,7 @@ class RemoveProductFromCartRepository extends IRemoveProductFromCartRepository {
   RemoveProductFromCartRepository({required this.datasource});
 
   @override
-  Future<Either<Exception, List<ProductEntity>>> call({
-    required ProductEntity product,
-  }) {
+  Future<Either<Exception, Unit>> call({required ProductEntity product}) {
     return datasource(product: product);
   }
 }

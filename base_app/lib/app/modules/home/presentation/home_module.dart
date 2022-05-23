@@ -6,13 +6,17 @@ import '../../../stores/app_store.dart';
 import '../../cart/presentation/cart_module.dart';
 import '../../my_orders/presentation/my_orders_module.dart';
 import '../../product_details/presentation/product_details_page.dart';
+import '../data/datasources/add_product_to_cart_datasource.dart';
 import '../data/datasources/get_products_datasource.dart';
 import '../data/datasources/get_promotions_datasource.dart';
+import '../domain/usecases/add_product_to_cart_usecase.dart';
 import '../domain/usecases/get_products_usecase.dart';
 import '../domain/usecases/get_promotions_usecase.dart';
+import '../infra/repositories/add_product_to_cart_repository.dart';
 import '../infra/repositories/get_products_repository.dart';
 import '../infra/repositories/get_promotions_repository.dart';
 import 'home_page.dart';
+import 'stores/home_bottom_bar_store.dart';
 import 'stores/home_products_store.dart';
 import 'stores/home_promotions_store.dart';
 import 'stores/home_store.dart';
@@ -20,7 +24,24 @@ import 'stores/home_store.dart';
 class HomeModule extends Module {
   @override
   final List<Bind> binds = [
-    /// Promotions dependencies
+    /// Products dependencies
+    Bind.lazySingleton(
+      (i) => AddProductToCartDatasource(
+        storage: i.get<PreferencesStorageDriver>(),
+      ),
+    ),
+    Bind.lazySingleton(
+      (i) => AddProductToCartRepository(
+        datasource: i.get<AddProductToCartDatasource>(),
+      ),
+    ),
+    Bind.lazySingleton(
+      (i) => AddProductToCartUsecase(
+        repository: i.get<AddProductToCartRepository>(),
+      ),
+    ),
+
+    /// Products dependencies
     Bind.lazySingleton(
       (i) => GetProductsUsecase(repository: i.get<GetProductsRepository>()),
     ),
@@ -62,6 +83,8 @@ class HomeModule extends Module {
         productsStore: HomeProductsStore(
           usecase: i.get<GetProductsUsecase>(),
         ),
+        bottomBarStore: HomeBottomBarStore(),
+        addProductToCartUsecase: i.get<AddProductToCartUsecase>(),
         promotionsStore: HomePromotionsStore(
           usecase: i.get<GetPromotionsUsecase>(),
         ),

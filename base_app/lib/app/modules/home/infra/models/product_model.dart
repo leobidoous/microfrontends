@@ -45,8 +45,23 @@ class ProductModel extends ProductEntity {
       colors: map['colors']?.toInt() ?? 0,
     );
   }
+  factory ProductModel.fromEntity(ProductEntity entity) {
+    return ProductModel(
+      name: entity.name,
+      image: entity.image,
+      price: entity.price,
+      oldPrice: entity.oldPrice,
+      rate: entity.rate,
+      reviews: entity.reviews,
+      freeShipping: entity.freeShipping,
+      discount: entity.discount,
+      id: entity.id,
+      colors: entity.colors,
+    );
+  }
 
   String toJson() => json.encode(toMap());
+  ProductEntity toentity() => this;
 
   ProductEntity toEntity() => this;
 

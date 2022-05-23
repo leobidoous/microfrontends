@@ -10,7 +10,7 @@ class AddProductToCartRepository extends IAddProductToCartRepository {
   AddProductToCartRepository({required this.datasource});
 
   @override
-  Future<Either<Exception, List<ProductEntity>>> call({
+  Future<Either<Exception, Unit>> call({
     required ProductEntity product,
   }) {
     return datasource(product: product);

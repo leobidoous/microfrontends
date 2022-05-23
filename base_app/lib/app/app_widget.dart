@@ -17,8 +17,8 @@ class _AppWidgetState extends State<AppWidget> {
   final AppStore store = Modular.get<AppStore>();
   @override
   void initState() {
-    Modular.setObservers([RouterObserver()]);
     super.initState();
+    Modular.setObservers([RouterObserver()]);
   }
 
   ThemeMode get getThemeMode {

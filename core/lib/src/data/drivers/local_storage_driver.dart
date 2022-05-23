@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:sqflite/sqflite.dart';
 
 import '../../../core.dart';
-import '../../infra/drivers/local_storage_drive.dart';
+import '../../infra/drivers/local_storage_driver.dart';
 
 class LocalStorageDriver extends ILocalStorageDriver with Disposable {
   static Database? _db;

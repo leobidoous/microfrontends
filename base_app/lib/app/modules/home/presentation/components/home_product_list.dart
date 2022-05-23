@@ -4,7 +4,6 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/app_routes.dart';
 import '../../domain/entities/product_entity.dart';
 import '../stores/home_products_store.dart';
 import '../stores/home_store.dart';
@@ -12,6 +11,7 @@ import 'home_product_price.dart';
 
 class HomeProductList extends StatelessWidget {
   final HomeProductsStore store = Modular.get<HomeStore>().productsStore;
+  final HomeStore homeStore = Modular.get<HomeStore>();
 
   HomeProductList({Key? key}) : super(key: key);
 
@@ -62,10 +62,11 @@ class HomeProductList extends StatelessWidget {
       {isLast = false}) {
     return InkWell(
       onTap: () {
-        Modular.to.pushNamed(
-          '${AppRoutes.productDetails.replaceAll('/', '')}/',
-          arguments: product,
-        );
+        homeStore.addProductToCart(product: product);
+        // Modular.to.pushNamed(
+        //   '${AppRoutes.productDetails.replaceAll('/', '')}/',
+        //   arguments: product,
+        // );
       },
       child: Container(
         clipBehavior: Clip.antiAliasWithSaveLayer,

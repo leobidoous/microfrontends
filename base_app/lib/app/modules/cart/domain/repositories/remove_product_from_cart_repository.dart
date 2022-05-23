@@ -1,9 +1,9 @@
 import 'package:core/core.dart';
 
-import '../entities/product_entity.dart';
+import '../../../home/domain/entities/product_entity.dart';
 
 abstract class IRemoveProductFromCartRepository {
-  Future<Either<Exception, List<ProductEntity>>> call({
+  Future<Either<Exception, Unit>> call({
     required ProductEntity product,
   });
 }

@@ -1,9 +1,7 @@
 import 'package:core/core.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/mapping_preferences.dart';
 import '../../infra/datasources/logged_user_datasource.dart';
-
 
 class LoggedUserDatasource extends ILoggedUserDatasource {
   final LocalStorageDriver storageDriver;
@@ -39,7 +37,7 @@ class LoggedUserDatasource extends ILoggedUserDatasource {
       return Left(Exception('LoggedUserDatasource().saveLoggedUser: $e'));
     }
   }
-  
+
   @override
   Future<Either<Exception, Unit>> removeLoggedUser() async {
     final SharedPreferences _prefs = await SharedPreferences.getInstance();

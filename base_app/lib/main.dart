@@ -1,5 +1,6 @@
-import 'package:core/core.dart' show ModularApp;
+import 'package:core/core.dart' show  ModularApp;
 import 'package:flutter/material.dart';
+
 // import 'package:flutter/foundation.dart' show kDebugMode;
 
 import 'app/app_module.dart';

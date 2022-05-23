@@ -4,7 +4,7 @@ import '../entities/product_entity.dart';
 import '../repositories/add_product_to_cart_repository.dart';
 
 abstract class IAddProductToCartUsecase {
-  Future<Either<Exception, List<ProductEntity>>> call({
+  Future<Either<Exception, Unit>> call({
     required ProductEntity product,
   });
 }
@@ -15,7 +15,7 @@ class AddProductToCartUsecase extends IAddProductToCartUsecase {
   AddProductToCartUsecase({required this.repository});
 
   @override
-  Future<Either<Exception, List<ProductEntity>>> call({
+  Future<Either<Exception, Unit>> call({
     required ProductEntity product,
   }) {
     return repository(product: product);

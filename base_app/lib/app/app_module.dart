@@ -13,7 +13,7 @@ import 'stores/app_theme_store.dart';
 class AppModule extends Module {
   @override
   final List<Bind> binds = [
-    /// Global dependencies
+    /// Global configs dependencies
     Bind.lazySingleton(
       (i) => DioClient(
         client: Dio(BaseOptions(baseUrl: 'http://localhost:3000')),
@@ -35,6 +35,9 @@ class AppModule extends Module {
         userStore: i.get<LoggedUserStore>(),
       ),
     ),
+
+    /// Preferences storage dependencies
+    Bind.lazySingleton((i) => PreferencesStorageDriver()),
 
     /// Local storage dependencies
     Bind.lazySingleton((i) => LocalStorageDriver()),
