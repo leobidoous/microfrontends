@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 class DefaultTextFieldWidget extends StatefulWidget {
   final TextEditingController controller;
   final String? placeholder;
-  final String label;
+  final String? label;
+  final Function(String)? onComplete;
 
   const DefaultTextFieldWidget({
     Key? key,
     required this.controller,
-    required this.label,
+    this.label,
     this.placeholder,
+    this.onComplete,
   }) : super(key: key);
 
   @override
@@ -22,15 +24,19 @@ class _DefaultTextFieldWidgetState extends State<DefaultTextFieldWidget> {
     return TextFormField(
       controller: widget.controller,
       style: Theme.of(context).textTheme.headline6,
+      onEditingComplete: () {
+        widget.onComplete?.call(widget.controller.text);
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
       decoration: InputDecoration(
         isDense: true,
         labelText: widget.label,
         hintText: widget.placeholder,
         labelStyle: Theme.of(context).textTheme.headline6,
         hintStyle: Theme.of(context).textTheme.headline6,
-        contentPadding: const EdgeInsets.all(12),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(12),
           gapPadding: 4,
           borderSide: BorderSide(
             style: BorderStyle.solid,
@@ -39,7 +45,7 @@ class _DefaultTextFieldWidgetState extends State<DefaultTextFieldWidget> {
           ),
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(
             style: BorderStyle.solid,
             color: Theme.of(context).primaryColor,

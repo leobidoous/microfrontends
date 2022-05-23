@@ -1,15 +1,12 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../domain/entities/product_entity.dart';
 
 class HomeProductPrice extends StatelessWidget {
   final ProductEntity product;
-  final toCurrency = NumberFormat.currency(
-    locale: 'pt_BR',
-    symbol: 'R\$',
-  ).format;
-  HomeProductPrice({Key? key, required this.product}) : super(key: key);
+  
+  const HomeProductPrice({Key? key, required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +18,13 @@ class HomeProductPrice extends StatelessWidget {
         );
     if (product.oldPrice == null) {
       return Text(
-        toCurrency(product.price),
+        Number.toCurrency(product.price),
         style: priceStyle,
       );
     }
     return RichText(
       text: TextSpan(
-        text: toCurrency(product.oldPrice),
+        text: Number.toCurrency(product.oldPrice),
         style: Theme.of(context).textTheme.headline6?.copyWith(
               fontSize: 12,
               color: Colors.grey,
@@ -35,7 +32,7 @@ class HomeProductPrice extends StatelessWidget {
             ),
         children: [
           TextSpan(
-            text: ' ${toCurrency(product.price)}',
+            text: ' ${Number.toCurrency(product.price)}',
             style: priceStyle,
           ),
         ],

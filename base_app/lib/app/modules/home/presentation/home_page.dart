@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/app_routes.dart';
 import 'components/home_product_list.dart';
+import 'components/home_products_filters.dart';
 import 'components/home_promotion_list.dart';
 import 'stores/home_store.dart';
 
@@ -71,6 +72,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
+        resizeToAvoidBottomInset: false,
         body: PageView(
           controller: pageController,
           restorationId: store.toString(),
@@ -85,12 +87,12 @@ class _HomePageState extends State<HomePage> {
                     'Olá, ${store.userStore.loggedUser.name}!',
                     style: Theme.of(context).textTheme.headline4?.copyWith(
                           fontWeight: FontWeight.bold,
-                          // color: this.co
                         ),
                   ),
                 ),
                 HomePromotionList(),
                 const Divider(height: 0),
+                HomeProductsFilters(key: UniqueKey()),
                 Expanded(child: HomeProductList()),
               ],
             ),
@@ -105,20 +107,32 @@ class _HomePageState extends State<HomePage> {
                 switch (index) {
                   case 0:
                     if (store.bottomBarStore.state == 0) break;
+                    store.bottomBarStore.changeIndex(index);
                     pageController.jumpToPage(0);
                     Modular.to.navigate('${AppRoutes.home}/');
                     break;
                   case 1:
                     if (store.bottomBarStore.state == 1) break;
+                    if (true) store.bottomBarStore.changeIndex(index);
                     pageController.jumpToPage(1);
-                    Modular.to.pushNamed(
-                      '${AppRoutes.cart.replaceAll('/', '')}/',
+                    Modular.to.pushNamedAndRemoveUntil(
+                      '${AppRoutes.home + AppRoutes.cart}/',
+                      ModalRoute.withName('${AppRoutes.home}/'),
+                    );
+                    break;
+                  case 2:
+                    if (store.bottomBarStore.state == 2) break;
+                    store.bottomBarStore.changeIndex(index);
+                    pageController.jumpToPage(1);
+                    Modular.to.pushNamedAndRemoveUntil(
+                      '${AppRoutes.home + AppRoutes.myOrders}/',
+                      ModalRoute.withName('${AppRoutes.home}/'),
                     );
                     break;
                 }
-                store.bottomBarStore.changeIndex(index);
               },
               currentIndex: store.bottomBarStore.state,
+              enableFeedback: true,
               items: const [
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home),
@@ -128,6 +142,10 @@ class _HomePageState extends State<HomePage> {
                   icon: Icon(Icons.shopping_cart_rounded),
                   label: 'Carrinho',
                 ),
+                // BottomNavigationBarItem(
+                //   icon: Icon(Icons.list_rounded),
+                //   label: 'Pedidos',
+                // ),
               ],
             );
           },

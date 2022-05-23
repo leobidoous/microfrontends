@@ -4,6 +4,7 @@ import 'package:core/core.dart';
 import '../../../../core/app_routes.dart';
 import '../../../stores/app_store.dart';
 import '../../cart/presentation/cart_module.dart';
+import '../../my_orders/presentation/my_orders_module.dart';
 import '../../product_details/presentation/product_details_page.dart';
 import '../data/datasources/get_products_datasource.dart';
 import '../data/datasources/get_promotions_datasource.dart';
@@ -77,7 +78,12 @@ class HomeModule extends Module {
         ModuleRoute(
           AppRoutes.cart,
           module: CartModule(),
-          transition: TransitionType.defaultTransition,
+          transition: TransitionType.noTransition,
+        ),
+        ModuleRoute(
+          AppRoutes.myOrders,
+          module: MyOrdersModule(),
+          transition: TransitionType.noTransition,
         ),
       ],
     ),

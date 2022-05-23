@@ -20,28 +20,18 @@ class HomeProductList extends StatelessWidget {
     return ScopedBuilder(
       store: store,
       onError: (_, error) {
-        return SingleChildScrollView(
-          physics: const BouncingScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics(),
-          ),
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(error.toString()),
-              const SizedBox(height: 12),
-              DefaultButtonWidget(
-                text: 'Tentar novamente',
-                onPressed: store.getProducts,
-              ),
-            ],
-          ),
+        return RequestErrorWidget(
+          message: error.toString(),
+          onPressed: store.getProducts,
         );
       },
       onLoading: (_) {
         return const Center(child: DefaultLoadingWidget());
       },
       onState: (_, state) {
+        if (store.state.isEmpty) {
+          return SearchResponseEmptyWidget(message: store.params.q);
+        }
         return RefreshIndicator(
           onRefresh: () async {
             store.getProducts();

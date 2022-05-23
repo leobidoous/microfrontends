@@ -1,5 +1,4 @@
 import 'package:base_auth/base_auth.dart';
-import 'package:base_auth/src/modules/login/data/datasources/login/remote/remote_login_with_email_datasource.dart';
 import 'package:base_auth/src/modules/login/domain/entities/login/login_with_email_entity.dart';
 import 'package:base_auth/src/modules/login/domain/usecases/login/login_with_email.dart';
 import 'package:base_auth/src/modules/login/infra/datasources/login/local/local_login_with_email_datasource.dart';

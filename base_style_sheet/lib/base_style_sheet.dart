@@ -6,3 +6,5 @@ export 'package:base_style_sheet/src/buttons/default_button_widget.dart';
 export 'package:base_style_sheet/src/dialogs/default_dialog_widget.dart';
 export 'package:base_style_sheet/src/dialogs/info_dialog_widget.dart';
 export 'package:base_style_sheet/src/dialogs/confirm_dialog_widget.dart';
+export 'package:base_style_sheet/src/errors/request_error_widget.dart';
+export 'package:base_style_sheet/src/empty/search_response_empty_widget.dart';

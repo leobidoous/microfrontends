@@ -38,7 +38,7 @@ class DioClient extends IHttpDriver {
       ));
     } on DioError catch (e) {
       return Left(HttpDriverResponse(
-        data: e.response?.data ?? 'Erro não tratado pelo Back-End',
+        data: e.response?.data ?? 'Erro interno\n${e.message}',
         statusCode: e.response?.statusCode,
         statusMessage: e.message,
       ));

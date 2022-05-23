@@ -16,29 +16,17 @@ class HomePromotionList extends StatelessWidget {
     return ScopedBuilder(
       store: store,
       onError: (_, error) {
-        return SingleChildScrollView(
-          physics: const BouncingScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics(),
-          ),
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(error.toString()),
-              const SizedBox(height: 12),
-              DefaultButtonWidget(
-                text: 'Tentar novamente',
-                onPressed: () {
-                  store.getPromotions();
-                },
-              ),
-            ],
+        return Flexible(
+          child: RequestErrorWidget(
+            message: error.toString(),
+            onPressed: store.getPromotions,
           ),
         );
       },
       onLoading: (_) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: const [
             SizedBox(
               height: 100,
