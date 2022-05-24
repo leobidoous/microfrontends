@@ -16,7 +16,14 @@ class AppModule extends Module {
     /// Global configs dependencies
     Bind.lazySingleton(
       (i) => DioClient(
-        client: Dio(BaseOptions(baseUrl: 'http://localhost:3000')),
+        client: Dio(
+          BaseOptions(
+            baseUrl: 'http://localhost:3000',
+            connectTimeout: 10000,
+            receiveTimeout: 10000,
+            sendTimeout: 10000,
+          ),
+        ),
       ),
     ),
 

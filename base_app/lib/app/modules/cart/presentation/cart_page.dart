@@ -66,11 +66,11 @@ class _CartPageState extends State<CartPage> {
               Padding(
                 padding: const EdgeInsets.all(12),
                 child: DefaultButtonWidget(
-                  text: 'Confirmar pedido',
+                  text: 'Finalizar pedido',
                   onPressed: () {
                     DefaultDialog().show(context, creatingOrder);
                     store.cartCreateOrderStore.createOrder().then((value) {
-                      if (store.cartCreateOrderStore.error == null) {
+                      if (store.cartCreateOrderStore.state.items.isEmpty) {
                         store.cleanCart();
                       }
                     });
