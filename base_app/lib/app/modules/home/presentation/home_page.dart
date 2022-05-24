@@ -118,6 +118,7 @@ class _HomePageState extends State<HomePage> {
                     Modular.to.pushNamedAndRemoveUntil(
                       '${AppRoutes.home + AppRoutes.cart}/',
                       ModalRoute.withName('${AppRoutes.home}/'),
+                      arguments: pageController,
                     );
                     break;
                   case 2:
@@ -130,6 +131,7 @@ class _HomePageState extends State<HomePage> {
                     );
                     break;
                 }
+                ScaffoldMessenger.of(context).removeCurrentSnackBar();
               },
               currentIndex: store.bottomBarStore.state,
               enableFeedback: true,

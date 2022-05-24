@@ -11,7 +11,7 @@ class PreferencesStorageDriver extends IPreferencesStorageDriver {
     required String key,
   }) async {
     try {
-      final instance =await  SharedPreferences.getInstance();
+      final instance = await SharedPreferences.getInstance();
       final removed = await instance.remove(key);
       if (removed == false) {
         return Left(Exception('Erro ao remover $key'));
@@ -23,12 +23,12 @@ class PreferencesStorageDriver extends IPreferencesStorageDriver {
   }
 
   @override
-  Future<Either<Exception, Unit>> saveStringByKey({
+  Future<Either<Exception, Unit>> setStringByKey({
     required String key,
     required String value,
   }) async {
     try {
-      final instance =await  SharedPreferences.getInstance();
+      final instance = await SharedPreferences.getInstance();
       final saved = await instance.setString(key, value);
       if (saved == false) {
         return Left(Exception('Erro ao salvar $key'));
@@ -44,7 +44,7 @@ class PreferencesStorageDriver extends IPreferencesStorageDriver {
     required String key,
   }) async {
     try {
-      final instance =await  SharedPreferences.getInstance();
+      final instance = await SharedPreferences.getInstance();
       final response = instance.getString(key);
       if (response == null) {
         return Left(Exception('Erro ao obter $key'));
@@ -60,10 +60,10 @@ class PreferencesStorageDriver extends IPreferencesStorageDriver {
     required String key,
   }) async {
     try {
-      final instance =await  SharedPreferences.getInstance();
+      final instance = await SharedPreferences.getInstance();
       final response = instance.getStringList(key);
       if (response == null) {
-        return Left(Exception('Erro ao obter $key'));
+        return const Right([]);
       }
       return Right(response);
     } catch (e) {
@@ -72,12 +72,12 @@ class PreferencesStorageDriver extends IPreferencesStorageDriver {
   }
 
   @override
-  Future<Either<Exception, Unit>> saveStringListByKey({
+  Future<Either<Exception, Unit>> setStringListByKey({
     required String key,
     required List<String> value,
   }) async {
     try {
-      final instance =await  SharedPreferences.getInstance();
+      final instance = await SharedPreferences.getInstance();
       final saved = await instance.setStringList(key, value);
       if (saved == false) {
         return Left(Exception('Erro ao salvar $key'));

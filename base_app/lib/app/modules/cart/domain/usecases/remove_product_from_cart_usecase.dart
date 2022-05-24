@@ -7,6 +7,7 @@ abstract class IRemoveProductFromCartUsecase {
   Future<Either<Exception, Unit>> call({
     required ProductEntity product,
   });
+  Future<Either<Exception, Unit>> clean();
 }
 
 class RemoveProductFromCartUsecase extends IRemoveProductFromCartUsecase {
@@ -17,5 +18,10 @@ class RemoveProductFromCartUsecase extends IRemoveProductFromCartUsecase {
   @override
   Future<Either<Exception, Unit>> call({required ProductEntity product}) {
     return repository(product: product);
+  }
+
+  @override
+  Future<Either<Exception, Unit>> clean() {
+    return repository.clean();
   }
 }

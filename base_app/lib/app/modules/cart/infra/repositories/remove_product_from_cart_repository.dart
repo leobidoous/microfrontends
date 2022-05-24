@@ -13,4 +13,9 @@ class RemoveProductFromCartRepository extends IRemoveProductFromCartRepository {
   Future<Either<Exception, Unit>> call({required ProductEntity product}) {
     return datasource(product: product);
   }
+
+  @override
+  Future<Either<Exception, Unit>> clean() {
+    return datasource.clean();
+  }
 }

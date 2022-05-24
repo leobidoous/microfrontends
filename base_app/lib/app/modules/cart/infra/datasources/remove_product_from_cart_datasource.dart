@@ -6,4 +6,5 @@ abstract class IRemoveProductFromCartDatasource {
   Future<Either<Exception, Unit>> call({
     required ProductEntity product,
   });
+  Future<Either<Exception, Unit>> clean();
 }

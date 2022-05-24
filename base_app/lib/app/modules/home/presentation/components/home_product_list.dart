@@ -15,6 +15,53 @@ class HomeProductList extends StatelessWidget {
 
   HomeProductList({Key? key}) : super(key: key);
 
+  void addProductToCart(BuildContext context, ProductEntity product) {
+    homeStore.addProductToCart(product: product).then((value) {
+      ScaffoldMessenger.of(context).removeCurrentSnackBar();
+      value.fold(
+        (l) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              padding: EdgeInsets.zero,
+              backgroundColor: Colors.red,
+              behavior: SnackBarBehavior.floating,
+              content: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                padding: const EdgeInsets.all(8),
+                child: Text(
+                  'Erro ao adicionar produto ao carrinho: ${l.toString()}',
+                ),
+              ),
+            ),
+          );
+        },
+        (r) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              padding: EdgeInsets.zero,
+              backgroundColor: Colors.green,
+              behavior: SnackBarBehavior.floating,
+              content: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                padding: const EdgeInsets.all(8),
+                child: Text(
+                  'Produto adicionado ao carrinho com sucesso',
+                  style: Theme.of(context).textTheme.headline6?.copyWith(
+                        color: Colors.white,
+                      ),
+                ),
+              ),
+            ),
+          );
+        },
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScopedBuilder(
@@ -62,7 +109,7 @@ class HomeProductList extends StatelessWidget {
       {isLast = false}) {
     return InkWell(
       onTap: () {
-        homeStore.addProductToCart(product: product);
+        addProductToCart(context, product);
         // Modular.to.pushNamed(
         //   '${AppRoutes.productDetails.replaceAll('/', '')}/',
         //   arguments: product,
@@ -94,8 +141,10 @@ class HomeProductList extends StatelessWidget {
                       product.image,
                       errorBuilder: (_, __, error) {
                         return const Center(
-                          child:
-                              Icon(Icons.warning_rounded, color: Colors.grey),
+                          child: Icon(
+                            Icons.warning_rounded,
+                            color: Colors.grey,
+                          ),
                         );
                       },
                     ),

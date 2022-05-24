@@ -22,7 +22,7 @@ class AddProductToCartDatasource extends IAddProductToCartDatasource {
       (l) => Left(l),
       (r) {
         products.addAll(r);
-        return storage.saveStringListByKey(
+        return storage.setStringListByKey(
           key: PreferencesConstants.cartProducts,
           value: products,
         );

@@ -74,14 +74,33 @@ class DioClient extends IHttpDriver {
   }
 
   @override
-  Future<HttpDriverResponse> post(
+  Future<Either<Exception, HttpDriverResponse>> post(
     String path, {
     data,
     Map<String, dynamic>? queryParameters,
     HttpDriverOptions? options,
     HttpDriverProgressCallback? onReceiveProgress,
-  }) {
-    throw UnimplementedError();
+  }) async {
+    try {
+      final response = await client.post(
+        path,
+        data: data,
+        queryParameters: queryParameters,
+      );
+      return Right(HttpDriverResponse(
+        data: response.data,
+        statusCode: response.statusCode,
+        statusMessage: response.statusMessage,
+      ));
+    } on DioError catch (e) {
+      return Left(
+        Exception(
+          '[${e.response?.statusCode ?? 'No statusCode'}]\n'
+          '${e.response?.statusMessage}\n'
+          '${e.response?.data}',
+        ),
+      );
+    }
   }
 
   @override

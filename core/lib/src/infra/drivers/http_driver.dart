@@ -64,7 +64,7 @@ abstract class IHttpDriver {
     HttpDriverProgressCallback? onReceiveProgress,
   });
 
-  Future<HttpDriverResponse> post(
+  Future<Either<Exception, HttpDriverResponse>> post(
     String path, {
     dynamic data,
     Map<String, dynamic>? queryParameters,

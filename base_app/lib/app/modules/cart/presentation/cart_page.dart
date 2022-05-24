@@ -2,11 +2,15 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import 'cart_store.dart';
 import 'components/cart_products_list.dart';
+import 'stores/cart_store.dart';
 
 class CartPage extends StatefulWidget {
-  const CartPage({Key? key}) : super(key: key);
+  final PageController pageController;
+  const CartPage({
+    Key? key,
+    required this.pageController,
+  }) : super(key: key);
 
   @override
   State<CartPage> createState() => _CartPageState();
@@ -55,15 +59,95 @@ class _CartPageState extends State<CartPage> {
                 ),
               ),
               const Divider(height: 0),
-              const Expanded(child: CartProductsList()),
+              Expanded(child: CartProductsList()),
+              const Divider(height: 0),
+              const SizedBox(height: 8),
               orderDetails,
               Padding(
                 padding: const EdgeInsets.all(12),
                 child: DefaultButtonWidget(
                   text: 'Confirmar pedido',
-                  onPressed: () {},
+                  onPressed: () {
+                    DefaultDialog().show(context, creatingOrder);
+                    store.cartCreateOrderStore.createOrder().then((value) {
+                      if (store.cartCreateOrderStore.error == null) {
+                        store.cleanCart();
+                      }
+                    });
+                  },
                 ),
               ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget get creatingOrder {
+    return ScopedBuilder(
+      store: store.cartCreateOrderStore,
+      onLoading: (_) {
+        return Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Criando seu pedido',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.headline4,
+              ),
+              const Divider(),
+              const DefaultLoadingWidget(),
+            ],
+          ),
+        );
+      },
+      onError: (_, error) {
+        return Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Erro ao criar seu pedido',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.headline4,
+              ),
+              const Divider(),
+              RequestErrorWidget(message: error.toString()),
+              const SizedBox(height: 12),
+              DefaultButtonWidget(text: 'Fechar', onPressed: Modular.to.pop),
+            ],
+          ),
+        );
+      },
+      onState: (_, state) {
+        return Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Pedido criado com sucesso!',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.headline4,
+              ),
+              const Padding(
+                padding: EdgeInsets.all(12),
+                child: Icon(
+                  Icons.done_rounded,
+                  color: Colors.green,
+                  size: 120,
+                ),
+              ),
+              DefaultButtonWidget(text: 'Fechar', onPressed: Modular.to.pop),
             ],
           ),
         );
@@ -115,21 +199,21 @@ class _CartPageState extends State<CartPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('Frete:', style: titleStyle),
-              Text(Number.toCurrency(100.00), style: fieldStyle),
+              Text(Number.toCurrency(0.00), style: fieldStyle),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('Subtotal:', style: titleStyle),
-              Text(Number.toCurrency(329.00), style: fieldStyle),
+              Text(Number.toCurrency(store.getCartSubtotal), style: fieldStyle),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('Descontos:', style: titleStyle),
-              Text(Number.toCurrency('0.00'), style: fieldStyle),
+              Text(Number.toCurrency(store.getCartDiscount), style: fieldStyle),
             ],
           ),
           const Divider(height: 8),
@@ -144,7 +228,7 @@ class _CartPageState extends State<CartPage> {
                 ),
               ),
               Text(
-                Number.toCurrency(429.00),
+                Number.toCurrency(store.getCartTotalPrice),
                 style: fieldStyle?.copyWith(
                   fontWeight: FontWeight.bold,
                   fontSize: 15,
