@@ -13,3 +13,9 @@ class InternalError extends Failure {
   final String message;
   InternalError({required this.message});
 }
+
+class DownloadFileError extends Failure {
+  @override
+  final String message;
+  DownloadFileError({required this.message});
+}

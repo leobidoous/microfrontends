@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 publish_to: "none"
 
-version: 1.0.0+1
+version: 0.1.0+1
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -26,15 +26,79 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^1.0.0
+  flutter_launcher_icons: ^0.10.0
+  flutter_lints: ^2.0.1
   triple_test: ^1.0.0
   modular_test: ^2.0.0
   mockito: ^5.2.0
   build_runner: ^2.1.11
+  flutter_flavorizr: ^2.1.4
+
+flutter_icons:
+  android: "ic_launcher"
+  ios: true
+  image_path_android: "assets/app_icons/playstore.png"
+  image_path_ios: "assets/app_icons/appstore.png"
 
 flutter:
   uses-material-design: true
 
   assets:
+    - .env/
     - assets/mocks/
     - assets/images/
+    - assets/images/logos/
+    - assets/app_icons/
+
+
+# flutter pub run flutter_flavorizr
+flavorizr:
+  app:
+    android:
+      flavorDimensions: "flavor-type"
+    ios:
+
+  flavors:
+    dev:
+      app:
+        name: "MinhaMTX dev"
+      android:
+        applicationId: "com.bido.example"
+        firebase:
+          config: ".firebase/dev/google-services.json"
+        icon: "assets/app_icons/playstore.png"
+        launchScreen: "assets/images/splash.png"
+        
+      ios:
+        bundleId: "com.bido.example"
+        firebase:
+          config: ".firebase/dev/GoogleService-Info.plist"
+        icon: "assets/app_icons/appstore.png"
+    hml:
+      app:
+        name: "MinhaMTX hml"
+      android:
+        applicationId: "com.bido.example"
+        firebase:
+          config: ".firebase/hml/google-services.json"
+        icon: "assets/app_icons/playstore.png"
+        launchScreen: "assets/images/splash.png"
+      ios:
+        bundleId: "com.bido.example"
+        firebase:
+          config: ".firebase/hml/GoogleService-Info.plist"
+        icon: "assets/app_icons/appstore.png"
+    prod:
+      app:
+        name: "MinhaMTX"
+      android:
+        applicationId: "com.bido.example"
+        firebase:
+          config: ".firebase/prod/google-services.json"
+        icon: "assets/app_icons/playstore.png"
+        launchScreen: "assets/images/splash.png"
+      ios:
+        bundleId: "com.bido.example"
+        firebase:
+          config: ".firebase/prod/GoogleService-Info.plist"
+        icon: "assets/app_icons/appstore.png"

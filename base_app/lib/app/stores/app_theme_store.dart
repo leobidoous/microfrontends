@@ -1,9 +1,47 @@
 import 'package:core/core.dart';
+import 'package:flutter/material.dart';
 
-import '../../core/enums/app_theme_type.dart';
+class AppThemeStore extends NotifierStore<Exception, ThemeMode> {
+  final IPreferencesStorageDriver preferencesDriver;
 
-class AppThemeStore extends NotifierStore<Exception, AppThemeType> {
-  AppThemeStore() : super(AppThemeType.light);
+  AppThemeStore({
+    required this.preferencesDriver,
+  }) : super(ThemeMode.light);
 
-  void changeThemeType(AppThemeType type) => update(type);
+  Future<void> getStorageTheme() async {
+    setLoading(true);
+    await preferencesDriver.getStringByKey(key: 'ThemeMode').then(
+      (value) {
+        value.fold(
+          (l) => l,
+          (r) {
+            switch (r) {
+              case 'system':
+                update(ThemeMode.system);
+                break;
+              case 'dark':
+                update(ThemeMode.dark);
+                break;
+              case 'light':
+                update(ThemeMode.light);
+                break;
+            }
+          },
+        );
+      },
+    ).whenComplete(() => setLoading(false));
+  }
+
+  Future<void> changeThemeType(ThemeMode type) async {
+    setLoading(false);
+    await preferencesDriver
+        .setStringByKey(key: 'ThemeMode', value: type.name.toString())
+        .then((value) {
+      value.fold(
+        (l) => setError(l),
+        (r) => update(type),
+      );
+    });
+    setLoading(false);
+  }
 }

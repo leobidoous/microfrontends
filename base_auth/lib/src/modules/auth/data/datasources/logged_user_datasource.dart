@@ -1,4 +1,14 @@
-import 'package:core/core.dart';
+import 'package:core/core.dart'
+    show
+        Either,
+        Left,
+        LocalStorageDriver,
+        LoggedUserEntity,
+        LoggedUserModel,
+        Right,
+        SharedPreferences,
+        Unit,
+        unit;
 
 import '../../../../core/mapping_preferences.dart';
 import '../../infra/datasources/logged_user_datasource.dart';
@@ -9,7 +19,7 @@ class LoggedUserDatasource extends ILoggedUserDatasource {
   LoggedUserDatasource({required this.storageDriver});
 
   @override
-  Future<Either<Exception, LoggedUserEntity>> getLoggedUser() async {
+  Future<Either<Exception, LoggedUserEntity>> getSavedUser() async {
     final SharedPreferences _prefs = await SharedPreferences.getInstance();
     try {
       final String? response = _prefs.getString(UserConstants.loggedUser);
@@ -18,7 +28,7 @@ class LoggedUserDatasource extends ILoggedUserDatasource {
       }
       return Right(LoggedUserModel.fromJson(response).toEntity());
     } catch (e) {
-      return Left(Exception('LoggedUserDatasource().getLoggedUser: $e'));
+      return Left(Exception('LoggedUserDatasource().getSavedUser: $e'));
     }
   }
 
@@ -39,13 +49,13 @@ class LoggedUserDatasource extends ILoggedUserDatasource {
   }
 
   @override
-  Future<Either<Exception, Unit>> removeLoggedUser() async {
+  Future<Either<Exception, Unit>> removeSavedUser() async {
     final SharedPreferences _prefs = await SharedPreferences.getInstance();
     try {
       await _prefs.remove(UserConstants.loggedUser);
       return const Right(unit);
     } catch (e) {
-      return Left(Exception('LoggedUserDatasource().getLoggedUser: $e'));
+      return Left(Exception('LoggedUserDatasource().removeSavedUser: $e'));
     }
   }
 }

@@ -2,17 +2,24 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 
+import '../../core.dart';
+
 class LoadMock {
-  static Future<Map<String, dynamic>> fromAsset(String path,
-      {Map<String, dynamic> Function(dynamic data)?
-          saveInLocalDatabase}) async {
-    final data = await rootBundle.loadString('assets/mocks/$path');
-    var _result = jsonDecode(data);
+  static Future<Either<Exception, Map<String, dynamic>>> fromAsset(
+    String path, {
+    Map<String, dynamic> Function(dynamic data)? saveInLocalDatabase,
+  }) async {
+    try {
+      final data = await rootBundle.loadString('assets/mocks/$path');
+      var result = jsonDecode(data);
 
-    if (saveInLocalDatabase != null) {
-      return saveInLocalDatabase(_result);
+      if (saveInLocalDatabase != null) {
+        return Right(saveInLocalDatabase(result));
+      }
+
+      return Right(result);
+    } catch (e) {
+      return Left(Exception('LoadMock.fromAsset($path): $e'));
     }
-
-    return _result;
   }
 }

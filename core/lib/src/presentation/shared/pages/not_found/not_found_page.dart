@@ -9,16 +9,27 @@ class NotFoundPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Page not found')),
+      appBar: const DefaultAppBar(automaticallyImplyLeading: true),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Padding(
         padding: const EdgeInsets.all(12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("'${Modular.to.path}' not found"),
-            const SizedBox(height: 12),
-            DefaultButtonWidget(text: 'Voltar', onPressed: Modular.to.pop),
+            Text(
+              'Page not found.',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
+            const SizedBox(height: 16),
+            DefaultButton(
+              text: Text(
+                'Voltar',
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
+              onPressed: Modular.to.pop,
+            ),
           ],
         ),
       ),

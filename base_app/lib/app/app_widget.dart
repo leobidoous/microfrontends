@@ -1,9 +1,18 @@
-import 'package:core/core.dart' show Modular, RouterObserver, ScopedBuilder;
+import 'dart:developer';
+
+import 'package:core/core.dart'
+    show
+        FirebaseAnalytics,
+        FirebaseAnalyticsObserver,
+        FirebaseNotificationsDriver,
+        Modular,
+        RouterObserver,
+        ScopedBuilder;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import '../core/enums/app_theme_type.dart';
-import '../core/theme.dart';
+import '../core/themes/theme.dart';
 import 'stores/app_store.dart';
 
 class AppWidget extends StatefulWidget {
@@ -14,20 +23,41 @@ class AppWidget extends StatefulWidget {
 }
 
 class _AppWidgetState extends State<AppWidget> {
-  final AppStore store = Modular.get<AppStore>();
+  final store = Modular.get<AppStore>();
+  final firebaseNotifications = Modular.get<FirebaseNotificationsDriver>();
+
+  Future<void> _subscribeToTopic() async {
+    [
+    ].map(
+      (element) async => await firebaseNotifications.subscribeToTopic(
+        topic: element,
+      ),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
-    Modular.setObservers([RouterObserver()]);
-  }
+    store.themeStore.getStorageTheme();
 
-  ThemeMode get getThemeMode {
-    switch (store.themeStore.state) {
-      case AppThemeType.dark:
-        return ThemeMode.dark;
-      case AppThemeType.light:
-        return ThemeMode.light;
-    }
+    /// Configure Firebase functions
+    firebaseNotifications.configure().then((value) async {
+      await _subscribeToTopic();
+      await firebaseNotifications.getToken().then((value) {
+        value.fold(
+          (l) => null,
+          (r) => kDebugMode ? log('Firebase Token: $r') : null,
+        );
+      });
+    });
+
+    /// Set observers on application
+    Modular.setObservers(
+      [
+        RouterObserver(),
+        FirebaseAnalyticsObserver(analytics: Modular.get<FirebaseAnalytics>()),
+      ],
+    );
   }
 
   @override
@@ -36,11 +66,11 @@ class _AppWidgetState extends State<AppWidget> {
       store: store.themeStore,
       onState: (_, state) {
         return MaterialApp.router(
-          title: 'Base App',
+          title: 'APP',
           theme: LightTheme.theme,
           darkTheme: DarkTheme.theme,
-          themeMode: getThemeMode,
           // showPerformanceOverlay: true,
+          themeMode: store.themeStore.state,
           debugShowCheckedModeBanner: false,
           locale: const Locale('pt', 'BR'),
           localizationsDelegates: const [

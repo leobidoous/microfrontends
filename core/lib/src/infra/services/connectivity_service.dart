@@ -1,5 +1,8 @@
-import '../../../core.dart';
+import 'package:dartz/dartz.dart';
+
 import '../../domain/failures/default_errors.dart';
+import '../../domain/services/connectivity_service.dart';
+import '../drivers/connectivity_driver.dart';
 
 class ConnectivityService implements IConnectivityService {
   final IConnectivityDriver driver;
@@ -15,9 +18,11 @@ class ConnectivityService implements IConnectivityService {
     } on Failure catch (e) {
       return Left(e);
     } catch (e) {
-      return Left(ConnectionError(
-        message: 'Erro ao recuperar informação de conexão',
-      ));
+      return Left(
+        ConnectionError(
+          message: 'Erro ao recuperar informação de conexão',
+        ),
+      );
     }
   }
 }

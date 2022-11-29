@@ -1,10 +1,10 @@
-import 'package:core/core.dart';
+import 'package:core/core.dart' show Either, LoggedUserEntity, Unit;
 
 import '../repositories/logged_user_repository.dart';
 
 abstract class ILoggedUserUsecase {
-  Future<Either<Exception, LoggedUserEntity>> getLoggedUser();
-  Future<Either<Exception, Unit>> removeLoggedUser();
+  Future<Either<Exception, LoggedUserEntity>> getSavedUser();
+  Future<Either<Exception, Unit>> removeSavedUser();
   Future<Either<Exception, Unit>> saveLoggedUser({
     required LoggedUserEntity user,
   });
@@ -16,8 +16,8 @@ class LoggedUserUsecase extends ILoggedUserUsecase {
   LoggedUserUsecase({required this.repository});
 
   @override
-  Future<Either<Exception, LoggedUserEntity>> getLoggedUser() {
-    return repository.getLoggedUser();
+  Future<Either<Exception, LoggedUserEntity>> getSavedUser() {
+    return repository.getSavedUser();
   }
 
   @override
@@ -28,7 +28,7 @@ class LoggedUserUsecase extends ILoggedUserUsecase {
   }
 
   @override
-  Future<Either<Exception, Unit>> removeLoggedUser() {
-    return repository.removeLoggedUser();
+  Future<Either<Exception, Unit>> removeSavedUser() {
+    return repository.removeSavedUser();
   }
 }

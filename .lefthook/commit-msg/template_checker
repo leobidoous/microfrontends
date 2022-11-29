@@ -1,0 +1,7 @@
+INPUT_FILE=$1
+START_LINE=`head -n1 $INPUT_FILE`
+PATTERN="^(feature|merge|build|ci|docs|fix|chore|refactor|revert|style|test|perf|wip)(\(\w+\))?:\s?.+"
+if ! [[ "$START_LINE" =~ $PATTERN ]]; then
+ echo -e "Invalid commit message.\nCommit message must start with '(feature|merge|build|ci|docs|fix|chore|refactor|revert|style|test|perf|wip):'"
+ exit 1
+fi

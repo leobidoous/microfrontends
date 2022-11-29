@@ -5,10 +5,14 @@ import 'app_theme_store.dart';
 
 class AppStore extends NotifierStore<Exception, Unit> {
   final AppThemeStore themeStore;
-  final LoggedUserStore userStore;
+  final ILogoutUsecase logoutUsecase;
 
   AppStore({
     required this.themeStore,
-    required this.userStore,
+    required this.logoutUsecase,
   }) : super(unit);
+
+  Future<Either<Exception, Unit>> logout() async {
+    return logoutUsecase();
+  }
 }

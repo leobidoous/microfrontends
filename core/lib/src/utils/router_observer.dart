@@ -2,8 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
-import '../../core.dart';
-
 class RouterObserver extends NavigatorObserver {
   List<Route<dynamic>?> routeStack = List.empty(growable: true);
 
@@ -32,7 +30,5 @@ class RouterObserver extends NavigatorObserver {
     log('didReplace: ${routeStack.map((route) => route?.settings.name)}');
   }
 
-  void get getNavigateHistory {
-    log(Modular.to.navigateHistory.map((e) => e.name).toString());
-  }
+  void get getNavigateHistory {}
 }

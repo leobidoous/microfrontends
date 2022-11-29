@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import 'package:core/core.dart' show Either, LoggedUserEntity, Unit;
 
 import '../../domain/repositories/logged_user_repository.dart';
 import '../datasources/logged_user_datasource.dart';
@@ -9,8 +9,8 @@ class LoggedUserRepository extends ILoggedUserRepository {
   LoggedUserRepository({required this.datasource});
 
   @override
-  Future<Either<Exception, LoggedUserEntity>> getLoggedUser() {
-    return datasource.getLoggedUser();
+  Future<Either<Exception, LoggedUserEntity>> getSavedUser() {
+    return datasource.getSavedUser();
   }
 
   @override
@@ -21,7 +21,7 @@ class LoggedUserRepository extends ILoggedUserRepository {
   }
 
   @override
-  Future<Either<Exception, Unit>> removeLoggedUser() {
-    return datasource.removeLoggedUser();
+  Future<Either<Exception, Unit>> removeSavedUser() {
+    return datasource.removeSavedUser();
   }
 }

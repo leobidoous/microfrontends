@@ -1,0 +1,171 @@
+{"protocolVersion":"0.1.1","runnerVersion":"1.21.1","pid":38670,"type":"start","time":0}
+{"suite":{"id":0,"platform":"vm","path":"/Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/drivers/http_driver_test.dart"},"type":"suite","time":0}
+{"test":{"id":1,"name":"loading /Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/drivers/http_driver_test.dart","suiteID":0,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":2}
+{"suite":{"id":2,"platform":"vm","path":"/Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/drivers/local_storage_driver_test.dart"},"type":"suite","time":11}
+{"test":{"id":3,"name":"loading /Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/drivers/local_storage_driver_test.dart","suiteID":2,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":12}
+{"count":21,"time":15,"type":"allSuites"}
+
+[{"event":"test.startedProcess","params":{"observatoryUri":null}}]
+
+[{"event":"test.startedProcess","params":{"observatoryUri":null}}]
+{"testID":1,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":2647}
+{"group":{"id":4,"suiteID":0,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":2650}
+{"test":{"id":5,"name":"http driver ...","suiteID":0,"groupIDs":[4],"metadata":{"skip":false,"skipReason":null},"line":4,"column":3,"url":"file:///Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/drivers/http_driver_test.dart"},"type":"testStart","time":2651}
+{"testID":5,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2675}
+{"suite":{"id":6,"platform":"vm","path":"/Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/drivers/firebase/firebase_notifications_driver_test.dart"},"type":"suite","time":2701}
+{"test":{"id":7,"name":"loading /Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/drivers/firebase/firebase_notifications_driver_test.dart","suiteID":6,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":2701}
+{"testID":3,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":2797}
+{"group":{"id":8,"suiteID":2,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":2797}
+{"test":{"id":9,"name":"local storage driver ...","suiteID":2,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":4,"column":3,"url":"file:///Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/drivers/local_storage_driver_test.dart"},"type":"testStart","time":2797}
+{"testID":9,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2838}
+{"suite":{"id":10,"platform":"vm","path":"/Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/drivers/firebase/firebase_driver_test.dart"},"type":"suite","time":2848}
+{"test":{"id":11,"name":"loading /Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/drivers/firebase/firebase_driver_test.dart","suiteID":10,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":2849}
+
+[{"event":"test.startedProcess","params":{"observatoryUri":null}}]
+
+[{"event":"test.startedProcess","params":{"observatoryUri":null}}]
+{"testID":7,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":4037}
+{"group":{"id":12,"suiteID":6,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":4037}
+{"test":{"id":13,"name":"firebase notifications driver ...","suiteID":6,"groupIDs":[12],"metadata":{"skip":false,"skipReason":null},"line":4,"column":3,"url":"file:///Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/drivers/firebase/firebase_notifications_driver_test.dart"},"type":"testStart","time":4037}
+{"testID":13,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4067}
+{"suite":{"id":14,"platform":"vm","path":"/Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/drivers/firebase/firebase_storage_driver_test.dart"},"type":"suite","time":4077}
+{"test":{"id":15,"name":"loading /Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/drivers/firebase/firebase_storage_driver_test.dart","suiteID":14,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":4077}
+{"testID":11,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":4154}
+{"group":{"id":16,"suiteID":10,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":4154}
+{"test":{"id":17,"name":"firebase driver ...","suiteID":10,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":4,"column":3,"url":"file:///Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/drivers/firebase/firebase_driver_test.dart"},"type":"testStart","time":4154}
+{"testID":17,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4181}
+{"suite":{"id":18,"platform":"vm","path":"/Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/drivers/preferences_storage_driver_test.dart"},"type":"suite","time":4191}
+{"test":{"id":19,"name":"loading /Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/drivers/preferences_storage_driver_test.dart","suiteID":18,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":4191}
+
+[{"event":"test.startedProcess","params":{"observatoryUri":null}}]
+
+[{"event":"test.startedProcess","params":{"observatoryUri":null}}]
+{"testID":15,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":5369}
+{"group":{"id":20,"suiteID":14,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":5392}
+{"test":{"id":21,"name":"firebase storage driver ...","suiteID":14,"groupIDs":[20],"metadata":{"skip":false,"skipReason":null},"line":4,"column":3,"url":"file:///Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/drivers/firebase/firebase_storage_driver_test.dart"},"type":"testStart","time":5392}
+{"testID":21,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":5435}
+{"suite":{"id":22,"platform":"vm","path":"/Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/drivers/connectivity_driver_test.dart"},"type":"suite","time":5460}
+{"test":{"id":23,"name":"loading /Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/drivers/connectivity_driver_test.dart","suiteID":22,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":5460}
+{"testID":19,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":5535}
+{"group":{"id":24,"suiteID":18,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":5535}
+{"test":{"id":25,"name":"preferences storage driver ...","suiteID":18,"groupIDs":[24],"metadata":{"skip":false,"skipReason":null},"line":4,"column":3,"url":"file:///Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/drivers/preferences_storage_driver_test.dart"},"type":"testStart","time":5535}
+{"testID":25,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":5561}
+{"suite":{"id":26,"platform":"vm","path":"/Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/drivers/local_notifications_driver_test.dart"},"type":"suite","time":5571}
+{"test":{"id":27,"name":"loading /Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/drivers/local_notifications_driver_test.dart","suiteID":26,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":5571}
+
+[{"event":"test.startedProcess","params":{"observatoryUri":null}}]
+
+[{"event":"test.startedProcess","params":{"observatoryUri":null}}]
+{"testID":23,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":6745}
+{"group":{"id":28,"suiteID":22,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":6746}
+{"test":{"id":29,"name":"connectivity driver ...","suiteID":22,"groupIDs":[28],"metadata":{"skip":false,"skipReason":null},"line":4,"column":3,"url":"file:///Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/drivers/connectivity_driver_test.dart"},"type":"testStart","time":6746}
+{"testID":29,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":6770}
+{"suite":{"id":30,"platform":"vm","path":"/Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/services/local_notifications_service_test.dart"},"type":"suite","time":6781}
+{"test":{"id":31,"name":"loading /Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/services/local_notifications_service_test.dart","suiteID":30,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":6781}
+{"testID":27,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":6928}
+{"group":{"id":32,"suiteID":26,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":6944}
+{"test":{"id":33,"name":"local notifications driver ...","suiteID":26,"groupIDs":[32],"metadata":{"skip":false,"skipReason":null},"line":4,"column":3,"url":"file:///Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/drivers/local_notifications_driver_test.dart"},"type":"testStart","time":6944}
+{"testID":33,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":6971}
+{"suite":{"id":34,"platform":"vm","path":"/Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/services/connectivity_service_test.dart"},"type":"suite","time":6982}
+{"test":{"id":35,"name":"loading /Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/services/connectivity_service_test.dart","suiteID":34,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":6982}
+
+[{"event":"test.startedProcess","params":{"observatoryUri":null}}]
+
+[{"event":"test.startedProcess","params":{"observatoryUri":null}}]
+{"testID":31,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":7914}
+{"group":{"id":36,"suiteID":30,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":7914}
+{"test":{"id":37,"name":"local notifications service ...","suiteID":30,"groupIDs":[36],"metadata":{"skip":false,"skipReason":null},"line":4,"column":3,"url":"file:///Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/services/local_notifications_service_test.dart"},"type":"testStart","time":7914}
+{"testID":37,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":7938}
+{"suite":{"id":38,"platform":"vm","path":"/Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/local_storage_driver_test.dart"},"type":"suite","time":7948}
+{"test":{"id":39,"name":"loading /Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/local_storage_driver_test.dart","suiteID":38,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":7948}
+{"testID":35,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":8021}
+{"group":{"id":40,"suiteID":34,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":8021}
+{"test":{"id":41,"name":"connectivity service ...","suiteID":34,"groupIDs":[40],"metadata":{"skip":false,"skipReason":null},"line":4,"column":3,"url":"file:///Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/infra/services/connectivity_service_test.dart"},"type":"testStart","time":8021}
+{"testID":41,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":8054}
+{"suite":{"id":42,"platform":"vm","path":"/Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/firebase/firebase_notifications_driver_test.dart"},"type":"suite","time":8066}
+{"test":{"id":43,"name":"loading /Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/firebase/firebase_notifications_driver_test.dart","suiteID":42,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":8066}
+
+[{"event":"test.startedProcess","params":{"observatoryUri":null}}]
+
+[{"event":"test.startedProcess","params":{"observatoryUri":null}}]
+{"testID":39,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":9129}
+{"group":{"id":44,"suiteID":38,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":9130}
+{"test":{"id":45,"name":"local storage driver ...","suiteID":38,"groupIDs":[44],"metadata":{"skip":false,"skipReason":null},"line":4,"column":3,"url":"file:///Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/local_storage_driver_test.dart"},"type":"testStart","time":9130}
+{"testID":45,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":9156}
+{"suite":{"id":46,"platform":"vm","path":"/Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/firebase/firebase_driver_test.dart"},"type":"suite","time":9167}
+{"test":{"id":47,"name":"loading /Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/firebase/firebase_driver_test.dart","suiteID":46,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":9167}
+{"testID":43,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":9243}
+{"group":{"id":48,"suiteID":42,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":9244}
+{"test":{"id":49,"name":"firebase notifications driver ...","suiteID":42,"groupIDs":[48],"metadata":{"skip":false,"skipReason":null},"line":4,"column":3,"url":"file:///Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/firebase/firebase_notifications_driver_test.dart"},"type":"testStart","time":9244}
+{"testID":49,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":9282}
+{"suite":{"id":50,"platform":"vm","path":"/Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/firebase/firebase_storage_driver_test.dart"},"type":"suite","time":9294}
+{"test":{"id":51,"name":"loading /Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/firebase/firebase_storage_driver_test.dart","suiteID":50,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":9294}
+
+[{"event":"test.startedProcess","params":{"observatoryUri":null}}]
+
+[{"event":"test.startedProcess","params":{"observatoryUri":null}}]
+{"testID":47,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":10256}
+{"group":{"id":52,"suiteID":46,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":10257}
+{"test":{"id":53,"name":"firebase driver ...","suiteID":46,"groupIDs":[52],"metadata":{"skip":false,"skipReason":null},"line":4,"column":3,"url":"file:///Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/firebase/firebase_driver_test.dart"},"type":"testStart","time":10257}
+{"testID":53,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":10287}
+{"suite":{"id":54,"platform":"vm","path":"/Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/preferences_storage_driver_test.dart"},"type":"suite","time":10298}
+{"test":{"id":55,"name":"loading /Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/preferences_storage_driver_test.dart","suiteID":54,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":10298}
+{"testID":51,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":10402}
+{"group":{"id":56,"suiteID":50,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":10402}
+{"test":{"id":57,"name":"firebase storage driver ...","suiteID":50,"groupIDs":[56],"metadata":{"skip":false,"skipReason":null},"line":4,"column":3,"url":"file:///Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/firebase/firebase_storage_driver_test.dart"},"type":"testStart","time":10402}
+{"testID":57,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":10431}
+{"suite":{"id":58,"platform":"vm","path":"/Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/connectivity_driver_test.dart"},"type":"suite","time":10441}
+{"test":{"id":59,"name":"loading /Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/connectivity_driver_test.dart","suiteID":58,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":10441}
+
+[{"event":"test.startedProcess","params":{"observatoryUri":null}}]
+
+[{"event":"test.startedProcess","params":{"observatoryUri":null}}]
+{"testID":55,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":11453}
+{"group":{"id":60,"suiteID":54,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":11453}
+{"test":{"id":61,"name":"preferences storage driver ...","suiteID":54,"groupIDs":[60],"metadata":{"skip":false,"skipReason":null},"line":4,"column":3,"url":"file:///Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/preferences_storage_driver_test.dart"},"type":"testStart","time":11454}
+{"testID":61,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":11477}
+{"suite":{"id":62,"platform":"vm","path":"/Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/dio/default_interceptors_test.dart"},"type":"suite","time":11487}
+{"test":{"id":63,"name":"loading /Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/dio/default_interceptors_test.dart","suiteID":62,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":11487}
+{"testID":59,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":11570}
+{"group":{"id":64,"suiteID":58,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":11571}
+{"test":{"id":65,"name":"connectivity driver ...","suiteID":58,"groupIDs":[64],"metadata":{"skip":false,"skipReason":null},"line":4,"column":3,"url":"file:///Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/connectivity_driver_test.dart"},"type":"testStart","time":11571}
+{"testID":65,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":11612}
+{"suite":{"id":66,"platform":"vm","path":"/Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/dio/dio_client_driver_test.dart"},"type":"suite","time":11623}
+{"test":{"id":67,"name":"loading /Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/dio/dio_client_driver_test.dart","suiteID":66,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":11623}
+
+[{"event":"test.startedProcess","params":{"observatoryUri":null}}]
+
+[{"event":"test.startedProcess","params":{"observatoryUri":null}}]
+{"testID":63,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":12607}
+{"group":{"id":68,"suiteID":62,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":12608}
+{"test":{"id":69,"name":"default interceptors ...","suiteID":62,"groupIDs":[68],"metadata":{"skip":false,"skipReason":null},"line":4,"column":3,"url":"file:///Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/dio/default_interceptors_test.dart"},"type":"testStart","time":12608}
+{"testID":69,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":12634}
+{"suite":{"id":70,"platform":"vm","path":"/Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/local_notifications_driver_test.dart"},"type":"suite","time":12645}
+{"test":{"id":71,"name":"loading /Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/local_notifications_driver_test.dart","suiteID":70,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":12645}
+{"testID":67,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":12714}
+{"group":{"id":72,"suiteID":66,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":12714}
+{"test":{"id":73,"name":"dio client driver ...","suiteID":66,"groupIDs":[72],"metadata":{"skip":false,"skipReason":null},"line":4,"column":3,"url":"file:///Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/dio/dio_client_driver_test.dart"},"type":"testStart","time":12714}
+{"testID":73,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":12740}
+{"suite":{"id":74,"platform":"vm","path":"/Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/domain/services/local_notifications_service_test.dart"},"type":"suite","time":12752}
+{"test":{"id":75,"name":"loading /Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/domain/services/local_notifications_service_test.dart","suiteID":74,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":12752}
+
+[{"event":"test.startedProcess","params":{"observatoryUri":null}}]
+
+[{"event":"test.startedProcess","params":{"observatoryUri":null}}]
+{"testID":71,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":13763}
+{"group":{"id":76,"suiteID":70,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":13764}
+{"test":{"id":77,"name":"local notifications driver ...","suiteID":70,"groupIDs":[76],"metadata":{"skip":false,"skipReason":null},"line":4,"column":3,"url":"file:///Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/data/drivers/local_notifications_driver_test.dart"},"type":"testStart","time":13764}
+{"testID":77,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":13787}
+{"suite":{"id":78,"platform":"vm","path":"/Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/domain/services/connectivity_service_test.dart"},"type":"suite","time":13798}
+{"test":{"id":79,"name":"loading /Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/domain/services/connectivity_service_test.dart","suiteID":78,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":13798}
+{"testID":75,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":13860}
+{"group":{"id":80,"suiteID":74,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":13860}
+{"test":{"id":81,"name":"local notifications service ...","suiteID":74,"groupIDs":[80],"metadata":{"skip":false,"skipReason":null},"line":4,"column":3,"url":"file:///Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/domain/services/local_notifications_service_test.dart"},"type":"testStart","time":13860}
+{"testID":81,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":13885}
+
+[{"event":"test.startedProcess","params":{"observatoryUri":null}}]
+{"testID":79,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":14838}
+{"group":{"id":82,"suiteID":78,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":14839}
+{"test":{"id":83,"name":"connectivity service ...","suiteID":78,"groupIDs":[82],"metadata":{"skip":false,"skipReason":null},"line":4,"column":3,"url":"file:///Users/leobidoous/Projects/Matrix/matrix-monitoramento-app/core/test/src/domain/services/connectivity_service_test.dart"},"type":"testStart","time":14839}
+{"testID":83,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":14863}
+{"success":true,"type":"done","time":14877}

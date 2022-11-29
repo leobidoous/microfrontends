@@ -1,2 +1,7 @@
 .DS_Store
 README.md
+*/.flutter-plugins
+*/.flutter-plugins-dependencies
+.coverage
+coverage
+.idea

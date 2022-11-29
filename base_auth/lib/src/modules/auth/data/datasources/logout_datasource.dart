@@ -1,15 +1,16 @@
-import 'package:core/core.dart';
+import 'package:core/core.dart' show Either, Unit, CookieManager;
 
-import '../../infra/datasources/logged_user_datasource.dart';
+import '../../domain/usecases/logged_user_usecase.dart';
 import '../../infra/datasources/logout_datasource.dart';
 
 class LogoutDatasource extends ILogoutDatasource {
-  final ILoggedUserDatasource datasource;
+  final ILoggedUserUsecase usecase;
 
-  LogoutDatasource({required this.datasource});
+  LogoutDatasource({required this.usecase});
 
   @override
   Future<Either<Exception, Unit>> call() async {
-    return datasource.removeLoggedUser();
+    await CookieManager().clearCookies();
+    return usecase.removeSavedUser();
   }
 }

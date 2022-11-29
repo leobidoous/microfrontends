@@ -5,84 +5,77 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "base_app",
-            "cwd": "base_app",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "base_app (profile mode)",
-            "cwd": "base_app",
+            "name": "Flutter Dev",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "flutterMode": "debug",
+            "program": "base_app/lib/main_dev.dart",
+            "args": [
+                "--flavor",
+                "dev"
+            ]
         },
         {
-            "name": "base_app (release mode)",
-            "cwd": "base_app",
+            "name": "Flutter Hml",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "flutterMode": "debug",
+            "program": "base_app/lib/main_hml.dart",
+            "args": [
+                "--flavor",
+                "hml"
+            ]
         },
         {
-            "name": "base_auth",
-            "cwd": "base_auth",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "base_auth (profile mode)",
-            "cwd": "base_auth",
+            "name": "Flutter Prod",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "flutterMode": "debug",
+            "program": "base_app/lib/main_prod.dart",
+            "args": [
+                "--flavor",
+                "prod"
+            ]
         },
         {
-            "name": "base_auth (release mode)",
-            "cwd": "base_auth",
+            "name": "MicroApps - Run get",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "program": "/",
+            "console": "debugConsole",
+            "preLaunchTask": "run_get",
         },
         {
-            "name": "base_style_sheet",
-            "cwd": "base_style_sheet",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "base_style_sheet (profile mode)",
-            "cwd": "base_style_sheet",
+            "name": "MicroApps - Run clean",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "program": "/",
+            "console": "debugConsole",
+            "preLaunchTask": "clean_all",
         },
         {
-            "name": "base_style_sheet (release mode)",
-            "cwd": "base_style_sheet",
+            "name": "MicroApps - Run tests on changed packages",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "program": "/",
+            "console": "debugConsole",
+            "preLaunchTask": "run_test_changed",
         },
         {
-            "name": "core",
-            "cwd": "core",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "core (profile mode)",
-            "cwd": "core",
+            "name": "MicroApps - Run tests",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "program": "/",
+            "console": "debugConsole",
+            "preLaunchTask": "run_all_tests",
         },
         {
-            "name": "core (release mode)",
-            "cwd": "core",
+            "name": "MicroApps - Coverage report",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
-        }
+            "program": "/",
+            "console": "debugConsole",
+            "preLaunchTask": "run_coverage",
+        },
     ]
 }

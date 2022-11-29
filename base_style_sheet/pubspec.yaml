@@ -5,7 +5,7 @@ homepage: leonardobido.me
 publish_to: "none"
 
 environment:
-  sdk: ">=2.16.2 <3.0.0"
+  sdk: ">=2.17.0 <3.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
@@ -14,9 +14,19 @@ dependencies:
   core:
     path: ../core
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
 
 flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+
+  fonts:
+  - family:  BaseIcons
+    fonts:
+      - asset: assets/fonts/BaseIcons.ttf

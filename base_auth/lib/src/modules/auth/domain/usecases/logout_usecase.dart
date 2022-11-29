@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import 'package:core/core.dart' show Either, Unit;
 
 import '../repositories/logout_repository.dart';
 

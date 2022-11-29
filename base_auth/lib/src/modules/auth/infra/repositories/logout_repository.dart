@@ -1,5 +1,4 @@
-
-import 'package:core/core.dart';
+import 'package:core/core.dart' show Either, Unit;
 
 import '../../domain/repositories/logout_repository.dart';
 import '../datasources/logout_datasource.dart';

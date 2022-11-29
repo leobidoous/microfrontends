@@ -4,8 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../infra/drivers/preferences_storage_driver.dart';
 
 class PreferencesStorageDriver extends IPreferencesStorageDriver {
-  PreferencesStorageDriver();
-
   @override
   Future<Either<Exception, Unit>> removeStringByKey({
     required String key,
@@ -79,6 +77,23 @@ class PreferencesStorageDriver extends IPreferencesStorageDriver {
     try {
       final instance = await SharedPreferences.getInstance();
       final saved = await instance.setStringList(key, value);
+      if (saved == false) {
+        return Left(Exception('Erro ao salvar $key'));
+      }
+      return const Right(unit);
+    } catch (e) {
+      return Left(Exception(e));
+    }
+  }
+
+  @override
+  Future<Either<Exception, Unit>> setBoolByKey({
+    required String key,
+    required bool value,
+  }) async {
+    try {
+      final instance = await SharedPreferences.getInstance();
+      final saved = await instance.setBool(key, value);
       if (saved == false) {
         return Left(Exception('Erro ao salvar $key'));
       }
