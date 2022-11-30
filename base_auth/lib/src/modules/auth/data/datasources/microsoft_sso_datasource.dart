@@ -13,7 +13,7 @@ import 'package:core/core.dart'
         LoggedUserEntity;
 
 import '../../../../core/constants/scope_constants.dart';
-import '../../domain/sso_config_entity.dart';
+import '../../domain/entities/sso_config_entity.dart';
 import '../../domain/usecases/logged_user_usecase.dart';
 import '../../infra/datasources/microsoft_sso_datasource.dart';
 

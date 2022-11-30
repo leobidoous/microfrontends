@@ -14,6 +14,7 @@ import 'package:core/core.dart'
         WildcardRoute;
 
 import '../../../core/auth_routes.dart';
+import '../../login/presentation/stores/fake_login_store.dart';
 import '../../login/presentation/stores/microsoft_login_store.dart';
 import '../../login/presentation/views/login_page.dart';
 import '../data/datasources/logged_user_datasource.dart';
@@ -67,9 +68,7 @@ class AuthModule extends Module {
       ),
     ),
     Bind.lazySingleton(
-      (i) => MicrosoftSSOUsecase(
-        repository: i.get<MicrosoftSSORepository>(),
-      ),
+      (i) => MicrosoftSSOUsecase(repository: i.get<MicrosoftSSORepository>()),
     ),
 
     /// Local storage dependencies
@@ -78,6 +77,9 @@ class AuthModule extends Module {
     ///  stores dependencies
     Bind.lazySingleton(
       (i) => MicrosoftLoginStore(ssoUsecase: i.get<MicrosoftSSOUsecase>()),
+    ),
+    Bind.lazySingleton(
+      (i) => FakeLoginStore(loggedUserUsecase: i.get<LoggedUserUsecase>()),
     ),
   ];
 

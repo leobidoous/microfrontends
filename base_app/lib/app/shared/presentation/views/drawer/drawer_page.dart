@@ -16,26 +16,9 @@ class DrawerPage extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width * .85,
       child: Scaffold(
-        appBar: DefaultAppBar(
+        appBar: const DefaultAppBar(
           automaticallyImplyLeading: true,
-          title: Row(
-            children: [
-              Image.asset(
-                'assets/images/logos/logo-matrix-high.png',
-                height: 24,
-              ),
-              const SizedBox(width: 12),
-              Flexible(
-                child: Text(
-                  'APP Matrix',
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.headline4?.copyWith(
-                        color: Theme.of(context).textTheme.bodyText2?.color,
-                      ),
-                ),
-              ),
-            ],
-          ),
+          title: Icon(CoreIcons.home),
         ),
         resizeToAvoidBottomInset: false,
         backgroundColor: Theme.of(context).colorScheme.secondary,
@@ -66,5 +49,4 @@ class DrawerPage extends StatelessWidget {
       ),
     );
   }
-
 }

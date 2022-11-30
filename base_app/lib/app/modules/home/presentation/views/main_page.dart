@@ -3,7 +3,6 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../app_routes.dart';
-import '../../../../shared/presentation/views/drawer/drawer_page.dart';
 import '../../../../shared/presentation/widgets/logout_confirmation.dart';
 import '../home_routes.dart';
 import '../stores/main_store.dart';
@@ -67,8 +66,6 @@ class _MainPageState extends State<MainPage> {
         appBar: MainAppBar(scaffoldKey: _scaffoldKey),
         resizeToAvoidBottomInset: false,
         body: const RouterOutlet(),
-        drawer: DrawerPage(
-        ),
         bottomNavigationBar: ScopedBuilder(
           store: store.bottomBarStore,
           onState: (_, state) {

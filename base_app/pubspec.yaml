@@ -61,44 +61,44 @@ flavorizr:
   flavors:
     dev:
       app:
-        name: "MinhaMTX dev"
+        name: "APP dev"
       android:
         applicationId: "com.bido.example"
         firebase:
           config: ".firebase/dev/google-services.json"
-        icon: "assets/app_icons/playstore.png"
+        # icon: "assets/app_icons/playstore.png"
         launchScreen: "assets/images/splash.png"
         
       ios:
         bundleId: "com.bido.example"
         firebase:
           config: ".firebase/dev/GoogleService-Info.plist"
-        icon: "assets/app_icons/appstore.png"
+        # icon: "assets/app_icons/appstore.png"
     hml:
       app:
-        name: "MinhaMTX hml"
+        name: "APP hml"
       android:
         applicationId: "com.bido.example"
         firebase:
           config: ".firebase/hml/google-services.json"
-        icon: "assets/app_icons/playstore.png"
+        # icon: "assets/app_icons/playstore.png"
         launchScreen: "assets/images/splash.png"
       ios:
         bundleId: "com.bido.example"
         firebase:
           config: ".firebase/hml/GoogleService-Info.plist"
-        icon: "assets/app_icons/appstore.png"
+        # icon: "assets/app_icons/appstore.png"
     prod:
       app:
-        name: "MinhaMTX"
+        name: "APP"
       android:
         applicationId: "com.bido.example"
         firebase:
           config: ".firebase/prod/google-services.json"
-        icon: "assets/app_icons/playstore.png"
+        # icon: "assets/app_icons/playstore.png"
         launchScreen: "assets/images/splash.png"
       ios:
         bundleId: "com.bido.example"
         firebase:
           config: ".firebase/prod/GoogleService-Info.plist"
-        icon: "assets/app_icons/appstore.png"
+        # icon: "assets/app_icons/appstore.png"

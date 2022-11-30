@@ -36,11 +36,7 @@ class DefaultAppBar extends StatelessWidget with PreferredSizeWidget {
           primary: true,
           title: SizedBox(
             height: 50,
-            child: title ??
-                Image.asset(
-                  'assets/images/logos/logo-light.png',
-                  width: 50,
-                ),
+            child: title ?? const Icon(CoreIcons.home),
           ),
           leading: automaticallyImplyLeading
               ? InkWell(

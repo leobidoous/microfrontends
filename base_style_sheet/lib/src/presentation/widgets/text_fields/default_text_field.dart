@@ -10,6 +10,7 @@ class DefaultTextField extends StatefulWidget {
   final VoidCallback? onSuffixTap;
   final int? maxLines;
   final int minLines;
+  final bool autocorrect;
   final String? Function(String?)? validator;
   final VoidCallback? onTap;
 
@@ -17,6 +18,7 @@ class DefaultTextField extends StatefulWidget {
     Key? key,
     required this.controller,
     this.label,
+    this.autocorrect = true,
     this.placeholder,
     this.onTap,
     this.onComplete,
@@ -47,6 +49,7 @@ class _DefaultTextFieldState extends State<DefaultTextField> {
       obscureText: widget.isObscure,
       maxLines: widget.maxLines,
       minLines: widget.minLines,
+      autocorrect: widget.autocorrect,
       decoration: InputDecoration(
         isDense: true,
         labelText: widget.label,

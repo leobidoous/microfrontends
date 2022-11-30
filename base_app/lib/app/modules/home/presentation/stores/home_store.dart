@@ -1,11 +1,14 @@
 import 'package:core/core.dart';
 
-import '../../../../stores/app_store.dart';
+import '../../domain/usecases/recent_researches_usecase.dart';
 
 class HomeStore extends NotifierStore<Exception, Unit> with Disposable {
-  final AppStore appStore;
+  final IRecentResearchesUsecase recentResearchesUsecase;
 
-  HomeStore({required this.appStore}) : super(unit);
+  HomeStore({
+    required this.recentResearchesUsecase,
+  }) : super(unit);
+
 
   @override
   void dispose() {

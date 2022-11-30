@@ -94,6 +94,11 @@ class AppModule extends Module {
             connectTimeout: 20000,
             receiveTimeout: 20000,
             sendTimeout: 20000,
+            headers: {
+              'X-RapidAPI-Key':
+                  '6bda672992msha6d4ba0c89598ddp11b8e7jsnb3589017681e',
+              'X-RapidAPI-Host': 'yahfinances.p.rapidapi.com'
+            },
           ),
         )..interceptors.addAll(
             [

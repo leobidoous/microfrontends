@@ -12,12 +12,7 @@ class HomeRoutes {
   /// settings
   static const BasePath settings = BasePath('/settings/', root);
 
-  /// search
-  static const BasePath search = BasePath('/search/', root);
+  /// stocks 
+  static const BasePath stocks = BasePath('/stocks/', root);
 
-  /// chat
-  static const BasePath chat = BasePath('/chat/', root);
-
-  /// notifications
-  static const BasePath notifications = BasePath('/notifications/', root);
 }

@@ -21,11 +21,11 @@ class FlavorConfig {
   static String get baseUrl {
     switch (appFlavor) {
       case Flavor.dev:
-        return '';
+        return 'https://yahfinances.p.rapidapi.com/api';
       case Flavor.hml:
-        return '';
+        return 'https://yahfinances.p.rapidapi.com/api';
       case Flavor.prod:
-        return '';
+        return 'https://yahfinances.p.rapidapi.com/api';
       default:
         return 'no baseUrl';
     }

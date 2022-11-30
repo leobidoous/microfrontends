@@ -1,4 +1,3 @@
-import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 class MainAppBar extends StatelessWidget with PreferredSizeWidget {
@@ -23,23 +22,7 @@ class MainAppBar extends StatelessWidget with PreferredSizeWidget {
       child: AppBar(
         title: ClipRRect(
           borderRadius: BorderRadius.circular(8),
-          child: Image.asset(
-            'assets/images/logos/logo-light.png',
-            height: 50,
-            width: 50,
-          ),
-        ),
-        leading: InkWell(
-          onTap: () {
-            scaffoldKey.currentState?.openDrawer();
-          },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Icon(
-              CoreIcons.menu,
-              color: Theme.of(context).colorScheme.onBackground,
-            ),
-          ),
+          child: const Icon(Icons.abc, size: 40),
         ),
         surfaceTintColor: Theme.of(context).colorScheme.secondary,
         backgroundColor: Theme.of(context).colorScheme.secondary,

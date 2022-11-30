@@ -1,0 +1,6 @@
+#include "Generated.xcconfig"
+
+FLUTTER_TARGET=lib/main_hml.dart
+ASSET_PREFIX=hml
+BUNDLE_NAME=MinhaMTX hml
+BUNDLE_DISPLAY_NAME=MinhaMTX hml
