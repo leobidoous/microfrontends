@@ -1,38 +1,59 @@
-import 'dart:convert';
+import 'dart:convert' show json;
 
-import '../../domain/entities/pagination_entity.dart';
+import 'package:equatable/equatable.dart';
 
-class PaginationModel extends PaginationEntity {
+import '../../domain/entities/pagination_entity.dart' show PaginationEntity;
+
+class PaginationModel extends PaginationEntity with EquatableMixin {
   PaginationModel({
-    super.count = 0,
-    super.next,
-    super.previous,
-    super.offset = 0,
-    super.limit = 10,
+    super.pageNumber,
+    super.pageSize,
+    super.totalRecords,
+    super.pagesRemaining,
   });
-
-  Map<String, dynamic> toMap() {
-    return {
-      'count': count,
-      'next': next,
-      'previous': previous,
-      'offset': offset,
-      'limit': limit,
-    };
-  }
 
   factory PaginationModel.fromMap(Map<String, dynamic> map) {
     return PaginationModel(
-      count: map['count']?.toInt() ?? 0,
-      next: map['next'],
-      previous: map['previous'],
-      offset: map['offset']?.toInt() ?? 0,
-      limit: map['limit']?.toInt() ?? 0,
+      pageNumber: map['pageNumber']?.toInt() ?? 1,
+      pageSize: map['pageSize']?.toInt() ?? 10,
+      totalRecords: map['totalRecords']?.toInt() ?? 0,
+      pagesRemaining: map['pagesRemaining']?.toInt() ?? 0,
     );
   }
 
-  String toJson() => json.encode(toMap());
-
   factory PaginationModel.fromJson(String source) =>
       PaginationModel.fromMap(json.decode(source));
+
+  factory PaginationModel.fromEntity(PaginationEntity entity) {
+    return PaginationModel(
+      pagesRemaining: entity.pagesRemaining,
+      totalRecords: entity.pagesRemaining,
+      pageNumber: entity.pageNumber,
+      pageSize: entity.pageSize,
+    );
+  }
+
+  String get toJson => json.encode(toMap);
+
+  Map<String, dynamic> get toMap {
+    return {
+      'pageNumber': pageNumber,
+      'pageSize': pageSize,
+      'totalRecords': totalRecords,
+      'pagesRemaining': pagesRemaining,
+    };
+  }
+
+  PaginationEntity get toEntity => this;
+
+  @override
+  List<Object?> get props => [
+        pageNumber,
+        pageSize,
+        totalRecords,
+        pagesRemaining,
+      ];
+
+  @override
+  bool? get stringify => true;
 }

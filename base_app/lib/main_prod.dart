@@ -1,10 +1,9 @@
-import 'app_configuration.dart';
-import 'core/enums/flavors_enum.dart';
+import 'package:core/core.dart';
 import 'main.dart';
+import 'modules/app/presentation/app_configuration.dart';
 
 Future<void> main() async {
-  final configuration = AppConfiguration();
-  await configuration.loadFlavor(Flavor.prod);
-  setAppConfigutarion(configuration: configuration);
-  await runBaseApp();
+  final appConfiguration = AppConfiguration();
+  await appConfiguration.loadFlavor(Flavor.prod);
+  await runBaseApp(appConfiguration: appConfiguration);
 }

@@ -1,4 +1,7 @@
-import '../../../core.dart';
+
+import 'package:dartz/dartz.dart';
+
+import '../../domain/entities/received_notifications_entity.dart';
 
 abstract class ILocalNotificationsDriver {
   Future<Either<Exception, Unit>> init();

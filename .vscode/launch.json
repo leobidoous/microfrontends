@@ -37,45 +37,5 @@
                 "prod"
             ]
         },
-        {
-            "name": "MicroApps - Run get",
-            "request": "launch",
-            "type": "dart",
-            "program": "/",
-            "console": "debugConsole",
-            "preLaunchTask": "run_get",
-        },
-        {
-            "name": "MicroApps - Run clean",
-            "request": "launch",
-            "type": "dart",
-            "program": "/",
-            "console": "debugConsole",
-            "preLaunchTask": "clean_all",
-        },
-        {
-            "name": "MicroApps - Run tests on changed packages",
-            "request": "launch",
-            "type": "dart",
-            "program": "/",
-            "console": "debugConsole",
-            "preLaunchTask": "run_test_changed",
-        },
-        {
-            "name": "MicroApps - Run tests",
-            "request": "launch",
-            "type": "dart",
-            "program": "/",
-            "console": "debugConsole",
-            "preLaunchTask": "run_all_tests",
-        },
-        {
-            "name": "MicroApps - Coverage report",
-            "request": "launch",
-            "type": "dart",
-            "program": "/",
-            "console": "debugConsole",
-            "preLaunchTask": "run_coverage",
-        },
     ]
 }

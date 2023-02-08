@@ -1,11 +1,10 @@
-import 'package:dartz/dartz.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:dartz/dartz.dart' show Either, Unit, Right, Left, unit;
+import 'package:firebase_core/firebase_core.dart' show Firebase;
 
-import '../../../infra/drivers/firebase/firebase_driver.dart';
+import '../../../infra/drivers/firebase/firebase_driver.dart'
+    show IFirebaseDriver;
 
 class FirebaseDriver extends IFirebaseDriver {
-  FirebaseDriver();
-
   @override
   Future<Either<Exception, Unit>> init() async {
     try {

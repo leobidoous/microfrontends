@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+
 ///
 /// Applies a custom theme to a pre-defined area.
 ///
@@ -96,7 +97,8 @@ class LocalTheme extends StatelessWidget {
 
   ///
   /// Creates an area that respects a custom [ThemeData],
-  ///  defined in [theme] argument.
+  /// defined in [theme] argument.
+  ///
   /// If this widget is applied to a full page, remember to also change
   /// [systemUiOverlayStyle] to a style that fits to your theme.
   ///
@@ -113,9 +115,9 @@ class LocalTheme extends StatelessWidget {
   }
 
   ///
-  /// Creates an area with the inverted theme, using as base
-  /// the current context theme. If theme in [context] is dark,
-  /// the theme applied to the builder is light and vice-versa.
+  /// Creates an area with the inverted theme, using as base 
+  /// the current context theme. If theme in [context] is dark, the theme 
+  /// applied to the builder is light and vice-versa.
   ///
   /// If this widget is applied to a full page, remember to check
   /// [invertSystemUiOverlayStyle] to true.
@@ -142,7 +144,11 @@ class LocalTheme extends StatelessWidget {
   Widget build(BuildContext context) {
     final styledWidget = Theme(
       data: theme,
-      child: Builder(builder: builder),
+      child: Builder(
+        builder: (context) {
+          return builder(context);
+        },
+      ),
     );
 
     if (systemUiOverlayStyle != null) {
@@ -151,6 +157,7 @@ class LocalTheme extends StatelessWidget {
         child: styledWidget,
       );
     }
+
     return styledWidget;
   }
 }

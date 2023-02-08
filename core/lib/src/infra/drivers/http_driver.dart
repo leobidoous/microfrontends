@@ -1,4 +1,5 @@
-import '../../../core.dart';
+
+import 'package:dartz/dartz.dart';
 
 class HttpDriverResponse {
   final dynamic data;

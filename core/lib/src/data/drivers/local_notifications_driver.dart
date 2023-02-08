@@ -1,22 +1,34 @@
-import 'package:dartz/dartz.dart';
+import 'package:dartz/dartz.dart' show Either, Unit, Right, unit, Left;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:rxdart/subjects.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart'
+    show
+        FlutterLocalNotificationsPlugin,
+        NotificationResponse,
+        AndroidInitializationSettings,
+        DarwinInitializationSettings,
+        InitializationSettings,
+        AndroidNotificationDetails,
+        NotificationDetails,
+        Importance,
+        Priority,
+        DarwinNotificationDetails;
+import 'package:flutter_modular/flutter_modular.dart' show Disposable;
+import 'package:rxdart/subjects.dart' show BehaviorSubject;
 
-import '../../domain/entities/received_notifications_entity.dart';
-import '../../infra/drivers/local_notifications_driver.dart';
+import '../../domain/entities/received_notifications_entity.dart'
+    show ReceivedNotificationEntity;
+import '../../infra/drivers/local_notifications_driver.dart'
+    show ILocalNotificationsDriver;
 
 class LocalNotificationsDriver extends ILocalNotificationsDriver
     with Disposable {
   final _localNotificationsPlugin = FlutterLocalNotificationsPlugin();
-  final BehaviorSubject<ReceivedNotificationEntity>
-      onDidReceiveLocalNotification;
+  final BehaviorSubject<ReceivedNotificationEntity> onReceiveNotification;
   final BehaviorSubject<NotificationResponse> selectNotificationSubject;
 
   LocalNotificationsDriver({
-    required this.onDidReceiveLocalNotification,
+    required this.onReceiveNotification,
     required this.selectNotificationSubject,
   });
 
@@ -36,7 +48,7 @@ class LocalNotificationsDriver extends ILocalNotificationsDriver
           String? body,
           String? payload,
         ) async {
-          onDidReceiveLocalNotification.add(
+          onReceiveNotification.add(
             ReceivedNotificationEntity(
               id: id,
               title: title,
@@ -80,9 +92,9 @@ class LocalNotificationsDriver extends ILocalNotificationsDriver
   }) async {
     try {
       const androidDetails = AndroidNotificationDetails(
-        'your channel id',
-        'your channel name',
-        channelDescription: 'your channel description',
+        'high_importance_channel',
+        'High Importance Notifications',
+        channelDescription: 'This channel is used for important notifications.',
         importance: Importance.max,
         priority: Priority.high,
         ticker: 'ticker',
@@ -107,7 +119,7 @@ class LocalNotificationsDriver extends ILocalNotificationsDriver
 
   @override
   void dispose() {
-    onDidReceiveLocalNotification.close();
+    onReceiveNotification.close();
     selectNotificationSubject.close();
   }
 }

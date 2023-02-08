@@ -1,8 +1,11 @@
-import 'package:dartz/dartz.dart';
+import 'package:dartz/dartz.dart' show Either, Unit;
 
-import '../../domain/entities/received_notifications_entity.dart';
-import '../../domain/services/local_notifications_service.dart';
-import '../drivers/local_notifications_driver.dart';
+import '../../domain/entities/received_notifications_entity.dart'
+    show ReceivedNotificationEntity;
+import '../../domain/services/local_notifications_service.dart'
+    show ILocalNotificationsService;
+import '../drivers/local_notifications_driver.dart'
+    show ILocalNotificationsDriver;
 
 class LocalNotificationsService extends ILocalNotificationsService {
   final ILocalNotificationsDriver localNotificationsDriver;

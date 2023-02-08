@@ -1,30 +1,30 @@
-import 'dart:convert';
-import 'dart:developer';
+import 'dart:convert' show jsonEncode;
 
-import 'package:dartz/dartz.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:dartz/dartz.dart' show Either, Left, Right, Unit, unit;
+import 'package:firebase_messaging/firebase_messaging.dart'
+    show RemoteMessage, FirebaseMessaging;
+import 'package:flutter/foundation.dart';
 
-import '../../../domain/services/local_notifications_service.dart';
-import '../../../infra/drivers/firebase/firebase_notifications_driver.dart';
-import '../../../infra/models/received_notifications_model.dart';
+import '../../../infra/drivers/firebase/firebase_crashlytics_driver.dart';
+import '../../../infra/drivers/firebase/firebase_notifications_driver.dart'
+    show IFirebaseNotificationsDriver;
+import '../../../infra/drivers/local_notifications_driver.dart';
+import '../../../infra/models/received_notifications_model.dart'
+    show ReceivedNotificationModel;
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  final notification = ReceivedNotificationModel(
-    id: message.messageId?.hashCode ?? message.hashCode,
-    title: message.notification?.title ?? '',
-    body: message.notification?.title ?? '',
-    payload: jsonEncode(message.data),
-  );
-  log('onBackgroundMessage: $notification');
+  debugPrint('onMessageOpenedApp: $message');
 }
 
 class FirebaseNotificationsDriver extends IFirebaseNotificationsDriver {
   final FirebaseMessaging instance;
-  final ILocalNotificationsService localNotificationsService;
+  final IFirebaseCrashlyticsDriver crashlyticsDriver;
+  final ILocalNotificationsDriver localNotificationsDriver;
 
   FirebaseNotificationsDriver({
     required this.instance,
-    required this.localNotificationsService,
+    required this.crashlyticsDriver,
+    required this.localNotificationsDriver,
   });
 
   @override
@@ -43,7 +43,15 @@ class FirebaseNotificationsDriver extends IFirebaseNotificationsDriver {
   @override
   Future<Either<Exception, Unit>> configure() async {
     try {
-      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      //Define as opções de apresentação para notificações da Apple
+      //  quando recebidas em primeiro plano.
+      instance.setForegroundNotificationPresentationOptions(
+        alert: true,
+        badge: true,
+        sound: true,
+      );
+
+      FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
         final notification = ReceivedNotificationModel(
           id: message.messageId?.hashCode ?? message.hashCode,
           title: message.notification?.title ?? '',
@@ -51,12 +59,12 @@ class FirebaseNotificationsDriver extends IFirebaseNotificationsDriver {
           payload: jsonEncode(message.data),
         );
 
-        localNotificationsService
-            .showNotification(notification: notification.toEntity())
+        await localNotificationsDriver
+            .showNotification(notification: notification)
             .then((value) {
           value.fold(
-            (l) => log('[ERROR]onMessage: $l'),
-            (r) => log('onMessage: $notification'),
+            (l) => debugPrint('[ERROR]onMessage: $l'),
+            (r) => debugPrint('onMessage: $notification'),
           );
         });
       });
@@ -68,8 +76,10 @@ class FirebaseNotificationsDriver extends IFirebaseNotificationsDriver {
           body: message.notification?.title ?? '',
           payload: jsonEncode(message.data),
         );
-        log('onMessageOpenedApp: $notification');
+
+        debugPrint('onMessageOpenedApp: $notification');
       });
+
       FirebaseMessaging.onBackgroundMessage(
         _firebaseMessagingBackgroundHandler,
       );
@@ -86,8 +96,13 @@ class FirebaseNotificationsDriver extends IFirebaseNotificationsDriver {
     try {
       await instance.subscribeToTopic(topic);
       return const Right(unit);
-    } catch (e) {
-      return Left(Exception(e));
+    } catch (exception, strackTrace) {
+      await crashlyticsDriver.setError(
+        exception: exception,
+        stackTrace: strackTrace,
+      );
+      debugPrint('Error to subscribe to topic: $topic');
+      return Left(Exception(exception));
     }
   }
 
@@ -98,8 +113,13 @@ class FirebaseNotificationsDriver extends IFirebaseNotificationsDriver {
     try {
       await instance.unsubscribeFromTopic(topic);
       return const Right(unit);
-    } catch (e) {
-      return Left(Exception(e));
+    } catch (exception, strackTrace) {
+      await crashlyticsDriver.setError(
+        exception: exception,
+        stackTrace: strackTrace,
+      );
+      debugPrint('Error to unsubscribe to topic: $topic');
+      return Left(Exception(exception));
     }
   }
 }

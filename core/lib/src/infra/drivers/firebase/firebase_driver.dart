@@ -1,5 +1,6 @@
-import '../../../../core.dart';
+
+import 'package:dartz/dartz.dart';
 
 abstract class IFirebaseDriver {
-   Future<Either<Exception, Unit>> init();
+  Future<Either<Exception, Unit>> init();
 }

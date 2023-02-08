@@ -1,6 +1,8 @@
-import 'dart:convert';
+import 'dart:convert' show json;
 
-import '../../../core.dart';
+import 'package:equatable/equatable.dart';
+
+import '../../domain/entities/received_notifications_entity.dart';
 
 class ReceivedNotificationModel extends ReceivedNotificationEntity
     with EquatableMixin {
@@ -11,14 +13,6 @@ class ReceivedNotificationModel extends ReceivedNotificationEntity
     required super.payload,
   });
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'title': title,
-      'body': body,
-      'payload': payload,
-    };
-  }
 
   factory ReceivedNotificationModel.fromMap(Map<String, dynamic> map) {
     return ReceivedNotificationModel(
@@ -40,13 +34,13 @@ class ReceivedNotificationModel extends ReceivedNotificationEntity
     );
   }
 
-  String toJson() => json.encode(toMap());
-  ReceivedNotificationEntity toEntity() => this;
-
-  factory ReceivedNotificationModel.fromJson(String source) =>
-      ReceivedNotificationModel.fromMap(
-        json.decode(source),
-      );
+  String get toJson => json.encode({
+        'id': id,
+        'title': title,
+        'body': body,
+        'payload': payload,
+      });
+  ReceivedNotificationEntity get toEntity => this;
 
   @override
   List<Object?> get props => [id, title, body, payload];

@@ -21,6 +21,8 @@ dependencies:
     path: ../core
   base_auth:
     path: ../base_auth
+  wallet:
+    path: ../wallet
 
 dev_dependencies:
   flutter_test:
@@ -46,9 +48,6 @@ flutter:
   assets:
     - .env/
     - assets/mocks/
-    - assets/images/
-    - assets/images/logos/
-    - assets/app_icons/
 
 
 # flutter pub run flutter_flavorizr

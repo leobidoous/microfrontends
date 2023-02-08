@@ -1,15 +1,13 @@
 class PaginationEntity {
-  int? limit;
-  int? offset;
-  int? count;
-  String? next;
-  String? previous;
+  int pageNumber;
+  int pageSize;
+  int totalRecords;
+  int pagesRemaining;
 
   PaginationEntity({
-    this.count,
-    this.next,
-    this.previous,
-    this.offset = 0,
-    this.limit = 10,
+    this.pageNumber = 1,
+    this.pageSize = 10,
+    this.totalRecords = 0,
+    this.pagesRemaining = 0,
   });
 }

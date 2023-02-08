@@ -34,17 +34,17 @@ android {
         dev {
             dimension "flavor-type"
             applicationId "com.bido.example"
-            resValue "string", "app_name", "MinhaMTX dev"
+            resValue "string", "app_name", "APP dev"
         }
         hml {
             dimension "flavor-type"
             applicationId "com.bido.example"
-            resValue "string", "app_name", "MinhaMTX hml"
+            resValue "string", "app_name", "APP hml"
         }
         prod {
             dimension "flavor-type"
             applicationId "com.bido.example"
-            resValue "string", "app_name", "MinhaMTX"
+            resValue "string", "app_name", "APP"
         }
     }
 

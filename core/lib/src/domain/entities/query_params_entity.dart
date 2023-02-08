@@ -1,9 +1,9 @@
 class QueryParamsEntity {
-  int offset;
-  int limit;
+  int pageNumber;
+  int pageSize;
 
   QueryParamsEntity({
-    this.offset = 0,
-    this.limit = 10,
+    this.pageNumber = 1,
+    this.pageSize = 10,
   });
 }

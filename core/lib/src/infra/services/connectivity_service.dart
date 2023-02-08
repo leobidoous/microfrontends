@@ -1,8 +1,8 @@
-import 'package:dartz/dartz.dart';
+import 'package:dartz/dartz.dart' show Either, Unit, Right, unit, Left;
 
-import '../../domain/failures/default_errors.dart';
-import '../../domain/services/connectivity_service.dart';
-import '../drivers/connectivity_driver.dart';
+import '../../domain/services/connectivity_service.dart'
+    show IConnectivityService;
+import '../drivers/connectivity_driver.dart' show IConnectivityDriver;
 
 class ConnectivityService implements IConnectivityService {
   final IConnectivityDriver driver;
@@ -10,18 +10,14 @@ class ConnectivityService implements IConnectivityService {
   ConnectivityService({required this.driver});
 
   @override
-  Future<Either<Failure, Unit>> isOnline() async {
+  Future<Either<Exception, Unit>> isOnline() async {
     try {
       if (await driver.isOnline) return const Right(unit);
 
-      throw ConnectionError(message: 'Você está offline');
-    } on Failure catch (e) {
-      return Left(e);
+      throw Exception('Você está offline.');
     } catch (e) {
       return Left(
-        ConnectionError(
-          message: 'Erro ao recuperar informação de conexão',
-        ),
+        Exception('Erro ao recuperar informação de conexão: $e'),
       );
     }
   }

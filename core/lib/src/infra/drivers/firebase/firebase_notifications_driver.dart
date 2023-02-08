@@ -1,4 +1,4 @@
-import '../../../../core.dart';
+import 'package:dartz/dartz.dart';
 
 abstract class IFirebaseNotificationsDriver {
   Future<Either<Exception, Unit>> configure();

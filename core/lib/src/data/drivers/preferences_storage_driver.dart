@@ -1,7 +1,8 @@
-import 'package:dartz/dartz.dart';
+import 'package:dartz/dartz.dart' show Either, Unit, Left, Right, unit;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../infra/drivers/preferences_storage_driver.dart';
+import '../../infra/drivers/preferences_storage_driver.dart'
+    show IPreferencesStorageDriver;
 
 class PreferencesStorageDriver extends IPreferencesStorageDriver {
   @override
