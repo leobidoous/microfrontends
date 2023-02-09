@@ -1,0 +1,9 @@
+{
+    "name": "Thiago Oliveira",
+    "email": "thiago08@mail.com",
+    "wallet": {
+        "id": "e8bf6ac3-69b3-4306-b3ef-80ac8ede9c1c",
+        "balance": 1250.54,
+        "next_credit": "2023-02-14"
+    }
+}
