@@ -8,11 +8,13 @@ import 'pages/login_page.dart';
 
 class AuthModule extends Module {
   static late final BasePath _redirectTo;
-  static late final Future Function(UserEntity) _onLoginCallback;
+  static late final Future<Either<Exception, UserEntity>> Function(TokenEntity)
+      _onLoginCallback;
 
   AuthModule({
     required BasePath redirectTo,
-    required Future Function(UserEntity) onLoginCallback,
+    required Future<Either<Exception, UserEntity>> Function(TokenEntity)
+        onLoginCallback,
   }) {
     _redirectTo = redirectTo;
     _onLoginCallback = onLoginCallback;

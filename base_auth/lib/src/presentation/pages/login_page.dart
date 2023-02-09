@@ -9,7 +9,8 @@ import '../controllers/login_controller.dart';
 
 class LoginPage extends StatefulWidget {
   final BasePath redirectTo;
-  final Future Function(UserEntity) onLoginCallback;
+  final Future<Either<Exception, UserEntity>> Function(TokenEntity)
+      onLoginCallback;
   const LoginPage({
     super.key,
     required this.redirectTo,
@@ -32,8 +33,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    passwordController.text = 'mudar.dev';
-    emailController.text = 'leo@icloud.com';
+    emailController.text = 'thiago08@mail.com';
+    passwordController.text = '123456';
   }
 
   @override

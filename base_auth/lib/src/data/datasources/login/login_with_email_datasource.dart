@@ -22,6 +22,11 @@ class LoginWithEmailDatasource extends ILoginWithEmailDatasource {
       (l) => Left(l),
       (r) async {
         try {
+          if (data.email != 'thiago08@mail.com') {
+            return Left(Exception('E-mail inválido.'));
+          } else if (data.password != '123456') {
+            return Left(Exception('Senha inválida.'));
+          }
           final token = TokenModel.fromMap({'clienteId': r['wallet']['id']});
           final response = await localUserUsecase.setToken(token: token);
           return response.fold((l) => Left(l), (r) => Right(token));

@@ -71,6 +71,19 @@ class _WalletPageState extends State<WalletPage> {
   }
 
   Widget _transactionItem(TransactionEntity item) {
-    return Text(item.type);
+    return DefaultCard(
+      padding: const EdgeInsets.all(12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(item.type),
+          Text(NumberFormat.toCurrency(item.amount)),
+          Text(
+            item.description,
+            style: context.textTheme.displayMedium,
+          ),
+        ],
+      ),
+    );
   }
 }

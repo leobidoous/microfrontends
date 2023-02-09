@@ -155,8 +155,20 @@ class AppModule extends Module {
       AppRoutes.auth.path,
       module: AuthModule(
         redirectTo: AppRoutes.home,
-        onLoginCallback: (user) async {
-          DM.i.get<AppController>().user = user;
+        onLoginCallback: (token) async {
+          final userUsecase = DM.i.get<UserUsecase>();
+          final localUserUsecase = DM.i.get<LocalUserUsecase>();
+          final user = await userUsecase.getUserById(id: token.clientId);
+          return user.fold((l) => Left(l), (user) async {
+            return await localUserUsecase
+                .setLocalUser(user: user)
+                .then((value) {
+              return value.fold((l) => Left(l), (r) {
+                DM.i.get<AppController>().user = user;
+                return Right(user);
+              });
+            });
+          });
         },
       ),
       guards: [AuthRouterGuard(path: AppRoutes.home)],
