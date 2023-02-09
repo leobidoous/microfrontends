@@ -13,10 +13,8 @@ class GetTransactionsDatasource extends IGetTransactionsDatasource {
       (l) => Left(l),
       (r) async {
         try {
-          final transactions = (r as List)
-              .map(
-                (e) => TransactionModel.fromMap(e),
-              )
+          final transactions = (r['transactions'] as List)
+              .map((e) => TransactionModel.fromMap(e))
               .toList();
           return Right(transactions);
         } catch (e) {

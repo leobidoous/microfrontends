@@ -56,7 +56,10 @@ class _WalletPageState extends State<WalletPage> {
                 ),
               );
             }
-            return ListView.builder(
+            return ListView.separated(
+              itemCount: value.length,
+              separatorBuilder: (_, __) => Spacing.sm.vertical,
+              padding: const EdgeInsets.all(16),
               itemBuilder: (context, index) {
                 return _transactionItem(value[index]);
               },

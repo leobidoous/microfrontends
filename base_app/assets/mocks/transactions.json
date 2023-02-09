@@ -1,31 +1,29 @@
-[
-    {
-        "date": "quarta, 02 de novembro",
-        "transactions": [
-            {
-                "transaction_uuid": "9275a43c-0982-43f7-ab13-9c4721b4a429",
-                "description": "Débito Transferência",
-                "type": "DEBIT",
-                "amount": 12.5,
-                "refund": false,
-                "date": "2022-11-30T10:58:15+00:00"
-            },
-            {
-                "transaction_uuid": "9194dd55-ea8d-4510-b2fb-99303f600f5f",
-                "description": "Depósito Dinheiro",
-                "type": "CREDIT",
-                "amount": 50.8,
-                "refund": false,
-                "date": "2022-11-15T10:58:15+00:00"
-            },
-            {
-                "transaction_uuid": "1ba8c745-a8b1-47ea-9ab7-2bb121d48108",
-                "description": "Saque",
-                "type": "DEBIT",
-                "amount": 10.9,
-                "refund": false,
-                "date": "2022-11-12T10:58:15+00:00"
-            }
-        ]
-    }
-]
+{
+    "date": "quarta, 02 de novembro",
+    "transactions": [
+        {
+            "transaction_uuid": "9275a43c-0982-43f7-ab13-9c4721b4a429",
+            "description": "Débito Transferência",
+            "type": "DEBIT",
+            "amount": 12.5,
+            "refund": false,
+            "date": "2022-11-30T10:58:15+00:00"
+        },
+        {
+            "transaction_uuid": "9194dd55-ea8d-4510-b2fb-99303f600f5f",
+            "description": "Depósito Dinheiro",
+            "type": "CREDIT",
+            "amount": 50.8,
+            "refund": false,
+            "date": "2022-11-15T10:58:15+00:00"
+        },
+        {
+            "transaction_uuid": "1ba8c745-a8b1-47ea-9ab7-2bb121d48108",
+            "description": "Saque",
+            "type": "DEBIT",
+            "amount": 10.9,
+            "refund": false,
+            "date": "2022-11-12T10:58:15+00:00"
+        }
+    ]
+}
