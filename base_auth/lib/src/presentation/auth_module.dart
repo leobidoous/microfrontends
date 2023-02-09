@@ -3,15 +3,19 @@ import 'package:core/core.dart';
 import '../data/datasources/login/login_with_email_datasource.dart';
 import '../domain/usecases/login/login_with_email_usecase.dart';
 import '../infra/repositories/login/login_with_email_repository.dart';
-import 'auth_router_guard.dart';
 import 'controllers/login_controller.dart';
 import 'pages/login_page.dart';
 
 class AuthModule extends Module {
   static late final BasePath _redirectTo;
+  static late final Future Function(UserEntity) _onLoginCallback;
 
-  AuthModule({required BasePath redirectTo}) {
+  AuthModule({
+    required BasePath redirectTo,
+    required Future Function(UserEntity) onLoginCallback,
+  }) {
     _redirectTo = redirectTo;
+    _onLoginCallback = onLoginCallback;
   }
 
   @override
@@ -60,8 +64,10 @@ class AuthModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute(
       Modular.initialRoute,
-      child: (_, args) => LoginPage(redirectTo: _redirectTo),
-      guards: [AuthRouterGuard(path: _redirectTo)],
+      child: (_, args) => LoginPage(
+        onLoginCallback: _onLoginCallback,
+        redirectTo: _redirectTo,
+      ),
     ),
   ];
 }

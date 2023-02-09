@@ -28,6 +28,7 @@ import 'package:flutter/material.dart'
         VoidCallback,
         Widget;
 
+
 class DefaultTextField extends StatefulWidget {
   final TextEditingController controller;
   final String? placeholder;
@@ -41,8 +42,9 @@ class DefaultTextField extends StatefulWidget {
   final IconData? suffix;
   final VoidCallback? onSuffixTap;
   final int? maxLines;
+  final bool enabled;
   final int minLines;
-  final String? Function(String?)? validator;
+  final List<String? Function(String?)>? validators;
   final VoidCallback? onTap;
   final TextInputType? keyboardType;
   final TextInputAction? inputAction;
@@ -59,6 +61,7 @@ class DefaultTextField extends StatefulWidget {
     this.autofocus = false,
     this.placeholder,
     this.onTap,
+    this.enabled = true,
     this.readOnly = false,
     this.onComplete,
     this.onPrefixTap,
@@ -70,7 +73,7 @@ class DefaultTextField extends StatefulWidget {
     this.inputAction = TextInputAction.done,
     this.suffix,
     this.maxLines = 1,
-    this.validator,
+    this.validators,
     this.minLines = 1,
     this.isObscure = false,
     this.autovalidateMode = AutovalidateMode.onUserInteraction,
@@ -88,6 +91,17 @@ class _DefaultTextFieldState extends State<DefaultTextField> {
         maxWidth: 48,
       );
 
+  String? _validator(String? input) {
+    String? error;
+    widget.validators?.forEach((val) {
+      if (error == null) {
+        error = val(input);
+        return;
+      }
+    });
+    return error;
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -100,6 +114,7 @@ class _DefaultTextFieldState extends State<DefaultTextField> {
       onFieldSubmitted: (input) {
         widget.onFieldSubmitted?.call(input);
       },
+      enabled: widget.enabled,
       autovalidateMode: widget.autovalidateMode,
       autofocus: widget.autofocus,
       focusNode: widget.focus,
@@ -107,13 +122,14 @@ class _DefaultTextFieldState extends State<DefaultTextField> {
       onTap: widget.onTap,
       onChanged: widget.onChanged,
       textInputAction: widget.inputAction,
-      validator: widget.validator,
+      validator: _validator,
       obscureText: widget.isObscure,
       maxLines: widget.maxLines,
       minLines: widget.minLines,
       keyboardType: widget.keyboardType,
       decoration: InputDecoration(
         isDense: true,
+        errorMaxLines: 2,
         labelText: widget.label,
         hintText: widget.placeholder,
         labelStyle: context.textTheme.labelSmall,

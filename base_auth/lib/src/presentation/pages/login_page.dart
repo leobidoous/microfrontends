@@ -9,7 +9,12 @@ import '../controllers/login_controller.dart';
 
 class LoginPage extends StatefulWidget {
   final BasePath redirectTo;
-  const LoginPage({super.key, required this.redirectTo});
+  final Future Function(UserEntity) onLoginCallback;
+  const LoginPage({
+    super.key,
+    required this.redirectTo,
+    required this.onLoginCallback,
+  });
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -48,7 +53,9 @@ class _LoginPageState extends State<LoginPage> {
       email: emailController.text,
       password: passwordController.text,
     );
-    await controller.loginWithEmail(data).then((value) async {
+    await controller
+        .loginWithEmail(data, widget.onLoginCallback)
+        .then((value) async {
       if (controller.state) {
         Nav.to.navigate(widget.redirectTo.completePath);
       } else {
@@ -136,7 +143,10 @@ class _LoginPageState extends State<LoginPage> {
               onFieldSubmitted: (input) {
                 passwordFocus.requestFocus();
               },
-              validator: FormValidators.emptyField,
+              validators: const [
+                FormValidators.emptyField,
+                FormValidators.invalidEmail,
+              ],
               inputAction: TextInputAction.next,
             ),
             const SizedBox(height: 16),
@@ -153,7 +163,12 @@ class _LoginPageState extends State<LoginPage> {
                 FocusScope.of(context).requestFocus(FocusNode());
                 _onLogin();
               },
-              validator: FormValidators.emptyField,
+              validators: [
+                FormValidators.emptyField,
+                (input) {
+                  return FormValidators.invalidLength(input, 6);
+                }
+              ],
               isObscure: !showPassword,
               suffix: showPassword
                   ? Icons.visibility_off_rounded

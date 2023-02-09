@@ -153,7 +153,13 @@ class AppModule extends Module {
     ),
     ModuleRoute(
       AppRoutes.auth.path,
-      module: AuthModule(redirectTo: AppRoutes.home),
+      module: AuthModule(
+        redirectTo: AppRoutes.home,
+        onLoginCallback: (user) async {
+          DM.i.get<AppController>().user = user;
+        },
+      ),
+      guards: [AuthRouterGuard(path: AppRoutes.home)],
     ),
   ];
 }

@@ -12,13 +12,18 @@ class LoginController extends DefaultController<Exception, bool> {
     required this.localUserUsecase,
   }) : super(false);
 
-  Future<void> loginWithEmail(LoginEmailEntity data) async {
+  Future<void> loginWithEmail(
+    LoginEmailEntity data,
+    Future Function(UserEntity) onLoginCallback,
+  ) async {
     setLoading(true);
     await loginUsecase(data: data)
         .then(
           (value) => value.fold((l) => setError(l), (token) async {
-            final response = await localUserUsecase.setToken(token: token);
-            return response.fold((l) => setError(l), (r) {
+            final user = UserModel.fromMap({});
+            final response = await localUserUsecase.setLocalUser(user: user);
+            return response.fold((l) => setError(l), (r) async {
+              await onLoginCallback(user);
               update(true);
             });
           }),

@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
+
 import '../../../domain/entities/login_email_entity.dart';
 import '../../../infra/datasources/login/login_with_email_datasource.dart';
-import '../../../infra/models/login_email_model.dart';
 
 class LoginWithEmailDatasource extends ILoginWithEmailDatasource {
   final ILocalUserUsecase localUserUsecase;
@@ -16,15 +16,13 @@ class LoginWithEmailDatasource extends ILoginWithEmailDatasource {
   Future<Either<Exception, TokenEntity>> call({
     required LoginEmailEntity data,
   }) async {
-    final response = await client.post(
-      '/v1/login',
-      data: LoginEmailModel.fromEntity(data).toMap,
-    );
+    await Future.delayed(const Duration(seconds: 1));
+    final response = await LoadJson.fromAsset('assets/mocks/user.json');
     return response.fold(
-      (l) => Left(Exception(l.statusMessage)),
+      (l) => Left(l),
       (r) async {
         try {
-          final token = TokenModel.fromMap(r.data['data']);
+          final token = TokenModel.fromMap({'clienteId': r['wallet']['id']});
           final response = await localUserUsecase.setToken(token: token);
           return response.fold((l) => Left(l), (r) => Right(token));
         } catch (e) {

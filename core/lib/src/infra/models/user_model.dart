@@ -23,11 +23,12 @@ class UserModel extends UserEntity with EquatableMixin {
       cpf: map['cpf'] ?? '',
       email: map['email'] ?? '',
       phone: map['telefone'] ?? '',
-      birth: DateTime.tryParse(map['dataNascimento']) ?? DateTime.now(),
+      birth: DateTime.tryParse(map['dataNascimento'] ?? '') ?? DateTime.now(),
       id: map['id'] ?? '',
       status: map['status'] ?? '',
-      createdAt: DateTime.tryParse(map['dataCriacao']) ?? DateTime.now(),
-      updatedAt: DateTime.tryParse(map['dataAlteracao']) ?? DateTime.now(),
+      createdAt: DateTime.tryParse(map['dataCriacao'] ?? '') ?? DateTime.now(),
+      updatedAt:
+          DateTime.tryParse(map['dataAlteracao'] ?? '') ?? DateTime.now(),
     );
   }
 

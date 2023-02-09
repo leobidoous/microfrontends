@@ -20,7 +20,6 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
     controller.getLoggedlUser().then((value) {
       if (controller.state) {
-        // Nav.to.navigate(HomeRoutes.productsList.completePath);
         Nav.to.navigate(AppRoutes.home.completePath);
       } else {
         Nav.to.navigate(AppRoutes.auth.completePath);

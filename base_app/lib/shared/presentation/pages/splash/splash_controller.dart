@@ -1,4 +1,3 @@
-
 import 'package:core/core.dart';
 
 import '../../../../modules/app/domain/usecases/user_usecase.dart';
@@ -19,15 +18,20 @@ class SplashController extends DefaultController<Exception, bool> {
     setLoading(true);
     final token = await localUserUsecase.getToken();
     return token.fold((l) => setError(l), (token) async {
-      appController.token = token;
       final user = await userUsecase.getUserById(id: token.clientId);
-      return user.fold((l) => setError(l), (user) async {
-        final response = await localUserUsecase.setLocalUser(user: user);
-        return response.fold((l) => setError(l), (r) {
-          appController.user = user;
-          update(true);
-        });
-      });
+      return user.fold(
+        (l) => setError(l),
+        (user) async {
+          final response = await localUserUsecase.setLocalUser(user: user);
+          return response.fold(
+            (l) => setError(l),
+            (r) {
+              appController.user = user;
+              update(true);
+            },
+          );
+        },
+      );
     });
   }
 }
