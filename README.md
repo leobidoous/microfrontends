@@ -12,6 +12,16 @@ base_app/
         .env
         .env.dev
         .env.hml
+    .firebase/
+        dev/
+            google-services.json
+            GoogleService-Info.plist
+        hml/
+            google-services.json
+            GoogleService-Info.plist
+        prod/
+            google-services.json
+            GoogleService-Info.plist
 ```
 
 Após a criação dos arquivos de ambiente locais, deve-se executar o seguinte script na pasta raíz do repositório:
@@ -27,4 +37,3 @@ Qualquer dúvida ou contribuição, entre em contato através das minhas redes:
 - [LinkedIn](https://www.linkedin.com/in/leonardo-bido/)
 
 - [Instagram](https://www.instagram.com/leobidoous/)
-

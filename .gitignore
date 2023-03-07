@@ -5,3 +5,4 @@ README.md
 .coverage
 coverage
 .idea
+.fvm/flutter_sdk/
