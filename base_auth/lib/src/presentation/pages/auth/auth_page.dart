@@ -2,6 +2,7 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../base_auth.dart';
 import '../../controllers/auth/auth_controller.dart';
 import 'widgets/auth_logo.dart';
 
@@ -53,7 +54,15 @@ class _AuthPageState extends State<AuthPage> {
                   ),
                   Spacing.lg.vertical,
                   GenButton.text(
-                    onPressed: controller.onSignInButtonClick,
+                    onPressed: () {
+                      Nav.to.pushNamed(
+                        AuthRoutes.login,
+                        arguments: {
+                          'redirectTo': controller.redirectTo,
+                          'onLoginCallback': controller.onLoginCallback,
+                        },
+                      );
+                    },
                     text: 'Login',
                   ),
                   Spacing.sm.vertical,
@@ -65,7 +74,9 @@ class _AuthPageState extends State<AuthPage> {
                     ),
                     child: GenButton.text(
                       type: ButtonType.background,
-                      onPressed: controller.onStartButtonClick,
+                      onPressed: () {
+                        Nav.to.pushNamed(AuthRoutes.register);
+                      },
                       text: 'Cadastro',
                     ),
                   ),

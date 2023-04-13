@@ -13,6 +13,8 @@ class AppWidget extends StatefulWidget {
 }
 
 class _AppWidgetState extends State<AppWidget> {
+  final themeController = DM.i.get<ThemeController>();
+
   @override
   void initState() {
     super.initState();
@@ -34,7 +36,7 @@ class _AppWidgetState extends State<AppWidget> {
           builder: (context, orientation) {
             final size = Size(constraints.maxWidth, constraints.maxHeight);
             return ValueListenableBuilder<ThemeMode>(
-              valueListenable: DM.i.get<ThemeController>(),
+              valueListenable: themeController,
               builder: (context_, state, child) {
                 return ScreenUtilInit(
                   designSize: size,

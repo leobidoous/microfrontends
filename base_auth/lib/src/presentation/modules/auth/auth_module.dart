@@ -6,8 +6,10 @@ import '../../../infra/repositories/auth_repository.dart';
 import '../../../infra/repositories/user_repository.dart';
 import '../../../infra/usecases/auth_usecase.dart';
 import '../../../infra/usecases/user_usecase.dart';
+import '../../auth_routes.dart';
 import '../../controllers/auth/auth_controller.dart';
 import '../../pages/auth/auth_page.dart';
+import '../login/login_module.dart';
 
 class AuthModule extends Module {
   static late final BasePath _redirectTo;
@@ -21,61 +23,64 @@ class AuthModule extends Module {
     _onLoginCallback = onLoginCallback;
   }
 
-  @override
-  final List<Bind> binds = [
-    /// Remote user
-    Bind.factory(
-      (i) => UserDatasource(
-        graphQlClient: DM.i.get<GraphQlClientDriver>(),
-        firebaseAuthDriver: DM.i.get<FirebaseAuthDriver>(),
-      ),
-    ),
-    Bind.factory(
-      (i) => UserRepository(datasource: DM.i.get<UserDatasource>()),
-    ),
-    Bind.factory(
-      (i) => UserUsecase(repository: DM.i.get<UserRepository>()),
-    ),
-
-    /// Auth
-    Bind.lazySingleton(
-      (i) => AuthDatasource(
-        client: DioClientDriver(
-          client: Dio()
-            ..options.baseUrl = DM.i.get<EnvironmentEntity>().baseUrlParking
-            ..interceptors.addAll([LogInterceptor(requestBody: true)]),
-        ),
-        localUserUsecase: DM.i.get<LocalUserUsecase>(),
-        graphQlClient: GraphQlClientDriver(
-          baseUrl: DM.i.get<EnvironmentEntity>().endpointGraphql,
-          localUserUsecase: DM.i.get<LocalUserUsecase>(),
-          client: GraphQLClient(
-            link: Link.from([]),
-            cache: GraphQLCache(store: HiveStore()),
+  static List<Bind> get exportedBinds => [
+        /// Auth
+        Bind.lazySingleton<AuthDatasource>(
+          (i) => AuthDatasource(
+            client: DioClientDriver(
+              client: Dio()
+                ..options.baseUrl = i.get<EnvironmentEntity>().baseUrlParking
+                ..interceptors.addAll([LogInterceptor(requestBody: true)]),
+            ),
+            graphQlClient: GraphQlClientDriver(
+              baseUrl: i.get<EnvironmentEntity>().endpointGraphql,
+              localUserUsecase: i.get<LocalUserUsecase>(),
+              client: GraphQLClient(
+                link: Link.from([]),
+                cache: GraphQLCache(store: HiveStore()),
+              ),
+            ),
+            firebaseAuthDriver: i.get<FirebaseAuthDriver>(),
+            localUserUsecase: i.get<LocalUserUsecase>(),
           ),
         ),
-        firebaseAuthDriver: DM.i.get<FirebaseAuthDriver>(),
-      ),
-    ),
-    Bind.lazySingleton(
-      (i) => AuthRepository(datasource: DM.i.get<AuthDatasource>()),
-    ),
-    Bind.lazySingleton(
-      (i) => AuthUsecase(repository: DM.i.get<AuthRepository>()),
-    ),
+        Bind.lazySingleton<AuthRepository>(
+          (i) => AuthRepository(datasource: i.get<AuthDatasource>()),
+        ),
+        Bind.lazySingleton<AuthUsecase>(
+          (i) => AuthUsecase(repository: i.get<AuthRepository>()),
+        ),
 
-    /// Controllers
-    Bind.lazySingleton(
-      (i) => AuthController(
-        redirectTo: _redirectTo,
-        onLoginCallback: _onLoginCallback,
-        localUserUsecase: i.get<LocalUserUsecase>(),
-      ),
-    ),
-  ];
+        /// Remote user
+        Bind.factory<UserDatasource>(
+          (i) => UserDatasource(
+            graphQlClient: i.get<GraphQlClientDriver>(),
+            firebaseAuthDriver: i.get<FirebaseAuthDriver>(),
+          ),
+        ),
+        Bind.factory<UserRepository>(
+          (i) => UserRepository(datasource: i.get<UserDatasource>()),
+        ),
+        Bind.factory<UserUsecase>(
+          (i) => UserUsecase(repository: i.get<UserRepository>()),
+        ),
+
+        /// Controllers
+        Bind.lazySingleton<AuthController>(
+          (i) => AuthController(
+            redirectTo: _redirectTo,
+            onLoginCallback: _onLoginCallback,
+            localUserUsecase: i.get<LocalUserUsecase>(),
+          ),
+        ),
+      ];
+
+  @override
+  final List<Bind> binds = [];
 
   @override
   final List<ModularRoute> routes = [
     ChildRoute(Modular.initialRoute, child: (_, args) => const AuthPage()),
+    ModuleRoute(AuthRoutes.login.path, module: LoginModule()),
   ];
 }

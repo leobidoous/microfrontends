@@ -1,7 +1,5 @@
 import 'package:core/core.dart';
 
-import '../../auth_routes.dart';
-
 class AuthController extends GenController<Exception, Unit> {
   AuthController({
     required this.redirectTo,
@@ -12,15 +10,6 @@ class AuthController extends GenController<Exception, Unit> {
   final BasePath redirectTo;
   final Future Function() onLoginCallback;
   final ILocalUserUsecase localUserUsecase;
-
-  void onStartButtonClick() async {
-    Nav.to.pushNamed(AuthRoutes.login);
-  }
-
-  void onSignInButtonClick() async {
-    Nav.to.pushNamed(AuthRoutes.login);
-  }
-
 
   ExternalUserEntity? _externalUser;
   CustomerEntity? _customer;
@@ -53,7 +42,7 @@ class AuthController extends GenController<Exception, Unit> {
     _user = user;
   }
 
-  Future<Either<Exception, Unit>> onSaveSession({
+  Future<Either<Exception, Unit>> setSession({
     ExternalUserEntity? externalUser,
     CustomerEntity? customer,
     ClaimsEntity? claims,
@@ -68,20 +57,5 @@ class AuthController extends GenController<Exception, Unit> {
       user: user ?? UserModel.fromMap({}),
     );
     return localUserUsecase.setSession(session: session);
-  }
-
-  Future<Either<Exception, SessionEntity>> getSession() async {
-    final sessionResponse = await localUserUsecase.getSession();
-    sessionResponse.fold(
-      (l) => null,
-      (session) {
-        externalUser = session.externalUser;
-        customer = session.customer;
-        claims = session.claims;
-        token = session.token;
-        user = session.user;
-      },
-    );
-    return sessionResponse;
   }
 }

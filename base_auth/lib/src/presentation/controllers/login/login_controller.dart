@@ -66,7 +66,7 @@ class LoginController extends GenController<ILoginFailure, bool> {
               );
 
               authController.claims = firebase.claims;
-              final response = await authController.onSaveSession(
+              final response = await authController.setSession(
                 token: authController.token,
               );
               return response.fold((l) => Left(UnknowError('')), (r) async {
@@ -112,7 +112,7 @@ class LoginController extends GenController<ILoginFailure, bool> {
   }
 
   Future<Either<ILoginFailure, bool>> _onSaveSession() async {
-    final sessionResponse = await authController.onSaveSession(
+    final sessionResponse = await authController.setSession(
       externalUser: authController.externalUser,
       customer: authController.customer,
       claims: authController.claims,

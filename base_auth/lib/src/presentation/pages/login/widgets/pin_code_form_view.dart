@@ -14,7 +14,7 @@ class PinCodeFormView extends StatefulWidget {
     required this.textController,
   });
 
-  final Function(String phone, String code) onConfirm;
+  final Future Function(String phone, String code) onConfirm;
   final Function(String phone) onRequestCode;
   final TextEditingController textController;
 
@@ -24,7 +24,7 @@ class PinCodeFormView extends StatefulWidget {
 
 class _PinCodeFormViewState extends State<PinCodeFormView> {
   final controller = DM.i.get<LoginController>();
-  final FocusNode pinFocus = FocusNode();
+  final pinFocus = FocusNode();
   final formKey = GlobalKey<FormState>();
   late final String phoneNumber;
 
@@ -66,6 +66,8 @@ class _PinCodeFormViewState extends State<PinCodeFormView> {
 
   @override
   void initState() {
+    widget.textController.clear();
+    pinFocus.requestFocus();
     phoneNumber = controller.phoneNumber;
     super.initState();
   }
@@ -76,96 +78,108 @@ class _PinCodeFormViewState extends State<PinCodeFormView> {
     super.dispose();
   }
 
+  Future<void> _onValidateCode(String code) async {
+    controller.clearError();
+    formKey.currentState?.validate();
+    await widget.onConfirm(phoneNumber, code).then((value) {
+      if (controller.hasError) {
+        formKey.currentState?.validate();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      child: GenScrollContent(
-        padding: EdgeInsets.all(const Spacing(2).value),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const FormHeader(),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                '''Insira o código de 6 dígitos que enviamos para o número +55 $phoneNumber.''',
-                style: context.textTheme.bodyMedium?.copyWith(
-                  fontWeight: context.textTheme.fontWeightLight,
+    return GenScrollContent(
+      padding: EdgeInsets.all(const Spacing(2).value),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const FormHeader(),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              '''Insira o código de 6 dígitos que enviamos para o número +55 $phoneNumber.''',
+              style: context.textTheme.bodyMedium?.copyWith(
+                fontWeight: context.textTheme.fontWeightLight,
+              ),
+            ),
+          ),
+          Spacing.lg.vertical,
+          ValueListenableBuilder(
+            valueListenable: controller.timerController,
+            builder: (context, value, child) {
+              return Form(
+                key: formKey,
+                child: Pinput(
+                  length: 6,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  focusNode: pinFocus,
+                  controller: widget.textController,
+                  defaultPinTheme: defaultTheme,
+                  focusedPinTheme: focusedTheme,
+                  errorPinTheme: errorTheme,
+                  pinAnimationType: PinAnimationType.fade,
+                  pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
+                  showCursor: true,
+                  onSubmitted: _onValidateCode,
+                  errorText: controller.error?.message,
+                  onChanged: (_) => controller.validateCode(_),
+                  validator: (input) {
+                    String? error;
+                    [FormValidators.emptyField].forEach((val) {
+                      if (error == null) {
+                        error = val(input);
+                        return;
+                      }
+                    });
+                    return error ?? controller.error?.message;
+                  },
+                  onCompleted: _onValidateCode,
+                  closeKeyboardWhenCompleted: true,
+                  keyboardType: TextInputType.number,
                 ),
-              ),
-            ),
-            Spacing.lg.vertical,
-            Pinput(
-              length: 6,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              focusNode: pinFocus,
-              controller: widget.textController,
-              defaultPinTheme: defaultTheme,
-              focusedPinTheme: focusedTheme,
-              errorPinTheme: errorTheme,
-              pinAnimationType: PinAnimationType.fade,
-              pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
-              showCursor: true,
-              onChanged: (_) => controller.validateCode(_),
-              validator: (input) {
-                String? error;
-                [FormValidators.emptyField].forEach((val) {
-                  if (error == null) {
-                    error = val(input);
-                    return;
-                  }
-                });
-                return error;
-              },
-              onCompleted: (value) {
-                widget.onConfirm(phoneNumber, value);
-              },
-              closeKeyboardWhenCompleted: true,
-              keyboardType: TextInputType.number,
-            ),
-            Spacing.lg.vertical,
-            Semantics(
-              button: true,
-              child: ValueListenableBuilder(
-                valueListenable: controller.timerController,
-                builder: (context, value, child) {
-                  return InkWell(
-                    onTap: !controller.timerController.showTimer
-                        ? controller.onResendCode
-                        : null,
-                    child: Text(
-                      '''Não recebi o código ${controller.timerController.showTimer ? '(${controller.timerController.counter} seg)' : ''}''',
-                      textScaleFactor: 1.0,
-                      style: context.textTheme.bodyLarge?.copyWith(
-                        fontWeight: context.textTheme.fontWeightMedium,
-                        color: !controller.timerController.showTimer
-                            ? Colors.black
-                            : Colors.grey,
-                      ),
+              );
+            },
+          ),
+          Spacing.lg.vertical,
+          ValueListenableBuilder(
+            valueListenable: controller.timerController,
+            builder: (context, value, child) {
+              return Semantics(
+                button: true,
+                child: InkWell(
+                  onTap: !controller.timerController.showTimer
+                      ? controller.onResendCode
+                      : null,
+                  child: Text(
+                    '''Não recebi o código ${controller.timerController.showTimer ? '(${controller.timerController.counter} seg)' : ''}''',
+                    textScaleFactor: 1.0,
+                    style: context.textTheme.bodyLarge?.copyWith(
+                      fontWeight: context.textTheme.fontWeightMedium,
+                      color: !controller.timerController.showTimer
+                          ? Colors.black
+                          : Colors.grey,
                     ),
-                  );
-                },
-              ),
-            ),
-            Spacing.md.vertical,
-            ValueListenableBuilder(
-              valueListenable: controller,
-              builder: (context, value, child) {
-                return GenButton.text(
-                  text: 'Confirmar',
-                  isEnabled: controller.codeIsValid,
-                  isLoading: controller.isLoading,
-                  onPressed: () => widget.onConfirm(
-                    phoneNumber,
-                    widget.textController.text,
                   ),
-                );
-              },
-            ),
-          ],
-        ),
+                ),
+              );
+            },
+          ),
+          Spacing.md.vertical,
+          ValueListenableBuilder(
+            valueListenable: controller,
+            builder: (context, value, child) {
+              return GenButton.text(
+                text: 'Confirmar',
+                isEnabled: controller.codeIsValid,
+                isLoading: controller.isLoading,
+                onPressed: () => _onValidateCode(widget.textController.text),
+              );
+            },
+          ),
+        ],
       ),
     );
   }

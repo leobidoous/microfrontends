@@ -16,12 +16,12 @@ class LoginPage extends StatefulWidget {
 
   final BasePath redirectTo;
   final Future Function() onLoginCallback;
-  
+
   @override
-  State<LoginPage> createState() => _SignInPageState();
+  State<LoginPage> createState() => _LoginPagePageState();
 }
 
-class _SignInPageState extends State<LoginPage> {
+class _LoginPagePageState extends State<LoginPage> {
   final controller = DM.i.get<LoginController>();
   final pageController = PageController();
   final phoneController = TextEditingController();
@@ -58,10 +58,7 @@ class _SignInPageState extends State<LoginPage> {
         await _showDialogError(controller.error);
         return;
       }
-      Nav.to.pushNamedAndRemoveUntil(
-        SharedRoutes.splash,
-        ModalRoute.withName(SharedRoutes.splash.completePath),
-      );
+      Nav.to.navigate(widget.redirectTo);
     });
   }
 

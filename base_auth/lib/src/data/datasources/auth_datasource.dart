@@ -19,6 +19,19 @@ class AuthDatasource extends IAuthDatasource {
   });
 
   @override
+  bool sessionIsValid(SessionEntity session) {
+    try {
+      return session.claims.customerId.isNotEmpty &&
+          session.customer.id.isNotEmpty &&
+          session.externalUser.token.isNotEmpty &&
+          session.user.customerId.isNotEmpty &&
+          session.token.accessToken.isNotEmpty;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  @override
   Future<Either<HttpDriverResponse, ExternalUserEntity>> createExternalUser({
     required UserEntity user,
   }) async {
@@ -87,15 +100,16 @@ class AuthDatasource extends IAuthDatasource {
   }
 
   @override
-  Future<Either<Exception, Unit>> logout() async {
-    
+  Future<Either<Exception, Unit>> logout({bool navigateToLogin = true}) async {
     return localUserUsecase.removeSession().then((value) {
       return firebaseAuthDriver.logout().then((value) {
         return value.fold((l) => Left(l), (r) {
-          Nav.to.pushNamedAndRemoveUntil(
-            AuthRoutes.root,
-            ModalRoute.withName(AuthRoutes.root.completePath),
-          );
+          if (navigateToLogin) {
+            Nav.to.pushNamedAndRemoveUntil(
+              AuthRoutes.root,
+              ModalRoute.withName(AuthRoutes.root.completePath),
+            );
+          }
           return Right(unit);
         });
       });

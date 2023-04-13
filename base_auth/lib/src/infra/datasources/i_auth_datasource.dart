@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 
 abstract class IAuthDatasource {
+  bool sessionIsValid(SessionEntity session);
   Future<Either<Exception, Unit>> firebaseSignIn({required String token});
   Future<Either<HttpDriverResponse, ExternalUserEntity>> createExternalUser({
     required UserEntity user,
@@ -12,5 +13,5 @@ abstract class IAuthDatasource {
   Future<Either<HttpDriverResponse, TokenEntity>> refreshFirebaseToken({
     required String refreshToken,
   });
-  Future<Either<Exception, Unit>> logout();
+  Future<Either<Exception, Unit>> logout({bool navigateToLogin = true});
 }

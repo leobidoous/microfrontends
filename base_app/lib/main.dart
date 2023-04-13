@@ -83,7 +83,12 @@ Future<void> runBaseApp({required AppConfiguration appConfiguration}) async {
       GlobalConfigs.crashlyticsDriver.init(),
       GlobalConfigs.graphQlService.init(),
     ]);
-    return runApp(ModularApp(module: AppModule(), child: const AppWidget()));
+    return runApp(
+      ModularApp(
+        module: AppModule(appConfiguration: appConfiguration),
+        child: const AppWidget(),
+      ),
+    );
   }, (error, stackTrace) async {
     try {
       await GlobalConfigs.crashlyticsDriver.setError(

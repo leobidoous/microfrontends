@@ -1,6 +1,8 @@
+import 'package:base_auth/base_auth.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../app/presentation/app_routes.dart';
 import '../../widgets/logo_widget.dart';
 import 'splash_controller.dart';
 
@@ -17,32 +19,20 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    controller.onInit().then((value) {
+    controller.onInit().then((value) async {
       if (controller.hasError) {
+        await Future.delayed(const Duration(seconds: 1));
         if (controller.needUpdate) {
-          Nav.to.pushNamedAndRemoveUntil(
-            SharedRoutes.warningNewVersion,
-            ModalRoute.withName(SharedRoutes.warningNewVersion.completePath),
-            
-          );
+          Nav.to.navigate(SharedRoutes.warningNewVersion);
         } else {
-          Nav.to.pushNamedAndRemoveUntil(
-            'Routes.ONBOARDING',
-            ModalRoute.withName(''),
-          );
+          Nav.to.navigate(AuthRoutes.root);
         }
         return;
       }
       if (controller.needUpdate) {
-        Nav.to.pushNamedAndRemoveUntil(
-          SharedRoutes.warningNewVersion,
-          ModalRoute.withName(SharedRoutes.warningNewVersion.completePath),
-        );
+        Nav.to.navigate(SharedRoutes.warningNewVersion);
       } else {
-        Nav.to.pushNamedAndRemoveUntil(
-          'DashboardHomeRoutes.root',
-          ModalRoute.withName(''),
-        );
+        Nav.to.navigate(AppRoutes.home);
       }
     });
   }

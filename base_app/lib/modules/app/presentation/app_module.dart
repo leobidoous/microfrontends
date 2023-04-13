@@ -3,17 +3,32 @@ import 'package:core/core.dart';
 
 import '../../home/presentation/home_module.dart';
 import '../../home/presentation/home_router_guard.dart';
+import '../../shared/presentation/pages/splash/splash_controller.dart';
 import '../../shared/presentation/pages/splash/splash_page.dart';
 import '../data/datasources/search_postal_code_datasource.dart';
 import '../infra/repositories/search_postal_code_repository.dart';
 import '../infra/usecases/search_postal_code_usecase.dart';
+import 'app_configuration.dart';
 import 'app_routes.dart';
 import 'controllers/app_controller.dart';
 import 'controllers/theme_controller.dart';
 
 class AppModule extends Module {
+  AppModule({required AppConfiguration appConfiguration}) {
+    _appConfiguration = appConfiguration;
+  }
+
+  static late final AppConfiguration _appConfiguration;
+
   @override
   final List<Bind> binds = [
+    /// Auth
+    ...AuthModule.exportedBinds,
+
+    /// App configuration and environment
+    Bind.singleton((i) => _appConfiguration),
+    Bind.singleton((i) => _appConfiguration.environment),
+
     /// GraphQl
     Bind.factory(
       (i) => GraphQLClient(
@@ -23,9 +38,9 @@ class AppModule extends Module {
     ),
     Bind.factory(
       (i) => GraphQlClientDriver(
-        baseUrl: DM.i.get<EnvironmentEntity>().endpointGraphql,
-        localUserUsecase: DM.i.get<LocalUserUsecase>(),
-        client: DM.i.get<GraphQLClient>(),
+        baseUrl: i.get<EnvironmentEntity>().endpointGraphql,
+        localUserUsecase: i.get<LocalUserUsecase>(),
+        client: i.get<GraphQLClient>(),
       ),
     ),
 
@@ -41,17 +56,17 @@ class AppModule extends Module {
         },
       ),
     ),
-    Bind.factory((i) => Dio(DM.i.get<BaseOptions>())),
+    Bind.factory((i) => Dio(i.get<BaseOptions>())),
     Bind.factory(
       (i) => DioClientDriver(
-        client: DM.i.get<Dio>()
-          ..options.baseUrl = DM.i.get<EnvironmentEntity>().appBaseUrl
+        client: i.get<Dio>()
+          ..options.baseUrl = i.get<EnvironmentEntity>().appBaseUrl
           ..interceptors.addAll(
             [
               LogInterceptor(requestBody: true),
               DioAuthInterceptor(
-                authUsecase: DM.i.get<AuthUsecase>(),
-                localUserUsecase: DM.i.get<LocalUserUsecase>(),
+                authUsecase: i.get<AuthUsecase>(),
+                localUserUsecase: i.get<LocalUserUsecase>(),
               ),
             ],
           ),
@@ -61,37 +76,37 @@ class AppModule extends Module {
     /// Postal code search
     Bind.factory(
       (i) => SearchPostalCodeDatasource(
-        client: DioClientDriver(client: Dio(DM.i.get<BaseOptions>())),
+        client: DioClientDriver(client: Dio(i.get<BaseOptions>())),
       ),
     ),
     Bind.factory(
       (i) => SearchPostalCodeRepository(
-        datasource: DM.i.get<SearchPostalCodeDatasource>(),
+        datasource: i.get<SearchPostalCodeDatasource>(),
       ),
     ),
     Bind.factory(
       (i) => SearchPostalCodeUsecase(
-        repository: DM.i.get<SearchPostalCodeRepository>(),
+        repository: i.get<SearchPostalCodeRepository>(),
       ),
     ),
 
     /// Local user
     Bind.factory(
       (i) => LocalUserDatasource(
-        prefsDriver: DM.i.get<PreferencesStorageDriver>(),
+        prefsDriver: i.get<PreferencesStorageDriver>(),
       ),
     ),
     Bind.factory(
-      (i) => LocalUserRepository(datasource: DM.i.get<LocalUserDatasource>()),
+      (i) => LocalUserRepository(datasource: i.get<LocalUserDatasource>()),
     ),
     Bind.factory(
-      (i) => LocalUserUsecase(repository: DM.i.get<LocalUserRepository>()),
+      (i) => LocalUserUsecase(repository: i.get<LocalUserRepository>()),
     ),
 
     /// Firebase
-    Bind.lazySingleton((i) => GlobalConfigs.firebaseAuth),
+    Bind.lazySingleton((i) => GlobalConfigs.firebaseAuthDriver),
     Bind.lazySingleton((i) => GlobalConfigs.firebaseDriver),
-    Bind.lazySingleton((i) => GlobalConfigs.firebaseStorage),
+    Bind.lazySingleton((i) => GlobalConfigs.firebaseStorageDriver),
     Bind.lazySingleton((i) => GlobalConfigs.crashlyticsDriver),
     Bind.lazySingleton((i) => GlobalConfigs.firebaseNotificationsDriver),
 
@@ -103,11 +118,20 @@ class AppModule extends Module {
     Bind.lazySingleton((i) => GlobalConfigs.preferencesStorageDriver),
 
     /// Controllers
-    Bind.lazySingleton(
-      (i) => AppController(localUserUsecase: DM.i.get<LocalUserUsecase>()),
+    Bind.lazySingleton<AppController>(
+      (i) => AppController(
+        authUsecase: i.get<AuthUsecase>(),
+        localUserUsecase: i.get<LocalUserUsecase>(),
+      ),
     ),
-    Bind.lazySingleton(
-      (i) => ThemeController(localUserUsecase: DM.i.get<LocalUserUsecase>()),
+    Bind.factory<ThemeController>(
+      (i) => ThemeController(localUserUsecase: i.get<LocalUserUsecase>()),
+    ),
+    Bind.factory(
+      (i) => SplashController(
+        appController: i.get<AppController>(),
+        userUsecase: i.get<UserUsecase>(),
+      ),
     ),
   ];
 
@@ -139,9 +163,8 @@ class GlobalConfigs {
 
   /// Firebase global configs
   static FirebaseDriver get firebaseDriver => FirebaseDriver();
-  static FirebaseStorageDriver get firebaseStorage => FirebaseStorageDriver(
-        instance: FirebaseFirestore.instance,
-      );
+  static FirebaseStorageDriver get firebaseStorageDriver =>
+      FirebaseStorageDriver(instance: FirebaseFirestore.instance);
   static FirebaseCrashlyticsDriver get crashlyticsDriver =>
       FirebaseCrashlyticsDriver(instance: FirebaseCrashlytics.instance);
   static FirebaseNotificationsDriver get firebaseNotificationsDriver =>
@@ -150,7 +173,7 @@ class GlobalConfigs {
         instance: FirebaseMessaging.instance,
         localNotificationsDriver: localNotificationsDriver,
       );
-  static FirebaseAuthDriver get firebaseAuth => FirebaseAuthDriver(
+  static FirebaseAuthDriver get firebaseAuthDriver => FirebaseAuthDriver(
         instance: FirebaseAuth.instance,
       );
 

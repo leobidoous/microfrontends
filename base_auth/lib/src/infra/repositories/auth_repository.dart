@@ -25,8 +25,8 @@ class AuthRepository extends IAuthRepository {
   }
 
   @override
-  Future<Either<Exception, Unit>> logout() {
-    return datasource.logout();
+  Future<Either<Exception, Unit>> logout({bool navigateToLogin = true}) {
+    return datasource.logout(navigateToLogin: navigateToLogin);
   }
 
   @override
@@ -39,5 +39,10 @@ class AuthRepository extends IAuthRepository {
   @override
   Future<Either<Exception, Unit>> firebaseSignIn({required String token}) {
     return datasource.firebaseSignIn(token: token);
+  }
+
+  @override
+  bool sessionIsValid(SessionEntity session) {
+    return datasource.sessionIsValid(session);
   }
 }
