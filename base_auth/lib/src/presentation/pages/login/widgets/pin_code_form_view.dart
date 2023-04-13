@@ -3,6 +3,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
+import '../../../../domain/failures/login/login_failure.dart';
 import '../../../controllers/login/login_controller.dart';
 import 'form_header.dart';
 
@@ -126,6 +127,20 @@ class _PinCodeFormViewState extends State<PinCodeFormView> {
                   onSubmitted: _onValidateCode,
                   errorText: controller.error?.message,
                   onChanged: (_) => controller.validateCode(_),
+                  errorBuilder: (errorText, pin) {
+                    if (controller.error is! InvalidCodeError) {
+                      return const SizedBox();
+                    }
+                    return Padding(
+                      padding: EdgeInsets.only(top: const Spacing(1).value),
+                      child: Text(
+                        errorText!,
+                        style: pinTextStyle?.copyWith(
+                          color: context.colorScheme.error,
+                        ),
+                      ),
+                    );
+                  },
                   validator: (input) {
                     String? error;
                     [FormValidators.emptyField].forEach((val) {
@@ -151,7 +166,11 @@ class _PinCodeFormViewState extends State<PinCodeFormView> {
                 button: true,
                 child: InkWell(
                   onTap: !controller.timerController.showTimer
-                      ? controller.onResendCode
+                      ? () {
+                          controller.clearError();
+                          widget.textController.clear();
+                          controller.onResendCode();
+                        }
                       : null,
                   child: Text(
                     '''Não recebi o código ${controller.timerController.showTimer ? '(${controller.timerController.counter} seg)' : ''}''',

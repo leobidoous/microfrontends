@@ -24,12 +24,29 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GenAppBar(title: 'Início'),
+      appBar: GenAppBar(
+        title: 'Início',
+        actions: [
+          InkWell(
+            onTap: () {
+              controller.sessionController.logout();
+            },
+            child: const Icon(Icons.exit_to_app_rounded),
+          ),
+        ],
+      ),
       body: SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: const [],
+        child: GenScrollContent(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                SessionModel.fromEntity(controller.sessionController.state)
+                    .toString(),
+              ),
+            ],
+          ),
         ),
       ),
     );

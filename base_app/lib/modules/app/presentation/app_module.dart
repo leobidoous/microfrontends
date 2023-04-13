@@ -42,7 +42,6 @@ class AppModule extends Module {
         client: i.get<GraphQLClient>(),
       )..interceptors.addAll([
           GraphQlAuthInterceptor(
-
             authUsecase: i.get<AuthUsecase>(),
             localUserUsecase: i.get<LocalUserUsecase>(),
           ),
@@ -151,7 +150,9 @@ class AppModule extends Module {
     ModuleRoute(
       AuthRoutes.root.path,
       module: AuthModule(
-        onLoginCallback: () async {},
+        onLoginCallback: (session) async {
+          DM.i.get<AppController>().session = session;
+        },
         redirectTo: AppRoutes.home,
       ),
       guards: [AuthRouterGuard(path: AppRoutes.home)],

@@ -15,7 +15,7 @@ class LoginPage extends StatefulWidget {
   }) : super(key: key);
 
   final BasePath redirectTo;
-  final Future Function() onLoginCallback;
+  final Future Function(SessionEntity) onLoginCallback;
 
   @override
   State<LoginPage> createState() => _LoginPagePageState();
@@ -58,7 +58,7 @@ class _LoginPagePageState extends State<LoginPage> {
         await _showDialogError(controller.error);
         return;
       }
-      // Nav.to.navigate(widget.redirectTo);
+      Nav.to.navigate(widget.redirectTo);
     });
   }
 

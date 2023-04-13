@@ -13,11 +13,11 @@ import '../login/login_module.dart';
 
 class AuthModule extends Module {
   static late final BasePath _redirectTo;
-  static late final Future Function() _onLoginCallback;
+  static late final Future Function(SessionEntity) _onLoginCallback;
 
   AuthModule({
     required BasePath redirectTo,
-    required Future Function() onLoginCallback,
+    required Future Function(SessionEntity) onLoginCallback,
   }) {
     _redirectTo = redirectTo;
     _onLoginCallback = onLoginCallback;
@@ -75,17 +75,7 @@ class AuthModule extends Module {
       ];
 
   @override
-  final List<Bind> binds = [
-    Bind.factory(
-      (i) => GraphQlClientDriver(
-        baseUrl: i.get<EnvironmentEntity>().endpointGraphql,
-        client: GraphQLClient(
-          link: Link.from([]),
-          cache: GraphQLCache(store: HiveStore()),
-        ),
-      ),
-    ),
-  ];
+  final List<Bind> binds = [];
 
   @override
   final List<ModularRoute> routes = [

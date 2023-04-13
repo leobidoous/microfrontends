@@ -71,15 +71,11 @@ class LoginDatasource extends ILoginDatasource {
           growable: true,
         );
         if (errors.any(
-          (err) => err.message.contains('''Código de verificação inválido'''),
+          (err) => err.message.contains('Código de verificação inválido'),
         )) {
           return Left(
-            InvalidCodeError(
-              '''Código de verificação inválido''',
-            ),
+            InvalidCodeError('Código de verificação inválido'),
           );
-        } else if (l.message.contains('')) {
-          return Left(UnknowError(l.message));
         }
         return Left(UnknowError(l.message));
       },

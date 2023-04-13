@@ -8,12 +8,11 @@ class AppController extends GenController<Exception, Unit> {
   }) : super(unit);
 
   final IAuthUsecase authUsecase;
-  late final SessionEntity session;
+  late SessionEntity session;
   final ILocalUserUsecase localUserUsecase;
 
   Future<Either<Exception, SessionEntity>> getSession() async {
     final sessionResponse = await localUserUsecase.getSession();
-
     return sessionResponse.fold(
       (l) => Left(l),
       (session) async {

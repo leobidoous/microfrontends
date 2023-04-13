@@ -7,9 +7,9 @@ class AuthController extends GenController<Exception, Unit> {
     required this.localUserUsecase,
   }) : super(unit);
 
-  final BasePath redirectTo;
-  final Future Function() onLoginCallback;
+  final Future Function(SessionEntity) onLoginCallback;
   final ILocalUserUsecase localUserUsecase;
+  final BasePath redirectTo;
 
   ExternalUserEntity? _externalUser;
   CustomerEntity? _customer;
@@ -48,7 +48,7 @@ class AuthController extends GenController<Exception, Unit> {
     ClaimsEntity? claims,
     TokenEntity? token,
     UserEntity? user,
-  }) {
+  }) async {
     final session = SessionEntity(
       externalUser: externalUser ?? ExternalUserModel.fromMap({}),
       customer: customer ?? CustomerModel.fromMap({}),
@@ -56,6 +56,8 @@ class AuthController extends GenController<Exception, Unit> {
       token: token ?? TokenModel.fromMap({}),
       user: user ?? UserModel.fromMap({}),
     );
-    return localUserUsecase.setSession(session: session);
+    return onLoginCallback(session).then((value) {
+      return localUserUsecase.setSession(session: session);
+    });
   }
 }

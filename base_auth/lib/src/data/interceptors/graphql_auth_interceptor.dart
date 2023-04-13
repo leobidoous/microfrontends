@@ -17,7 +17,6 @@ class GraphQlAuthInterceptor extends GraphQlInterceptor {
   }) {
     _authUsecase = authUsecase;
     _localUserUsecase = localUserUsecase;
-    log('GraphQlAuthInterceptor: ${authUsecase.hashCode}');
     return _singleton;
   }
 
@@ -36,6 +35,8 @@ class GraphQlAuthInterceptor extends GraphQlInterceptor {
     required GraphRequestData requestData,
     required GraphQlDriverOptions options,
   }) async {
+    log('Operation Name: ${requestData.options?.operationName}');
+
     return _localUserUsecase.getSession().then((value) {
       return value.fold(
         (l) => super.onRequest(options: options, requestData: requestData),
@@ -66,6 +67,7 @@ class GraphQlAuthInterceptor extends GraphQlInterceptor {
     required GraphQlDriverOptions options,
     required GraphQLResponseError error,
   }) async {
+    log('onError: ${error.message}\n\n${error.exception?.graphqlErrors}');
     final hasAuthorization = error.exception!.graphqlErrors.every(
       (e) => e.message.toLowerCase() != 'unauthorized',
     );

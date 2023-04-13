@@ -51,14 +51,15 @@ class LoginController extends GenController<ILoginFailure, bool> {
           final response = await authUsecase.firebaseSignIn(
             token: token.customToken,
           );
-          return response.fold((l) => Left(UnknowError('')), (r) async {
+          return response.fold((l) => Left(UnknowError(l.toString())),
+              (r) async {
             final response = await userUsecase.getFirebaseUser(
               forceRefresh: false,
             );
-            return response.fold((l) => Left(UnknowError('')),
+            return response.fold((l) => Left(UnknowError(l.toString())),
                 (firebase) async {
               if (firebase.claims.customerId.isEmpty) {
-                return Left(UnknowError(''));
+                return Left(UnknowError('firebase.claims.customerId.isEmpty'));
               }
 
               debugPrint(
@@ -69,11 +70,12 @@ class LoginController extends GenController<ILoginFailure, bool> {
               final response = await authController.setSession(
                 token: authController.token,
               );
-              return response.fold((l) => Left(UnknowError('')), (r) async {
+              return response.fold((l) => Left(UnknowError(l.toString())),
+                  (r) async {
                 final response = await userUsecase.getUserById(
                   id: firebase.claims.customerId,
                 );
-                return response.fold((l) => Left(UnknowError('')),
+                return response.fold((l) => Left(UnknowError(l.toString())),
                     (customer) async {
                   authController.customer = customer;
                   authController.user = UserEntity(
@@ -92,7 +94,7 @@ class LoginController extends GenController<ILoginFailure, bool> {
                       password: customer.id,
                     );
                     return response.fold(
-                      (l) => Left(UnknowError('')),
+                      (l) => Left(UnknowError(l.toString())),
                       (externalUser) async {
                         authController.externalUser = externalUser;
                         return _onSaveSession();
@@ -120,7 +122,7 @@ class LoginController extends GenController<ILoginFailure, bool> {
       user: authController.user,
     );
     return sessionResponse.fold(
-      (l) => Left(UnknowError('')),
+      (l) => Left(UnknowError(l.toString())),
       (r) => Right(true),
     );
   }
