@@ -1,7 +1,8 @@
+import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
-import '../../domain/usecases/i_auth_usecase.dart';
+import '../../../base_auth.dart';
 
 class DioAuthInterceptor extends QueuedInterceptor {
   DioAuthInterceptor({
@@ -22,7 +23,7 @@ class DioAuthInterceptor extends QueuedInterceptor {
         (l) => super.onRequest(options, handler),
         (session) async {
           if (!(options.headers.keys.any((h) => h == 'Authorization'))) {
-            debugPrint('AuthInterceptor => ADDING TOKEN...');
+            debugPrint('DioAuthInterceptor => ADDING TOKEN...');
             options.headers.addAll(
               {'Authorization': 'Bearer ${session.externalUser.token}'},
             );
@@ -31,14 +32,6 @@ class DioAuthInterceptor extends QueuedInterceptor {
         },
       );
     });
-  }
-
-  @override
-  Future onResponse(
-    Response response,
-    ResponseInterceptorHandler handler,
-  ) async {
-    return super.onResponse(response, handler);
   }
 
   @override
@@ -52,7 +45,7 @@ class DioAuthInterceptor extends QueuedInterceptor {
             return handler.next(err);
           },
           (session) async {
-            debugPrint('AuthInterceptor => REFRESHING TOKEN...');
+            debugPrint('DioAuthInterceptor => REFRESHING TOKEN...');
             final responseToken = await authUsecase.refreshToken(
               phone: session.user.phone,
               password: session.user.password,
@@ -94,21 +87,18 @@ class DioAuthInterceptor extends QueuedInterceptor {
   }
 
   Future<void> _finishSession() async {
-    // await GenDialog.show(
-    //   Nav.to.context,
-    //   GenAlert.serverError(Nav.to.context),
-    //   showClose: true,
-    // ).whenComplete(
-    //   () async {
-    //     final response = await authUsecase.logout();
-    //     response.fold((l) => null, (r) {
-    //       Nav.to.pushNamedAndRemoveUntil(
-    //         AuthRoutes.root,
-    //         ModalRoute.withName(AuthRoutes.root.completePath),
-    //       );
-    //     });
-    //   },
-    // );
+    await GenDialog.show(
+      Nav.to.context!,
+      GenAlert.serverError(Nav.to.context!),
+      showClose: true,
+    ).whenComplete(
+      () async {
+        final response = await authUsecase.logout();
+        response.fold((l) => null, (r) {
+          Nav.to.navigate(AuthRoutes.root);
+        });
+      },
+    );
   }
 
   Future<Either<DioError, Response>> _getResponse(

@@ -13,6 +13,11 @@ abstract class INavigationDriver {
   String get initialRoute;
 
   ///
+  /// Current context
+  ///
+  BuildContext? get context;
+
+  ///
   /// Push a named route to the stack
   ///
   Future<T?> pushNamed<T extends Object?>(

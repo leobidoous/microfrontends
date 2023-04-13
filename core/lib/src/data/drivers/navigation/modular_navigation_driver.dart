@@ -16,6 +16,11 @@ class ModularNavigationDriver implements INavigationDriver {
 
   static ModularNavigationDriver? _instance;
 
+  @override
+  BuildContext? get context {
+    return Modular.routerDelegate.navigatorKey.currentContext;
+  }
+
   ///
   /// Static instance for DM
   ///

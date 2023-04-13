@@ -14,11 +14,14 @@ class LoginDatasource extends ILoginDatasource {
     required String phone,
   }) async {
     final response = await graphQlClient.request(
-      document: AuthMutations.sendVerificationCode,
-      variables: {
-        'phoneNumber': '+55${phone.replaceAll(RegExp(r'[^0-9]'), '')}',
-        'platform': 'B2C',
-      },
+      data: GraphRequestData(
+        document: AuthMutations.sendVerificationCode,
+        variables: {
+          'phoneNumber': '+55${phone.replaceAll(RegExp(r'[^0-9]'), '')}',
+          'platform': 'B2C',
+        },
+        options: GraphQlDriverOptions(operationName: 'sendVerificationCode'),
+      ),
     );
     return response.fold(
       (l) {
@@ -49,12 +52,17 @@ class LoginDatasource extends ILoginDatasource {
     required String code,
   }) async {
     final response = await graphQlClient.request(
-      document: AuthMutations.validateVerificationCodeFirebase,
-      variables: {
-        'phoneNumber': '+55${phone.replaceAll(RegExp(r'[^0-9]'), '')}',
-        'code': code,
-        'platform': 'B2C',
-      },
+      data: GraphRequestData(
+        document: AuthMutations.validateVerificationCodeFirebase,
+        variables: {
+          'phoneNumber': '+55${phone.replaceAll(RegExp(r'[^0-9]'), '')}',
+          'code': code,
+          'platform': 'B2C',
+        },
+        options: GraphQlDriverOptions(
+          operationName: 'validateVerificationCodeFirebase',
+        ),
+      ),
     );
     return response.fold(
       (l) {

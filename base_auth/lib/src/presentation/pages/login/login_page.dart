@@ -58,7 +58,7 @@ class _LoginPagePageState extends State<LoginPage> {
         await _showDialogError(controller.error);
         return;
       }
-      Nav.to.navigate(widget.redirectTo);
+      // Nav.to.navigate(widget.redirectTo);
     });
   }
 
@@ -72,7 +72,7 @@ class _LoginPagePageState extends State<LoginPage> {
     } else if (controller.error is UnknowError) {
       await GenDialog.show(
         context,
-        GenAlert.paymentError(context),
+        GenAlert.serverError(context),
         showClose: true,
       );
     } else if (controller.error is AccountNotExist) {

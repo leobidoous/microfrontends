@@ -1,8 +1,7 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 import '../../domain/interfaces/either.dart';
-import '../../domain/interfaces/i_graphql_interceptor.dart';
-
+import '../interfaces/i_graphql_interceptor.dart';
 
 class GraphQLResponse {
   final Map<String, dynamic> data;
@@ -30,6 +29,7 @@ class GraphQLResponseError {
 
 class GraphQlDriverOptions {
   final BaseUrl? baseUrl;
+  final String? operationName;
   final String accessTokenType;
   final ContentType contentType;
   final AccessToken? accessToken;
@@ -38,10 +38,29 @@ class GraphQlDriverOptions {
   GraphQlDriverOptions({
     this.baseUrl,
     this.accessToken,
+    this.operationName,
     this.extraHeaders,
     this.accessTokenType = 'Bearer',
     this.contentType = 'application/json',
   });
+
+  GraphQlDriverOptions copyWith({
+    BaseUrl? baseUrl,
+    String? operationName,
+    String? accessTokenType,
+    ContentType? contentType,
+    AccessToken? accessToken,
+    Map<String, dynamic>? extraHeaders,
+  }) {
+    return GraphQlDriverOptions(
+      baseUrl: baseUrl ?? this.baseUrl,
+      operationName: operationName ?? this.operationName,
+      accessTokenType: accessTokenType ?? this.accessTokenType,
+      contentType: contentType ?? this.contentType,
+      accessToken: accessToken ?? this.accessToken,
+      extraHeaders: extraHeaders ?? this.extraHeaders,
+    );
+  }
 }
 
 typedef AccessToken = String;
@@ -50,13 +69,34 @@ typedef CustomerId = String Function();
 typedef BaseUrl = String Function();
 typedef CallbackType<T> = T Function();
 
-abstract class IGraphQlDriver {
-  Future<Either<GraphQLResponseError, GraphQLResponse>> request({
-    required String document,
-    String? operationName,
-    GraphQlDriverOptions? options,
-    Map<String, dynamic>? variables,
+class GraphRequestData {
+  final String document;
+  final GraphQlDriverOptions? options;
+  final Map<String, dynamic>? variables;
+
+  GraphRequestData({
+    required this.document,
+    this.options,
+    this.variables,
   });
 
-  IGraphQlInterceptor? interceptor;
+  GraphRequestData copyWith({
+    String? document,
+    GraphQlDriverOptions? options,
+    Map<String, dynamic>? variables,
+  }) {
+    return GraphRequestData(
+      document: document ?? this.document,
+      options: options ?? this.options,
+      variables: variables ?? this.variables,
+    );
+  }
+}
+
+abstract class IGraphQlDriver {
+  Future<Either<GraphQLResponseError, GraphQLResponse>> request({
+    required GraphRequestData data,
+  });
+
+  final interceptors = List<IGraphQlInterceptor>.empty(growable: true);
 }

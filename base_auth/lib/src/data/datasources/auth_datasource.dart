@@ -81,9 +81,11 @@ class AuthDatasource extends IAuthDatasource {
     required String refreshToken,
   }) async {
     final response = await graphQlClient.request(
-      document: AuthMutations.renewAccessToken,
-      variables: {'refreshToken': refreshToken},
-      operationName: 'renewAccessToken',
+      data: GraphRequestData(
+        document: AuthMutations.renewAccessToken,
+        variables: {'refreshToken': refreshToken},
+        options: GraphQlDriverOptions(operationName: 'renewAccessToken'),
+      ),
     );
     return response.fold((l) => Left(HttpDriverResponse(data: l.message)), (r) {
       try {

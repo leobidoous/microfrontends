@@ -1,9 +1,7 @@
-
 import 'package:core/core.dart';
 
 import '../../infra/datasources/i_user_datasource.dart';
 import '../../presentation/graphql/mutations/customer_mutations.dart';
-
 
 class UserDatasource extends IUserDatasource {
   UserDatasource({
@@ -19,9 +17,11 @@ class UserDatasource extends IUserDatasource {
     required String id,
   }) async {
     final response = await graphQlClient.request(
-      document: CustomerMutations.getCustomer,
-      variables: {'id': id},
-      operationName: 'getCustomer',
+      data: GraphRequestData(
+        document: CustomerMutations.getCustomer,
+        variables: {'id': id},
+        options: GraphQlDriverOptions(operationName: 'getCustomer'),
+      ),
     );
     return response.fold(
       (l) => Left(Exception(l)),

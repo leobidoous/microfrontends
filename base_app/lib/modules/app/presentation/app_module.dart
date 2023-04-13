@@ -39,9 +39,14 @@ class AppModule extends Module {
     Bind.factory(
       (i) => GraphQlClientDriver(
         baseUrl: i.get<EnvironmentEntity>().endpointGraphql,
-        localUserUsecase: i.get<LocalUserUsecase>(),
         client: i.get<GraphQLClient>(),
-      ),
+      )..interceptors.addAll([
+          GraphQlAuthInterceptor(
+
+            authUsecase: i.get<AuthUsecase>(),
+            localUserUsecase: i.get<LocalUserUsecase>(),
+          ),
+        ]),
     ),
 
     /// Http client | Dio
@@ -104,10 +109,10 @@ class AppModule extends Module {
     ),
 
     /// Firebase
-    Bind.lazySingleton((i) => GlobalConfigs.firebaseAuthDriver),
     Bind.lazySingleton((i) => GlobalConfigs.firebaseDriver),
-    Bind.lazySingleton((i) => GlobalConfigs.firebaseStorageDriver),
+    Bind.lazySingleton((i) => GlobalConfigs.firebaseAuthDriver),
     Bind.lazySingleton((i) => GlobalConfigs.crashlyticsDriver),
+    Bind.lazySingleton((i) => GlobalConfigs.firebaseStorageDriver),
     Bind.lazySingleton((i) => GlobalConfigs.firebaseNotificationsDriver),
 
     /// Local notification
@@ -156,9 +161,7 @@ class AppModule extends Module {
 
 class GlobalConfigs {
   static final GlobalConfigs _singleton = GlobalConfigs._internal();
-
   factory GlobalConfigs() => _singleton;
-
   GlobalConfigs._internal();
 
   /// Firebase global configs

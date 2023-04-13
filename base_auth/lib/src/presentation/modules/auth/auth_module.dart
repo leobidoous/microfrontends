@@ -34,7 +34,6 @@ class AuthModule extends Module {
             ),
             graphQlClient: GraphQlClientDriver(
               baseUrl: i.get<EnvironmentEntity>().endpointGraphql,
-              localUserUsecase: i.get<LocalUserUsecase>(),
               client: GraphQLClient(
                 link: Link.from([]),
                 cache: GraphQLCache(store: HiveStore()),
@@ -76,7 +75,17 @@ class AuthModule extends Module {
       ];
 
   @override
-  final List<Bind> binds = [];
+  final List<Bind> binds = [
+    Bind.factory(
+      (i) => GraphQlClientDriver(
+        baseUrl: i.get<EnvironmentEntity>().endpointGraphql,
+        client: GraphQLClient(
+          link: Link.from([]),
+          cache: GraphQLCache(store: HiveStore()),
+        ),
+      ),
+    ),
+  ];
 
   @override
   final List<ModularRoute> routes = [
