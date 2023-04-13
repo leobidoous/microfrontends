@@ -2,7 +2,6 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart'
     show
         BuildContext,
-        Colors,
         Column,
         CrossAxisAlignment,
         EdgeInsets,
@@ -16,7 +15,6 @@ import 'package:flutter/material.dart'
         Text,
         TextAlign,
         Widget;
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../buttons/gen_button.dart';
 import '../gen_scroll_content.dart';

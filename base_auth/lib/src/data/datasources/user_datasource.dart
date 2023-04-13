@@ -2,7 +2,8 @@
 import 'package:core/core.dart';
 
 import '../../infra/datasources/i_user_datasource.dart';
-import '../../presentation/graphql/customer_mutations.dart';
+import '../../presentation/graphql/mutations/customer_mutations.dart';
+
 
 class UserDatasource extends IUserDatasource {
   UserDatasource({

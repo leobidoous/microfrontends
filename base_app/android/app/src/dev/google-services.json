@@ -1,40 +1,42 @@
 {
   "project_info": {
-    "project_number": "201509990152",
-    "project_id": "base-app-b60f9",
-    "storage_bucket": "base-app-b60f9.appspot.com"
+    "project_number": "442408618435",
+    "firebase_url": "https://neru-teste.firebaseio.com",
+    "project_id": "neru-teste",
+    "storage_bucket": "neru-teste.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:201509990152:android:35add2111215e93d9746bd",
+        "mobilesdk_app_id": "1:442408618435:android:be0533917f9f49fb43d576",
         "android_client_info": {
-          "package_name": "com.bido.example"
+          "package_name": "br.com.gen.dev"
         }
       },
       "oauth_client": [
         {
-          "client_id": "201509990152-nihv0h31uhe2n7bdhrrasp903o2bovqj.apps.googleusercontent.com",
+          "client_id": "442408618435-797pvi78k0u39lm065ghpc4ok5bcisu1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD77otvy7-DP5bsSW8poDiMfUpVRW2N7bo"
+          "current_key": "AIzaSyAZhtVlD2a_s7rZaPALEIb-ZY1KQ33WI40"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "201509990152-nihv0h31uhe2n7bdhrrasp903o2bovqj.apps.googleusercontent.com",
+              "client_id": "442408618435-797pvi78k0u39lm065ghpc4ok5bcisu1.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "201509990152-atj496bj7fc0aav50o132lsgigart8io.apps.googleusercontent.com",
+              "client_id": "442408618435-7hq76d1h9181drv4onn9hg9l77abote7.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.bido.baseApp"
+                "bundle_id": "br.com.genpag.dev",
+                "app_store_id": "1578316210"
               }
             }
           ]

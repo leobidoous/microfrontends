@@ -5,11 +5,8 @@ import '../../home/presentation/home_module.dart';
 import '../../home/presentation/home_router_guard.dart';
 import '../../shared/presentation/pages/splash/splash_page.dart';
 import '../data/datasources/search_postal_code_datasource.dart';
-import '../data/datasources/user_datasource.dart';
 import '../infra/repositories/search_postal_code_repository.dart';
-import '../infra/repositories/user_repository.dart';
 import '../infra/usecases/search_postal_code_usecase.dart';
-import '../infra/usecases/user_usecase.dart';
 import 'app_routes.dart';
 import 'controllers/app_controller.dart';
 
@@ -88,20 +85,6 @@ class AppModule extends Module {
     ),
     Bind.factory(
       (i) => LocalUserUsecase(repository: DM.i.get<LocalUserRepository>()),
-    ),
-
-    /// Remote user
-    Bind.factory(
-      (i) => UserDatasource(
-        graphQlClient: DM.i.get<GraphQlClientDriver>(),
-        firebaseAuthDriver: DM.i.get<FirebaseAuthDriver>(),
-      ),
-    ),
-    Bind.factory(
-      (i) => UserRepository(datasource: DM.i.get<UserDatasource>()),
-    ),
-    Bind.factory(
-      (i) => UserUsecase(repository: DM.i.get<UserRepository>()),
     ),
 
     /// Firebase

@@ -1,5 +1,6 @@
 # Miscellaneous
 *.class
+*.lock
 *.log
 *.pyc
 *.swp
@@ -8,11 +9,12 @@
 .buildlog/
 .history
 .svn/
+coverage/
 
 # .envs
-.env/.env.dev
-.env/.env.hml
-.env/.env
+.environment/.env
+.environment/.env.dev
+.environment/.env.hml
 
 # IntelliJ related
 *.iml
@@ -20,28 +22,36 @@
 *.iws
 .idea/
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
 #.vscode/
-.fvm/flutter_sdk/
+.vscode/
 
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
-.dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
 .packages
 .pub-cache/
 .pub/
-/build/
+.dart_tool/
+build/
+pubspec.lock
+**/ios/Podfile.lock
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Mac
+.DS_Store
 
 # Web related
 lib/generated_plugin_registrant.dart
 
 # Symbolication related
 app.*.symbols
+
 
 # Obfuscation related
 app.*.map.json
@@ -50,7 +60,78 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+**/android/**/gradle-wrapper.jar
+**/android/.gradle
+**/android/captures/
+**/android/app/release/
+**/android/gradlew
+**/android/gradlew.bat
+**/android/local.properties
+**/android/**/GeneratedPluginRegistrant.java
 
-# Flutter/Dart/Pub related
-# Libraries should not include pubspec.lock, per https://dart.dev/guides/libraries/private-files#pubspeclock.
-pubspec.lock
+/.fvm/
+/linux/
+
+# iOS/XCode related
+**/ios/**/*.mode1v3
+**/ios/**/*.mode2v3
+**/ios/**/*.moved-aside
+**/ios/**/*.pbxuser
+**/ios/**/*.perspectivev3
+**/ios/**/*sync/
+**/ios/**/.sconsign.dblite
+**/ios/**/.tags*
+**/ios/**/.vagrant/
+**/ios/**/DerivedData/
+**/ios/**/Icon?
+**/ios/**/Pods/
+**/ios/**/.symlinks/
+**/ios/**/profile
+**/ios/**/xcuserdata
+**/ios/.generated/
+**/ios/Flutter/App.framework
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/app.flx
+**/ios/Flutter/app.zip
+**/ios/Flutter/flutter_assets/
+**/ios/ServiceDefinitions.json
+**/ios/Runner/GeneratedPluginRegistrant.*
+ios/Podfile.lock
+
+# Exceptions to above rules.
+!**/ios/**/default.mode1v3
+!**/ios/**/default.mode2v3
+!**/ios/**/default.pbxuser
+!**/ios/**/default.perspectivev3
+!/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+!**/ios/Runner/Firebase/Profile
+
+# Keys
+docs/keys
+ios/Flutter/flutter_export_environment.sh
+ios/Runner.xcodeproj/project.pbxproj
+.flutter-plugins-dependencies
+
+**/ios/*.ipa
+**/ios/*.app.dSYM.zip
+
+android/fastlane/report.xml
+ios/fastlane/report.xml
+ios/fastlane/Preview.html
+ios/fastlane/metadata/trade_representative_contact_information
+linux/flutter/ephemeral/.plugin_symlinks/connectivity_plus_linux
+linux/flutter/ephemeral/.plugin_symlinks/device_info_plus_linux
+linux/flutter/ephemeral/.plugin_symlinks/flutter_secure_storage_linux
+linux/flutter/ephemeral/.plugin_symlinks/image_compression_flutter
+linux/flutter/ephemeral/.plugin_symlinks/package_info_plus_linux
+linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux
+linux/flutter/ephemeral/.plugin_symlinks/share_plus_linux
+linux/flutter/ephemeral/.plugin_symlinks/shared_preferences_linux
+linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux
+linux/flutter/generated_plugin_registrant.cc
+linux/flutter/generated_plugin_registrant.h
+linux/flutter/generated_plugins.cmake
+macos/Flutter/ephemeral/flutter_export_environment.sh
+macos/Flutter/ephemeral/Flutter-Generated.xcconfig
+macos/Flutter/GeneratedPluginRegistrant.swift

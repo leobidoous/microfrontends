@@ -4,6 +4,8 @@ import '../../../data/datasources/login_datasource.dart';
 import '../../../infra/repositories/login_repository.dart';
 import '../../../infra/usecases/auth_usecase.dart';
 import '../../../infra/usecases/login_usecase.dart';
+import '../../../infra/usecases/user_usecase.dart';
+import '../../controllers/auth/auth_controller.dart';
 import '../../controllers/login/login_controller.dart';
 import '../../controllers/login/login_timer_controller.dart';
 import '../../pages/login/login_page.dart';
@@ -27,7 +29,7 @@ class LoginModule extends Module {
         userUsecase: DM.i.get<UserUsecase>(),
         authUsecase: DM.i.get<AuthUsecase>(),
         loginUsecase: DM.i.get<LoginUsecase>(),
-        appController: DM.i.get<AppController>(),
+        authController: DM.i.get<AuthController>(),
         timerController: DM.i.get<LoginTimerController>(),
       ),
     ),

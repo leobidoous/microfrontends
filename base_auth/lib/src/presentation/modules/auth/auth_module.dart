@@ -1,8 +1,11 @@
 import 'package:core/core.dart';
 
 import '../../../data/datasources/auth_datasource.dart';
+import '../../../data/datasources/user_datasource.dart';
 import '../../../infra/repositories/auth_repository.dart';
+import '../../../infra/repositories/user_repository.dart';
 import '../../../infra/usecases/auth_usecase.dart';
+import '../../../infra/usecases/user_usecase.dart';
 import '../../controllers/auth/auth_controller.dart';
 import '../../pages/auth/auth_page.dart';
 
@@ -20,6 +23,21 @@ class AuthModule extends Module {
 
   @override
   final List<Bind> binds = [
+    /// Remote user
+    Bind.factory(
+      (i) => UserDatasource(
+        graphQlClient: DM.i.get<GraphQlClientDriver>(),
+        firebaseAuthDriver: DM.i.get<FirebaseAuthDriver>(),
+      ),
+    ),
+    Bind.factory(
+      (i) => UserRepository(datasource: DM.i.get<UserDatasource>()),
+    ),
+    Bind.factory(
+      (i) => UserUsecase(repository: DM.i.get<UserRepository>()),
+    ),
+
+    /// Auth
     Bind.lazySingleton(
       (i) => AuthDatasource(
         client: DioClientDriver(
@@ -51,6 +69,7 @@ class AuthModule extends Module {
       (i) => AuthController(
         redirectTo: _redirectTo,
         onLoginCallback: _onLoginCallback,
+        localUserUsecase: i.get<LocalUserUsecase>(),
       ),
     ),
   ];

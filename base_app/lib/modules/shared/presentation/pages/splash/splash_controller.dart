@@ -1,8 +1,8 @@
 import 'dart:async';
 
+import 'package:base_auth/base_auth.dart';
 import 'package:core/core.dart';
 
-import '../../../../app/domain/usecases/i_user_usecase.dart';
 import '../../../../app/presentation/controllers/app_controller.dart';
 
 class SplashController extends GenController<Exception, bool> {

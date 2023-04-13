@@ -17,7 +17,6 @@ import 'package:flutter/material.dart'
         SizedBox,
         StatelessWidget,
         Widget;
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../containers/gen_card.dart';
 import 'image_url.dart' show ImageUrl;

@@ -1,40 +1,48 @@
 {
   "project_info": {
-    "project_number": "201509990152",
-    "project_id": "base-app-b60f9",
-    "storage_bucket": "base-app-b60f9.appspot.com"
+    "project_number": "1065194326637",
+    "project_id": "genpag-app",
+    "storage_bucket": "genpag-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:201509990152:android:35add2111215e93d9746bd",
+        "mobilesdk_app_id": "1:1065194326637:android:064393751164415de80d64",
         "android_client_info": {
-          "package_name": "com.bido.example"
+          "package_name": "br.com.gen"
         }
       },
       "oauth_client": [
         {
-          "client_id": "201509990152-nihv0h31uhe2n7bdhrrasp903o2bovqj.apps.googleusercontent.com",
+          "client_id": "1065194326637-5bomk94b1rto9f0r03dmes44r72o5vuv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.gen",
+            "certificate_hash": "acd3e32ff726ec845621313e1ab858eb119c44db"
+          }
+        },
+        {
+          "client_id": "1065194326637-e75egceonborrn0pj71r7lfmqnra7l3a.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD77otvy7-DP5bsSW8poDiMfUpVRW2N7bo"
+          "current_key": "AIzaSyC57rSt9cwyo6ofCjKi9-3pBulQyS14wwk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "201509990152-nihv0h31uhe2n7bdhrrasp903o2bovqj.apps.googleusercontent.com",
+              "client_id": "1065194326637-e75egceonborrn0pj71r7lfmqnra7l3a.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "201509990152-atj496bj7fc0aav50o132lsgigart8io.apps.googleusercontent.com",
+              "client_id": "1065194326637-3008of1f71q1khuv5rq9puragkqfv54i.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.bido.baseApp"
+                "bundle_id": "br.com.genpag.voce.dev"
               }
             }
           ]

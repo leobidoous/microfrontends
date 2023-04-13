@@ -12,6 +12,6 @@
         "source.fixAll": true
     },
     "workbench.colorCustomizations": {
-        "statusBar.debuggingBackground": "#6A5AFF"
+        "statusBar.debuggingBackground": "#6D54FC"
     }
 }

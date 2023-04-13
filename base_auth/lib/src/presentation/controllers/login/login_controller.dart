@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import '../../../domain/failures/login/login_failure.dart';
 import '../../../domain/usecases/i_auth_usecase.dart';
 import '../../../domain/usecases/i_login_usecase.dart';
+import '../../../domain/usecases/i_user_usecase.dart';
+import '../auth/auth_controller.dart';
 import 'login_timer_controller.dart';
 
 class LoginController extends GenController<ILoginFailure, bool> {
@@ -13,7 +15,7 @@ class LoginController extends GenController<ILoginFailure, bool> {
     required this.userUsecase,
     required this.authUsecase,
     required this.loginUsecase,
-    required this.appController,
+    required this.authController,
     required this.timerController,
   }) : super(false);
 
@@ -21,7 +23,7 @@ class LoginController extends GenController<ILoginFailure, bool> {
   final IUserUsecase userUsecase;
   final IAuthUsecase authUsecase;
   final ILoginUsecase loginUsecase;
-  final AppController appController;
+  final AuthController authController;
   final LoginTimerController timerController;
 
   Future<void> onRequestCode({required String phone}) async {
@@ -45,7 +47,7 @@ class LoginController extends GenController<ILoginFailure, bool> {
     await execute(
       () => loginUsecase.onValidateCode(phone: phone, code: code).then((value) {
         return value.fold((l) => Left(l), (token) async {
-          appController.token = token;
+          authController.token = token;
           final response = await authUsecase.firebaseSignIn(
             token: token.customToken,
           );
@@ -63,9 +65,9 @@ class LoginController extends GenController<ILoginFailure, bool> {
                 jsonEncode(ClaimsModel.fromEntity(firebase.claims).toMap),
               );
 
-              appController.claims = firebase.claims;
-              final response = await appController.onSaveSession(
-                token: appController.token,
+              authController.claims = firebase.claims;
+              final response = await authController.onSaveSession(
+                token: authController.token,
               );
               return response.fold((l) => Left(UnknowError('')), (r) async {
                 final response = await userUsecase.getUserById(
@@ -73,8 +75,8 @@ class LoginController extends GenController<ILoginFailure, bool> {
                 );
                 return response.fold((l) => Left(UnknowError('')),
                     (customer) async {
-                  appController.customer = customer;
-                  appController.user = UserEntity(
+                  authController.customer = customer;
+                  authController.user = UserEntity(
                     name: customer.name,
                     cpf: customer.cpf,
                     phone: customer.phone,
@@ -82,7 +84,7 @@ class LoginController extends GenController<ILoginFailure, bool> {
                     customerId: customer.id,
                   );
                   final response = await authUsecase.createExternalUser(
-                    user: appController.user,
+                    user: authController.user,
                   );
                   return response.fold((l) async {
                     final response = await authUsecase.refreshToken(
@@ -92,12 +94,12 @@ class LoginController extends GenController<ILoginFailure, bool> {
                     return response.fold(
                       (l) => Left(UnknowError('')),
                       (externalUser) async {
-                        appController.externalUser = externalUser;
+                        authController.externalUser = externalUser;
                         return _onSaveSession();
                       },
                     );
                   }, (externalUser) async {
-                    appController.externalUser = externalUser;
+                    authController.externalUser = externalUser;
                     return _onSaveSession();
                   });
                 });
@@ -110,12 +112,12 @@ class LoginController extends GenController<ILoginFailure, bool> {
   }
 
   Future<Either<ILoginFailure, bool>> _onSaveSession() async {
-    final sessionResponse = await appController.onSaveSession(
-      externalUser: appController.externalUser,
-      customer: appController.customer,
-      claims: appController.claims,
-      token: appController.token,
-      user: appController.user,
+    final sessionResponse = await authController.onSaveSession(
+      externalUser: authController.externalUser,
+      customer: authController.customer,
+      claims: authController.claims,
+      token: authController.token,
+      user: authController.user,
     );
     return sessionResponse.fold(
       (l) => Left(UnknowError('')),
