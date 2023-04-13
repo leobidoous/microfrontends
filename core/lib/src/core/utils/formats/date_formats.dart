@@ -8,16 +8,20 @@ class DateFormat {
     return df.DateFormat(pattern, 'pt_BR').format(date.toLocal());
   }
 
+  static DateTime tryParseOrDateNow(String? date) {
+    return DateTime.tryParse(date ?? '') ?? DateTime.now();
+  }
+
   static String toTime(DateTime? date, {String pattern = 'HH:mm:ss'}) {
     if (date == null) return '';
 
     return df.DateFormat(pattern, 'pt_BR').format(date.toLocal());
   }
 
-  static String toDateTime(DateTime? date) {
+  static String toDateTime(DateTime? date, {String pattern = 'dd/MM/yyyy HH:mm:ss'}) {
     if (date == null) return '';
 
-    return df.DateFormat('dd/MM/yyyy HH:mm:ss', 'pt_BR').format(date.toLocal());
+    return df.DateFormat(pattern, 'pt_BR').format(date.toLocal());
   }
 
   static DateTime? fromString(String date, {format = ''}) {

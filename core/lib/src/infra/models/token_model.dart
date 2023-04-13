@@ -1,30 +1,32 @@
-import 'dart:convert' show json;
+import 'dart:convert';
 
-import 'package:equatable/equatable.dart' show EquatableMixin;
+import 'package:equatable/equatable.dart';
 
-import '../../domain/entities/token_data_entity.dart';
 import '../../domain/entities/token_entity.dart';
-import 'token_data_model.dart';
 
 class TokenModel extends TokenEntity with EquatableMixin {
   TokenModel({
-    required super.clientId,
-    required super.tokenData,
+    required super.accessToken,
+    required super.customToken,
+    required super.refreshToken,
+    required super.expiresIn,
   });
 
   factory TokenModel.fromMap(Map<String, dynamic> map) {
     return TokenModel(
-      clientId: map['clienteId'] ?? '',
-      tokenData: map['tokenData'] != null
-          ? TokenDataModel.fromMap(map['tokenData'])
-          : TokenDataEntity(token: '', refreshToken: ''),
+      accessToken: map['accessToken'] ?? '',
+      customToken: map['customToken'] ?? '',
+      refreshToken: map['refreshToken'] ?? '',
+      expiresIn: map['expiresIn'] ?? '',
     );
   }
 
   factory TokenModel.fromEntity(TokenEntity entity) {
     return TokenModel(
-      clientId: entity.clientId,
-      tokenData: entity.tokenData,
+      accessToken: entity.accessToken,
+      customToken: entity.customToken,
+      refreshToken: entity.refreshToken,
+      expiresIn: entity.expiresIn,
     );
   }
 
@@ -37,15 +39,19 @@ class TokenModel extends TokenEntity with EquatableMixin {
 
   Map<String, dynamic> get toMap {
     return {
-      'clienteId': clientId,
-      'tokenData': TokenDataModel.fromEntity(tokenData).toMap,
+      'accessToken': accessToken,
+      'customToken': customToken,
+      'refreshToken': refreshToken,
+      'expiresIn': expiresIn,
     };
   }
 
   @override
   List<Object?> get props => [
-        clientId,
-        tokenData,
+        accessToken,
+        customToken,
+        refreshToken,
+        expiresIn,
       ];
 
   @override

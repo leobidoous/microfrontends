@@ -1,53 +1,55 @@
-name: base_app
-description: A new Flutter project.
+name: genpag_voce
+description: Genpag Você project
+publish_to: 'none'
 
-publish_to: "none"
-
-version: 0.1.0+1
+version: 1.1.0+65
 
 environment:
-  sdk: ">=2.17.0 <3.0.0"
+  sdk: ">=2.17.6 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-
   flutter_localizations:
     sdk: flutter
 
-  base_style_sheet:
-    path: ../base_style_sheet
   core:
     path: ../core
-  base_auth:
-    path: ../base_auth
-  wallet:
-    path: ../wallet
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  flutter_launcher_icons: ^0.10.0
-  flutter_lints: ^2.0.1
-  triple_test: ^1.0.0
-  modular_test: ^2.0.0
-  mockito: ^5.2.0
-  build_runner: ^2.1.11
+  flutter_lints: ^2.0.0
+  fake_cloud_firestore: ^2.4.1+1
+  mockito: ^5.3.2
   flutter_flavorizr: ^2.1.4
+  flutter_launcher_icons: ^0.9.3
 
 flutter_icons:
   android: "ic_launcher"
   ios: true
-  image_path_android: "assets/app_icons/playstore.png"
-  image_path_ios: "assets/app_icons/appstore.png"
+  image_path: "assets/logos/b2c-1024x1024.png"
 
 flutter:
+  generate: true 
   uses-material-design: true
-
   assets:
-    - .env/
+    - .environment/
+    - assets/
     - assets/mocks/
+    - assets/icons/
+    - assets/icons/nav_bar/
+    - assets/icons/bottom_nav_bar/
+    - assets/logos/
+    - assets/images/
+    - assets/images/onboard_refill_phone/
+    - assets/images/onboarding/gen/
+    - assets/images/providers/
+    - assets/images/wallet/
+    - assets/images/parking/
+    - assets/images/server/
+    - assets/images/payment/
+
 
 
 # flutter pub run flutter_flavorizr
@@ -60,44 +62,29 @@ flavorizr:
   flavors:
     dev:
       app:
-        name: "APP dev"
+        name: "Gen dev"
       android:
-        applicationId: "com.bido.example"
+        applicationId: "br.com.gen.dev"
         firebase:
           config: ".firebase/dev/google-services.json"
-        # icon: "assets/app_icons/playstore.png"
-        launchScreen: "assets/images/splash.png"
+        icon: "assets/logos/b2c-1024x1024.png"
         
       ios:
-        bundleId: "com.bido.example"
+        bundleId: "br.com.gen.dev"
         firebase:
           config: ".firebase/dev/GoogleService-Info.plist"
-        # icon: "assets/app_icons/appstore.png"
-    hml:
-      app:
-        name: "APP hml"
-      android:
-        applicationId: "com.bido.example"
-        firebase:
-          config: ".firebase/hml/google-services.json"
-        # icon: "assets/app_icons/playstore.png"
-        launchScreen: "assets/images/splash.png"
-      ios:
-        bundleId: "com.bido.example"
-        firebase:
-          config: ".firebase/hml/GoogleService-Info.plist"
-        # icon: "assets/app_icons/appstore.png"
+        icon: "assets/logos/b2c-1024x1024.png"
     prod:
       app:
-        name: "APP"
+        name: "Gen"
       android:
-        applicationId: "com.bido.example"
+        applicationId: "br.com.gen"
         firebase:
           config: ".firebase/prod/google-services.json"
-        # icon: "assets/app_icons/playstore.png"
-        launchScreen: "assets/images/splash.png"
+        icon: "assets/logos/b2c-1024x1024.png"
       ios:
-        bundleId: "com.bido.example"
+        bundleId: "br.com.gen"
         firebase:
           config: ".firebase/prod/GoogleService-Info.plist"
-        # icon: "assets/app_icons/appstore.png"
+        icon: "assets/logos/b2c-1024x1024.png"
+

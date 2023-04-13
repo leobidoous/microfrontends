@@ -1,8 +1,13 @@
-import 'token_data_entity.dart';
-
 class TokenEntity {
-  final TokenDataEntity tokenData;
-  final String clientId;
+  final String accessToken;
+  final String customToken;
+  final String refreshToken;
+  final String expiresIn;
 
-  TokenEntity({required this.tokenData, required this.clientId});
+  TokenEntity({
+    required this.accessToken,
+    required this.customToken,
+    required this.refreshToken,
+    required this.expiresIn,
+  });
 }

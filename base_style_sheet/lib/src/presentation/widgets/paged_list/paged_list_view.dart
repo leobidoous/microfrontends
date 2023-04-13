@@ -1,32 +1,12 @@
-import 'package:core/core.dart';
-import 'package:flutter/material.dart'
-    show
-        AlwaysScrollableScrollPhysics,
-        BouncingScrollPhysics,
-        BuildContext,
-        Center,
-        Column,
-        CrossAxisAlignment,
-        Curves,
-        EdgeInsets,
-        ListView,
-        MainAxisSize,
-        Padding,
-        Radius,
-        RawScrollbar,
-        SafeArea,
-        ScrollController,
-        State,
-        StatefulWidget,
-        ValueListenableBuilder,
-        Widget;
+import 'package:flutter/material.dart';
 
 import '../empties/list_empty.dart';
-import '../loading.dart';
+import '../gen_loading.dart';
 import '../request_error.dart';
-import 'paged_list_controller.dart' show PagedListController;
+import 'paged_list_controller.dart';
 
 class PagedListView<S, E> extends StatefulWidget {
+  final bool shrinkWrap;
   final EdgeInsets padding;
   final bool initWithRequest;
   final bool safeAreaLastItem;
@@ -52,6 +32,7 @@ class PagedListView<S, E> extends StatefulWidget {
     super.key,
     this.scrollController,
     this.initWithRequest = true,
+    this.shrinkWrap = false,
     required this.itemBuilder,
     required this.listController,
     this.safeAreaLastItem = true,
@@ -78,21 +59,6 @@ class _PagedListViewState<S, E> extends State<PagedListView<S, E>> {
     scrollController = widget.scrollController ?? ScrollController();
     controller = widget.listController;
     if (widget.initWithRequest) controller.refresh();
-
-    scrollController.addListener(() {
-      _listListener(scrollController);
-    });
-  }
-
-  void _listListener(ScrollController scrollController) {
-    final max = scrollController.position.maxScrollExtent;
-    final offsetPercent = scrollController.offset / max * 100;
-    if (offsetPercent >= controller.searchPercent &&
-        controller.state.isNotEmpty &&
-        !controller.hasError &&
-        mounted) {
-      _fetchItemsAndScroll();
-    }
   }
 
   Future<void> _fetchItemsAndScroll() async {
@@ -126,7 +92,10 @@ class _PagedListViewState<S, E> extends State<PagedListView<S, E>> {
         if (controller.isLoading && state.isEmpty) {
           return widget.firstPageProgressIndicatorBuilder?.call(context) ??
               Center(
-                child: Padding(padding: widget.padding, child: const Loading()),
+                child: Padding(
+                  padding: widget.padding,
+                  child: const GenLoading(),
+                ),
               );
         } else if (controller.hasError && state.isEmpty) {
           return Center(
@@ -154,19 +123,30 @@ class _PagedListViewState<S, E> extends State<PagedListView<S, E>> {
                 ),
           );
         }
-        return RawScrollbar(
-          controller: widget.scrollController ?? scrollController,
-          thumbColor: context.colorScheme.primary,
-          radius: const Radius.circular(20),
-          child: ListView.builder(
-            padding: widget.padding,
-            itemCount: state.length,
-            reverse: controller.reverse,
-            controller: widget.scrollController ?? scrollController,
-            physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics(),
+        return NotificationListener<ScrollNotification>(
+          onNotification: (notification) {
+            if (notification is ScrollEndNotification) {
+              _fetchItemsAndScroll();
+            }
+            return true;
+          },
+          child: RawScrollbar(
+            controller: scrollController,
+            thumbColor: context.colorScheme.primary,
+            radius: const Radius.circular(20),
+            child: ListView.builder(
+              padding: widget.padding,
+              itemCount: state.length,
+              shrinkWrap: widget.shrinkWrap,
+              reverse: controller.reverse,
+              controller: scrollController,
+              physics: widget.shrinkWrap
+                  ? const NeverScrollableScrollPhysics()
+                  : const BouncingScrollPhysics(
+                      parent: AlwaysScrollableScrollPhysics(),
+                    ),
+              itemBuilder: (_, index) => _listItem(state, index),
             ),
-            itemBuilder: (_, index) => _listItem(state, index),
           ),
         );
       },
@@ -210,9 +190,12 @@ class _PagedListViewState<S, E> extends State<PagedListView<S, E>> {
             ),
       if (controller.isLoading)
         widget.newPageProgressIndicatorBuilder?.call(context) ??
-            const Center(child: Loading(width: 10, height: 10)),
-      if (controller.isLoading || controller.hasError)
-        widget.separatorBuilder(context),
+            Center(
+              child: GenLoading(
+                width: const Spacing(3).value,
+                height: const Spacing(3).value,
+              ),
+            ),
     ];
   }
 }

@@ -1,14 +1,14 @@
 import 'dart:convert' show jsonEncode;
 
-import 'package:dartz/dartz.dart' show Either, Left, Right, Unit, unit;
 import 'package:firebase_messaging/firebase_messaging.dart'
     show RemoteMessage, FirebaseMessaging;
 import 'package:flutter/foundation.dart';
 
-import '../../../infra/drivers/firebase/firebase_crashlytics_driver.dart';
-import '../../../infra/drivers/firebase/firebase_notifications_driver.dart'
+import '../../../domain/interfaces/either.dart';
+import '../../../infra/drivers/firebase/i_firebase_crashlytics_driver.dart';
+import '../../../infra/drivers/firebase/i_firebase_notifications_driver.dart'
     show IFirebaseNotificationsDriver;
-import '../../../infra/drivers/local_notifications_driver.dart';
+import '../../../infra/drivers/i_local_notifications_driver.dart';
 import '../../../infra/models/received_notifications_model.dart'
     show ReceivedNotificationModel;
 
@@ -83,7 +83,7 @@ class FirebaseNotificationsDriver extends IFirebaseNotificationsDriver {
       FirebaseMessaging.onBackgroundMessage(
         _firebaseMessagingBackgroundHandler,
       );
-      return const Right(unit);
+      return Right(unit);
     } catch (e) {
       return Left(Exception(e));
     }
@@ -95,7 +95,7 @@ class FirebaseNotificationsDriver extends IFirebaseNotificationsDriver {
   }) async {
     try {
       await instance.subscribeToTopic(topic);
-      return const Right(unit);
+      return Right(unit);
     } catch (exception, strackTrace) {
       await crashlyticsDriver.setError(
         exception: exception,
@@ -112,7 +112,7 @@ class FirebaseNotificationsDriver extends IFirebaseNotificationsDriver {
   }) async {
     try {
       await instance.unsubscribeFromTopic(topic);
-      return const Right(unit);
+      return Right(unit);
     } catch (exception, strackTrace) {
       await crashlyticsDriver.setError(
         exception: exception,

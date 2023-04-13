@@ -1,4 +1,4 @@
 class UserConstants {
-  static const String user = 'user';
-  static const String token = 'token';
+  static const String session = 'session';
+  static const String themeMode = 'themeMode';
 }

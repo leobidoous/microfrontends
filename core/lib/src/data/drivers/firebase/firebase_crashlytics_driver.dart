@@ -1,8 +1,8 @@
-import 'package:dartz/dartz.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter/foundation.dart' show FlutterError;
+import 'package:flutter/foundation.dart';
 
-import '../../../infra/drivers/firebase/firebase_crashlytics_driver.dart';
+import '../../../domain/interfaces/either.dart';
+import '../../../infra/drivers/firebase/i_firebase_crashlytics_driver.dart';
 
 class FirebaseCrashlyticsDriver extends IFirebaseCrashlyticsDriver {
   final FirebaseCrashlytics instance;
@@ -14,8 +14,10 @@ class FirebaseCrashlyticsDriver extends IFirebaseCrashlyticsDriver {
     try {
       await instance.setCrashlyticsCollectionEnabled(true);
       FlutterError.onError = instance.recordFlutterError;
-      return const Right(unit);
+      debugPrint('FirebaseCrashlyticsDriver iniciado com sucesso.');
+      return Right(unit);
     } catch (exception, stackTrace) {
+      debugPrint('Erro ao inicializar FirebaseCrashlyticsDriver.');
       return setError(exception: exception, stackTrace: stackTrace);
     }
   }
@@ -27,7 +29,7 @@ class FirebaseCrashlyticsDriver extends IFirebaseCrashlyticsDriver {
   }) async {
     try {
       await instance.recordError(exception, stackTrace);
-      return const Right(unit);
+      return Right(unit);
     } catch (exception) {
       return Left(Exception(exception));
     }

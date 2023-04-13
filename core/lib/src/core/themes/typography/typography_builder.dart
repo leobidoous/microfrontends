@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
+import '../app_theme_base.dart';
 import 'typography_constants.dart';
 import 'typography_extension.dart';
 
@@ -11,82 +11,97 @@ abstract class TypographyBuilder {
   ///
   /// Creates the app default text styles, defined by our UX Team.
   ///
-  static AppTextStyle get  buildAppTextStyle {
+  static AppTextStyle buildAppTextStyle(ColorScheme base) {
     return AppTextStyle(
-      bodyLarge: GoogleFonts.montserrat(
-        color: Colors.black,
-        fontSize: 16,
-        fontWeight: AppFontWeight.bold.value,
-      ),
-      bodyMedium: GoogleFonts.montserrat(
-        color: Colors.black,
-        fontSize: 14,
+      bodyLarge: TextStyle(
+        fontFamily: AppThemeBase.primaryFontFamily,
+        fontSize: AppFontSize.bodyLarge.value,
         fontWeight: AppFontWeight.regular.value,
+        color: base.onBackground,
       ),
-      bodySmall: GoogleFonts.montserrat(
-        color: Colors.black,
-        fontSize: 12,
-        fontWeight: AppFontWeight.light.value,
-      ),
-      titleLarge: GoogleFonts.montserrat(
-        color: Colors.black,
-        fontSize: 20,
-        fontWeight: AppFontWeight.bold.value,
-      ),
-      titleMedium: GoogleFonts.montserrat(
-        color: Colors.black,
-        fontSize: 18,
+      bodyMedium: TextStyle(
+        fontFamily: AppThemeBase.primaryFontFamily,
+        fontSize: AppFontSize.bodyMedium.value,
         fontWeight: AppFontWeight.regular.value,
+        color: base.onBackground,
       ),
-      titleSmall: GoogleFonts.montserrat(
-        color: Colors.black,
-        fontSize: 16,
-        fontWeight: AppFontWeight.light.value,
-      ),
-      displayLarge: GoogleFonts.montserrat(
-        color: Colors.black,
-        fontSize: 10,
-        fontWeight: AppFontWeight.bold.value,
-      ),
-      displayMedium: GoogleFonts.montserrat(
-        color: Colors.black,
-        fontSize: 8,
+      bodySmall: TextStyle(
+        fontFamily: AppThemeBase.primaryFontFamily,
+        fontSize: AppFontSize.bodySmall.value,
         fontWeight: AppFontWeight.regular.value,
+        color: base.onBackground,
       ),
-      displaySmall: GoogleFonts.montserrat(
-        color: Colors.black,
-        fontSize: 6,
-        fontWeight: AppFontWeight.light.value,
+      titleLarge: TextStyle(
+        fontFamily: AppThemeBase.primaryFontFamily,
+        fontSize: AppFontSize.titleLarge.value,
+        fontWeight: AppFontWeight.medium.value,
+        color: base.onBackground,
       ),
-      headlineLarge: GoogleFonts.montserrat(
-        color: Colors.black,
-        fontSize: 28,
-        fontWeight: AppFontWeight.bold.value,
+      titleMedium: TextStyle(
+        fontFamily: AppThemeBase.primaryFontFamily,
+        fontSize: AppFontSize.titleMedium.value,
+        fontWeight: AppFontWeight.medium.value,
+        color: base.onBackground,
       ),
-      headlineMedium: GoogleFonts.montserrat(
-        color: Colors.black,
-        fontSize: 26,
+      titleSmall: TextStyle(
+        fontFamily: AppThemeBase.primaryFontFamily,
+        fontSize: AppFontSize.titleSmall.value,
+        fontWeight: AppFontWeight.medium.value,
+        color: base.onBackground,
+      ),
+      displayLarge: TextStyle(
+        fontFamily: AppThemeBase.primaryFontFamily,
+        fontSize: AppFontSize.displayLarge.value,
         fontWeight: AppFontWeight.regular.value,
+        color: base.onBackground,
       ),
-      headlineSmall: GoogleFonts.montserrat(
-        color: Colors.black,
-        fontSize: 24,
-        fontWeight: AppFontWeight.light.value,
-      ),
-      labelLarge: GoogleFonts.montserrat(
-        color: Colors.black,
-        fontSize: 16,
-        fontWeight: AppFontWeight.bold.value,
-      ),
-      labelMedium: GoogleFonts.montserrat(
-        color: Colors.black,
-        fontSize: 14,
+      displayMedium: TextStyle(
+        fontFamily: AppThemeBase.primaryFontFamily,
+        fontSize: AppFontSize.displayMedium.value,
         fontWeight: AppFontWeight.regular.value,
+        color: base.onBackground,
       ),
-      labelSmall: GoogleFonts.montserrat(
-        color: Colors.black,
-        fontSize: 12,
-        fontWeight: AppFontWeight.light.value,
+      displaySmall: TextStyle(
+        fontFamily: AppThemeBase.primaryFontFamily,
+        fontSize: AppFontSize.displaySmall.value,
+        fontWeight: AppFontWeight.regular.value,
+        color: base.onBackground,
+      ),
+      headlineLarge: TextStyle(
+        fontFamily: AppThemeBase.primaryFontFamily,
+        fontSize: AppFontSize.headlineLarge.value,
+        fontWeight: AppFontWeight.regular.value,
+        color: base.onBackground,
+      ),
+      headlineMedium: TextStyle(
+        fontFamily: AppThemeBase.primaryFontFamily,
+        fontSize: AppFontSize.headlineMedium.value,
+        fontWeight: AppFontWeight.regular.value,
+        color: base.onBackground,
+      ),
+      headlineSmall: TextStyle(
+        fontFamily: AppThemeBase.primaryFontFamily,
+        fontSize: AppFontSize.headlineSmall.value,
+        fontWeight: AppFontWeight.regular.value,
+        color: base.onBackground,
+      ),
+      labelLarge: TextStyle(
+        fontFamily: AppThemeBase.primaryFontFamily,
+        fontSize: AppFontSize.labelLarge.value,
+        fontWeight: AppFontWeight.medium.value,
+        color: base.onBackground,
+      ),
+      labelMedium: TextStyle(
+        fontFamily: AppThemeBase.primaryFontFamily,
+        fontSize: AppFontSize.labelMedium.value,
+        fontWeight: AppFontWeight.medium.value,
+        color: base.onBackground,
+      ),
+      labelSmall: TextStyle(
+        fontFamily: AppThemeBase.primaryFontFamily,
+        fontSize: AppFontSize.labelSmall.value,
+        fontWeight: AppFontWeight.medium.value,
+        color: base.onBackground,
       ),
     );
   }

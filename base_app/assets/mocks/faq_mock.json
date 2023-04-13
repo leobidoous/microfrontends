@@ -1,0 +1,24 @@
+{
+    "gen_desk": [
+        {
+            "title": "Como validar o tíquete do estacionamento?",
+            "content": "No botão 'Estacionamento', clique em 'Escanear tíquete'. Escaneie o código de barras ou digite manualmente o número. Selecione a forma de pagamento e clique em 'Pagar'. \n\nVocê também deve validar seu tíquete caso tenha ganhado estacionamento gratuito, mas não será necessário selecionar a forma de pagamento. Apenas escaneie seu tíquete e prossiga na validação do estacionamento."
+        },
+        {
+            "title": "Como registrar o cupom fiscal?",
+            "content": "No botão 'Estacionamento', clique em 'Adicionar cupons'. Aponte sua câmera para o QR Code do cupom fiscal. \n\nApós leitura, uma mensagem de confirmação aparecerá para você com os dados do cupom fiscal registrado para que você confirme."
+        },
+        {
+            "title": "Tenho TAG veicular, posso garantir a gratuidade do estacionamento?",
+            "content": "Sim! Você pode aproveitar este benefício, desde que atinja o valor pré-determinado em compras no dia e nas lojas participantes. Lembre-se: antes de sair do estabelecimento, registre os cupons fiscais e valide sua TAG no app."
+        },
+        {
+            "title": "Como garantir o estacionamento grátis?",
+            "content": "Ao atingir o valor pré-determinado em compras no dia e nas lojas participantes, você terá direito ao estacionamento gratuito. Lembre-se: antes de sair do estabelecimento, você deverá registrar seus cupons fiscais e finalizar com a validação do tíquete ou TAG veicular."
+        },
+        {
+            "title": "Consigo a gratuidade mais de uma vez?",
+            "content": "Sim! A cada visita sua, basta atingir o valor pré-determinado em compras no dia e nas lojas participantes e, antes de sair do estabelecimento, você deverá registrar seus cupons fiscais e finalizar com a validação do tíquete ou TAG veicular."
+        }
+    ]
+}

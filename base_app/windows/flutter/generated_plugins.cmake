@@ -4,7 +4,12 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   connectivity_plus
-  share_plus
+  flutter_secure_storage_windows
+  geolocator_windows
+  local_auth_windows
+  pdfx
+  permission_handler_windows
+  smart_auth
   syncfusion_pdfviewer_windows
   url_launcher_windows
 )

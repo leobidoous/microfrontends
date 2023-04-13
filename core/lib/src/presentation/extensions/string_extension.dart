@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/themes/app_theme_factory.dart';
 
 /// String extensions for digital account
-extension StringExtension on String {
+extension StringExt on String {
   /// Get rich text with bold string
   Widget toRichText(BuildContext context, {required TextStyle style}) {
     final textParts = _getParts(this);
@@ -45,10 +45,14 @@ extension StringExtension on String {
   }
 
   String get capitalize {
-    if (length == 1) return toUpperCase();
+    if (length <= 1) return toUpperCase();
     return split(' ').map((e) {
-      if (e.length == 1) return e.toUpperCase();
+      if (e.length <= 1) return e.toUpperCase();
       return e.substring(0, 1).toUpperCase() + e.substring(1).toLowerCase();
     }).join(' ');
+  }
+
+  double? get tryParseToDouble {
+    return double.tryParse(toString().replaceFirst(',', '.'));
   }
 }

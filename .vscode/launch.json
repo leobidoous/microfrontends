@@ -16,17 +16,6 @@
             ]
         },
         {
-            "name": "Flutter Hml",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "debug",
-            "program": "base_app/lib/main_hml.dart",
-            "args": [
-                "--flavor",
-                "hml"
-            ]
-        },
-        {
             "name": "Flutter Prod",
             "request": "launch",
             "type": "dart",

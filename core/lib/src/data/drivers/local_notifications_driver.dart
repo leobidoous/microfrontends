@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart' show Either, Unit, Right, unit, Left;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart'
@@ -13,12 +12,13 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart'
         Importance,
         Priority,
         DarwinNotificationDetails;
-import 'package:flutter_modular/flutter_modular.dart' show Disposable;
+import 'package:get_it/get_it.dart';
 import 'package:rxdart/subjects.dart' show BehaviorSubject;
 
 import '../../domain/entities/received_notifications_entity.dart'
     show ReceivedNotificationEntity;
-import '../../infra/drivers/local_notifications_driver.dart'
+import '../../domain/interfaces/either.dart';
+import '../../infra/drivers/i_local_notifications_driver.dart'
     show ILocalNotificationsDriver;
 
 class LocalNotificationsDriver extends ILocalNotificationsDriver
@@ -70,7 +70,7 @@ class LocalNotificationsDriver extends ILocalNotificationsDriver
           selectNotificationSubject.add(payload);
         },
       );
-      return const Right(unit);
+      return Right(unit);
     } catch (e) {
       return Left(Exception(e));
     }
@@ -111,14 +111,14 @@ class LocalNotificationsDriver extends ILocalNotificationsDriver
         platformChannelSpecifics,
         payload: notification.payload,
       );
-      return const Right(unit);
+      return Right(unit);
     } catch (e) {
       return Left(Exception(e));
     }
   }
 
   @override
-  void dispose() {
+  void onDispose() {
     onReceiveNotification.close();
     selectNotificationSubject.close();
   }

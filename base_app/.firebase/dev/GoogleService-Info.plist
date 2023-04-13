@@ -2,22 +2,20 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CLIENT_ID</key>
-	<string>201509990152-ofnoldhq9n1fn27gun97b430j9vsmj3m.apps.googleusercontent.com</string>
-	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.201509990152-ofnoldhq9n1fn27gun97b430j9vsmj3m</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>442408618435-05hmv877lj7aqle87iia02op4bdbka90.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDAkYJupUofjEWQJAZEvHLpTsiNcGvg6WM</string>
+	<string>AIzaSyA2695yVKjL8LedSOTwrvukZ9xVjXG7_yk</string>
 	<key>GCM_SENDER_ID</key>
-	<string>201509990152</string>
+	<string>442408618435</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.bido.example</string>
+	<string>br.com.gen.dev</string>
 	<key>PROJECT_ID</key>
-	<string>base-app-b60f9</string>
+	<string>neru-teste</string>
 	<key>STORAGE_BUCKET</key>
-	<string>base-app-b60f9.appspot.com</string>
+	<string>neru-teste.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +27,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:201509990152:ios:2998383281844d289746bd</string>
+	<string>1:442408618435:ios:ed062355a693fca243d576</string>
+	<key>DATABASE_URL</key>
+	<string>https://neru-teste.firebaseio.com</string>
 </dict>
 </plist>

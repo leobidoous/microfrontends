@@ -1,9 +1,9 @@
-import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart' show ThemeMode;
 
-import '../../domain/entities/token_entity.dart';
-import '../../domain/entities/user_entity.dart';
-import '../../domain/repositories/local_user_repository.dart';
-import '../datasources/local_user_datasource.dart';
+import '../../domain/entities/session_entity.dart';
+import '../../domain/interfaces/either.dart';
+import '../../domain/repositories/i_local_user_repository.dart';
+import '../datasources/i_local_user_datasource.dart';
 
 class LocalUserRepository extends ILocalUserRepository {
   final ILocalUserDatasource datasource;
@@ -11,32 +11,27 @@ class LocalUserRepository extends ILocalUserRepository {
   LocalUserRepository({required this.datasource});
 
   @override
-  Future<Either<Exception, UserEntity>> getLocalUser() {
-    return datasource.getLocalUser();
+  Future<Either<Exception, ThemeMode>> getThemeMode() {
+    return datasource.getThemeMode();
   }
 
   @override
-  Future<Either<Exception, Unit>> setLocalUser({required UserEntity user}) {
-    return datasource.setLocalUser(user: user);
+  Future<Either<Exception, Unit>> setThemeMode({required ThemeMode themeMode}) {
+    return datasource.setThemeMode(themeMode: themeMode);
   }
 
   @override
-  Future<Either<Exception, Unit>> removeLocalUser() {
-    return datasource.removeLocalUser();
+  Future<Either<Exception, SessionEntity>> getSession() {
+    return datasource.getSession();
   }
 
   @override
-  Future<Either<Exception, TokenEntity>> getToken() {
-    return datasource.getToken();
+  Future<Either<Exception, Unit>> removeSession() {
+    return datasource.removeSession();
   }
 
   @override
-  Future<Either<Exception, Unit>> removeToken() {
-    return datasource.removeToken();
-  }
-
-  @override
-  Future<Either<Exception, Unit>> setToken({required TokenEntity token}) {
-    return datasource.setToken(token: token);
+  Future<Either<Exception, Unit>> setSession({required SessionEntity session}) {
+    return datasource.setSession(session: session);
   }
 }

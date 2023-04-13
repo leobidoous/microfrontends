@@ -1,6 +1,6 @@
-import 'package:dartz/dartz.dart' show Either, Unit, Left, Right, unit;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../domain/interfaces/either.dart';
 import '../../infra/drivers/preferences_storage_driver.dart'
     show IPreferencesStorageDriver;
 
@@ -15,7 +15,7 @@ class PreferencesStorageDriver extends IPreferencesStorageDriver {
       if (removed == false) {
         return Left(Exception('Erro ao remover $key'));
       }
-      return const Right(unit);
+      return Right(unit);
     } catch (e) {
       return Left(Exception(e));
     }
@@ -32,7 +32,7 @@ class PreferencesStorageDriver extends IPreferencesStorageDriver {
       if (saved == false) {
         return Left(Exception('Erro ao salvar $key'));
       }
-      return const Right(unit);
+      return Right(unit);
     } catch (e) {
       return Left(Exception(e));
     }
@@ -62,7 +62,7 @@ class PreferencesStorageDriver extends IPreferencesStorageDriver {
       final instance = await SharedPreferences.getInstance();
       final response = instance.getStringList(key);
       if (response == null) {
-        return const Right([]);
+        return Right([]);
       }
       return Right(response);
     } catch (e) {
@@ -81,7 +81,7 @@ class PreferencesStorageDriver extends IPreferencesStorageDriver {
       if (saved == false) {
         return Left(Exception('Erro ao salvar $key'));
       }
-      return const Right(unit);
+      return Right(unit);
     } catch (e) {
       return Left(Exception(e));
     }
@@ -98,7 +98,7 @@ class PreferencesStorageDriver extends IPreferencesStorageDriver {
       if (saved == false) {
         return Left(Exception('Erro ao salvar $key'));
       }
-      return const Right(unit);
+      return Right(unit);
     } catch (e) {
       return Left(Exception(e));
     }

@@ -1,7 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart'
     show Connectivity, ConnectivityResult;
 
-import '../../infra/drivers/connectivity_driver.dart' show IConnectivityDriver;
+import '../../infra/drivers/i_connectivity_driver.dart' show IConnectivityDriver;
 
 class ConnectivityDriver implements IConnectivityDriver {
   final Connectivity connectivity;

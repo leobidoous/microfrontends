@@ -1,6 +1,6 @@
-import 'dart:convert' show json;
+import 'dart:convert';
 
-import 'package:equatable/equatable.dart' show EquatableMixin;
+import 'package:equatable/equatable.dart';
 
 import '../../domain/entities/user_entity.dart';
 
@@ -8,27 +8,18 @@ class UserModel extends UserEntity with EquatableMixin {
   UserModel({
     required super.name,
     required super.cpf,
-    required super.email,
     required super.phone,
-    required super.birth,
-    required super.id,
-    required super.status,
-    required super.createdAt,
-    required super.updatedAt,
+    required super.password,
+    required super.customerId,
   });
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-      name: map['nome'] ?? '',
+      name: map['name'] ?? '',
       cpf: map['cpf'] ?? '',
-      email: map['email'] ?? '',
-      phone: map['telefone'] ?? '',
-      birth: DateTime.tryParse(map['dataNascimento'] ?? '') ?? DateTime.now(),
-      id: map['id'] ?? '',
-      status: map['status'] ?? '',
-      createdAt: DateTime.tryParse(map['dataCriacao'] ?? '') ?? DateTime.now(),
-      updatedAt:
-          DateTime.tryParse(map['dataAlteracao'] ?? '') ?? DateTime.now(),
+      phone: map['phone'] ?? '',
+      password: map['password'] ?? '',
+      customerId: map['customer_id'] ?? '',
     );
   }
 
@@ -36,13 +27,9 @@ class UserModel extends UserEntity with EquatableMixin {
     return UserModel(
       name: entity.name,
       cpf: entity.cpf,
-      email: entity.email,
       phone: entity.phone,
-      birth: entity.birth,
-      id: entity.id,
-      status: entity.status,
-      createdAt: entity.createdAt,
-      updatedAt: entity.updatedAt,
+      password: entity.password,
+      customerId: entity.customerId,
     );
   }
 
@@ -55,15 +42,11 @@ class UserModel extends UserEntity with EquatableMixin {
 
   Map<String, dynamic> get toMap {
     return {
-      'nome': name,
+      'name': name,
       'cpf': cpf,
-      'email': email,
-      'telefone': phone,
-      'dataNascimento': birth.toIso8601String(),
-      'id': id,
-      'status': status,
-      'dataCriacao': createdAt.toIso8601String(),
-      'dataAlteracao': updatedAt.toIso8601String(),
+      'phone': phone,
+      'password': password,
+      'customer_id': customerId,
     };
   }
 
@@ -71,13 +54,9 @@ class UserModel extends UserEntity with EquatableMixin {
   List<Object?> get props => [
         name,
         cpf,
-        email,
         phone,
-        birth,
-        id,
-        status,
-        createdAt,
-        updatedAt,
+        password,
+        customerId,
       ];
 
   @override

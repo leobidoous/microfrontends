@@ -10,8 +10,8 @@ import 'app_theme_factory.dart';
 abstract class ThemeFactory {
   /// Get/Create a light [ThemeData] instance.
   ///
-  /// Factories for v1 and v2 works as a lazy singleton. 
-  /// If the current ThemeData is null, a new instance is created, 
+  /// Factories for v1 and v2 works as a lazy singleton.
+  /// If the current ThemeData is null, a new instance is created,
   /// otherwise, the current instance is returned.
   static ThemeData light() {
     final themeVersion = DM.i.get<EnvironmentEntity>().themeVersion;
@@ -24,8 +24,8 @@ abstract class ThemeFactory {
 
   /// Get/Create a dark [ThemeData] instance.
   ///
-  /// Factories for v1 and v2 works as a lazy singleton. 
-  /// If the current ThemeData is null, a new instance is created, 
+  /// Factories for v1 and v2 works as a lazy singleton.
+  /// If the current ThemeData is null, a new instance is created,
   /// otherwise, the current instance is returned.
   static ThemeData dark() {
     final themeVersion = DM.i.get<EnvironmentEntity>().themeVersion;

@@ -1,7 +1,9 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'controllers/theme_controller.dart';
 
 class AppWidget extends StatefulWidget {
   const AppWidget({Key? key}) : super(key: key);
@@ -11,6 +13,7 @@ class AppWidget extends StatefulWidget {
 }
 
 class _AppWidgetState extends State<AppWidget> {
+  final themeController = DM.i.get<ThemeController>();
   @override
   void initState() {
     super.initState();
@@ -30,29 +33,42 @@ class _AppWidgetState extends State<AppWidget> {
       builder: (context, constraints) {
         return OrientationBuilder(
           builder: (context, orientation) {
-            SizeConfig.init().config(constraints, orientation);
-            return MaterialApp.router(
-              title: DM.i.get<EnvironmentEntity>().appName ?? 'APP',
-              theme: ThemeFactory.light(),
-              darkTheme: ThemeFactory.dark(),
-              themeMode: DM.i.get<EnvironmentEntity>().themeMode,
-              debugShowCheckedModeBanner: false,
-              locale: const Locale('pt', 'BR'),
-              localizationsDelegates: const [
-                GlobalCupertinoLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-              ],
-              routerDelegate: Modular.routerDelegate,
-              supportedLocales: const [Locale('pt', 'BR')],
-              routeInformationParser: Modular.routeInformationParser,
-              builder: (_, child) {
-                return MediaQuery(
-                  data: MediaQuery.of(_).copyWith(textScaleFactor: 1.0),
-                  child: GestureDetector(
-                    onTap: () => FocusScope.of(_).requestFocus(FocusNode()),
-                    child: child ?? const SizedBox(),
-                  ),
+            final size = Size(constraints.maxWidth, constraints.maxHeight);
+            return ValueListenableBuilder<ThemeMode>(
+              valueListenable: themeController,
+              builder: (context_, state, child) {
+                return ScreenUtilInit(
+                  designSize: size,
+                  minTextAdapt: true,
+                  splitScreenMode: true,
+                  builder: (context, child) {
+                    return MaterialApp.router(
+                      title: DM.i.get<EnvironmentEntity>().appName ?? 'APP',
+                      themeMode: state,
+                      theme: ThemeFactory.light(),
+                      darkTheme: ThemeFactory.dark(),
+                      debugShowCheckedModeBanner: false,
+                      locale: const Locale('pt', 'BR'),
+                      localizationsDelegates: const [
+                        GlobalCupertinoLocalizations.delegate,
+                        GlobalMaterialLocalizations.delegate,
+                        GlobalWidgetsLocalizations.delegate,
+                      ],
+                      routerDelegate: Modular.routerDelegate,
+                      supportedLocales: const [Locale('pt', 'BR')],
+                      routeInformationParser: Modular.routeInformationParser,
+                      builder: (_, child) {
+                        return MediaQuery(
+                          data: MediaQuery.of(_).copyWith(textScaleFactor: 1.0),
+                          child: GestureDetector(
+                            onTap: () =>
+                                FocusScope.of(_).requestFocus(FocusNode()),
+                            child: child ?? const SizedBox(),
+                          ),
+                        );
+                      },
+                    );
+                  },
                 );
               },
             );

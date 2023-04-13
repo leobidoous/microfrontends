@@ -1,93 +1,82 @@
-import 'package:dartz/dartz.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/material.dart' show ThemeMode;
 
 import '../../core/constants/user_constants.dart';
-import '../../domain/entities/token_entity.dart';
-import '../../domain/entities/user_entity.dart';
-import '../../infra/datasources/local_user_datasource.dart';
-import '../../infra/models/token_model.dart';
-import '../../infra/models/user_model.dart';
+import '../../domain/entities/session_entity.dart';
+import '../../domain/interfaces/either.dart';
+import '../../infra/datasources/i_local_user_datasource.dart';
+import '../../infra/drivers/preferences_storage_driver.dart';
+import '../../infra/models/session_model.dart';
 
 class LocalUserDatasource extends ILocalUserDatasource {
+  final IPreferencesStorageDriver prefsDriver;
+
+  LocalUserDatasource({required this.prefsDriver});
+
   @override
-  Future<Either<Exception, UserEntity>> getLocalUser() async {
-    final prefs = await SharedPreferences.getInstance();
-    try {
-      final String? response = prefs.getString(UserConstants.user);
-      if (response == null) {
-        return Left(Exception('Nenhum usuário autenticado'));
-      }
-      return Right(UserModel.fromJson(response));
-    } catch (e) {
-      return Left(Exception('LocalUserDatasource().getUser: $e'));
-    }
+  Future<Either<Exception, SessionEntity>> getSession() async {
+    final response = await prefsDriver.getStringByKey(
+      key: UserConstants.session,
+    );
+    return response.fold(
+      (l) => Left(l),
+      (r) {
+        try {
+          return Right(SessionModel.fromJson(r));
+        } catch (e) {
+          return Left(Exception('LocalUserDatasource().getSession: $e'));
+        }
+      },
+    );
   }
 
   @override
-  Future<Either<Exception, Unit>> setLocalUser({
-    required UserEntity user,
+  Future<Either<Exception, Unit>> setSession({
+    required SessionEntity session,
   }) async {
-    final prefs = await SharedPreferences.getInstance();
-    try {
-      await prefs.setString(
-        UserConstants.user,
-        UserModel.fromEntity(user).toJson,
-      );
-      return const Right(unit);
-    } catch (e) {
-      return Left(Exception('LocalUserDatasource().setUser: $e'));
-    }
+    return prefsDriver.setStringByKey(
+      key: UserConstants.session,
+      value: SessionModel.fromEntity(session).toJson,
+    );
   }
 
   @override
-  Future<Either<Exception, Unit>> removeLocalUser() async {
-    final prefs = await SharedPreferences.getInstance();
-    try {
-      await prefs.remove(UserConstants.user);
-      return const Right(unit);
-    } catch (e) {
-      return Left(Exception('LocalUserDatasource().removeSavedUser: $e'));
-    }
+  Future<Either<Exception, Unit>> removeSession() async {
+    return prefsDriver.removeStringByKey(key: UserConstants.session);
   }
 
   @override
-  Future<Either<Exception, TokenEntity>> getToken() async {
-    final prefs = await SharedPreferences.getInstance();
-    try {
-      final String? response = prefs.getString(
-        UserConstants.token,
-      );
-      if (response == null) {
-        return Left(Exception('Nenhum token encontrado'));
-      }
-      return Right(TokenModel.fromJson(response));
-    } catch (e) {
-      return Left(Exception('LocalUserDatasource().getToken: $e'));
-    }
+  Future<Either<Exception, ThemeMode>> getThemeMode() async {
+    final response = await prefsDriver.getStringByKey(
+      key: UserConstants.themeMode,
+    );
+
+    return response.fold(
+      (l) => Left(l),
+      (r) {
+        late final ThemeMode themeMode;
+        switch (r) {
+          case 'dark':
+            themeMode = ThemeMode.dark;
+            break;
+          case 'light':
+            themeMode = ThemeMode.light;
+            break;
+          default:
+            themeMode = ThemeMode.system;
+            break;
+        }
+        return Right(themeMode);
+      },
+    );
   }
 
   @override
-  Future<Either<Exception, Unit>> removeToken() async {
-    final prefs = await SharedPreferences.getInstance();
-    try {
-      await prefs.remove(UserConstants.token);
-      return const Right(unit);
-    } catch (e) {
-      return Left(Exception('LocalUserDatasource().removeToken: $e'));
-    }
-  }
-
-  @override
-  Future<Either<Exception, Unit>> setToken({required TokenEntity token}) async {
-    final prefs = await SharedPreferences.getInstance();
-    try {
-      await prefs.setString(
-        UserConstants.token,
-        TokenModel.fromEntity(token).toJson,
-      );
-      return const Right(unit);
-    } catch (e) {
-      return Left(Exception('LocalUserDatasource().setToken: $e'));
-    }
+  Future<Either<Exception, Unit>> setThemeMode({
+    required ThemeMode themeMode,
+  }) async {
+    return await prefsDriver.setStringByKey(
+      key: UserConstants.themeMode,
+      value: themeMode.name,
+    );
   }
 }

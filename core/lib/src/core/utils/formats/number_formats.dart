@@ -7,7 +7,7 @@ class NumberFormat {
       symbol: symbol,
     ).format;
     try {
-      return format(value);
+      return format(double.tryParse(value.toString())).trim();
     } catch (e) {
       return format(0.0);
     }

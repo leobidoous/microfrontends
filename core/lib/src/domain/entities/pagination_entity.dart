@@ -1,13 +1,15 @@
+import '../enums/pagination_type_enum.dart';
+
 class PaginationEntity {
   int pageNumber;
   int pageSize;
-  int totalRecords;
-  int pagesRemaining;
+  SortingOrderType sortingOrder;
+  String orderBy;
 
   PaginationEntity({
     this.pageNumber = 1,
     this.pageSize = 10,
-    this.totalRecords = 0,
-    this.pagesRemaining = 0,
+    this.sortingOrder = SortingOrderType.desc,
+    this.orderBy = '',
   });
 }

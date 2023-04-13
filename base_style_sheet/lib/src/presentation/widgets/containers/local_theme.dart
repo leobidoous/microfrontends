@@ -1,33 +1,16 @@
-import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../../core/themes/theme_factory.dart';
+import '../../../../features/app/presentation/extensions/build_context_extensions.dart';
 
-///
-/// Applies a custom theme to a pre-defined area.
-///
-/// Get the correct theme from [Environment] settings.
-///
 class LocalTheme extends StatelessWidget {
-  ///
-  /// Widget builder that provides a BuildContext with correct Theme applied.
-  ///
   final WidgetBuilder builder;
 
-  ///
-  /// Set a specific theme to part of the widget tree.
-  ///
   final ThemeData theme;
 
-  ///
-  /// Used to change [SystemUiOverlayStyle].
-  ///
-  /// Specifies a preference for the style of the system overlays.
-  /// If not null will apply a contrasting color to the system overlays.
-  ///
   final SystemUiOverlayStyle? systemUiOverlayStyle;
 
-  /// Creates a [LocalTheme]
   const LocalTheme._({
     Key? key,
     required this.builder,
@@ -35,12 +18,6 @@ class LocalTheme extends StatelessWidget {
     this.systemUiOverlayStyle,
   }) : super(key: key);
 
-  ///
-  /// Creates an area that respects the default dark theme.
-  ///
-  /// If this widget is applied to a full page, remember to check
-  /// [invertSystemUiOverlayStyle] to true.
-  ///
   factory LocalTheme.dark({
     required WidgetBuilder builder,
     bool invertSystemUiOverlayStyle = false,
@@ -53,12 +30,6 @@ class LocalTheme extends StatelessWidget {
     );
   }
 
-  ///
-  /// Creates an area that respects the default light theme.
-  ///
-  /// If this widget is applied to a full page, remember to check
-  /// [invertSystemUiOverlayStyle] to true.
-  ///
   factory LocalTheme.light({
     required WidgetBuilder builder,
     bool invertSystemUiOverlayStyle = false,
@@ -71,12 +42,6 @@ class LocalTheme extends StatelessWidget {
     );
   }
 
-  ///
-  /// Creates an area that respects the system current theme.
-  ///
-  /// If this widget is applied to a full page, remember to check
-  /// [invertSystemUiOverlayStyle] to true.
-  ///
   factory LocalTheme.system({
     required BuildContext context,
     required WidgetBuilder builder,
@@ -95,13 +60,6 @@ class LocalTheme extends StatelessWidget {
     );
   }
 
-  ///
-  /// Creates an area that respects a custom [ThemeData],
-  /// defined in [theme] argument.
-  ///
-  /// If this widget is applied to a full page, remember to also change
-  /// [systemUiOverlayStyle] to a style that fits to your theme.
-  ///
   factory LocalTheme.custom({
     required WidgetBuilder builder,
     required ThemeData theme,
@@ -114,14 +72,6 @@ class LocalTheme extends StatelessWidget {
     );
   }
 
-  ///
-  /// Creates an area with the inverted theme, using as base 
-  /// the current context theme. If theme in [context] is dark, the theme 
-  /// applied to the builder is light and vice-versa.
-  ///
-  /// If this widget is applied to a full page, remember to check
-  /// [invertSystemUiOverlayStyle] to true.
-  ///
   factory LocalTheme.inverted({
     required BuildContext context,
     required WidgetBuilder builder,
@@ -144,11 +94,7 @@ class LocalTheme extends StatelessWidget {
   Widget build(BuildContext context) {
     final styledWidget = Theme(
       data: theme,
-      child: Builder(
-        builder: (context) {
-          return builder(context);
-        },
-      ),
+      child: Builder(builder: (context) => builder(context)),
     );
 
     if (systemUiOverlayStyle != null) {

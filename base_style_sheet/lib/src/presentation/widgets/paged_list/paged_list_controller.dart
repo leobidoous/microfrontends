@@ -1,3 +1,4 @@
+
 import 'package:core/core.dart';
 
 class _PagedListConfig<T> {
@@ -39,7 +40,7 @@ class _PagedListConfig<T> {
   }
 }
 
-class PagedListController<S, E> extends DefaultController<E, List<S>> {
+class PagedListController<S, E> extends GenController<E, List<S>> {
   /// [fetchItems] is used to do a new search by new items.
   late final Future<Either<E, List<S>>> Function({required int pageKey})
       _fetchItems;
@@ -92,23 +93,25 @@ class PagedListController<S, E> extends DefaultController<E, List<S>> {
         isLoading) {
       return;
     }
-    setLoading(true);
-    await _fetchItems(pageKey: pageKey).then((value) {
-      value.fold(
-        (l) => setError(l),
-        (r) {
-          config.lastItems = r;
-          config.pageKey += config.pageIncrement;
-          if (r.isNotEmpty) {
-            config.nextPageKey += config.pageIncrement;
-            if (reverse) {
-              update([...r, ...state]);
-            } else {
-              update([...state, ...r]);
+    await execute(
+      () => _fetchItems(pageKey: pageKey).then((value) {
+        return value.fold(
+          (l) => Left(l),
+          (r) {
+            config.lastItems = r;
+            config.pageKey += config.pageIncrement;
+            if (r.isNotEmpty) {
+              config.nextPageKey += config.pageIncrement;
+              if (reverse) {
+                return Right([...r, ...state]);
+              } else {
+                return Right([...state, ...r]);
+              }
             }
-          }
-        },
-      );
-    }).whenComplete(() => setLoading(false));
+            return Right(List<S>.empty(growable: true));
+          },
+        );
+      }),
+    );
   }
 }

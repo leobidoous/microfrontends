@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../responsive/responsive_extension.dart';
 
-const String appFontFamily = 'Source Sans Pro';
-
 enum AppFontWeight {
-  bold(FontWeight.w700),
+  bold(FontWeight.bold),
   medium(FontWeight.w600),
   regular(FontWeight.w400),
   light(FontWeight.w300);
@@ -28,19 +26,19 @@ enum AppFontSize {
   bodyLarge(16),
   bodyMedium(14),
   bodySmall(12),
-  titleLarge(20),
-  titleMedium(18),
-  titleSmall(16),
-  displayLarge(10),
-  displayMedium(8),
-  displaySmall(6),
-  headlineLarge(28),
-  headlineMedium(26),
+  titleLarge(22),
+  titleMedium(16),
+  titleSmall(14),
+  displayLarge(57),
+  displayMedium(45),
+  displaySmall(36),
+  headlineLarge(32),
+  headlineMedium(28),
   headlineSmall(24),
-  labelLarge(16),
-  labelMedium(14),
-  labelSmall(12),
-  iconButton(16);
+  labelLarge(14),
+  labelMedium(12),
+  labelSmall(11),
+  iconButton(24);
 
   final int _value;
   const AppFontSize(this._value);

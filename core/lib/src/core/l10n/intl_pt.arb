@@ -1,0 +1,131 @@
+{
+    "@@locale": "pt",
+    "parking": "Estacionamento",
+    "@parking": {
+        "description": "Labels de estacionamento"
+    },
+    "notFoundTicket": "Nenhum tíquete cadastrado",
+    "historyTicket": "Histórico de tíquetes",
+    "history": "Ver histórico",
+    "historyValue": "Histórico de valores",
+    "amountSaved": "Valor economizado",
+    "exitLimited": "Limite de saída: ",
+    "notTransition": "Você ainda não \nrealizou transações",
+    "estimatedProgress": "Tempo estimado",
+    "currentTime": "Horário atual",
+    "charge": "Cobrança",
+    "estimatedValue": "Valor estimado",
+    "amountPaid": "Valor pago",
+    "additionalValue": "Valor adicional",
+    "valueDiscount": "Valor com desconto de 50%",
+    "outputLimitExceeded": "Limite de saída excedido",
+    "perHour": " por hora",
+    "perMinute": " por minuto",
+    "registeredVehicle": "Veículo cadastrado",
+    "haveAnotherVehicle": "Está com outro veículo?",
+    "validateYourParking": "Valide seu estacionamento",
+    "descriptionParking": "Caso utilize TAG, informe a placa do veículo no campo abaixo:",
+    "enterPlate": "Digite a placa do veículo",
+    "deskTitle": "Balcão Gen",
+    "titleParkingDashBoard": "Estacionamento",
+    "subtitleParkingDashBoard": "Veja os principais serviços e campanhas relacionados ao estacionamento.",
+    "ticketTitle": "Tíquete",
+    "ticketDescription": "Tíquete e histórico",
+    "balconyTitle": "Balcão",
+    "balconyDescription": "Dúvidas e informações",
+    "walletTitle": "Carteira",
+    "walletDescription": "Gerenciar cartões",
+    "vehicleTitle": "Veículo",
+    "vehicleDescription": "Confira dados do veículo",
+    "campaignHeader": "Campanha",
+    "seeRegulation": "Ver regulamento",
+    "registeredCoupons": "Cupons registrados",
+    "validCoupons": "{count, plural, =0{{count} cupons válidos} =1{1 cupom válido} other{{count} cupons válidos}}",
+    "fiftyDiscount": "Pague seu estacionamento \ncom 50% de desconto",
+    "fullDiscount": "Valide agora e ganhe o \n estacionamento gratuito",
+    "offDiscount": "Pague seu estacionamento",
+    "establishment": "Estabelecimento",
+    "formOfPayment": "Forma de Pagamento",
+    "registerNewCard": "Cadastrar novo cartao",
+    "voucherToEmail": "O comprovante de pagamento foi enviado para o seu e-mail",
+    "information": "Informações",
+    "address": "Endereço",
+    "time": "Horário",
+    "entry": "Entrada",
+    "payment": "Pagamento",
+    "exit": "Saída",
+    "stay": "Permanência",
+    "consultTicket": "Consultar tíquete",
+    "paymentVoucher": "Comprovante",
+    "@validCoupons": {
+        "description": "A plural message",
+        "placeholders": {
+            "count": {
+                "type": "num",
+                "format": "compact"
+            }
+        }
+    },
+    "seeCoupons": "Ver cupons",
+    "anotationCoupons": "* Seus cupons serão válidos somente na data da compra.",
+    "missingMessage": "Faltam {value} para você ganhar o estacionamento gratuito",
+    "@missingMessage": {
+        "placeholders": {
+            "value": {
+                "type": "int"
+            }
+        }
+    },
+    "addCoupon": "Adicionar cupons",
+    "validateParking": "Validar estacionamento",
+    "ticketTime": "Tempo",
+    "ticketValue": "Valor",
+    "ticketStatus": "Status",
+    "payTextButton": "Pagar",
+    "ticketNotFound": "Nenhum tíquete encontrado",
+    "scanTicketButton": "Escanear tíquete",
+    "canWeHelpYou": "Podemos te ajudar?",
+    "contactSupport": "Fale com o nosso time de Suporte e tire suas dúvidas.",
+    "contactUs": "Fale conosco",
+    "removeVehicle": "Excluir este veículo?",
+    "actionCannotBeUndone": "Essa ação não pode ser desfeita.",
+    "yesRemov": "Sim, excluir",
+    "titleVehicle": "Veículos",
+    "seeAllVehicle": "Veja todos os seus veículos registrados:",
+    "addVehicle": "+ Adicionar veículo",
+    "notFoundVehicles": "Você não tem\n veículos cadastrado.",
+    "vehicleRegistration": "Cadastro de veículo",
+    "continueButton": "Continuar",
+    "successVehicle": "Veículo cadastrado com sucesso!",
+    "alreadyRegistered": "Ops! Você já cadastrou essa placa.",
+    "close": "Fechar",
+    "registerVehicle": "Cadastre o seu veículo para agilizar a liberação do estacionamento.",
+    "whichBran": "Qual é a marca do veículo?",
+    "whichModel": "Escreva o modelo do veículo.",
+    "whichPlate": "Escreva a placa do veículo.",
+    "brand": "Marca",
+    "model": "Modelo",
+    "plate": "Placa",
+    "mainDoubts": "Principais dúvidas",
+    "startRelease": "Iniciar liberação",
+    "continueRelease": "Continuar liberação",
+    "totalAmountRegistered": "Valor total registrado",
+    "deskDoubtsInfo": "Tire suas dúvidas relacionadas aos \ncupons fiscais, estacionamento e \npagamentos.",
+    "deskDoubtsInfoPending": "Realize a liberação para resolver seus \nproblemas relacionados aos cupons fiscais, \nestacionamento ou pagamentos.",
+    "noItemAvailable": "Nenhum item disponível",
+    "takePicture": "Tirar foto",
+    "ticketWindowHelperText": "Olá, {name}. Notei que você tentou cadastrar seus cupons e não está tendo sucesso.\n\nEstou aqui para te ajudar. Vamos começar?\n\nMe envie a foto de cada um dos seus cupons fiscais.",
+    "@ticketWindowHelperText": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "addCouponsLabel": "Adicione seus cupons fiscais para ganhar estacionamento gratuito",
+    "typePlate": "Digitar placa",
+    "wallet": "Carteira",
+    "@wallet": {
+        "description": "Labels de carteira"
+    }
+}

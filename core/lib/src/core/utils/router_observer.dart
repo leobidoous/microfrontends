@@ -13,19 +13,19 @@ class RouterObserver extends NavigatorObserver {
 
   @override
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    routeStack.removeLast();
+    if (routeStack.isNotEmpty) routeStack.removeLast();
     log('didPop: ${routeStack.map((route) => route?.settings.name)}');
   }
 
   @override
   void didRemove(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    routeStack.removeLast();
+    if (routeStack.isNotEmpty) routeStack.removeLast();
     log('didRemove: ${routeStack.map((route) => route?.settings.name)}');
   }
 
   @override
   void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
-    routeStack.removeLast();
+    if (routeStack.isNotEmpty) routeStack.removeLast();
     routeStack.add(newRoute);
     log('didReplace: ${routeStack.map((route) => route?.settings.name)}');
   }

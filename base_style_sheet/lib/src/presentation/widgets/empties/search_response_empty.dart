@@ -1,4 +1,3 @@
-import 'package:core/core.dart';
 import 'package:flutter/material.dart'
     show
         BouncingScrollPhysics,
@@ -22,7 +21,8 @@ import 'package:flutter/material.dart'
         TextSpan,
         Widget;
 
-import '../button.dart';
+import '../../../../core/themes/app_theme_factory.dart';
+import '../buttons/gen_button.dart';
 
 class SearchResponseEmpty extends StatelessWidget {
   const SearchResponseEmpty({
@@ -51,7 +51,7 @@ class SearchResponseEmpty extends StatelessWidget {
             textAlign: TextAlign.center,
             text: TextSpan(
               text: 'Nenhum resultado encontrado para o termo:\n',
-              style: context.textTheme.titleMedium?.copyWith(),
+              style: context.textTheme.bodyLarge?.copyWith(),
               children: [
                 TextSpan(
                   text: message,
@@ -65,14 +65,9 @@ class SearchResponseEmpty extends StatelessWidget {
           if (onPressed != null)
             Padding(
               padding: const EdgeInsets.only(top: 12.0),
-              child: Button(
+              child: GenButton.text(
                 onPressed: onPressed,
-                child: Text(
-                  btnLabel,
-                  style: context.textTheme.bodyMedium?.copyWith(
-                    color: Colors.white,
-                  ),
-                ),
+                text: btnLabel,
               ),
             ),
         ],

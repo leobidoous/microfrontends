@@ -1,4 +1,4 @@
-enum Flavor { dev, hml, prod }
+enum Flavor { dev, prod }
 
 class FlavorConfig {
   static Flavor? appFlavor;
@@ -8,13 +8,11 @@ class FlavorConfig {
   static String get title {
     switch (appFlavor) {
       case Flavor.dev:
-        return 'Plataforma do Boi dev';
-      case Flavor.hml:
-        return 'Plataforma do Boi hml';
+        return 'Gen dev';
       case Flavor.prod:
-        return 'Plataforma do Boi';
+        return 'Gen';
       default:
-        return 'Plataforma do Boi $appFlavor';
+        return 'Gen $appFlavor';
     }
   }
 }

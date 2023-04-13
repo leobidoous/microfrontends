@@ -1,12 +1,32 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
+import 'package:firebase_in_app_messaging/firebase_in_app_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'modules/app/presentation/app_bindings.dart';
 import 'modules/app/presentation/app_configuration.dart';
-import 'modules/app/presentation/app_module.dart';
 import 'modules/app/presentation/app_widget.dart';
+
+class AppConfig extends InheritedWidget {
+  AppConfig({
+    required this.baseUrl,
+    required this.pwaUrl,
+    required Widget? child,
+    Key? key,
+  }) : super(key: key, child: child!);
+
+  final String? baseUrl;
+  final String? pwaUrl;
+
+  static AppConfig of(dynamic context) {
+    return context.dependOnInheritedWidgetOfExactType<AppConfig>();
+  }
+
+  @override
+  bool updateShouldNotify(InheritedWidget oldWidget) => false;
+}
 
 Future<void> configureLogs({required IFirebaseDriver firebaseDriver}) async {
   /// Initialize Firebase
@@ -21,6 +41,7 @@ Future<void> configureLogs({required IFirebaseDriver firebaseDriver}) async {
       (r) => debugPrint('Firebase iniciado com sucesso.'),
     );
   });
+  FirebaseInAppMessaging.instance.setAutomaticDataCollectionEnabled(true);
 }
 
 Future<void> configureNotifications({
@@ -79,14 +100,10 @@ Future<void> runBaseApp({required AppConfiguration appConfiguration}) async {
         firebaseNotificationsDriver: GlobalConfigs.firebaseNotificationsDriver,
       ),
       GlobalConfigs.crashlyticsDriver.init(),
+      // GlobalConfigs.graphQlService.init(),
     ]);
 
-    return runApp(
-      ModularApp(
-        module: AppModule(appConfiguration: appConfiguration),
-        child: const AppWidget(),
-      ),
-    );
+    return runApp(const AppWidget());
   }, (error, stackTrace) async {
     try {
       await GlobalConfigs.crashlyticsDriver.setError(

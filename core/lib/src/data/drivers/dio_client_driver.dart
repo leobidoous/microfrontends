@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_modular/flutter_modular.dart';
+import 'package:get_it/get_it.dart';
 import 'package:path_provider/path_provider.dart';
 
-import '../../infra/drivers/http_driver.dart';
+import '../../domain/interfaces/either.dart';
+import '../../infra/drivers/i_http_driver.dart';
 
 class DioClientDriver extends IHttpDriver with Disposable {
   final Dio client;
@@ -44,13 +44,35 @@ class DioClientDriver extends IHttpDriver with Disposable {
   }
 
   @override
-  Future<HttpDriverResponse> delete<T>(
+  Future<Either<HttpDriverResponse, HttpDriverResponse>> delete<T>(
     String path, {
     data,
     Map<String, dynamic>? queryParameters,
     HttpDriverOptions? options,
-  }) {
-    throw UnimplementedError();
+  }) async {
+    try {
+      final response = await client.delete(
+        path,
+        queryParameters: queryParameters,
+        options: Options(
+          headers: {
+            if (options != null)
+              'Authorization':
+                  '${options.accessTokenType} ${options.accessToken}',
+            ...?options?.extraHeaders,
+          },
+        ),
+      );
+      return Right(
+        HttpDriverResponse(
+          data: response.data,
+          statusCode: response.statusCode,
+          statusMessage: response.statusMessage,
+        ),
+      );
+    } on DioError catch (e) {
+      return Left(_responseError(e));
+    }
   }
 
   @override
@@ -66,8 +88,9 @@ class DioClientDriver extends IHttpDriver with Disposable {
         queryParameters: queryParameters,
         options: Options(
           headers: {
-            'Authorization':
-                '${options?.accessTokenType} ${options?.accessToken}',
+            if (options != null)
+              'Authorization':
+                  '${options.accessTokenType} ${options.accessToken}',
             ...?options?.extraHeaders,
           },
         ),
@@ -101,8 +124,9 @@ class DioClientDriver extends IHttpDriver with Disposable {
         queryParameters: queryParameters,
         options: Options(
           headers: {
-            'Authorization':
-                '${options?.accessTokenType} ${options?.accessToken}',
+            if (options != null)
+              'Authorization':
+                  '${options.accessTokenType} ${options.accessToken}',
             ...?options?.extraHeaders,
           },
         ),
@@ -163,7 +187,9 @@ class DioClientDriver extends IHttpDriver with Disposable {
         queryParameters: queryParameters,
         options: Options(
           headers: {
-            '${options?.accessTokenType}': '${options?.accessToken}',
+            if (options != null)
+              'Authorization':
+                  '${options.accessTokenType} ${options.accessToken}',
             ...?options?.extraHeaders,
           },
         ),
@@ -207,7 +233,7 @@ class DioClientDriver extends IHttpDriver with Disposable {
   }
 
   @override
-  void dispose() {
+  FutureOr onDispose() {
     client.close();
   }
 }

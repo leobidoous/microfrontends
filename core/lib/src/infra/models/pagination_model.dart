@@ -3,21 +3,22 @@ import 'dart:convert' show json;
 import 'package:equatable/equatable.dart';
 
 import '../../domain/entities/pagination_entity.dart' show PaginationEntity;
+import '../../domain/enums/pagination_type_enum.dart';
 
 class PaginationModel extends PaginationEntity with EquatableMixin {
   PaginationModel({
     super.pageNumber,
     super.pageSize,
-    super.totalRecords,
-    super.pagesRemaining,
+    super.orderBy,
+    super.sortingOrder,
   });
 
   factory PaginationModel.fromMap(Map<String, dynamic> map) {
     return PaginationModel(
-      pageNumber: map['pageNumber']?.toInt() ?? 1,
-      pageSize: map['pageSize']?.toInt() ?? 10,
-      totalRecords: map['totalRecords']?.toInt() ?? 0,
-      pagesRemaining: map['pagesRemaining']?.toInt() ?? 0,
+      pageNumber: map['page']?.toInt() ?? 1,
+      pageSize: map['perPage']?.toInt() ?? 10,
+      orderBy: map['orderBy'] ?? '',
+      sortingOrder: sortingOrderTypeFromJson(map['sortingOrder']),
     );
   }
 
@@ -26,8 +27,8 @@ class PaginationModel extends PaginationEntity with EquatableMixin {
 
   factory PaginationModel.fromEntity(PaginationEntity entity) {
     return PaginationModel(
-      pagesRemaining: entity.pagesRemaining,
-      totalRecords: entity.pagesRemaining,
+      sortingOrder: entity.sortingOrder,
+      orderBy: entity.orderBy,
       pageNumber: entity.pageNumber,
       pageSize: entity.pageSize,
     );
@@ -37,10 +38,10 @@ class PaginationModel extends PaginationEntity with EquatableMixin {
 
   Map<String, dynamic> get toMap {
     return {
-      'pageNumber': pageNumber,
-      'pageSize': pageSize,
-      'totalRecords': totalRecords,
-      'pagesRemaining': pagesRemaining,
+      'page': pageNumber,
+      'perPage': pageSize,
+      'sortingOrder': sortingOrder.toJson,
+      if (orderBy.isNotEmpty) 'orderBy': orderBy,
     };
   }
 
@@ -50,8 +51,8 @@ class PaginationModel extends PaginationEntity with EquatableMixin {
   List<Object?> get props => [
         pageNumber,
         pageSize,
-        totalRecords,
-        pagesRemaining,
+        orderBy,
+        sortingOrder,
       ];
 
   @override

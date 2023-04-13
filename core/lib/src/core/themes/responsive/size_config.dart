@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../app_theme_base.dart';
-
 /// Class to initialize calculation for responsiveness
 /// must be called when the app is started
 class SizeConfig {
   /// the value of [screen width] of design given by [designer]
-  late int designScreenWidth;
+  final int designScreenWidth;
 
   /// the value of [screen height] of design given by [designer]
-  late int designScreenHeight;
+  final int designScreenHeight;
 
   SizeConfig._({
     required this.designScreenHeight,
@@ -19,11 +17,27 @@ class SizeConfig {
   ///
   /// Initializes SizeConfig with correct design screen sizes.
   ///
-  factory SizeConfig.init() {
-    return SizeConfig._(
-      designScreenHeight: AppThemeBase.designScreenHeight,
-      designScreenWidth: AppThemeBase.designScreenWidth,
+  factory SizeConfig.init({
+    required Size size,
+    required BoxConstraints constraints,
+    required Orientation orientation,
+  }) {
+    _screenWidth = constraints.maxWidth;
+    _screenHeight = constraints.maxHeight;
+    if (orientation == Orientation.portrait) {
+      isPortrait = true;
+      if (_screenWidth < 450) {
+        isMobilePortrait = true;
+      }
+    } else {
+      isPortrait = false;
+      isMobilePortrait = false;
+    }
+    final config = SizeConfig._(
+      designScreenHeight: size.height.round(),
+      designScreenWidth: size.width.round(),
     );
+    return config;
   }
 
   /// [width] of current device

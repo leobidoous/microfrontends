@@ -1,9 +1,16 @@
 import 'package:flutter/widgets.dart';
 
+
 ///
 /// Extensions for [BuildContext] class
 ///
-extension BuildContextExtesions on BuildContext {
+extension BuildContextExt on BuildContext {
+  ///
+  /// Get [Translation] from current context
+  ///
+  Tr get tr {
+    return Tr.of(this);
+  }
   ///
   /// Get [MediaQueryData] from current context
   ///

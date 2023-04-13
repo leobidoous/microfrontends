@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+
 import 'main.dart';
 import 'modules/app/presentation/app_configuration.dart';
 

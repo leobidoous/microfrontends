@@ -1,7 +1,5 @@
-import 'package:core/core.dart';
 import 'package:flutter/material.dart'
     show
-        BouncingScrollPhysics,
         BuildContext,
         Colors,
         Column,
@@ -13,44 +11,54 @@ import 'package:flutter/material.dart'
         MainAxisAlignment,
         MainAxisSize,
         Padding,
-        SingleChildScrollView,
-        SizedBox,
         StatelessWidget,
         Text,
         TextAlign,
         Widget;
+import 'package:flutter_svg/flutter_svg.dart';
 
-import '../button.dart';
+import '../../../../core/themes/app_theme_factory.dart';
+import '../../../../core/themes/spacing/spacing.dart';
+import '../buttons/gen_button.dart';
+import '../gen_scroll_content.dart';
 
 class ListEmpty extends StatelessWidget {
-  const ListEmpty({
-    Key? key,
-    required this.message,
-    this.onPressed,
-    this.padding = const EdgeInsets.symmetric(vertical: 16),
-    this.btnLabel = 'Buscar novamente',
-  }) : super(key: key);
+  final String? asset;
   final EdgeInsets padding;
   final String message;
   final String btnLabel;
   final Function()? onPressed;
 
+  const ListEmpty({
+    Key? key,
+    required this.message,
+    this.onPressed,
+    this.asset,
+    this.padding = const EdgeInsets.symmetric(vertical: 16),
+    this.btnLabel = 'Buscar novamente',
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
+    return GenScrollContent(
       padding: padding,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
-            Icons.error_outline_rounded,
-            color: context.textTheme.bodyMedium?.color,
-            size: 60,
-          ),
-          const SizedBox(height: 8),
+          if (asset != null)
+            SvgPicture.asset(
+              asset!,
+              height: const Spacing(15).value,
+            ),
+          if (asset == null)
+            Icon(
+              Icons.error_outline_rounded,
+              color: context.textTheme.bodyMedium?.color,
+              size: const Spacing(15).value,
+            ),
+          Spacing.sm.vertical,
           Text(
             message,
             textAlign: TextAlign.center,
@@ -58,15 +66,10 @@ class ListEmpty extends StatelessWidget {
           ),
           if (onPressed != null)
             Padding(
-              padding: const EdgeInsets.only(top: 12.0),
-              child: Button(
+              padding: const EdgeInsets.only(top: 16),
+              child: GenButton.text(
                 onPressed: onPressed,
-                child: Text(
-                  btnLabel,
-                  style: context.textTheme.bodyMedium?.copyWith(
-                    color: Colors.white,
-                  ),
-                ),
+                text: btnLabel,
               ),
             ),
         ],

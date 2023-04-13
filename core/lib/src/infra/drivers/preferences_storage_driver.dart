@@ -1,5 +1,4 @@
-
-import 'package:dartz/dartz.dart';
+import '../../domain/interfaces/either.dart';
 
 abstract class IPreferencesStorageDriver {
   Future<Either<Exception, Unit>> setStringByKey({

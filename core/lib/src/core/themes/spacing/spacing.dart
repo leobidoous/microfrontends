@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../presentation/extensions/build_context_extensions.dart';
 import '../responsive/responsive_extension.dart';
 
 /// The recommended scaling factor for matterial is 8
@@ -42,6 +43,12 @@ class Spacing {
 
   /// The scaling factor for gutters and margins
   final int factor;
+
+  /// Default Spacing or keyboard padding
+  static double orKeyboardPadding(BuildContext context, double value) =>
+      context.mediaQuery.viewInsets.bottom == 0
+          ? value
+          : context.mediaQuery.viewInsets.bottom + value;
 
   /// Default [Spacing] constructor
   const Spacing(this._val, {this.factor = _kDefaultSpacingFactor});
