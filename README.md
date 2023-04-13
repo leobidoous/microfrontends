@@ -32,6 +32,14 @@ Assim irá executar o comando para obter as dependências de todos os packages e
 
 Seguindo esses passos, está apto para executar o projeto em qualquer ambiente: `dev`, `hml` ou `prod`.
 
+#
+Para criar os arquivos de internacionalização no projeto, deve-se executar o seguinte comando:
+
+
+```
+flutter gen-l10n --arb-dir=lib/core/l10n/ --template-arb-file=intl_pt.arb --output-localization-file=translations.dart --output-class=Tr --output-dir=lib/l10n --no-synthetic-package
+```
+
 Qualquer dúvida ou contribuição, entre em contato através das minhas redes:
 
 - [LinkedIn](https://www.linkedin.com/in/leonardo-bido/)

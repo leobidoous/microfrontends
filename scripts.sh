@@ -6,7 +6,7 @@
 error=false
 
 show_help() {
-  printf "usage: $0 [--help] [--test] [--test-changed] [--analyze] [--report] [--clean] [--get] [--buildAndroid] [--buildIOS] [--storybook-build]
+  printf "usage: $0 [--help] [--test] [--test-changed] [--analyze] [--report] [--clean] [--get] [--buildAndroid] [--buildIOS] [--translate] [--storybook-build]
 
 Tool for running useful commands on all Micro Apps.
 
@@ -30,6 +30,8 @@ where:
         Run flutter packages pub run build_runner build with delete conflicting param on all micro apps
     --report
         Run coverage report and merge the result on one report (requires lcov installed)
+    --translate
+        Generate translations with release mode
     --storybook-build
         Run storybook build for web with release mode
     --help
@@ -127,6 +129,18 @@ runGet() {
   fi
 
   cd - > /dev/null
+}
+
+runTranslate() {
+  cd base_app || exit;
+
+  if [ -f "pubspec.yaml" ]; then
+    echo "Generating translations..."
+    flutter gen-l10n --arb-dir=lib/core/l10n/ --template-arb-file=intl_pt.arb --output-localization-file=translations.dart --output-class=Tr --output-dir=lib/l10n --no-synthetic-package
+  fi
+
+  cd - > /dev/null
+
 }
 
 runBuildAndroid() {
@@ -235,6 +249,9 @@ case $1 in
   ;;
 --buildIOS)
   runBuildIOS $2
+  ;;
+--translate)
+  runTranslate
   ;;
 --runner)
   # exclude hidden
