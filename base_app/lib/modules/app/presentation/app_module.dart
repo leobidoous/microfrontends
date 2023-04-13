@@ -9,6 +9,7 @@ import '../infra/repositories/search_postal_code_repository.dart';
 import '../infra/usecases/search_postal_code_usecase.dart';
 import 'app_routes.dart';
 import 'controllers/app_controller.dart';
+import 'controllers/theme_controller.dart';
 
 class AppModule extends Module {
   @override
@@ -104,6 +105,9 @@ class AppModule extends Module {
     /// Controllers
     Bind.lazySingleton(
       (i) => AppController(localUserUsecase: DM.i.get<LocalUserUsecase>()),
+    ),
+    Bind.lazySingleton(
+      (i) => ThemeController(localUserUsecase: DM.i.get<LocalUserUsecase>()),
     ),
   ];
 

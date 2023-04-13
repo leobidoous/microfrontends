@@ -32,7 +32,6 @@ linter:
     lines_longer_than_80_chars: true
     avoid_classes_with_only_static_members: false
     prefer_relative_imports: true
-    prefer_relative_exports: true
     directives_ordering: true
     library_private_types_in_public_api: false
     require_trailing_commas: true

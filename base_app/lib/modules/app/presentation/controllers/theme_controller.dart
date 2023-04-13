@@ -8,11 +8,11 @@ class ThemeController extends GenController<Exception, ThemeMode> {
   ThemeController({required this.localUserUsecase}) : super(ThemeMode.system);
 
   Future<void> getLocalTheme() async {
-    execute(() => localUserUsecase.getThemeMode());
+    await execute(() => localUserUsecase.getThemeMode());
   }
 
   Future<void> onChangeTheme(ThemeMode mode) async {
-    execute(
+    await execute(
       () => localUserUsecase.setThemeMode(themeMode: mode).then(
             (value) => value.fold((l) => Left(l), (r) => Right(mode)),
           ),

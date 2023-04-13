@@ -13,7 +13,6 @@ class AppWidget extends StatefulWidget {
 }
 
 class _AppWidgetState extends State<AppWidget> {
-  final themeController = DM.i.get<ThemeController>();
   @override
   void initState() {
     super.initState();
@@ -35,7 +34,7 @@ class _AppWidgetState extends State<AppWidget> {
           builder: (context, orientation) {
             final size = Size(constraints.maxWidth, constraints.maxHeight);
             return ValueListenableBuilder<ThemeMode>(
-              valueListenable: themeController,
+              valueListenable: DM.i.get<ThemeController>(),
               builder: (context_, state, child) {
                 return ScreenUtilInit(
                   designSize: size,
@@ -47,7 +46,8 @@ class _AppWidgetState extends State<AppWidget> {
                       themeMode: state,
                       theme: ThemeFactory.light(),
                       darkTheme: ThemeFactory.dark(),
-                      debugShowCheckedModeBanner: false,
+                      debugShowCheckedModeBanner:
+                          DM.i.get<EnvironmentEntity>().flavor != Flavor.prod,
                       locale: const Locale('pt', 'BR'),
                       localizationsDelegates: const [
                         GlobalCupertinoLocalizations.delegate,
@@ -61,8 +61,9 @@ class _AppWidgetState extends State<AppWidget> {
                         return MediaQuery(
                           data: MediaQuery.of(_).copyWith(textScaleFactor: 1.0),
                           child: GestureDetector(
-                            onTap: () =>
-                                FocusScope.of(_).requestFocus(FocusNode()),
+                            onTap: () => FocusScope.of(_).requestFocus(
+                              FocusNode(),
+                            ),
                             child: child ?? const SizedBox(),
                           ),
                         );

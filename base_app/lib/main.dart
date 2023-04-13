@@ -9,25 +9,6 @@ import 'modules/app/presentation/app_configuration.dart';
 import 'modules/app/presentation/app_module.dart';
 import 'modules/app/presentation/app_widget.dart';
 
-class AppConfig extends InheritedWidget {
-  AppConfig({
-    required this.baseUrl,
-    required this.pwaUrl,
-    required Widget? child,
-    Key? key,
-  }) : super(key: key, child: child!);
-
-  final String? baseUrl;
-  final String? pwaUrl;
-
-  static AppConfig of(dynamic context) {
-    return context.dependOnInheritedWidgetOfExactType<AppConfig>();
-  }
-
-  @override
-  bool updateShouldNotify(InheritedWidget oldWidget) => false;
-}
-
 Future<void> configureLogs({required IFirebaseDriver firebaseDriver}) async {
   /// Initialize Firebase
   await firebaseDriver.init().then((value) {
@@ -102,8 +83,7 @@ Future<void> runBaseApp({required AppConfiguration appConfiguration}) async {
       GlobalConfigs.crashlyticsDriver.init(),
       GlobalConfigs.graphQlService.init(),
     ]);
-
-    return runApp(const AppWidget());
+    return runApp(ModularApp(module: AppModule(), child: const AppWidget()));
   }, (error, stackTrace) async {
     try {
       await GlobalConfigs.crashlyticsDriver.setError(
