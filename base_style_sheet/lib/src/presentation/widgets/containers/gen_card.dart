@@ -1,21 +1,7 @@
-import 'package:flutter/material.dart'
-    show
-        Border,
-        BorderRadius,
-        BoxDecoration,
-        BoxShadow,
-        BuildContext,
-        Clip,
-        Color,
-        Container,
-        EdgeInsets,
-        InkWell,
-        Semantics,
-        StatelessWidget,
-        Widget;
 
-import '../../../../core/themes/app_colors_base.dart';
-import '../../../../core/themes/app_theme_factory.dart';
+
+import 'package:core/core.dart';
+import 'package:flutter/material.dart';
 
 class GenCard extends StatelessWidget {
   const GenCard({

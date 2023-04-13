@@ -1,9 +1,7 @@
 // widget de linha pontilhada
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../../core/themes/app_colors_base.dart';
-import '../../../../core/themes/spacing/spacing.dart';
 
 class _LineDashedPainter extends CustomPainter {
   _LineDashedPainter(this.strokeWidth, this.lineSize);

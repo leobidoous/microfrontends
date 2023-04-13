@@ -1,7 +1,7 @@
 import '../../core/utils/base_path.dart';
 
 class SharedRoutes {
-  static const BasePath root = BasePath('/shared/', AppRoutes.root);
+  static const BasePath root = BasePath('/shared/');
   static const BasePath splash = BasePath('/splash/', root);
   static const BasePath comming = BasePath('/comming_soon/', root);
   static const BasePath regulation = BasePath('/regulation/', root);

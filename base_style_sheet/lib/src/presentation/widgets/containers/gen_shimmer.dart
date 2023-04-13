@@ -1,8 +1,5 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
-
-import '../../../../core/themes/app_theme_base.dart';
-import '../../../../core/themes/app_theme_factory.dart';
 
 class GenShimmer extends StatelessWidget {
   const GenShimmer({

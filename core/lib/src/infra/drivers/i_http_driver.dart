@@ -14,13 +14,13 @@ class HttpDriverResponse {
 }
 
 class HttpDriverOptions {
-  final AccessToken? accessToken;
-  final BaseUrl? baseUrl;
+  final HttpAccessToken? accessToken;
+  final HttpBaseUrl? baseUrl;
   final String accessTokenType;
   final String? tenantId;
   final String? channelId;
   final String? apiKey;
-  final CustomerId? customerId;
+  final HttpCustomerId? customerId;
   final Map<String, dynamic>? extraHeaders;
   HttpDriverOptions({
     this.accessToken,
@@ -35,10 +35,10 @@ class HttpDriverOptions {
 }
 
 typedef HttpDriverProgressCallback = void Function(int count, int total);
-typedef AccessToken = String;
-typedef CustomerId = String Function();
-typedef BaseUrl = String Function();
-typedef CallbackType<T> = T Function();
+typedef HttpAccessToken = String;
+typedef HttpCustomerId = String Function();
+typedef HttpBaseUrl = String Function();
+typedef HttpCallbackType<T> = T Function();
 
 abstract class IHttpDriver {
   Future<Either<HttpDriverResponse, HttpDriverResponse>> get(

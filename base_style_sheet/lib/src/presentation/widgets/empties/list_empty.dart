@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart'
     show
         BuildContext,
@@ -17,8 +18,6 @@ import 'package:flutter/material.dart'
         Widget;
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../../core/themes/app_theme_factory.dart';
-import '../../../../core/themes/spacing/spacing.dart';
 import '../buttons/gen_button.dart';
 import '../gen_scroll_content.dart';
 

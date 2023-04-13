@@ -107,7 +107,6 @@ class AppThemeFactory {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
-      primarySwatch: genpagColor,
       primaryColor: baseLightColorScheme.primary,
       appBarTheme: AppBarTheme(
         systemOverlayStyle: SystemUiOverlayStyle.dark,
@@ -122,7 +121,7 @@ class AppThemeFactory {
       colorScheme: baseLightColorScheme,
       scaffoldBackgroundColor: AppColorsBase.kScaffoldBackgroundColorSecondary,
       visualDensity: VisualDensity.adaptivePlatformDensity,
-      textTheme: genTextTheme.copyWith(
+      textTheme: const TextTheme().copyWith(
         displayLarge: appTextStyle.displayLarge,
         displayMedium: appTextStyle.displayMedium,
         displaySmall: appTextStyle.displaySmall,
@@ -164,7 +163,7 @@ class AppThemeFactory {
       colorScheme: baseDarkColorScheme,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       scaffoldBackgroundColor: baseDarkColorScheme.background,
-      textTheme: genTextTheme.copyWith(
+      textTheme: const TextTheme().copyWith(
         displayLarge: appTextStyle.displayLarge,
         displayMedium: appTextStyle.displayMedium,
         displaySmall: appTextStyle.displaySmall,

@@ -1,8 +1,8 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart'
     show
         BouncingScrollPhysics,
         BuildContext,
-        Colors,
         Column,
         CrossAxisAlignment,
         EdgeInsets,
@@ -16,12 +16,10 @@ import 'package:flutter/material.dart'
         RichText,
         SingleChildScrollView,
         StatelessWidget,
-        Text,
         TextAlign,
         TextSpan,
         Widget;
 
-import '../../../../core/themes/app_theme_factory.dart';
 import '../buttons/gen_button.dart';
 
 class SearchResponseEmpty extends StatelessWidget {

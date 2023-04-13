@@ -1,6 +1,6 @@
+import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:flutter/material.dart';
 
-import '../../widgets/gen_app_bar.dart';
 
 class FallbackPage extends StatelessWidget {
   const FallbackPage({Key? key}) : super(key: key);

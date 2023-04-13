@@ -25,6 +25,7 @@ import 'package:flutter/material.dart'
         WillPopScope;
 
 import '../widgets/buttons/gen_button.dart';
+import '../widgets/containers/gen_card.dart';
 
 class ConfirmExitView extends StatelessWidget {
   const ConfirmExitView({super.key});
@@ -42,7 +43,7 @@ class ConfirmExitView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Flexible(
-                child: DefaultCard(
+                child: GenCard(
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.all(16),
                     child: Column(

@@ -1,6 +1,5 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import 'alerts/gen_alert.dart';
 import 'buttons/gen_button.dart';
@@ -52,7 +51,7 @@ class RequestError extends StatelessWidget {
                             asset: 'assets/images/server/server_error.svg',
                             title: 'Serviço temporariamente indisponível',
                             content: message,
-                            btnConfirmLabel: context.tr.close,
+                            btnConfirmLabel: 'Fechar',
                             onConfirm: Nav.to.pop,
                           ),
                           showClose: true,

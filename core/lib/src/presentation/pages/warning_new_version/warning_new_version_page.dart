@@ -1,9 +1,11 @@
+import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/themes/spacing/spacing.dart';
 import '../../../core/utils/dependency_manager.dart';
 import '../../../core/utils/navigator_manager.dart';
+import 'warning_new_version_controller.dart';
 
 class WarningNewVersionPageArgs {
   final bool forceUpdate;
@@ -23,6 +25,7 @@ class WarningNewVersionPage extends StatefulWidget {
 
 class _WarningNewVersionPageState extends State<WarningNewVersionPage> {
   final controller = DM.i.get<WarningNewVersionController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

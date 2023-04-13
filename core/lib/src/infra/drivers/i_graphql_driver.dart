@@ -1,6 +1,7 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 import '../../domain/interfaces/either.dart';
+import '../../domain/interfaces/i_graphql_interceptor.dart';
 
 
 class GraphQLResponse {

@@ -1,7 +1,7 @@
+import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/themes/spacing/spacing.dart';
-import '../../widgets/gen_app_bar.dart';
+import '../../../core/themes/spacing/spacing.dart';
 
 class FeatCommingSoonPage extends StatelessWidget {
   const FeatCommingSoonPage({super.key});

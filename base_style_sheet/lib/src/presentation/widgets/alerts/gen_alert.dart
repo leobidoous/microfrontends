@@ -1,7 +1,5 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 
 import '../buttons/gen_button.dart';
 import '../gen_scroll_content.dart';
@@ -44,12 +42,7 @@ class GenAlert extends StatelessWidget {
         content:
             '''Valide seu e-mail para você poder realizar pagamentos através do aplicativo Gen.''',
         btnConfirmLabel: 'Validar e-mail',
-        onConfirm: () => Nav.to.pushNamed(
-          Routes.SIGN_UP_EMAIL,
-          arguments: {
-            'redirectToDash': true,
-          },
-        ),
+        onConfirm: Nav.to.pop,
       );
 
   /// Info
@@ -82,14 +75,14 @@ class GenAlert extends StatelessWidget {
   factory GenAlert.plateWarning(BuildContext context) => GenAlert(
         asset: 'assets/images/parking/plate_warning.svg',
         title: 'Você já cadastrou essa placa.',
-        btnConfirmLabel: context.tr.close,
+        btnConfirmLabel: 'Fechar',
         onConfirm: Nav.to.pop,
       );
   factory GenAlert.paymentMethodWarning(BuildContext context) => GenAlert(
         asset: 'assets/images/wallet/card_warning.svg',
         title: 'Atenção!',
         content: 'Só é possível realizar o pagamento com cartão de crédito.',
-        btnConfirmLabel: context.tr.close,
+        btnConfirmLabel: 'Fechar',
         onConfirm: Nav.to.pop,
       );
 
@@ -99,10 +92,7 @@ class GenAlert extends StatelessWidget {
         title: 'Não foi possível excluir o cartão!',
         content: 'Contate nosso time de suporte para mais informações.',
         btnConfirmLabel: 'Fale conosco',
-        onConfirm: () {
-          Nav.to.pop();
-          DM.i.get<ZendeskController>().openChat();
-        },
+        onConfirm: Nav.to.pop,
       );
   factory GenAlert.paymentError(BuildContext context) => GenAlert(
         asset: 'assets/images/wallet/card_error.svg',
@@ -116,9 +106,7 @@ class GenAlert extends StatelessWidget {
         title:
             'Não foi possível realizar a leitura do tíquete de estacionamento.',
         btnConfirmLabel: 'Digitar código',
-        onConfirm: () {
-          Nav.to.pushReplacementNamed(SharedRoutes.enterTicketNumber);
-        },
+        onConfirm: Nav.to.pop,
       );
   factory GenAlert.couponReadingError(BuildContext context) => GenAlert(
         asset: 'assets/images/parking/ticket_reading_error.svg',
@@ -152,18 +140,14 @@ class GenAlert extends StatelessWidget {
   factory GenAlert.cardRegisterSuccess(BuildContext context) => GenAlert(
         asset: 'assets/images/wallet/new_card_success.svg',
         title: 'Cartão cadastrado com sucesso!',
-        btnConfirmLabel: context.tr.close,
+        btnConfirmLabel: 'Fechar',
         onConfirm: Nav.to.pop,
       );
   factory GenAlert.vehicleRegisterSuccess(BuildContext context) => GenAlert(
         asset: 'assets/images/parking/successful_vehicle_registration.svg',
         title: 'Veículo cadastrado com sucesso!',
-        btnConfirmLabel: context.tr.close,
-        onConfirm: () => Nav.to.popUntil(
-          ModalRoute.withName(
-            VehiclesRoutes.listVehicles.completePath,
-          ),
-        ),
+        btnConfirmLabel: 'Fechar',
+        onConfirm: Nav.to.pop,
       );
   factory GenAlert.vehicleRegisterFailure(
     BuildContext context, {
@@ -172,7 +156,7 @@ class GenAlert extends StatelessWidget {
       GenAlert(
         asset: 'assets/images/parking/vehicle_already_registered.svg',
         title: description ?? 'Houve um error ao cadastrar o veículo',
-        btnConfirmLabel: context.tr.close,
+        btnConfirmLabel: 'Fechar',
         onConfirm: Nav.to.pop,
       );
 
@@ -188,7 +172,7 @@ class GenAlert extends StatelessWidget {
             ? 'Limite de saída: ${DateFormat.toTime(dateLimit)} - '
                 '${DateFormat.toDate(dateLimit)}'
             : '',
-        btnConfirmLabel: context.tr.close,
+        btnConfirmLabel: 'Fechar',
         onConfirm: onTap ?? Nav.to.pop,
       );
 

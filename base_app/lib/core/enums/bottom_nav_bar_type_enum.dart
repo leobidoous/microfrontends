@@ -1,4 +1,3 @@
-
 enum BottomNavBarType { home, payment, wallet, profile }
 
 // TODO item search foi escondido por hora, para o lançamento do app
@@ -35,16 +34,8 @@ extension BottomNavBarTypeExt on BottomNavBarType {
 
   String get route {
     switch (this) {
-      case BottomNavBarType.home:
-        return DashboardHomeRoutes.root.completePath;
-      // case BottomNavBarType.search:
-      //   return SharedRoutes.comming.completePath;
-      case BottomNavBarType.payment:
-        return Routes.QR;
-      case BottomNavBarType.wallet:
-        return WalletRoutes.root.completePath;
-      case BottomNavBarType.profile:
-        return Routes.CONFIGURATION_PAGE;
+      default:
+        return '';
     }
   }
 }

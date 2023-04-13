@@ -1,8 +1,6 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import '../../../../core/themes/theme_factory.dart';
-import '../../../../features/app/presentation/extensions/build_context_extensions.dart';
 
 class LocalTheme extends StatelessWidget {
   final WidgetBuilder builder;

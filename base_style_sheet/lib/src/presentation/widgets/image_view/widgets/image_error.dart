@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart'
     show
         Alignment,
@@ -21,7 +22,6 @@ import 'package:flutter/material.dart'
         TextSpan,
         Widget;
 
-import '../../../../../core/themes/app_theme_factory.dart';
 import '../../gen_dialog.dart';
 import '../../gen_scroll_content.dart';
 

@@ -5,8 +5,8 @@ import 'package:firebase_in_app_messaging/firebase_in_app_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'modules/app/presentation/app_bindings.dart';
 import 'modules/app/presentation/app_configuration.dart';
+import 'modules/app/presentation/app_module.dart';
 import 'modules/app/presentation/app_widget.dart';
 
 class AppConfig extends InheritedWidget {
@@ -100,7 +100,7 @@ Future<void> runBaseApp({required AppConfiguration appConfiguration}) async {
         firebaseNotificationsDriver: GlobalConfigs.firebaseNotificationsDriver,
       ),
       GlobalConfigs.crashlyticsDriver.init(),
-      // GlobalConfigs.graphQlService.init(),
+      GlobalConfigs.graphQlService.init(),
     ]);
 
     return runApp(const AppWidget());

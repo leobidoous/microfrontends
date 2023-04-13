@@ -1,17 +1,4 @@
-import '../../../../shared/domain/interfaces/either.dart';
-import '../../../../shared/domain/interfaces/gen_controller.dart';
-import '../../domain/entities/claims_entity.dart';
-import '../../domain/entities/customer_entity.dart';
-import '../../domain/entities/external_user_entity.dart';
-import '../../domain/entities/session_entity.dart';
-import '../../domain/entities/token_entity.dart';
-import '../../domain/entities/user_entity.dart';
-import '../../domain/usecases/i_local_user_usecase.dart';
-import '../../infra/models/claims_model.dart';
-import '../../infra/models/customer_model.dart';
-import '../../infra/models/external_user_model.dart';
-import '../../infra/models/token_model.dart';
-import '../../infra/models/user_model.dart';
+import 'package:core/core.dart';
 
 class AppController extends GenController<Exception, Unit> {
   AppController({required this.localUserUsecase}) : super(unit);

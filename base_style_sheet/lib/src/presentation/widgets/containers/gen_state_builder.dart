@@ -1,6 +1,6 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../../../domain/interfaces/gen_controller.dart';
 
 class GenStateBuilder<T, E, S> extends StatelessWidget {
   final Widget Function(BuildContext, S, bool, E?) builder;

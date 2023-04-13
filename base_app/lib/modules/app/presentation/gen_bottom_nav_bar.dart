@@ -49,19 +49,14 @@ class _GenBottomNavBarState extends State<GenBottomNavBar> {
           late Object? args;
           switch (item) {
             case BottomNavBarType.wallet:
-              args = WalletHomePageArgs(
-                showBottomNav: true,
-                automaticallyImplyLeading: false,
-              );
+              args = false;
               break;
             case BottomNavBarType.profile:
               args = false;
               break;
             case BottomNavBarType.home:
               args = false;
-              Nav.to.popUntil(
-                ModalRoute.withName(DashboardHomeRoutes.root.completePath),
-              );
+              
               break;
             default:
               args = null;
