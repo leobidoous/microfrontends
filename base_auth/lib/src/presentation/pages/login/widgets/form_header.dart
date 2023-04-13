@@ -1,7 +1,5 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../../../../../core/themes/spacing/spacing.dart';
 
 class FormHeader extends StatelessWidget {
   const FormHeader({super.key});

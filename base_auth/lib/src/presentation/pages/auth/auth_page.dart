@@ -1,12 +1,9 @@
+import 'package:base_style_sheet/base_style_sheet.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-import '../../../../../core/legacy/widgets/logo_widget.dart';
-import '../../../../../core/themes/app_theme_factory.dart';
-import '../../../../../core/themes/spacing/spacing.dart';
-import '../../../../../core/utils/dependency_manager.dart';
-import '../../../../../shared/presentation/widgets/buttons/gen_button.dart';
 import '../../controllers/auth/auth_controller.dart';
+import 'widgets/auth_logo.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);
@@ -44,7 +41,7 @@ class _AuthPageState extends State<AuthPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  const GenLogo(),
+                  const AuthLogo(),
                   Spacing.lg.vertical,
                   Text(
                     'Revolucione com a gente',

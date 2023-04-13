@@ -1,13 +1,8 @@
+import 'package:base_style_sheet/base_style_sheet.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
-import '../../../../../../core/themes/app_colors_base.dart';
-import '../../../../../../core/themes/app_theme_factory.dart';
-import '../../../../../../core/themes/spacing/spacing.dart';
-import '../../../../../../core/utils/dependency_manager.dart';
-import '../../../../../../core/utils/validators/form_validator.dart';
-import '../../../../../../shared/presentation/widgets/buttons/gen_button.dart';
-import '../../../../../../shared/presentation/widgets/gen_scroll_content.dart';
 import '../../../controllers/login/login_controller.dart';
 import 'form_header.dart';
 

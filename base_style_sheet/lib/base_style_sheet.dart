@@ -1,6 +1,8 @@
 library base_style_sheet;
 
 export 'package:base_style_sheet/src/presentation/views/confirm_exit_view.dart';
+export 'package:base_style_sheet/src/presentation/widgets/alerts/end_session_alert.dart';
+export 'package:base_style_sheet/src/presentation/widgets/alerts/gen_alert.dart';
 export 'package:base_style_sheet/src/presentation/widgets/buttons/gen_button.dart';
 export 'package:base_style_sheet/src/presentation/widgets/containers/gen_card.dart';
 export 'package:base_style_sheet/src/presentation/widgets/containers/gen_shimmer.dart';
@@ -9,5 +11,7 @@ export 'package:base_style_sheet/src/presentation/widgets/empties/list_empty.dar
 export 'package:base_style_sheet/src/presentation/widgets/empties/search_response_empty.dart';
 export 'package:base_style_sheet/src/presentation/widgets/gen_app_bar.dart';
 export 'package:base_style_sheet/src/presentation/widgets/gen_dialog.dart';
+export 'package:base_style_sheet/src/presentation/widgets/gen_refresh_indicator.dart';
+export 'package:base_style_sheet/src/presentation/widgets/gen_scroll_content.dart';
 export 'package:base_style_sheet/src/presentation/widgets/inputs/gen_input_field.dart';
 export 'package:base_style_sheet/src/presentation/widgets/request_error.dart';

@@ -1,8 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:core/core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:core/core.dart' hide ServerError, UnknowError;
 import 'package:flutter/material.dart';
 import '../../../domain/failures/login/login_failure.dart';
 import '../../../domain/usecases/i_auth_usecase.dart';
@@ -16,9 +15,6 @@ class LoginController extends GenController<ILoginFailure, bool> {
     required this.loginUsecase,
     required this.appController,
     required this.timerController,
-    required this.globalController,
-    required this.globalAuthController,
-    required this.mixpanel,
   }) : super(false);
 
   String phoneNumber = '';
@@ -26,10 +22,7 @@ class LoginController extends GenController<ILoginFailure, bool> {
   final IAuthUsecase authUsecase;
   final ILoginUsecase loginUsecase;
   final AppController appController;
-  final MixPanelController mixpanel;
-  final GlobalController globalController;
   final LoginTimerController timerController;
-  final GlobalAuthController globalAuthController;
 
   Future<void> onRequestCode({required String phone}) async {
     timerController.startTimer();
@@ -117,9 +110,6 @@ class LoginController extends GenController<ILoginFailure, bool> {
   }
 
   Future<Either<ILoginFailure, bool>> _onSaveSession() async {
-    PushNotifications.setUpTokenForUser(
-      FirebaseAuth.instance.currentUser!.uid,
-    );
     final sessionResponse = await appController.onSaveSession(
       externalUser: appController.externalUser,
       customer: appController.customer,

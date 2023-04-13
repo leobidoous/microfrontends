@@ -1,5 +1,8 @@
+import 'package:base_auth/base_auth.dart';
 import 'package:core/core.dart';
 
+import '../../home/presentation/home_module.dart';
+import '../../home/presentation/home_router_guard.dart';
 import '../../shared/presentation/pages/splash/splash_page.dart';
 import '../data/datasources/search_postal_code_datasource.dart';
 import '../data/datasources/user_datasource.dart';
@@ -51,7 +54,6 @@ class AppModule extends Module {
               DioAuthInterceptor(
                 authUsecase: DM.i.get<AuthUsecase>(),
                 localUserUsecase: DM.i.get<LocalUserUsecase>(),
-                authController: DM.i.get<GlobalAuthController>(),
               ),
             ],
           ),
@@ -131,9 +133,12 @@ class AppModule extends Module {
       guards: [HomeRouterGuard()],
     ),
     ModuleRoute(
-      AppRoutes.auth.path,
-      module: AuthModule(),
-      guards: [AuthRouterGuard()],
+      AuthRoutes.root.path,
+      module: AuthModule(
+        onLoginCallback: () async {},
+        redirectTo: AppRoutes.home,
+      ),
+      guards: [AuthRouterGuard(path: AppRoutes.home)],
     ),
   ];
 }

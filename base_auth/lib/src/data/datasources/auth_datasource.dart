@@ -1,9 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter/widgets.dart';
 
-
 import '../../infra/datasources/i_auth_datasource.dart';
-import '../../infra/drivers/i_firebase_auth.dart';
 import '../../presentation/auth_routes.dart';
 import '../../presentation/graphql/mutations/auth_mutations.dart';
 
@@ -90,22 +88,17 @@ class AuthDatasource extends IAuthDatasource {
 
   @override
   Future<Either<Exception, Unit>> logout() async {
-    Nav.to.pushNamedAndRemoveUntil(
-      AuthRoutes.root,
-      ModalRoute.withName(AuthRoutes.root.completePath),
-    );
-    return Right(unit);
-    // return localUserUsecase.removeSession().then((value) {
-    //   return firebaseAuthDriver.logout().then((value) {
-    //     return value.fold((l) => Left(l), (r) {
-    //       DM.i.popScopesTill('baseScope');
-    //       Nav.to.pushNamedAndRemoveUntil(
-    //         AuthRoutes.root,
-    //         ModalRoute.withName(AuthRoutes.root.completePath),
-    //       );
-    //       return Right(unit);
-    //     });
-    //   });
-    // });
+    
+    return localUserUsecase.removeSession().then((value) {
+      return firebaseAuthDriver.logout().then((value) {
+        return value.fold((l) => Left(l), (r) {
+          Nav.to.pushNamedAndRemoveUntil(
+            AuthRoutes.root,
+            ModalRoute.withName(AuthRoutes.root.completePath),
+          );
+          return Right(unit);
+        });
+      });
+    });
   }
 }

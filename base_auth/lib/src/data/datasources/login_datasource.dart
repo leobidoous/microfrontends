@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import 'package:core/core.dart' hide ServerError, UnknowError;
 
 import '../../domain/failures/login/login_failure.dart';
 import '../../infra/datasources/i_login_datasource.dart';

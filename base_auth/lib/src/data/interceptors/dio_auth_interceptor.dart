@@ -2,7 +2,6 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/usecases/i_auth_usecase.dart';
-import '../../presentation/auth_routes.dart';
 
 class DioAuthInterceptor extends QueuedInterceptor {
   DioAuthInterceptor({
@@ -95,21 +94,21 @@ class DioAuthInterceptor extends QueuedInterceptor {
   }
 
   Future<void> _finishSession() async {
-    await GenDialog.show(
-      Nav.to.context,
-      GenAlert.serverError(Nav.to.context),
-      showClose: true,
-    ).whenComplete(
-      () async {
-        final response = await authUsecase.logout();
-        response.fold((l) => null, (r) {
-          Nav.to.pushNamedAndRemoveUntil(
-            AuthRoutes.root,
-            ModalRoute.withName(AuthRoutes.root.completePath),
-          );
-        });
-      },
-    );
+    // await GenDialog.show(
+    //   Nav.to.context,
+    //   GenAlert.serverError(Nav.to.context),
+    //   showClose: true,
+    // ).whenComplete(
+    //   () async {
+    //     final response = await authUsecase.logout();
+    //     response.fold((l) => null, (r) {
+    //       Nav.to.pushNamedAndRemoveUntil(
+    //         AuthRoutes.root,
+    //         ModalRoute.withName(AuthRoutes.root.completePath),
+    //       );
+    //     });
+    //   },
+    // );
   }
 
   Future<Either<DioError, Response>> _getResponse(

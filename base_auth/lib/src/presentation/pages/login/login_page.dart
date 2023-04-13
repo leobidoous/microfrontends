@@ -1,19 +1,22 @@
+import 'package:base_style_sheet/base_style_sheet.dart';
+import 'package:core/core.dart' hide ServerError, UnknowError;
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/dependency_manager.dart';
-import '../../../../../core/utils/navigator_manager.dart';
-import '../../../../../shared/presentation/pages/shared_routes.dart';
-import '../../../../../shared/presentation/widgets/alerts/gen_alert.dart';
-import '../../../../../shared/presentation/widgets/gen_app_bar.dart';
-import '../../../../../shared/presentation/widgets/gen_dialog.dart';
 import '../../../domain/failures/login/login_failure.dart';
 import '../../controllers/login/login_controller.dart';
 import 'widgets/phone_form_view.dart';
 import 'widgets/pin_code_form_view.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({
+    Key? key,
+    required this.redirectTo,
+    required this.onLoginCallback,
+  }) : super(key: key);
 
+  final BasePath redirectTo;
+  final Future Function() onLoginCallback;
+  
   @override
   State<LoginPage> createState() => _SignInPageState();
 }
