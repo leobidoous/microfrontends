@@ -12,7 +12,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart'
         Importance,
         Priority,
         DarwinNotificationDetails;
-import 'package:get_it/get_it.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:rxdart/subjects.dart' show BehaviorSubject;
 
 import '../../domain/entities/received_notifications_entity.dart'
@@ -118,7 +118,7 @@ class LocalNotificationsDriver extends ILocalNotificationsDriver
   }
 
   @override
-  void onDispose() {
+  void dispose() {
     onReceiveNotification.close();
     selectNotificationSubject.close();
   }

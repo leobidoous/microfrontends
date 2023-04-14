@@ -1,15 +1,14 @@
 import 'package:base_auth/base_auth.dart';
 import 'package:core/core.dart';
 
-import '../../home/presentation/home_module.dart';
 import '../../home/presentation/home_router_guard.dart';
-import '../../shared/presentation/pages/splash/splash_controller.dart';
-import '../../shared/presentation/pages/splash/splash_page.dart';
-import '../data/datasources/search_postal_code_datasource.dart';
-import '../infra/repositories/search_postal_code_repository.dart';
-import '../infra/usecases/search_postal_code_usecase.dart';
+import '../../home/presentation/modules/home_module.dart';
+import '../../home/presentation/routes/dashboard_routes.dart';
+import '../../home/presentation/routes/home_routes.dart';
+import '../../shared/presentation/controllers/splash_controller.dart';
+import '../../shared/presentation/pages/fallback_page.dart';
+import '../../shared/presentation/pages/splash_page.dart';
 import 'app_configuration.dart';
-import 'app_routes.dart';
 import 'controllers/app_controller.dart';
 import 'controllers/theme_controller.dart';
 
@@ -89,7 +88,7 @@ class AppModule extends Module {
       ),
     ),
     Bind.factory(
-      (i) => SearchPostalCodeUsecase(
+      (i) => SearchPostalCodeUsecase( 
         repository: i.get<SearchPostalCodeRepository>(),
       ),
     ),
@@ -143,7 +142,7 @@ class AppModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute(Modular.initialRoute, child: (_, args) => const SplashPage()),
     ModuleRoute(
-      AppRoutes.home.path,
+      HomeRoutes.root.path,
       module: HomeModule(),
       guards: [HomeRouterGuard()],
     ),
@@ -153,10 +152,11 @@ class AppModule extends Module {
         onLoginCallback: (session) async {
           DM.i.get<AppController>().session = session;
         },
-        redirectTo: AppRoutes.home,
+        redirectTo: DashboardRoutes.root,
       ),
-      guards: [AuthRouterGuard(path: AppRoutes.home)],
+      guards: [AuthRouterGuard(path: DashboardRoutes.root)],
     ),
+    WildcardRoute(child: (_, args) => const FallbackPage()),
   ];
 }
 

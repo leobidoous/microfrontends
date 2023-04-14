@@ -1,11 +1,10 @@
 name: core
-description: A new Flutter package project.
+description: Core module
 version: 0.0.1
-homepage: leonardobido.me
 publish_to: "none"
 
 environment:
-  sdk: ">=2.17.0 <3.0.0"
+  sdk: ">=2.19.6 <3.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
@@ -18,7 +17,6 @@ dependencies:
   pdfx: ^2.2.0
   intl: ^0.17.0
   http: ^0.13.5
-  pinput: ^2.2.31
   location: ^4.4.0
   camera: ^0.10.0+4
   skeletons: ^0.0.3
@@ -81,15 +79,12 @@ dependencies:
 
   #===== New dependecies for new app flutter ====
   dio: ^4.0.6
-  get: ^4.6.5
   sentry: ^6.9.0
-  get_it: ^7.2.0
+  pinput: ^2.2.31
   shimmer: ^2.0.0
   equatable: ^2.0.5
   file_picker: ^5.2.7
   flutter_svg: ^1.1.6
-  http_parser: ^4.0.2
-  flutter_bloc: ^8.1.1
   fluttertoast: ^8.2.1
   in_app_review: ^2.0.6
   image_cropper: ^3.0.1
@@ -97,16 +92,14 @@ dependencies:
   flutter_modular: ^5.0.3
   easy_pdf_viewer: ^1.0.6
   qr_code_scanner: ^1.0.1
-  qr_mobile_vision: ^4.0.1
   animated_text_kit: ^4.2.2
   flutter_screenutil: ^5.6.1
   package_info_plus: ^3.0.3
-  shimmer_animation: ^2.1.0+1
   cached_network_image: ^3.2.3
   flutter_barcode_scanner: ^2.0.0
+  circular_countdown_timer: ^0.2.3
   flutter_local_notifications: ^13.0.0
   syncfusion_flutter_pdfviewer: ^20.4.54
-  circular_countdown_timer: ^0.2.3
   #==============================================
 
   banner_carousel:
@@ -133,6 +126,18 @@ flutter:
     - assets/images/
 
   fonts:
-    - family: core_icons
+    - family: Poppins 
       fonts:
-        - asset: assets/fonts/icons/core_icons.ttf
+        - asset: fonts/Poppins/Poppins-Bold.ttf
+        - asset: fonts/Poppins/Poppins-Light.ttf
+        - asset: fonts/Poppins/Poppins-Medium.ttf
+        - asset: fonts/Poppins/Poppins-Regular.ttf
+    - family: Inter 
+      fonts:
+        - asset: fonts/Inter/Inter-Bold.ttf
+        - asset: fonts/Inter/Inter-Light.ttf
+        - asset: fonts/Inter/Inter-Medium.ttf
+        - asset: fonts/Inter/Inter-Regular.ttf
+    - family: gen_icons
+      fonts:
+        - asset: fonts/gen_icons/Gen_icon.ttf

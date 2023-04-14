@@ -1,7 +1,6 @@
 // widget de linha pontilhada
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class _LineDashedPainter extends CustomPainter {
   _LineDashedPainter(this.strokeWidth, this.lineSize);
@@ -36,7 +35,7 @@ class DashedDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      painter: _LineDashedPainter(height, context.width),
+      painter: _LineDashedPainter(height, context.kSize.width),
     );
   }
 }

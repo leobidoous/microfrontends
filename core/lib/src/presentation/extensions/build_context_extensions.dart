@@ -12,6 +12,13 @@ extension BuildContextExt on BuildContext {
   }
 
   ///
+  /// Get [MediaQueryData] from current context
+  ///
+  Size get kSize {
+    return MediaQuery.of(this).size;
+  }
+
+  ///
   /// Get current screen width, based on current context
   ///
   double get screenWidth {

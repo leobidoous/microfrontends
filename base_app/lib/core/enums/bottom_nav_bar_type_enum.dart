@@ -1,3 +1,10 @@
+import 'package:parking/parking.dart';
+import 'package:wallet/wallet.dart';
+
+import '../../modules/home/presentation/routes/dashboard_routes.dart';
+import '../../modules/home/presentation/routes/home_routes.dart';
+import '../../modules/profile/presentation/profile_routes.dart';
+
 enum BottomNavBarType { home, payment, wallet, profile }
 
 // TODO item search foi escondido por hora, para o lançamento do app
@@ -34,8 +41,14 @@ extension BottomNavBarTypeExt on BottomNavBarType {
 
   String get route {
     switch (this) {
-      default:
-        return '';
+      case BottomNavBarType.home:
+        return DashboardRoutes.root.completePath;
+      case BottomNavBarType.payment:
+        return HomeRoutes.root.concate([ParkingRoutes.root]);
+      case BottomNavBarType.wallet:
+        return HomeRoutes.root.concate([WalletRoutes.root]);
+      case BottomNavBarType.profile:
+        return ProfileRoutes.root.completePath;
     }
   }
 }

@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:get_it/get_it.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../domain/interfaces/either.dart';
@@ -233,7 +233,7 @@ class DioClientDriver extends IHttpDriver with Disposable {
   }
 
   @override
-  FutureOr onDispose() {
+  void dispose() {
     client.close();
   }
 }

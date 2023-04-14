@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:equatable/equatable.dart' show EquatableMixin;
 import 'package:flutter/foundation.dart' show ValueNotifier, debugPrint;
-import 'package:get_it/get_it.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 import 'either.dart';
 
