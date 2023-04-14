@@ -54,7 +54,6 @@ class _AddCreditCardPageState extends State<AddCreditCardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: GenAppBar(
-        automaticallyImplyLeading: true,
         title: 'Cadastro de Cartão',
         onBackTap: Nav.to.pop,
         actions: [

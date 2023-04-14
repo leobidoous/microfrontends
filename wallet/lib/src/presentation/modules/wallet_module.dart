@@ -9,7 +9,6 @@ import '../controllers/credit_card/change_favorite_card_controller.dart';
 import '../controllers/credit_card/fetch_credit_cards_controller.dart';
 import '../controllers/credit_card/fetch_favorite_card_controller.dart';
 import '../controllers/credit_card/remove_credit_card_controller.dart';
-import '../controllers/wallet/transactions_controller.dart';
 import '../pages/wallet/wallet_page.dart';
 import 'add_credit_card_module.dart';
 import 'select_payment_method_module.dart';
@@ -32,6 +31,10 @@ class WalletModule extends Module {
             repository: i.get<WalletRepository>(),
           ),
         ),
+/// Controllers
+    Bind.factory<FetchTransactionsController>(
+      (i) => FetchTransactionsController(usecase: i.get<WalletUsecase>()),
+    ),
       ];
 
   @override
@@ -43,9 +46,6 @@ class WalletModule extends Module {
     ...exportedBinds,
 
     /// Controllers
-    Bind.factory<FetchTransactionsController>(
-      (i) => FetchTransactionsController(usecase: i.get<WalletUsecase>()),
-    ),
     Bind.factory<FetchCreditCardsController>(
       (i) => FetchCreditCardsController(usecase: i.get<CreditCardUsecase>()),
     ),

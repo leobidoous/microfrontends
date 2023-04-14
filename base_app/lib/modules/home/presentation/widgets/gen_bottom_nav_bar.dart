@@ -48,10 +48,8 @@ class _GenBottomNavBarState extends State<GenBottomNavBar> {
     final isSelected = widget.selected == item;
     return InkWell(
       onTap: () {
-        if (!isSelected) {
-          Nav.to.navigate(item.route);
-          controller.onChangeMenuItem(item);
-        }
+        Nav.to.navigate(item.route);
+        controller.onChangeMenuItem(item);
       },
       child: LocalTheme.dark(
         builder: (context) {

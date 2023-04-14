@@ -12,6 +12,7 @@ import '../../../shared/presentation/shared_routes.dart';
 import '../controllers/home_controller.dart';
 import '../pages/home_page.dart';
 import '../routes/dashboard_routes.dart';
+import '../routes/home_routes.dart';
 import 'dashboard_module.dart';
 
 class HomeModule extends Module {
@@ -36,7 +37,7 @@ class HomeModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ChildRoute(
-      Modular.initialRoute,
+      HomeRoutes.start.path,
       transition: TransitionType.fadeIn,
       child: (_, args) => const HomePage(),
       children: [

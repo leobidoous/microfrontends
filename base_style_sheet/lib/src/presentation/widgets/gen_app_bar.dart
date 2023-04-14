@@ -1,7 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-
 class GenAppBar extends StatefulWidget with PreferredSizeWidget {
   const GenAppBar({
     super.key,
@@ -66,27 +65,33 @@ class _GenAppBarState extends State<GenAppBar> {
               ),
             ),
             leading: widget.automaticallyImplyLeading
-                ? Semantics(
-                    button: true,
-                    child: SizedBox(
-                      height: const Spacing(3).value,
-                      width: const Spacing(3).value,
-                      child: InkWell(
-                        onTap: widget.onBackTap ?? Nav.to.pop,
-                        borderRadius: AppThemeBase.borderRadiusSM,
-                        child: Padding(
-                          padding: EdgeInsets.all(const Spacing(2).value),
-                          child: (widget.leadingIcon != null)
-                              ? widget.leadingIcon
-                              : Icon(
-                                  Icons.arrow_back_ios,
-                                  color: context.colorScheme.onBackground,
-                                ),
+                ? Nav.to.canPop()
+                    ? Semantics(
+                        button: true,
+                        child: SizedBox(
+                          height: const Spacing(3).value,
+                          width: const Spacing(3).value,
+                          child: InkWell(
+                            onTap: widget.onBackTap ?? Nav.to.pop,
+                            borderRadius: AppThemeBase.borderRadiusSM,
+                            child: Padding(
+                              padding: EdgeInsets.all(const Spacing(2).value),
+                              child: (widget.leadingIcon != null)
+                                  ? widget.leadingIcon
+                                  : Icon(
+                                      Icons.arrow_back_ios,
+                                      color: context.colorScheme.onBackground,
+                                    ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  )
-                : null,
+                      )
+                    : null
+                : SizedBox(
+                    height: const Spacing(3).value,
+                    width: const Spacing(3).value,
+                    child: widget.leadingIcon,
+                  ),
           ),
         ),
         if (widget.showDivider)

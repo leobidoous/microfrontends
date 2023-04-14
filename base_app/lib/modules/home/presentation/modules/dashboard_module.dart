@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:wallet/wallet.dart';
 
 import '../../data/dashboard_datasource.dart';
 import '../../data/notification_datasource.dart';
@@ -13,6 +14,9 @@ import '../pages/dashboard/dashboard_page.dart';
 class DashboardModule extends Module {
   @override
   final List<Bind> binds = [
+    /// Wallet
+    ...WalletModule.exportedBinds,
+
     /// Notifications
     Bind.lazySingleton<NotificationDatasource>(
       (i) => NotificationDatasource(

@@ -7,6 +7,7 @@ import '../../../../domain/enums/credit_card_type.dart';
 import '../../../controllers/credit_card/change_favorite_card_controller.dart';
 import '../../../controllers/credit_card/fetch_credit_cards_controller.dart';
 import '../../../controllers/credit_card/remove_credit_card_controller.dart';
+import '../../../wallet_routes.dart';
 import '../../widgets/delete_credit_card.dart';
 
 class CreditCardsList extends StatefulWidget {
@@ -128,14 +129,13 @@ class _CreditCardsListState extends State<CreditCardsList> {
     return _creditCardContainer(
       onTap: () {
         if (widget.emailVerified) {
-          // Nav.to
-          //     .pushNamed(WalletRoutes.addCreditCard.relativePath)
-          //     .then((value) {
-          //   if (value is CreditCardEntity) {
-          //     widget.cardController.addNewCreditCard(value);
-          //   }
-          // });
-          Nav.to.pushNamed('/add_credit_cad/');
+          Nav.to
+              .pushNamed(WalletRoutes.addCreditCard.relativePath)
+              .then((value) {
+            if (value is CreditCardEntity) {
+              widget.cardController.addNewCreditCard(value);
+            }
+          });
         } else {
           GenDialog.show(
             context,

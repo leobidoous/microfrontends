@@ -9,6 +9,7 @@ import '../../shared/presentation/controllers/splash_controller.dart';
 import '../../shared/presentation/pages/fallback_page.dart';
 import '../../shared/presentation/pages/splash_page.dart';
 import 'app_configuration.dart';
+import 'app_routes.dart';
 import 'controllers/app_controller.dart';
 import 'controllers/theme_controller.dart';
 
@@ -140,7 +141,7 @@ class AppModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute(Modular.initialRoute, child: (_, args) => const SplashPage()),
+    ChildRoute(AppRoutes.root.path, child: (_, args) => const SplashPage()),
     ModuleRoute(
       HomeRoutes.root.path,
       module: HomeModule(),

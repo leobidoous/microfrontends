@@ -1,6 +1,8 @@
 import 'package:core/core.dart';
 
-import 'profile_page.dart';
+import 'pages/profile_details_page.dart';
+import 'pages/profile_page.dart';
+import 'profile_routes.dart';
 
 class ProfileModule extends Module {
   @override
@@ -13,6 +15,11 @@ class ProfileModule extends Module {
     ChildRoute(
       Modular.initialRoute,
       child: (_, args) => const ProfilePage(),
+    ),
+    ChildRoute(
+      ProfileRoutes.profileDetails.path,
+      transition: TransitionType.defaultTransition,
+      child: (_, args) => const ProfileDetailsPage(),
     ),
   ];
 }

@@ -1,7 +1,6 @@
 import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:pinput/pinput.dart';
 
 import '../../../../domain/failures/login/login_failure.dart';
 import '../../../controllers/login/login_controller.dart';
@@ -143,12 +142,12 @@ class _PinCodeFormViewState extends State<PinCodeFormView> {
                   },
                   validator: (input) {
                     String? error;
-                    [FormValidators.emptyField].forEach((val) {
+                    for (var val in [FormValidators.emptyField]) {
                       if (error == null) {
                         error = val(input);
-                        return;
+                        continue;
                       }
-                    });
+                    }
                     return error ?? controller.error?.message;
                   },
                   onCompleted: _onValidateCode,

@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:parking/parking.dart';
 import 'package:wallet/wallet.dart';
 
@@ -39,16 +40,16 @@ extension BottomNavBarTypeExt on BottomNavBarType {
     }
   }
 
-  String get route {
+  BasePath get route {
     switch (this) {
       case BottomNavBarType.home:
-        return DashboardRoutes.root.completePath;
+        return DashboardRoutes.root;
       case BottomNavBarType.payment:
-        return HomeRoutes.root.concate([ParkingRoutes.root]);
+        return HomeRoutes.start.concate([ParkingRoutes.root]);
       case BottomNavBarType.wallet:
-        return HomeRoutes.root.concate([WalletRoutes.root]);
+        return HomeRoutes.start.concate([WalletRoutes.root]);
       case BottomNavBarType.profile:
-        return ProfileRoutes.root.completePath;
+        return ProfileRoutes.root;
     }
   }
 }

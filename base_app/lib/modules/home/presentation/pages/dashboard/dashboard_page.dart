@@ -1,10 +1,12 @@
 import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:wallet/wallet.dart';
 
 import '../../controllers/dashboard_controller.dart';
 import '../../controllers/notifications_controller.dart';
 import 'widgets/header_user.dart';
+import 'widgets/list_activity.dart';
 import 'widgets/list_banners.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -17,14 +19,14 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   final controller = DM.i.get<DashboardController>();
   final notificationsController = DM.i.get<NotificationsController>();
-  // final transactionsController = DM.i.get<TransactionsController>();
+  final transactionsController = DM.i.get<FetchTransactionsController>();
 
   @override
   void initState() {
     super.initState();
     controller.fetchCampaignMall();
     notificationsController.fetchNotifications();
-    // transactionsController.fetchTransactions();
+    transactionsController.fetchTransactions();
   }
 
   @override
@@ -393,7 +395,7 @@ class _DashboardPageState extends State<DashboardPage> {
                         ],
                       ),
                       Spacing.md.vertical,
-                      // ListActivity(controller: transactionsController),
+                      ListActivity(controller: transactionsController),
                     ],
                   ),
                 ],
