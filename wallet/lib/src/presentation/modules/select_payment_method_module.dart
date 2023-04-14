@@ -1,9 +1,9 @@
 import 'package:core/core.dart';
 
 import '../../infra/usecases/credit_card/credit_card_usecase.dart';
-import '../controllers/credit_card/select_payment_method_controller.dart';
-import '../controllers/fetch_credit_cards_controller.dart';
-import '../controllers/remove_credit_card_controller.dart';
+import '../controllers/credit_card/fetch_credit_cards_controller.dart';
+import '../controllers/credit_card/remove_credit_card_controller.dart';
+import '../controllers/select_payment_method/select_payment_method_controller.dart';
 import '../pages/select_payment_method/select_payment_method_page.dart';
 import 'add_credit_card_module.dart';
 

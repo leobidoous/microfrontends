@@ -3,8 +3,8 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../../../domain/entities/credit_card_entity.dart';
-import '../../controllers/fetch_credit_cards_controller.dart';
-import '../../controllers/remove_credit_card_controller.dart';
+import '../../controllers/credit_card/fetch_credit_cards_controller.dart';
+import '../../controllers/credit_card/remove_credit_card_controller.dart';
 import '../../wallet_routes.dart';
 import 'widgets/payment_method_item.dart';
 

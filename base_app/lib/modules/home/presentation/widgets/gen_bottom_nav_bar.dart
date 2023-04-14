@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/enums/bottom_nav_bar_type_enum.dart';
 import '../controllers/home_controller.dart';
-import '../routes/dashboard_routes.dart';
 
 class GenBottomNavBar extends StatefulWidget {
   final BottomNavBarType selected;
@@ -50,20 +49,7 @@ class _GenBottomNavBarState extends State<GenBottomNavBar> {
     return InkWell(
       onTap: () {
         if (!isSelected) {
-          switch (item) {
-            case BottomNavBarType.home:
-              Nav.to.popUntil(
-                ModalRoute.withName(DashboardRoutes.root.completePath),
-              );
-              return;
-            default:
-              if (controller.state != BottomNavBarType.home) {
-                Nav.to.pushReplacementNamed(item.route);
-              } else {
-                Nav.to.pushNamed(item.route);
-              }
-              break;
-          }
+          Nav.to.navigate(item.route);
           controller.onChangeMenuItem(item);
         }
       },

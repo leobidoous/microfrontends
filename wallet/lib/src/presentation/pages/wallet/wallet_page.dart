@@ -3,11 +3,11 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../../../domain/entities/transaction_entity.dart';
-import '../../controllers/change_favorite_card_controller.dart';
-import '../../controllers/fetch_credit_cards_controller.dart';
-import '../../controllers/remove_credit_card_controller.dart';
-import '../../controllers/transactions_controller.dart';
-import '../add_credit_card/widgets/credit_cards_list.dart';
+import '../../controllers/credit_card/change_favorite_card_controller.dart';
+import '../../controllers/credit_card/fetch_credit_cards_controller.dart';
+import '../../controllers/credit_card/remove_credit_card_controller.dart';
+import '../../controllers/wallet/transactions_controller.dart';
+import 'widgets/credit_cards_list.dart';
 import 'widgets/transaction_list_item.dart';
 
 class WalletPage extends StatefulWidget {

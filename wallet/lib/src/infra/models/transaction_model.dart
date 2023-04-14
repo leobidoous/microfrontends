@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:core/core.dart';
-import 'package:equatable/equatable.dart';
 
 import '../../domain/entities/transaction_entity.dart';
 import '../../domain/enums/transaction_method.dart';

@@ -1,4 +1,4 @@
-import 'package:base_auth/base_auth.dart';
+import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:parking/parking.dart';
 import 'package:wallet/wallet.dart';

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../domain/entities/credit_card_entity.dart';
 import '../../../../domain/enums/credit_card_type.dart';
-import '../../../controllers/remove_credit_card_controller.dart';
-import '../../add_credit_card/widgets/delete_credit_card.dart';
+import '../../../controllers/credit_card/remove_credit_card_controller.dart';
+import '../../widgets/delete_credit_card.dart';
 
 class PaymentMethodItem extends StatelessWidget {
   const PaymentMethodItem({

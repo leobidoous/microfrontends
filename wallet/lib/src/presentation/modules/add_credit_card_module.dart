@@ -3,8 +3,8 @@ import 'package:core/core.dart';
 import '../../data/datasources/credit_card/credit_card_datasource.dart';
 import '../../infra/repositories/credit_card/credit_card_repository.dart';
 import '../../infra/usecases/credit_card/credit_card_usecase.dart';
-import '../controllers/credit_card/create_credit_card_controller.dart';
-import '../controllers/credit_card/credit_card_address_controller.dart';
+import '../controllers/add_credit_card/add_credit_card_address_controller.dart';
+import '../controllers/add_credit_card/add_credit_card_controller.dart';
 import '../pages/add_credit_card/add_credit_card_page.dart';
 
 class AddCreditCardModule extends Module {
@@ -31,14 +31,14 @@ class AddCreditCardModule extends Module {
   @override
   final List<Bind> binds = [
     /// Controllers
-    Bind.factory<CreateCreditCardController>(
-      (i) => CreateCreditCardController(
+    Bind.factory<AddCreditCardController>(
+      (i) => AddCreditCardController(
         session: i.get<SessionEntity>(),
         usecase: i.get<CreditCardUsecase>(),
       ),
     ),
-    Bind.factory<CreditCardAddressController>(
-      (i) => CreditCardAddressController(
+    Bind.factory<AddCreditCardAddressController>(
+      (i) => AddCreditCardAddressController(
         usecase: i.get<SearchPostalCodeUsecase>(),
       ),
     ),

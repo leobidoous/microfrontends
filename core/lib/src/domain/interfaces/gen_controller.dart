@@ -101,9 +101,4 @@ abstract class GenController<E, S> extends ValueNotifier<S>
     }
     super.dispose();
   }
-
-  @override
-  FutureOr onDispose() {
-    dispose();
-  }
 }

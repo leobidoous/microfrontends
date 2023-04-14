@@ -63,7 +63,6 @@ export 'package:core/src/domain/services/i_graphql_service.dart';
 export 'package:core/src/domain/services/i_local_notifications_service.dart';
 export 'package:core/src/domain/usecases/i_local_user_usecase.dart';
 export 'package:core/src/domain/usecases/i_search_postal_code_usecase.dart';
-export 'package:core/src/domain/usecases/i_search_postal_code_usecase.dart';
 export 'package:core/src/infra/datasources/i_local_user_datasource.dart';
 export 'package:core/src/infra/drivers/firebase/i_firebase_auth_driver.dart';
 export 'package:core/src/infra/drivers/firebase/i_firebase_driver.dart';

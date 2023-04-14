@@ -39,11 +39,7 @@ class ModularNavigationDriver implements INavigationDriver {
 
   @override
   void pop<T extends Object>({T? response}) {
-    if (response != null) {
-      Modular.to.pop(response);
-    } else {
-      Modular.to.pop();
-    }
+    Modular.to.pop(response);
   }
 
   @override
@@ -88,7 +84,7 @@ class ModularNavigationDriver implements INavigationDriver {
   }
 
   @override
-  Future<void> navigate(Object path, {dynamic arguments}) async {
+  void navigate(Object path, {dynamic arguments}) {
     return Modular.to.navigate(path.toString(), arguments: arguments);
   }
 

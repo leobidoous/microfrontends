@@ -1,7 +1,6 @@
 import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../../../domain/entities/transaction_entity.dart';
 

@@ -2,7 +2,7 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../../controllers/credit_card/create_credit_card_controller.dart';
+import '../../controllers/add_credit_card/add_credit_card_controller.dart';
 import 'widgets/credit_card_address_form.dart';
 import 'widgets/credit_card_data_form.dart';
 
@@ -14,7 +14,7 @@ class AddCreditCardPage extends StatefulWidget {
 }
 
 class _AddCreditCardPageState extends State<AddCreditCardPage> {
-  final creditCardController = DM.i.get<CreateCreditCardController>();
+  final creditCardController = DM.i.get<AddCreditCardController>();
   final pageController = PageController();
   int currentPage = 0;
 

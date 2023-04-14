@@ -7,7 +7,7 @@ import 'package:flutter_credit_card/credit_card_widget.dart';
 
 import '../../../../domain/entities/credit_card_entity.dart';
 import '../../../../domain/enums/credit_card_type.dart';
-import '../../../controllers/credit_card/create_credit_card_controller.dart';
+import '../../../controllers/add_credit_card/add_credit_card_controller.dart';
 
 class CreditCardDataForm extends StatefulWidget {
   final VoidCallback onContinue;
@@ -24,7 +24,7 @@ class CreditCardDataForm extends StatefulWidget {
 }
 
 class _CreditCardDataFormState extends State<CreditCardDataForm> {
-  final creditCardController = DM.i.get<CreateCreditCardController>();
+  final creditCardController = DM.i.get<AddCreditCardController>();
   final formKey = GlobalKey<FormState>();
   final cardNumberController = TextEditingController();
   final dateController = TextEditingController();

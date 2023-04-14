@@ -3,7 +3,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../domain/entities/billing_address_entity.dart';
-import '../../../controllers/credit_card/credit_card_address_controller.dart';
+import '../../../controllers/add_credit_card/add_credit_card_address_controller.dart';
 
 class CreditCardAddressForm extends StatefulWidget {
   final bool isLoading;
@@ -22,7 +22,7 @@ class CreditCardAddressForm extends StatefulWidget {
 class _CreditCardAddressFormState extends State<CreditCardAddressForm> {
   late final BillingAddressEntity address;
   final formKey = GlobalKey<FormState>();
-  final controller = DM.i.get<CreditCardAddressController>();
+  final controller = DM.i.get<AddCreditCardAddressController>();
   final postalCodeController = TextEditingController();
   final postalCodeFocus = FocusNode();
   final streetController = TextEditingController();

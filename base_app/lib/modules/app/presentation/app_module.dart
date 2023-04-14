@@ -1,4 +1,4 @@
-import 'package:base_auth/base_auth.dart';
+import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 
 import '../../home/presentation/home_router_guard.dart';
@@ -88,7 +88,7 @@ class AppModule extends Module {
       ),
     ),
     Bind.factory(
-      (i) => SearchPostalCodeUsecase( 
+      (i) => SearchPostalCodeUsecase(
         repository: i.get<SearchPostalCodeRepository>(),
       ),
     ),

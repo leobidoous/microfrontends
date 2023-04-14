@@ -16,14 +16,18 @@ dependencies:
 
   core:
     path: ../core
-  base_auth:
-    path: ../base_auth
   base_style_sheet:
     path: ../base_style_sheet
+  auth:
+    path: ../auth
   wallet:
     path: ../wallet
   parking:
     path: ../parking
+  shop:
+    path: ../shop
+  pay:
+    path: ../pay
 
 dev_dependencies:
   flutter_test:
