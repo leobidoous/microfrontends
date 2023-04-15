@@ -159,7 +159,6 @@ class _WalletPageState extends State<WalletPage> {
           padding: EdgeInsets.all(const Spacing(2).value),
           asset: 'assets/images/wallet/transactions.svg',
           message: 'Você ainda não \nrealizou transações',
-          onPressed: () => onPressed(),
         );
       },
       itemBuilder: (_, item, index) {

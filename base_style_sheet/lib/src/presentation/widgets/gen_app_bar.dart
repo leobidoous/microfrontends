@@ -75,7 +75,7 @@ class _GenAppBarState extends State<GenAppBar> {
                             onTap: widget.onBackTap ?? Nav.to.pop,
                             borderRadius: AppThemeBase.borderRadiusSM,
                             child: Padding(
-                              padding: EdgeInsets.all(const Spacing(2).value),
+                              padding: EdgeInsets.all(const Spacing(3).value),
                               child: (widget.leadingIcon != null)
                                   ? widget.leadingIcon
                                   : Icon(

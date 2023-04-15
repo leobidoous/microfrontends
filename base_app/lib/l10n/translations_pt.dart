@@ -1,7 +1,8 @@
 import 'package:intl/intl.dart' as intl;
 
 import 'translations.dart';
-
+// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: no_leading_underscores_for_local_identifiers
 /// The translations for Portuguese (`pt`).
 class TrPt extends Tr {
   TrPt([String locale = 'pt']) : super(locale);
@@ -132,7 +133,7 @@ class TrPt extends Tr {
       one: '1 cupom válido',
       zero: '$countString cupons válidos',
     );
-    return '$_temp0';
+    return _temp0;
   }
 
   @override

@@ -26,7 +26,7 @@ class ListActivity extends StatelessWidget {
         } else if (state.isEmpty) {
           return const ListEmpty(
             asset: 'assets/images/wallet/transactions.svg',
-            message: 'Você ainda não possui atividades',
+            message: 'Você ainda não \npossui atividades',
           );
         }
         return ListView.separated(

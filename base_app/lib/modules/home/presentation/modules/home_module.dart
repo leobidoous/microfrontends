@@ -1,6 +1,7 @@
 import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:parking/parking.dart';
+import 'package:pay/pay.dart';
 import 'package:wallet/wallet.dart';
 
 import '../../../app/presentation/controllers/app_controller.dart';
@@ -47,6 +48,7 @@ class HomeModule extends Module {
         ModuleRoute(ProfileRoutes.root.path, module: ProfileModule()),
       ],
     ),
+    ModuleRoute(PayRoutes.root.path, module: PayModule()),
     ChildRoute(
       SharedRoutes.fallback.path,
       child: (_, args) => const FallbackPage(),

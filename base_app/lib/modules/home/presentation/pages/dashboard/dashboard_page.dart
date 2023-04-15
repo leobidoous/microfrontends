@@ -1,10 +1,12 @@
 import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:pay/pay.dart';
 import 'package:wallet/wallet.dart';
 
 import '../../controllers/dashboard_controller.dart';
 import '../../controllers/notifications_controller.dart';
+import '../../routes/home_routes.dart';
 import 'widgets/header_user.dart';
 import 'widgets/list_activity.dart';
 import 'widgets/list_banners.dart';
@@ -36,15 +38,15 @@ class _DashboardPageState extends State<DashboardPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // Padding(
-          //   padding: const EdgeInsets.all(16),
-          //   child: GenButton.text(
-          //     text: 'Recarga',
-          //     onPressed: () {
-          //       Nav.to.pushNamed(PaymentRoutes.recharge);
-          //     },
-          //   ),
-          // ),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: GenButton.text(
+              text: 'Recarga',
+              onPressed: () => Nav.to.pushNamed(
+                HomeRoutes.root.concate([PayRoutes.phoneRecharge]),
+              ),
+            ),
+          ),
           Expanded(
             child: GenScrollContent(
               padding: EdgeInsets.all(const Spacing(2).value),

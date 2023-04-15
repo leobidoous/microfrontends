@@ -1,6 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:parking/parking.dart';
 
 import '../../../../domain/entities/campaign_mall_entity.dart';
 
@@ -15,11 +15,13 @@ class ItemCarousel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      // onTap: campaign.typeCampaign == 'GETMO'
-      //     ? () => Nav.to.pushNamed(Routes.EVENT_CAMPAIGN, arguments: campaign)
-      //     : campaign.typeCampaign == 'Parking-Free'
-      //         ? () => Nav.to.pushNamed(ParkingRoutes.root.completePath)
-      //         : () {},
+      onTap: campaign.typeCampaign == 'GETMO'
+          ? () {
+              // Nav.to.pushNamed(Routes.EVENT_CAMPAIGN, arguments: campaign)
+            }
+          : campaign.typeCampaign == 'Parking-Free'
+              ? () => Nav.to.pushNamed(ParkingRoutes.root)
+              : () {},
       child: CachedNetworkImage(
         imageUrl: campaign.bannerUrl.url,
         imageBuilder: (context, imageProvider) => Container(
