@@ -15,6 +15,8 @@ dependencies:
     path: ../base_style_sheet
   core:
     path: ../core
+  wallet:
+    path: ../wallet
 
 dev_dependencies:
   flutter_test:

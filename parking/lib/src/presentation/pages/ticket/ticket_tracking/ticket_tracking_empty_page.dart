@@ -1,0 +1,261 @@
+import 'package:base_style_sheet/base_style_sheet.dart';
+import 'package:core/core.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+
+import '../../../../domain/entities/dashboard/ticket_entity.dart';
+import '../../../../domain/entities/dashboard/tickets_history_entity.dart';
+import '../../../controllers/parking/parking_controller.dart';
+import '../../../controllers/ticket/ticket_history_controller.dart';
+import '../../../parking_routes.dart';
+import '../../ticket/ticket_submit_page.dart';
+import 'widgets/info_ticket_history.dart';
+
+class TicketTrackingEmptyPage extends StatefulWidget {
+  const TicketTrackingEmptyPage({
+    super.key,
+  });
+
+  @override
+  State<TicketTrackingEmptyPage> createState() =>
+      _TicketTrackingEmptyPageState();
+}
+
+class _TicketTrackingEmptyPageState extends State<TicketTrackingEmptyPage> {
+  final controller = DM.i.get<ParkingController>();
+  final fetchTicketHistoryController = DM.i.get<TicketHistoryController>();
+  final authController = DM.i.get<GlobalAuthController>();
+
+  final shopping = DM.i.get<ShoppingModel>();
+  bool viewHistory = false;
+
+  @override
+  void initState() {
+    super.initState();
+    controller.ticketController.fecthInfoTicket(
+      idShopping: shopping.id.toString(),
+    );
+    fetchTicketHistoryController.fetchTicketHistory(page: '0', perPage: '100');
+  }
+
+  @override
+  void dispose() {
+    fetchTicketHistoryController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: ValueListenableBuilder<TicketEntity>(
+        valueListenable: controller.ticketController,
+        builder: (context, state, child) {
+          if (controller.isLoading) {
+            return const Center(child: GenLoading());
+          } else if (controller.hasError) {
+            return Center(
+              child: RequestError(message: controller.error.toString()),
+            );
+          }
+          return GenScrollContent(
+            child: SizedBox(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: const Spacing(4).value),
+                    child: Center(
+                      child: Text(
+                        context.tr.notFoundTicket,
+                        style: context.textTheme.headlineSmall!.copyWith(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(const Spacing(2).value),
+                    child: SvgPicture.asset(
+                      'assets/images/ticket_empty.svg',
+                      height: 200,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: const Spacing(2).value,
+                      horizontal: const Spacing(2).value,
+                    ),
+                    child: GenButton.text(
+                      onPressed: () {
+                        Nav.to.pushNamed(
+                          SharedRoutes.scanBardCode,
+                          arguments: (code) {
+                            Nav.to.pushReplacementNamed(
+                              TicketRoutes.root,
+                              arguments: TicketSubmitPageArgs(
+                                ticketOrPlate: code,
+                                onPop: () {
+                                  Nav.to.popUntil(
+                                    ModalRoute.withName(
+                                      ParkingRoutes.root.completePath,
+                                    ),
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                        );
+                      },
+                      text: context.tr.scanTicketButton,
+                    ),
+                  ),
+                  ValueListenableBuilder<TicketsHistoryEntity>(
+                    valueListenable: fetchTicketHistoryController,
+                    builder: (context, state, child) {
+                      if (fetchTicketHistoryController.isLoading) {
+                        return const Center(child: GenLoading());
+                      } else if (fetchTicketHistoryController.hasError) {
+                        return Center(
+                          child: RequestError(
+                            message:
+                                fetchTicketHistoryController.error.toString(),
+                          ),
+                        );
+                      }
+                      if (fetchTicketHistoryController
+                                  .state.itemsTicketHistory !=
+                              null &&
+                          fetchTicketHistoryController
+                              .state.itemsTicketHistory!.isNotEmpty) {
+                        return Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Visibility(
+                              visible: fetchTicketHistoryController
+                                      .state.itemsTicketHistory!.isNotEmpty
+                                  ? true
+                                  : false,
+                              child: Padding(
+                                padding: EdgeInsets.all(const Spacing(2).value),
+                                child: TextButton(
+                                  onPressed: showHistory,
+                                  child: Text(
+                                    context.tr.history,
+                                    style:
+                                        context.textTheme.bodySmall!.copyWith(
+                                      color: context.colorScheme.primary,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Visibility(
+                              visible: viewHistory,
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: const Spacing(3).value,
+                                    ),
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                top: const Spacing(2.5).value,
+                                              ),
+                                              child: Text(
+                                                context.tr.historyValue,
+                                                softWrap: true,
+                                                style: context
+                                                    .textTheme.bodySmall
+                                                    ?.copyWith(
+                                                  color: AppColorsBase.grey6,
+                                                ),
+                                              ),
+                                            ),
+                                            Text(
+                                              DateFormat.toDateTime(
+                                                DateTime.now(),
+                                              ),
+                                              style: context
+                                                  .textTheme.titleMedium
+                                                  ?.copyWith(
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                top: const Spacing(2.5).value,
+                                              ),
+                                              child: Text(
+                                                context.tr.amountSaved,
+                                                softWrap: true,
+                                                style: context
+                                                    .textTheme.bodySmall
+                                                    ?.copyWith(
+                                                  color: AppColorsBase.grey6,
+                                                ),
+                                              ),
+                                            ),
+                                            Text(
+                                              'R\$ ${NumberFormat.toCurrency(
+                                                0,
+                                                symbol: '',
+                                              )}',
+                                              style: context
+                                                  .textTheme.titleMedium
+                                                  ?.copyWith(
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  TicketHistoryList(
+                                    controller: fetchTicketHistoryController,
+                                    authController: authController,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        );
+                      }
+                      return const SizedBox();
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  void showHistory() {
+    setState(() {
+      viewHistory = !viewHistory;
+    });
+  }
+}
