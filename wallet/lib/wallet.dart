@@ -1,7 +1,13 @@
 library wallet;
 
+export 'package:wallet/src/data/datasources/credit_card/credit_card_datasource.dart';
+export 'package:wallet/src/domain/entities/acquirer_payment_entity.dart';
 export 'package:wallet/src/domain/entities/credit_card_entity.dart';
 export 'package:wallet/src/domain/entities/transaction_entity.dart';
+export 'package:wallet/src/domain/usecases/credit_card/i_credit_card_usecase.dart';
+export 'package:wallet/src/infra/models/acquirer_payment_model.dart';
+export 'package:wallet/src/infra/models/credit_card_model.dart';
+export 'package:wallet/src/infra/models/transaction_model.dart';
 export 'package:wallet/src/presentation/controllers/credit_card/fetch_credit_cards_controller.dart';
 export 'package:wallet/src/presentation/controllers/credit_card/fetch_favorite_card_controller.dart';
 export 'package:wallet/src/presentation/controllers/select_payment_method/select_payment_method_controller.dart';

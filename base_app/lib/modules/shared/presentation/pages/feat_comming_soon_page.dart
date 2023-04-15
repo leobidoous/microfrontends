@@ -2,14 +2,16 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-
 class FeatCommingSoonPage extends StatelessWidget {
   const FeatCommingSoonPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GenAppBar(title: 'Em breve'),
+      appBar: const GenAppBar(
+        title: 'Em breve',
+        leadingIcon: Icon(Icons.close_rounded),
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,

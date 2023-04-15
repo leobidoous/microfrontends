@@ -28,6 +28,9 @@ class HomeModule extends Module {
       ),
     ),
 
+    /// Shopping
+    Bind.factory<ShoppingEntity>((i) => ShoppingModel.fromMap({})),
+
     /// Controllers
     Bind.lazySingleton<HomeController>(
       (i) => HomeController(sessionController: i.get<SessionController>()),
@@ -45,11 +48,15 @@ class HomeModule extends Module {
       child: (_, args) => const HomePage(),
       children: [
         ModuleRoute(DashboardRoutes.root.path, module: DashboardModule()),
-        ModuleRoute(WalletRoutes.root.path, module: WalletModule()),
-        ModuleRoute(ParkingRoutes.root.path, module: ParkingModule()),
+        ModuleRoute(
+          WalletRoutes.root.path,
+          transition: TransitionType.fadeIn,
+          module: WalletModule(),
+        ),
         ModuleRoute(ProfileRoutes.root.path, module: ProfileModule()),
       ],
     ),
+    ModuleRoute(ParkingRoutes.root.path, module: ParkingModule()),
     ModuleRoute(PayRoutes.root.path, module: PayModule()),
     ChildRoute(
       SharedRoutes.fallback.path,

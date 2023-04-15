@@ -1,0 +1,7 @@
+{
+    "@@locale": "pt",
+    "baseStyleSheet": "Design System",
+    "@baseStyleSheet": {
+        "description": "Labels de design system"
+    }
+}

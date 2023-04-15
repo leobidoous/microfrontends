@@ -1,0 +1,7 @@
+{
+    "@@locale": "pt",
+    "shop": "Shopping",
+    "@shop": {
+        "description": "Labels de shopping"
+    }
+}
