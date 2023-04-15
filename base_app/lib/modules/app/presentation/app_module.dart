@@ -7,7 +7,9 @@ import '../../home/presentation/routes/dashboard_routes.dart';
 import '../../home/presentation/routes/home_routes.dart';
 import '../../shared/presentation/controllers/splash_controller.dart';
 import '../../shared/presentation/pages/fallback_page.dart';
+import '../../shared/presentation/pages/feat_comming_soon_page.dart';
 import '../../shared/presentation/pages/splash_page.dart';
+import '../../shared/presentation/shared_routes.dart';
 import 'app_configuration.dart';
 import 'app_routes.dart';
 import 'controllers/app_controller.dart';
@@ -156,6 +158,11 @@ class AppModule extends Module {
         redirectTo: DashboardRoutes.root,
       ),
       guards: [AuthRouterGuard(path: DashboardRoutes.root)],
+    ),
+    ChildRoute(
+      SharedRoutes.comming.completePath,
+      transition: TransitionType.downToUp,
+      child: (_, args) => const FeatCommingSoonPage(),
     ),
     WildcardRoute(child: (_, args) => const FallbackPage()),
   ];

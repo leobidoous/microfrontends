@@ -87,7 +87,7 @@ class _CarouselBannerState extends State<CarouselBanner> {
             break;
           default:
             Nav.to.pushNamed(
-              HomeRoutes.start.concate([ParkingRoutes.root]),
+              HomeRoutes.root.concate([ParkingRoutes.root]),
               forRoot: true,
             );
             break;
