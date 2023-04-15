@@ -42,7 +42,6 @@ dependencies:
   flutter_inappwebview: ^5.4.4+3
   mask_text_input_formatter: ^2.4.0
   currency_text_input_formatter: ^2.1.8
-  
 
   #===== Firebase depedencies ===================
   firebase_auth: ^4.4.0
@@ -79,10 +78,6 @@ dependencies:
   flutter_local_notifications: ^13.0.0
   syncfusion_flutter_pdfviewer: ^20.4.54
   #==============================================
-
-  banner_carousel:
-    git:
-      url: https://github.com/caruzojr/banner_carousel.git
 
   zendesk_plugin:
     git:

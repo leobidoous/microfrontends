@@ -37,7 +37,7 @@ class DashboardModule extends Module {
     /// Dashboard
     Bind.lazySingleton<DashboardDatasource>(
       (i) => DashboardDatasource(
-        baseUrl: i.get<EnvironmentEntity>().baseUrlParking,
+        baseUrl: i.get<EnvironmentEntity>().endpointCampaign,
         client: i.get<DioClientDriver>(),
       ),
     ),

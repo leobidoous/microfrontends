@@ -130,7 +130,7 @@ class _CreditCardsListState extends State<CreditCardsList> {
       onTap: () {
         if (widget.emailVerified) {
           Nav.to
-              .pushNamed(WalletRoutes.addCreditCard.relativePath)
+              .pushNamed(WalletRoutes.addCreditCard.relativePath, forRoot: true)
               .then((value) {
             if (value is CreditCardEntity) {
               widget.cardController.addNewCreditCard(value);

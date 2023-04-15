@@ -1,7 +1,7 @@
-import 'package:banner_carousel/banner_carousel.dart';
 import 'package:core/core.dart';
 
 import '../../domain/entities/campaign_mall_entity.dart';
+import '../../domain/entities/mall_file_entity.dart';
 import '../../domain/usecases/i_dashboard_usecase.dart';
 
 class DashboardController
@@ -13,51 +13,58 @@ class DashboardController
 
   IDashboardUsecase dashboardUsecase;
 
-  List<BannerModel> listBanners = <BannerModel>[];
+  Map<String, dynamic> campaignClosest = {};
   bool isCouponEnabled = false;
   bool isLinkC = true;
-  Map<String, dynamic> campaignClosestMallByLocation = {};
-  bool get getIsLinkC =>
-      campaignClosestMallByLocation['closestMallId'] != 12 &&
-      campaignClosestMallByLocation['closestMallId'] != 13;
+
+  bool get _isLinkC =>
+      campaignClosest['closestMallId'] != 12 &&
+      campaignClosest['closestMallId'] != 13;
 
   Future<void> fetchCampaignMall() async {
-    listBanners
-      ..clear()
-      ..add(
-        BannerModel(
-          id: '1',
-          imagePath:
-              'https://firebasestorage.googleapis.com/v0/b/neru-teste.appspot.com/o/events%2Fgetmo%2Fbanner_default_getmo.jpg?alt=media&token=84dd11fa-22b9-4aab-99c3-68ecbe412764',
-        ),
-      );
+    campaignClosest = {
+      'closesMallAddress': 'Industrial da Serra Ouro. Alexânia - GO',
+      'closesMallName': 'Outlet Premium Brasília',
+      'closestMallDistance': 112486.56429895831,
+      'closestMallId': 8,
+    };
+    const motherCampaign = CampaignMallEntity(
+      id: 1,
+      title: '',
+      description: '',
+      dateBegin: '',
+      dateEnd: '',
+      bannerUrl: MallFileEntity(
+        id: 1,
+        url:
+            '''https://firebasestorage.googleapis.com/v0/b/neru-teste.appspot.com/o/events%2Fgetmo%2Fbanner_default_getmo.jpg?alt=media&token=84dd11fa-22b9-4aab-99c3-68ecbe412764''',
+        path: '',
+      ),
+      shoppingId: 1,
+      typeCampaign: '',
+      rules: '',
+    );
 
-    campaignClosestMallByLocation = {};
-
-    if (campaignClosestMallByLocation.isNotEmpty) {
-      if (getIsLinkC) {
+    setLoading(true);
+    if (campaignClosest.isNotEmpty) {
+      if (_isLinkC) {
         isCouponEnabled = true;
-        await execute(() {
-          return dashboardUsecase
-              .fetchCampaignMall(
-                typeCampaign: 'Parking-Free',
-                idMall: campaignClosestMallByLocation['closestMallId'],
-              )
-              .then(
-                (value) => value.fold((l) => Left(l), (r) {
-                  listBanners.add(
-                    BannerModel(
-                      id: '2',
-                      imagePath: r[0].bannerUrl.url,
-                    ),
-                  );
-                  return Right(r);
-                }),
-              );
+        final response = await dashboardUsecase.fetchCampaignMall(
+          typeCampaign: 'Parking-Free',
+          idMall: campaignClosest['closestMallId'],
+        );
+        return response.fold((l) {
+          update([motherCampaign]);
+        }, (r) {
+          update([motherCampaign, ...r]);
         });
       } else {
         isLinkC = false;
+        setLoading(false);
       }
+    } else {
+      setLoading(false);
     }
+    update([motherCampaign]);
   }
 }

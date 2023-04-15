@@ -16,10 +16,6 @@ class ModularNavigationDriver implements INavigationDriver {
 
   static ModularNavigationDriver? _instance;
 
-  @override
-  BuildContext? get context {
-    return Modular.routerDelegate.navigatorKey.currentContext;
-  }
 
   ///
   /// Static instance for DM
@@ -38,7 +34,18 @@ class ModularNavigationDriver implements INavigationDriver {
   }
 
   @override
-  void pop<T extends Object>({T? response}) {
+  BuildContext? get context {
+    return Modular.routerDelegate.navigatorKey.currentContext;
+  }
+
+  @override
+  void pop<T extends Object>({
+    T? response,
+    BuildContext? context,
+  }) {
+    if (context != null) {
+      return Navigator.of(context).pop(response);
+    }
     Modular.to.pop(response);
   }
 

@@ -24,7 +24,7 @@ class DashboardDatasource implements IDashboardDatasource {
     );
 
     return response.fold(
-      (l) => Left(Exception(l)),
+      (l) => Left(Exception(l.statusMessage)),
       (r) {
         try {
           final campaignItens = (r.data['rows'] as List)

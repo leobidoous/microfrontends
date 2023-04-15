@@ -41,7 +41,10 @@ class _AddCreditCardPageState extends State<AddCreditCardPage> {
         });
         return;
       }
-      Nav.to.pop(response: creditCardController.state);
+      Nav.to.pop(
+        context: context,
+        response: creditCardController.state,
+      );
       await GenDialog.show(
         context,
         GenAlert.cardRegisterSuccess(context),
@@ -55,7 +58,6 @@ class _AddCreditCardPageState extends State<AddCreditCardPage> {
     return Scaffold(
       appBar: GenAppBar(
         title: 'Cadastro de Cartão',
-        onBackTap: Nav.to.pop,
         actions: [
           AppBarButton(
             child: Icon(

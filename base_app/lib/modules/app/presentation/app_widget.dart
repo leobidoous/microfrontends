@@ -18,7 +18,7 @@ class _AppWidgetState extends State<AppWidget> {
   @override
   void initState() {
     super.initState();
-
+    Modular.setNavigatorKey(GlobalKey<NavigatorState>());
     /// Set observers on application
     Modular.setObservers(
       [

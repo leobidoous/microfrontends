@@ -53,7 +53,10 @@ abstract class INavigationDriver {
   ///
   /// Pop the current route out of the stack
   ///
-  void pop<T extends Object>({T? response});
+  void pop<T extends Object>({
+    T? response,
+    BuildContext? context,
+  });
 
   ///
   /// Calls pop repeatedly on the navigator until the predicate returns true.

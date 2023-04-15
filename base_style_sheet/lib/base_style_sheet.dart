@@ -18,6 +18,7 @@ export 'package:base_style_sheet/src/presentation/widgets/gen_loading.dart';
 export 'package:base_style_sheet/src/presentation/widgets/gen_radio_tile.dart';
 export 'package:base_style_sheet/src/presentation/widgets/gen_refresh_indicator.dart';
 export 'package:base_style_sheet/src/presentation/widgets/gen_scroll_content.dart';
+export 'package:base_style_sheet/src/presentation/widgets/image_view/gen_image.dart';
 export 'package:base_style_sheet/src/presentation/widgets/inputs/gen_input_field.dart';
 export 'package:base_style_sheet/src/presentation/widgets/inputs/input_label.dart';
 export 'package:base_style_sheet/src/presentation/widgets/paged_list/paged_list_controller.dart';
