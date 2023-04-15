@@ -3,8 +3,8 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../l10n/translations.dart';
 import '../../routes/ticket_window_routes.dart';
-
 
 class TicketWindowPage extends StatefulWidget {
   const TicketWindowPage({super.key});
@@ -35,7 +35,7 @@ class _TicketWindowPageState extends State<TicketWindowPage> {
                     displayFullTextOnTap: true,
                     animatedTexts: [
                       TypewriterAnimatedText(
-                        context.tr.ticketWindowHelperText(
+                        Tr.of(context).ticketWindowHelperText(
                           session.customer.name.capitalize,
                         ),
                         textStyle: context.textTheme.headlineMedium,
@@ -50,12 +50,12 @@ class _TicketWindowPageState extends State<TicketWindowPage> {
                 onPressed: () {
                   Nav.to.pushNamed(TicketWindowRoutes.takePhoto);
                 },
-                text: context.tr.takePicture,
+                text: Tr.of(context).takePicture,
               ),
               Spacing.sm.vertical,
               GenButton.text(
                 onPressed: Nav.to.pop,
-                text: context.tr.close,
+                text: Tr.of(context).close,
                 type: ButtonType.background,
               ),
             ],

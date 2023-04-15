@@ -1,6 +1,8 @@
+import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../l10n/translations.dart';
 
 class TicketShoppingInfo extends StatelessWidget {
   const TicketShoppingInfo({super.key, required this.shopping});
@@ -13,7 +15,7 @@ class TicketShoppingInfo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
-          context.tr.establishment,
+          Tr.of(context).establishment,
           style: context.textTheme.bodyMedium?.copyWith(
             fontWeight: context.textTheme.fontWeightMedium,
           ),

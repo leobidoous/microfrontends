@@ -1,14 +1,15 @@
 import 'package:base_style_sheet/base_style_sheet.dart';
-import 'package:core/core.dart';
+import 'package:core/core.dart' hide UnknowError, ServerError;
 import 'package:flutter/material.dart';
 
+import '../../../../l10n/translations.dart';
 import '../../../domain/entities/dashboard/ticket_entity.dart';
 import '../../../domain/entities/ticket/ticket_payment_request_entity.dart';
 import '../../../domain/failures/dashboard/dashboard_failure.dart';
 import '../../controllers/ticket/ticket_payment_controller.dart';
 import '../../controllers/ticket/ticket_payment_method_controller.dart';
 import '../../controllers/ticket/ticket_submit_controller.dart';
-import '../../parking_routes.dart';
+import '../../routes/parking_routes.dart';
 import '../../routes/ticket_routes.dart';
 import 'widgets/ticket_card_details.dart';
 import 'widgets/ticket_header.dart';
@@ -32,7 +33,7 @@ class TicketSubmitPage extends StatefulWidget {
 class _TicketSubmitPageState extends State<TicketSubmitPage> {
   final paymentMethodController = DM.i.get<TicketPaymentMethodController>();
   final paymentController = DM.i.get<TicketPaymentController>();
-  final authController = DM.i.get<GlobalAuthController>();
+  final session = DM.i.get<SessionEntity>();
   final controller = DM.i.get<TicketSubmitController>();
   final shopping = DM.i.get<ShoppingModel>();
 
@@ -73,7 +74,7 @@ class _TicketSubmitPageState extends State<TicketSubmitPage> {
   }
 
   Future<void> _onValidateOrPayTicket() async {
-    if (!authController.emailVerified.value) {
+    if (!session.customer.emailVerifiedAt.isNotEmpty) {
       await GenDialog.show(
         context,
         GenAlert.emailVerified(context),
@@ -86,7 +87,7 @@ class _TicketSubmitPageState extends State<TicketSubmitPage> {
         .onPaymentTicket(
       paymentRequest: TicketPaymentRequestEntity(
         idMall: shopping.id.toString(),
-        customer: authController.customer.value.id,
+        customer: session.customer.id,
         sessionId: DateTime.now().toString(),
         transaction: controller.state.transacao,
         last4: controller.state.plate == null
@@ -160,7 +161,7 @@ class _TicketSubmitPageState extends State<TicketSubmitPage> {
       child: Scaffold(
         appBar: GenAppBar(
           backgroundColor: context.colorScheme.background,
-          title: context.tr.ticketTitle,
+          title: Tr.of(context).ticketTitle,
           leadingIcon: const Icon(Icons.close),
           onBackTap: widget.args.onPop,
           actions: [
@@ -221,7 +222,7 @@ class _TicketSubmitPageState extends State<TicketSubmitPage> {
                     TicketPaymentMethod(
                       paymentMethodController: paymentMethodController,
                       ticketSubmitController: controller,
-                      emailVerified: authController.emailVerified.value,
+                      emailVerified: session.customer.emailVerifiedAt.isNotEmpty,
                     ),
                   ]
                 ],
@@ -245,8 +246,8 @@ class _TicketSubmitPageState extends State<TicketSubmitPage> {
             }
             return GenButton.text(
               text: (controller.state.discount.percentOfDiscount != 1)
-                  ? context.tr.payTextButton
-                  : context.tr.validateParking,
+                  ? Tr.of(context).payTextButton
+                  : Tr.of(context).validateParking,
               type: ButtonType.tertiary,
               isEnabled: !controller.hasError &&
                   (paymentMethodController.state.id.isNotEmpty ||

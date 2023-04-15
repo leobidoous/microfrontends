@@ -2,6 +2,7 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../l10n/translations.dart';
 import '../../../../../parking.dart';
 import '../../../../domain/failures/coupon/coupon_failure.dart';
 
@@ -65,7 +66,7 @@ class CouponAlreadyRegisteredErrorView extends StatelessWidget {
                       arguments: parkingRoleUrl,
                     );
                   },
-                  text: context.tr.seeRegulation,
+                  text: Tr.of(context).seeRegulation,
                 ),
               ),
             ],

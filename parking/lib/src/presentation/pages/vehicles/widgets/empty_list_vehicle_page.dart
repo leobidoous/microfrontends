@@ -18,8 +18,8 @@ class _EmptyListVehicleWidget extends StatelessWidget {
           RichText(
             text: TextSpan(
               text: ParkingLabels.seeAllVehicles,
-              style:
-                  genTextTheme.headlineSmall!.copyWith(color: GenColors.gray),
+              style: context.textTheme.headlineSmall!
+                  .copyWith(color: GenColors.gray),
             ),
           ),
           BasicTextButtonWidget(
@@ -43,7 +43,7 @@ class _EmptyListVehicleWidget extends StatelessWidget {
                     padding: const EdgeInsets.only(top: GenMeasures.base),
                     child: Text(
                       ParkingLabels.notFoundVehicles,
-                      style: genTextTheme.titleMedium,
+                      style: context.textTheme.titleMedium,
                       textAlign: TextAlign.center,
                     ),
                   ),

@@ -1,12 +1,11 @@
 import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../l10n/translations.dart';
 import '../../../../parking.dart';
 import '../../../infra/models/vehicles/vehicle_model.dart';
 import '../../controllers/parking/parking_add_plate_controller.dart';
-import '../../parking_routes.dart';
 import '../../routes/ticket_routes.dart';
 import '../ticket/ticket_submit_page.dart';
 
@@ -98,7 +97,7 @@ class _HasVehicleRegistered extends StatelessWidget {
               left: const Spacing(2).value,
             ),
             child: Text(
-              context.tr.registeredVehicle,
+              Tr.of(context).registeredVehicle,
               textAlign: TextAlign.left,
               style: context.textTheme.bodyLarge?.copyWith(
                 fontFamily: GoogleFonts.inter().fontFamily,
@@ -142,7 +141,7 @@ class _HasVehicleRegistered extends StatelessWidget {
               left: const Spacing(3).value,
             ),
             child: GenButton.text(
-              text: context.tr.continueButton,
+              text: Tr.of(context).continueButton,
               type: ButtonType.tertiary,
               onPressed: () {
                 Nav.to.pushNamed(
@@ -179,7 +178,7 @@ class _HasVehicleRegistered extends StatelessWidget {
               left: const Spacing(2).value,
             ),
             child: Text(
-              context.tr.haveAnotherVehicle,
+              Tr.of(context).haveAnotherVehicle,
               textAlign: TextAlign.left,
               style: context.textTheme.bodyLarge?.copyWith(
                 fontFamily: GoogleFonts.inter().fontFamily,
@@ -194,7 +193,7 @@ class _HasVehicleRegistered extends StatelessWidget {
                 controller: textController,
                 keyboardType: TextInputType.text,
                 textCapitalization: TextCapitalization.characters,
-                hintText: context.tr.enterPlate,
+                hintText: Tr.of(context).enterPlate,
                 inputFormatters: [FormMasks.plate()],
                 validators: [
                   FormValidators.emptyField,
@@ -212,7 +211,7 @@ class _HasVehicleRegistered extends StatelessWidget {
               left: const Spacing(2).value,
             ),
             child: GenButton.text(
-              text: context.tr.continueButton,
+              text: Tr.of(context).continueButton,
               type: ButtonType.background,
               onPressed: () {
                 if ((!(formKey.currentState?.validate() ?? false))) {
@@ -260,7 +259,7 @@ class _NotHasVehicleRegistered extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(top: const Spacing(2.5).value),
             child: Text(
-              context.tr.validateParking,
+              Tr.of(context).validateParking,
               textAlign: TextAlign.left,
               style: context.textTheme.headlineSmall,
             ),
@@ -268,7 +267,7 @@ class _NotHasVehicleRegistered extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(top: const Spacing(1).value),
             child: Text(
-              context.tr.descriptionParking,
+              Tr.of(context).descriptionParking,
               textAlign: TextAlign.left,
               style: context.textTheme.bodySmall,
             ),
@@ -279,7 +278,7 @@ class _NotHasVehicleRegistered extends StatelessWidget {
               controller: textController,
               keyboardType: TextInputType.text,
               textCapitalization: TextCapitalization.characters,
-              hintText: context.tr.enterPlate,
+              hintText: Tr.of(context).enterPlate,
               inputFormatters: [FormMasks.plate()],
               validators: [
                 FormValidators.emptyField,
@@ -292,7 +291,7 @@ class _NotHasVehicleRegistered extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(top: const Spacing(3).value),
             child: GenButton.text(
-              text: context.tr.continueButton,
+              text: Tr.of(context).continueButton,
               type: ButtonType.primary,
               onPressed: () {
                 if ((!(formKey.currentState?.validate() ?? false))) {

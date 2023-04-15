@@ -52,7 +52,6 @@ class _InfoShoppingTracking extends StatelessWidget {
                 width: const Spacing(3).value,
               ),
               errorWidget: (context, url, error) {
-                printException(exception: error);
                 return const LimitedBox();
               },
               fadeInDuration: const Duration(seconds: 2),

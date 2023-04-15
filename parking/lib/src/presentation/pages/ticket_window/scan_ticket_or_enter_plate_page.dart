@@ -3,7 +3,7 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../../parking_routes.dart';
+import '../../routes/parking_routes.dart';
 import '../../routes/ticket_routes.dart';
 import '../../routes/ticket_window_routes.dart';
 import '../ticket/ticket_submit_page.dart';
@@ -149,7 +149,7 @@ class _ScanTicketOrEnterPlatePageState
                 GenButton.text(
                   onPressed: () {
                     Nav.to.pushNamed(
-                      SharedRoutes.scanBardCode,
+                      ParkingRoutes.scanBardCode,
                       arguments: (code) {
                         Nav.to.pushReplacementNamed(
                           TicketRoutes.root,

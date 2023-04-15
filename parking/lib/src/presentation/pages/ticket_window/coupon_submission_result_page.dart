@@ -3,9 +3,10 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../l10n/translations.dart';
 import '../../../domain/entities/dashboard/coupon_entity.dart';
 import '../../controllers/parking/parking_coupon_controller.dart';
-import '../../parking_routes.dart';
+import '../../routes/parking_routes.dart';
 import '../../routes/ticket_routes.dart';
 import '../../routes/ticket_window_routes.dart';
 import '../../widgets/coupon_registration_status.dart';
@@ -87,7 +88,7 @@ class _CouponSubmissionResultPageState
                       GenButton.text(
                         onPressed: () {
                           Nav.to.pushNamed(
-                            SharedRoutes.scanBardCode,
+                            ParkingRoutes.scanBardCode,
                             arguments: (code) {
                               Nav.to.pushReplacementNamed(
                                 TicketRoutes.root,
@@ -193,7 +194,7 @@ class _CouponSubmissionResultPageState
                   ),
                   Spacing.lg.vertical,
                   Text(
-                    context.tr.registeredCoupons,
+                    Tr.of(context).registeredCoupons,
                     textAlign: TextAlign.center,
                   ),
                   Spacing.sm.vertical,

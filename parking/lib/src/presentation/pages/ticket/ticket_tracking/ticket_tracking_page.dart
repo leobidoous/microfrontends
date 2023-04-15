@@ -1,16 +1,17 @@
 import 'dart:async';
 
 import 'package:base_style_sheet/base_style_sheet.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../l10n/translations.dart';
 import '../../../../domain/entities/dashboard/ticket_entity.dart';
 import '../../../../domain/enums/ticket_status_enum.dart';
 import '../../../controllers/parking/parking_ticket_controller.dart';
 import '../../../controllers/ticket/ticket_count_down_controller.dart';
 import '../../../controllers/ticket/ticket_history_controller.dart';
-import '../../../parking_routes.dart';
+import '../../../routes/parking_routes.dart';
+import '../../../routes/ticket_routes.dart';
 import '../../ticket/ticket_submit_page.dart';
 import '../../ticket/widgets/ticket_card_details.dart';
 import '../widgets/ticket_shopping_info.dart';
@@ -32,7 +33,7 @@ class TicketTrackingPage extends StatefulWidget {
 class _TicketTrackingPageState extends State<TicketTrackingPage> {
   final ticketHistoryController = DM.i.get<TicketHistoryController>();
   final controller = DM.i.get<ParkingTicketController>();
-  final authController = DM.i.get<GlobalAuthController>();
+  final session = DM.i.get<SessionEntity>();
   final shopping = DM.i.get<ShoppingModel>();
 
   @override
@@ -57,7 +58,7 @@ class _TicketTrackingPageState extends State<TicketTrackingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: GenAppBar(
-        title: context.tr.ticketTitle,
+        title: Tr.of(context).ticketTitle,
         showDivider: false,
         onBackTap: Nav.to.pop,
         actions: [
@@ -100,29 +101,22 @@ class _TicketTrackingPageState extends State<TicketTrackingPage> {
                         padding: EdgeInsets.all(const Spacing(1).value),
                         child: Card(
                           elevation: 3,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(
-                                GenMeasures.borderRadius,
-                              ),
-                            ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: context.theme.borderRadiusMD,
                           ),
                           child: ColoredBox(
-                            color: GenColors.white,
+                            color: context.colorScheme.background,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Padding(
+                                Padding(
                                   padding: EdgeInsets.only(
-                                    left: GenMeasures.base * 1.2,
-                                    top: GenMeasures.base * 1.2,
-                                    bottom: GenMeasures.base * 1.2,
-                                    right: GenMeasures.base / 1.2,
+                                    left: const Spacing(1.2).value,
+                                    top: const Spacing(1.2).value,
+                                    bottom: const Spacing(1.2).value,
+                                    right: const Spacing(1).value / 1.2,
                                   ),
-                                  child: Icon(
-                                    GenIcons.car,
-                                    size: 20,
-                                  ),
+                                  child: const Icon(GenIcons.car, size: 20),
                                 ),
                                 SizedBox(
                                   height: const Spacing(5).value,
@@ -209,7 +203,7 @@ class _TicketTrackingPageState extends State<TicketTrackingPage> {
                                           top: const Spacing(2.5).value,
                                         ),
                                         child: Text(
-                                          context.tr.historyValue,
+                                          Tr.of(context).historyValue,
                                           softWrap: true,
                                           style: context.textTheme.bodySmall
                                               ?.copyWith(
@@ -236,7 +230,7 @@ class _TicketTrackingPageState extends State<TicketTrackingPage> {
                                           top: const Spacing(2.5).value,
                                         ),
                                         child: Text(
-                                          context.tr.amountSaved,
+                                          Tr.of(context).amountSaved,
                                           softWrap: true,
                                           style: context.textTheme.bodySmall
                                               ?.copyWith(
@@ -265,7 +259,7 @@ class _TicketTrackingPageState extends State<TicketTrackingPage> {
                               ),
                               child: TicketHistoryList(
                                 controller: ticketHistoryController,
-                                authController: authController,
+                                session: session,
                               ),
                             ),
                           ],
@@ -282,7 +276,7 @@ class _TicketTrackingPageState extends State<TicketTrackingPage> {
                                 horizontal: const Spacing(2).value,
                               ),
                               child: GenButton.text(
-                                text: context.tr.continueButton,
+                                text: Tr.of(context).continueButton,
                                 type: ButtonType.tertiary,
                                 onPressed: () {
                                   Nav.to.pushNamed(
@@ -325,7 +319,7 @@ class _TicketTrackingPageState extends State<TicketTrackingPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  context.tr.exitLimited,
+                  Tr.of(context).exitLimited,
                   style:
                       context.textTheme.headlineSmall!.copyWith(fontSize: 18),
                 ),
@@ -352,7 +346,7 @@ class _TicketTrackingPageState extends State<TicketTrackingPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  '${context.tr.estimatedValue}: ',
+                  '${Tr.of(context).estimatedValue}: ',
                   style:
                       context.textTheme.headlineSmall!.copyWith(fontSize: 18),
                 ),
@@ -378,7 +372,7 @@ class _TicketTrackingPageState extends State<TicketTrackingPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  context.tr.exitLimited,
+                  Tr.of(context).exitLimited,
                   style: context.textTheme.headlineSmall!.copyWith(
                     fontSize: 18,
                   ),
@@ -405,7 +399,7 @@ class _TicketTrackingPageState extends State<TicketTrackingPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  context.tr.outputLimitExceeded,
+                  Tr.of(context).outputLimitExceeded,
                   style:
                       context.textTheme.headlineSmall!.copyWith(fontSize: 18),
                 ),
@@ -422,7 +416,7 @@ class _TicketTrackingPageState extends State<TicketTrackingPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  context.tr.exitLimited,
+                  Tr.of(context).exitLimited,
                   style:
                       context.textTheme.headlineSmall!.copyWith(fontSize: 18),
                 ),

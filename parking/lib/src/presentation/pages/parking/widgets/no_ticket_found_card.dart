@@ -2,7 +2,8 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../../../parking_routes.dart';
+import '../../../../../l10n/translations.dart';
+import '../../../routes/parking_routes.dart';
 import '../../../routes/ticket_routes.dart';
 import '../../ticket/ticket_submit_page.dart';
 
@@ -22,7 +23,7 @@ class NoTicketFoundCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
-          context.tr.ticketTitle,
+          Tr.of(context).ticketTitle,
           textAlign: TextAlign.center,
           style: context.textTheme.titleMedium?.copyWith(
             fontWeight: context.textTheme.fontWeightBold,
@@ -30,16 +31,16 @@ class NoTicketFoundCard extends StatelessWidget {
         ),
         Spacing.md.vertical,
         Text(
-          context.tr.ticketNotFound,
+          Tr.of(context).ticketNotFound,
           textAlign: TextAlign.center,
           style: context.textTheme.labelLarge,
         ),
         Spacing.md.vertical,
         GenButton.text(
-          text: context.tr.scanTicketButton,
+          text: Tr.of(context).scanTicketButton,
           onPressed: () async {
             await Nav.to.pushNamed(
-              SharedRoutes.scanBardCode,
+              ParkingRoutes.scanBardCode,
               arguments: (code) async {
                 await Nav.to.pushReplacementNamed(
                   TicketRoutes.root,
@@ -60,7 +61,7 @@ class NoTicketFoundCard extends StatelessWidget {
         ),
         Spacing.md.vertical,
         GenButton.text(
-          text: context.tr.typePlate,
+          text: Tr.of(context).typePlate,
           type: ButtonType.background,
           isEnabled: isEnabled,
           onPressed: () async {

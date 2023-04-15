@@ -1,4 +1,4 @@
-part of 'parking_page.dart';
+part of '../parking_page.dart';
 
 enum LinkCardType { ticket, desk, wallet, vehicle }
 
@@ -6,16 +6,16 @@ extension LinkCardTypeExt on LinkCardType {
   Color get color {
     switch (this) {
       case LinkCardType.ticket:
-        return GenColors.danger;
+        return AppColorsBase.error0; //.danger;
       case LinkCardType.desk:
-        return GenColors.primary;
+        return AppColorsBase.error0; //.primary;
       case LinkCardType.wallet:
-        return GenColors.successDark;
+        return AppColorsBase.error0; //.successDark;
       case LinkCardType.vehicle:
-        return GenColors.warningDark;
+        return AppColorsBase.error0; //.warningDark;
 
       default:
-        return GenColors.primary;
+        return AppColorsBase.error0; //.primary;
     }
   }
 
@@ -23,23 +23,23 @@ extension LinkCardTypeExt on LinkCardType {
     switch (this) {
       case LinkCardType.ticket:
         return [
-          context.tr.ticketTitle,
-          context.tr.ticketDescription,
+          Tr.of(context).ticketTitle,
+          Tr.of(context).ticketDescription,
         ];
       case LinkCardType.desk:
         return [
-          context.tr.balconyTitle,
-          context.tr.balconyDescription,
+          Tr.of(context).balconyTitle,
+          Tr.of(context).balconyDescription,
         ];
       case LinkCardType.wallet:
         return [
-          context.tr.walletTitle,
-          context.tr.walletDescription,
+          Tr.of(context).walletTitle,
+          Tr.of(context).walletDescription,
         ];
       case LinkCardType.vehicle:
         return [
-          context.tr.vehicleTitle,
-          context.tr.vehicleDescription,
+          Tr.of(context).vehicleTitle,
+          Tr.of(context).vehicleDescription,
         ];
 
       default:
@@ -151,7 +151,7 @@ class _CardWidget extends StatelessWidget {
                   child: Icon(
                     GenIcons.rightOutline,
                     size: AppFontSize.iconButton.value,
-                    color: GenColors.white,
+                    color: context.colorScheme.background,
                   ),
                 ),
               ),
@@ -225,7 +225,7 @@ class _BackgroundStyle extends StatelessWidget {
               child: Icon(
                 GenIcons.scancodeOutline,
                 size: 112.0,
-                color: GenColors.white.withOpacity(0.26),
+                color: context.colorScheme.background.withOpacity(0.26),
               ),
             ),
             Positioned(
@@ -234,7 +234,7 @@ class _BackgroundStyle extends StatelessWidget {
               child: Icon(
                 GenIcons.barCode,
                 size: 80.0,
-                color: GenColors.white.withOpacity(0.26),
+                color: context.colorScheme.background.withOpacity(0.26),
               ),
             ),
           ],
@@ -248,20 +248,20 @@ class _BackgroundStyle extends StatelessWidget {
               child: Icon(
                 GenIcons.informationCircleOutline,
                 size: 98.0,
-                color: GenColors.white.withOpacity(0.26),
+                color: context.colorScheme.background.withOpacity(0.26),
               ),
             ),
             Positioned(
-              bottom: GenMeasures.base * 1.5,
+              bottom: Spacing(1.5).value,
               right: -64,
               child: DecoratedBox(
                 decoration: BoxDecoration(
-                  color: GenColors.white.withOpacity(0.26),
+                  color: context.colorScheme.background.withOpacity(0.26),
                   shape: BoxShape.circle,
                   gradient: LinearGradient(
                     colors: [
-                      GenColors.background.withOpacity(0.8),
-                      GenColors.background.withOpacity(.05),
+                      context.colorScheme.background.withOpacity(0.8),
+                      context.colorScheme.background.withOpacity(.05),
                       Colors.transparent,
                     ],
                     begin: Alignment.topCenter,
@@ -271,24 +271,21 @@ class _BackgroundStyle extends StatelessWidget {
                   ),
                 ),
                 child: SizedBox.fromSize(
-                  size: const Size(
-                    GenMeasures.base * 8.0,
-                    GenMeasures.base * 8.0,
-                  ),
+                  size: Size(Spacing(8).value, Spacing(8).value),
                 ),
               ),
             ),
             Positioned(
-              bottom: -GenMeasures.base * 5,
-              left: -GenMeasures.base * 3.0,
+              bottom: -Spacing(5).value,
+              left: -Spacing(3.0).value,
               child: DecoratedBox(
                 decoration: BoxDecoration(
-                  color: GenColors.white.withOpacity(0.26),
+                  color: context.colorScheme.background.withOpacity(0.26),
                   shape: BoxShape.circle,
                   gradient: LinearGradient(
                     colors: [
-                      GenColors.background,
-                      GenColors.background.withOpacity(.05),
+                      context.colorScheme.background,
+                      context.colorScheme.background.withOpacity(.05),
                       Colors.transparent,
                     ],
                     begin: Alignment.topCenter,
@@ -298,10 +295,7 @@ class _BackgroundStyle extends StatelessWidget {
                   ),
                 ),
                 child: SizedBox.fromSize(
-                  size: const Size(
-                    GenMeasures.base * 8.0,
-                    GenMeasures.base * 8.0,
-                  ),
+                  size: Size(Spacing(8).value, Spacing(8).value),
                 ),
               ),
             ),
@@ -316,7 +310,7 @@ class _BackgroundStyle extends StatelessWidget {
               child: Icon(
                 Icons.monetization_on_outlined,
                 size: 98.0,
-                color: GenColors.white.withOpacity(0.26),
+                color: context.colorScheme.background.withOpacity(0.26),
               ),
             ),
             Positioned(
@@ -325,7 +319,7 @@ class _BackgroundStyle extends StatelessWidget {
               child: Icon(
                 GenIcons.money,
                 size: 64.0,
-                color: GenColors.white.withOpacity(0.26),
+                color: context.colorScheme.background.withOpacity(0.26),
               ),
             ),
           ],
@@ -339,10 +333,8 @@ class _BackgroundStyle extends StatelessWidget {
               right: -10.0,
               child: DecoratedBox(
                 decoration: BoxDecoration(
-                  color: GenColors.white.withOpacity(.4),
-                  borderRadius: BorderRadius.circular(
-                    GenMeasures.borderRadius * 2.0,
-                  ),
+                  color: context.colorScheme.background.withOpacity(.4),
+                  borderRadius: context.theme.borderRadiusMD,
                 ),
                 child: SizedBox.fromSize(
                   size: const Size(48.0, 32.0),
@@ -355,7 +347,7 @@ class _BackgroundStyle extends StatelessWidget {
               child: Icon(
                 GenIcons.carSide,
                 size: 98.0,
-                color: GenColors.white.withOpacity(.4),
+                color: context.colorScheme.background.withOpacity(.4),
               ),
             ),
           ],

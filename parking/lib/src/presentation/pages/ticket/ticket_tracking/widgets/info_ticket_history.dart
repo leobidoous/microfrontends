@@ -1,20 +1,21 @@
 import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../../../l10n/translations.dart';
 import '../../../../../domain/entities/dashboard/items_ticket_history_entity.dart';
 import '../../../../../domain/entities/dashboard/tickets_history_entity.dart';
 import '../../../../controllers/ticket/ticket_history_controller.dart';
 
 class TicketHistoryList extends StatefulWidget {
-  final TicketHistoryController controller;
-  final GlobalAuthController authController;
   const TicketHistoryList({
     super.key,
     required this.controller,
-    required this.authController,
+    required this.session,
   });
+
+  final TicketHistoryController controller;
+  final SessionEntity session;
 
   @override
   State<TicketHistoryList> createState() => _TicketHistoryListState();
@@ -45,7 +46,7 @@ class _TicketHistoryListState extends State<TicketHistoryList> {
           return Center(
             child: ListEmpty(
               asset: 'assets/images/wallet/transactions.svg',
-              message: context.tr.notTransition,
+              message: Tr.of(context).notTransition,
               onPressed: () {},
               padding: const EdgeInsets.all(16),
             ),
@@ -60,7 +61,7 @@ class _TicketHistoryListState extends State<TicketHistoryList> {
                 left: const Spacing(2).value,
               ),
               child: Text(
-                context.tr.historyTicket,
+                Tr.of(context).historyTicket,
                 textAlign: TextAlign.left,
                 style: context.textTheme.labelLarge?.copyWith(
                   fontFamily: GoogleFonts.inter().fontFamily,
@@ -158,7 +159,7 @@ class _TicketHistoryListState extends State<TicketHistoryList> {
                           fontWeight: context.textTheme.fontWeightRegular,
                           fontSize: 12,
                           color: historyList.tipo != 'Pago'
-                              ? GenColors.white
+                              ? context.colorScheme.background
                               : context.colorScheme.primary,
                         ),
                       ),

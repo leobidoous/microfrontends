@@ -27,17 +27,17 @@ class VehicleListController
     usecase.removeVehicle(idVehicle: idVehicle).then((value) {
       return value.fold(
         (l) {
-          AppAssets.snackShowMessage(
-            title: 'Não foi possível remover o veículo.',
-            isError: true,
-          );
+          // AppAssets.snackShowMessage(
+          //   title: 'Não foi possível remover o veículo.',
+          //   isError: true,
+          // );
           return l;
         },
         (r) {
-          AppAssets.snackShowMessage(
-            title: 'Veículo excluído com sucesso!',
-            isError: false,
-          );
+          // AppAssets.snackShowMessage(
+          //   title: 'Veículo excluído com sucesso!',
+          //   isError: false,
+          // );
           return;
         },
       );

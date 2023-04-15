@@ -35,13 +35,13 @@ class InfoPayment extends StatelessWidget {
               children: [
                 Text(
                   ParkingLabels.ticketValue,
-                  style: genTextTheme.headlineSmall?.copyWith(
+                  style: context.textTheme.headlineSmall?.copyWith(
                     color: AppColorsBase.genPurpleColor,
                   ),
                 ),
                 Text(
                   value,
-                  style: genTextTheme.titleMedium?.copyWith(
+                  style: context.textTheme.titleMedium?.copyWith(
                     color: AppColorsBase.genPurpleColor,
                   ),
                 ),
@@ -52,13 +52,13 @@ class InfoPayment extends StatelessWidget {
               children: [
                 Text(
                   'Pagamento',
-                  style: genTextTheme.headlineSmall?.copyWith(
+                  style: context.textTheme.headlineSmall?.copyWith(
                     color: AppColorsBase.genPurpleColor,
                   ),
                 ),
                 Text(
                   '$cardName $cardNumber',
-                  style: genTextTheme.bodyMedium?.copyWith(
+                  style: context.textTheme.bodyMedium?.copyWith(
                     color: AppColorsBase.genPurpleColor,
                   ),
                 ),

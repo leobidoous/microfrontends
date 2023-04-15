@@ -1,16 +1,25 @@
+import 'dart:math' as math;
 import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:wallet/wallet.dart';
+import '../../../../l10n/translations.dart';
 import '../../../domain/entities/dashboard/coupon_entity.dart';
 import '../../../domain/entities/dashboard/ticket_entity.dart';
 import '../../../domain/failures/dashboard/dashboard_failure.dart';
 import '../../controllers/parking/parking_controller.dart';
+import '../../routes/gen_desk_routes.dart';
+import '../../routes/parking_routes.dart';
 import '../../routes/ticket_routes.dart';
+import '../../routes/vehicles_routes.dart';
 import '../../widgets/talk_with_us.dart';
 import '../ticket/ticket_submit_page.dart';
 import 'widgets/coupon_card.dart';
 import 'widgets/no_ticket_found_card.dart';
 import 'widgets/ticket_card.dart';
+
+part 'widgets/header_dashboard.dart';
+part 'widgets/link_card.dart';
 
 class ParkingPage extends StatefulWidget {
   const ParkingPage({super.key});
@@ -53,7 +62,7 @@ class _ParkingPageState extends State<ParkingPage> {
       }
       if (ticket.ticket == null && ticket.plate == null) {
         Nav.to.pushNamed(
-          SharedRoutes.scanBardCode,
+          ParkingRoutes.scanBardCode,
           arguments: (code) {
             Nav.to.pushReplacementNamed(
               TicketRoutes.root,
@@ -107,7 +116,7 @@ class _ParkingPageState extends State<ParkingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: GenAppBar(
-        title: context.tr.parking,
+        title: Tr.of(context).parking,
         onBackTap: Nav.to.pop,
         actions: [
           ValueListenableBuilder<TicketEntity>(
@@ -150,7 +159,7 @@ class _ParkingPageState extends State<ParkingPage> {
                   horizontal: const Spacing(2).value,
                 ),
                 child: Text(
-                  context.tr.campaignHeader,
+                  Tr.of(context).campaignHeader,
                   style: context.textTheme.titleMedium?.copyWith(
                     fontWeight: context.textTheme.fontWeightBold,
                   ),
@@ -174,7 +183,7 @@ class _ParkingPageState extends State<ParkingPage> {
                   horizontal: const Spacing(2).value,
                 ),
                 child: Text(
-                  context.tr.ticketTitle,
+                  Tr.of(context).ticketTitle,
                   style: context.textTheme.titleMedium?.copyWith(
                     fontWeight: context.textTheme.fontWeightBold,
                   ),

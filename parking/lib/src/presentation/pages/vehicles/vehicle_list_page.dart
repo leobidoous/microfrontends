@@ -73,7 +73,7 @@ class _VehicleListPageState extends State<VehicleListPage> {
                   RichText(
                     text: TextSpan(
                       text: ParkingLabels.seeAllVehicles,
-                      style: genTextTheme.headlineSmall!
+                      style: context.textTheme.headlineSmall!
                           .copyWith(color: GenColors.gray),
                     ),
                   ),
@@ -226,13 +226,13 @@ class _VehicleListPageState extends State<VehicleListPage> {
                                           padding: const EdgeInsets.all(10),
                                           child: Text(
                                             ParkingLabels.removeVehicle,
-                                            style: genTextTheme.titleLarge,
+                                            style: context.textTheme.titleLarge,
                                             textAlign: TextAlign.center,
                                           ),
                                         ),
                                         Text(
                                           ParkingLabels.actionCannotBeUndone,
-                                          style: genTextTheme.titleMedium!
+                                          style: context.textTheme.titleMedium!
                                               .copyWith(
                                             color: GenColors.gray,
                                           ),

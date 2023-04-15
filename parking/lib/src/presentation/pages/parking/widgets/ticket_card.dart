@@ -2,8 +2,8 @@ import 'package:barcode_widget/barcode_widget.dart';
 import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart' show GetStringUtils;
 
+import '../../../../../l10n/translations.dart';
 import '../../../../domain/entities/dashboard/ticket_entity.dart';
 import '../../../controllers/parking/parking_coupon_controller.dart';
 import 'shopping_location.dart';
@@ -12,15 +12,15 @@ Color statusTicketColor(int id) {
   switch (id) {
     case 1:
       //status em aberto
-      return GenColors.primary;
+      return AppColorsBase.buttonColor;//.primary;
     case 2:
       //status pago
-      return GenColors.success;
+      return AppColorsBase.buttonColor;//.success;
     case 3:
       //status expirado
-      return GenColors.danger;
+      return AppColorsBase.buttonColor;//.danger;
     default:
-      return GenColors.primary;
+      return AppColorsBase.buttonColor;//.primary;
   }
 }
 
@@ -45,7 +45,7 @@ class TicketCard extends StatelessWidget {
       children: [
         Spacing.sm.vertical,
         Text(
-          context.tr.ticketTitle,
+          Tr.of(context).ticketTitle,
           textAlign: TextAlign.center,
           style: context.textTheme.titleMedium,
         ),
@@ -102,7 +102,7 @@ class TicketCard extends StatelessWidget {
                     ),
                     Spacing.xs.vertical,
                     Text(
-                      ticket.status.status.capitalizeFirst ?? '',
+                      ticket.status.status.capitalize,
                       overflow: TextOverflow.ellipsis,
                       style: context.textTheme.bodyMedium?.copyWith(
                         fontWeight: context.textTheme.fontWeightMedium,
@@ -203,8 +203,8 @@ class TicketCard extends StatelessWidget {
               builder: (context, state, child) {
                 return GenButton.text(
                   text: (ticket.discount.percentOfDiscount == 1)
-                      ? context.tr.validateParking
-                      : context.tr.payTextButton,
+                      ? Tr.of(context).validateParking
+                      : Tr.of(context).payTextButton,
                   type: ButtonType.tertiary,
                   isLoading: controller.isLoading,
                   isEnabled: !controller.hasError,

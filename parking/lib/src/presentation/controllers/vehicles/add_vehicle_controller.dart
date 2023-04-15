@@ -21,10 +21,10 @@ class AddVehicleController
     final currentBrands = await usecase.searchVehicleBrands().then(
           (value) => value.fold(
             (l) {
-              AppAssets.snackShowMessage(
-                title: l.toString(),
-                isError: true,
-              );
+              // AppAssets.snackShowMessage(
+              //   title: l.toString(),
+              //   isError: true,
+              // );
               return <BrandVehicleModel>[];
             },
             (r) => r,
@@ -40,10 +40,10 @@ class AddVehicleController
         await usecase.searchVehicleModels(idBrand: selectedBrand?.id ?? 0).then(
               (value) => value.fold(
                 (l) {
-                  AppAssets.snackShowMessage(
-                    title: l.toString(),
-                    isError: true,
-                  );
+                  // AppAssets.snackShowMessage(
+                  //   title: l.toString(),
+                  //   isError: true,
+                  // );
                   return <ModelVehicleModel>[];
                 },
                 (r) => r,

@@ -2,6 +2,7 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../l10n/translations.dart';
 import '../../../../domain/entities/gen_desk/faq_entity.dart';
 import '../../../controllers/gen_desk/fetch_faq_controller.dart';
 import 'faq_list_item.dart';
@@ -47,7 +48,7 @@ class _FAQListState extends State<FAQList> {
         } else if (state.isEmpty) {
           return Center(
             child: ListEmpty(
-              message: context.tr.noItemAvailable,
+              message: Tr.of(context).noItemAvailable,
               onPressed: controller.fetchFAQs,
               padding: const EdgeInsets.all(16),
             ),

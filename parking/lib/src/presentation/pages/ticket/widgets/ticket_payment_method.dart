@@ -3,6 +3,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:wallet/wallet.dart';
 
+import '../../../../../l10n/translations.dart';
 import '../../../../domain/entities/dashboard/ticket_entity.dart';
 import '../../../controllers/ticket/ticket_payment_method_controller.dart';
 import '../../../controllers/ticket/ticket_submit_controller.dart';
@@ -37,7 +38,7 @@ class _TicketPaymentMethodState extends State<TicketPaymentMethod> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              context.tr.formOfPayment,
+              Tr.of(context).formOfPayment,
               style: context.textTheme.bodyMedium?.copyWith(
                 fontWeight: context.textTheme.fontWeightMedium,
               ),
@@ -122,7 +123,7 @@ class _TicketPaymentMethodState extends State<TicketPaymentMethod> {
           Spacing.sm.horizontal,
           Expanded(
             child: Text(
-              context.tr.registerNewCard,
+              Tr.of(context).registerNewCard,
               style: context.textTheme.bodyMedium,
             ),
           ),

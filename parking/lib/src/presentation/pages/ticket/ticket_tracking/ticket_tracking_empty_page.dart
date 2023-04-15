@@ -1,13 +1,14 @@
 import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
+import '../../../../../l10n/translations.dart';
 import '../../../../domain/entities/dashboard/ticket_entity.dart';
 import '../../../../domain/entities/dashboard/tickets_history_entity.dart';
 import '../../../controllers/parking/parking_controller.dart';
 import '../../../controllers/ticket/ticket_history_controller.dart';
-import '../../../parking_routes.dart';
+import '../../../routes/parking_routes.dart';
+import '../../../routes/ticket_routes.dart';
 import '../../ticket/ticket_submit_page.dart';
 import 'widgets/info_ticket_history.dart';
 
@@ -24,7 +25,7 @@ class TicketTrackingEmptyPage extends StatefulWidget {
 class _TicketTrackingEmptyPageState extends State<TicketTrackingEmptyPage> {
   final controller = DM.i.get<ParkingController>();
   final fetchTicketHistoryController = DM.i.get<TicketHistoryController>();
-  final authController = DM.i.get<GlobalAuthController>();
+  final session = DM.i.get<SessionEntity>();
 
   final shopping = DM.i.get<ShoppingModel>();
   bool viewHistory = false;
@@ -67,7 +68,7 @@ class _TicketTrackingEmptyPageState extends State<TicketTrackingEmptyPage> {
                     padding: EdgeInsets.only(top: const Spacing(4).value),
                     child: Center(
                       child: Text(
-                        context.tr.notFoundTicket,
+                        Tr.of(context).notFoundTicket,
                         style: context.textTheme.headlineSmall!.copyWith(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
@@ -90,7 +91,7 @@ class _TicketTrackingEmptyPageState extends State<TicketTrackingEmptyPage> {
                     child: GenButton.text(
                       onPressed: () {
                         Nav.to.pushNamed(
-                          SharedRoutes.scanBardCode,
+                          ParkingRoutes.scanBardCode,
                           arguments: (code) {
                             Nav.to.pushReplacementNamed(
                               TicketRoutes.root,
@@ -108,7 +109,7 @@ class _TicketTrackingEmptyPageState extends State<TicketTrackingEmptyPage> {
                           },
                         );
                       },
-                      text: context.tr.scanTicketButton,
+                      text: Tr.of(context).scanTicketButton,
                     ),
                   ),
                   ValueListenableBuilder<TicketsHistoryEntity>(
@@ -143,7 +144,7 @@ class _TicketTrackingEmptyPageState extends State<TicketTrackingEmptyPage> {
                                 child: TextButton(
                                   onPressed: showHistory,
                                   child: Text(
-                                    context.tr.history,
+                                    Tr.of(context).history,
                                     style:
                                         context.textTheme.bodySmall!.copyWith(
                                       color: context.colorScheme.primary,
@@ -176,7 +177,7 @@ class _TicketTrackingEmptyPageState extends State<TicketTrackingEmptyPage> {
                                                 top: const Spacing(2.5).value,
                                               ),
                                               child: Text(
-                                                context.tr.historyValue,
+                                                Tr.of(context).historyValue,
                                                 softWrap: true,
                                                 style: context
                                                     .textTheme.bodySmall
@@ -206,7 +207,7 @@ class _TicketTrackingEmptyPageState extends State<TicketTrackingEmptyPage> {
                                                 top: const Spacing(2.5).value,
                                               ),
                                               child: Text(
-                                                context.tr.amountSaved,
+                                                Tr.of(context).amountSaved,
                                                 softWrap: true,
                                                 style: context
                                                     .textTheme.bodySmall
@@ -233,7 +234,7 @@ class _TicketTrackingEmptyPageState extends State<TicketTrackingEmptyPage> {
                                   ),
                                   TicketHistoryList(
                                     controller: fetchTicketHistoryController,
-                                    authController: authController,
+                                    session: session,
                                   ),
                                 ],
                               ),

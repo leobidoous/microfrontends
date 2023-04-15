@@ -2,12 +2,13 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../l10n/translations.dart';
 import '../../../../parking.dart';
 import '../../../domain/entities/dashboard/ticket_entity.dart';
 import '../../controllers/gen_desk/fetch_faq_controller.dart';
 import '../../controllers/gen_desk/gen_desk_controller.dart';
-import '../../controllers/parking/parking_coupon_controller.dart';
 import '../../controllers/parking/parking_controller.dart';
+import '../../controllers/parking/parking_coupon_controller.dart';
 import '../../controllers/parking/parking_ticket_controller.dart';
 import '../../routes/ticket_routes.dart';
 import '../../widgets/talk_with_us.dart';
@@ -27,7 +28,7 @@ class _GenDeskPageState extends State<GenDeskPage> {
   final faqController = DM.i.get<FetchFAQController>();
   final deskController = DM.i.get<GenDeskController>();
   final parkingController = DM.i.get<ParkingController>();
-  final authController = DM.i.get<GlobalAuthController>();
+  final session = DM.i.get<SessionEntity>();
   late final ParkingTicketController ticketController;
   late final ParkingCouponController couponController;
 
@@ -54,14 +55,14 @@ class _GenDeskPageState extends State<GenDeskPage> {
   void _onScanPayOrValidateTicket() {
     final ticket = ticketController.state;
     final coupon = couponController.state;
-    if (authController.emailVerified.value) {
+    if (session.customer.emailVerifiedAt.isNotEmpty) {
       if (ticket.status.code == 2) {
         Nav.to.pushNamed(TicketRoutes.ticketTracking);
         return;
       }
       if (ticket.ticket == null && ticket.plate == null) {
         Nav.to.pushNamed(
-          SharedRoutes.scanBardCode,
+          ParkingRoutes.scanBardCode,
           arguments: (code) {
             Nav.to.pushReplacementNamed(
               TicketRoutes.root,
@@ -113,7 +114,7 @@ class _GenDeskPageState extends State<GenDeskPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: GenAppBar(
-        title: context.tr.deskTitle,
+        title: Tr.of(context).deskTitle,
         actions: [
           ValueListenableBuilder<TicketEntity>(
             valueListenable: ticketController,
@@ -166,7 +167,7 @@ class _GenDeskPageState extends State<GenDeskPage> {
                       return TextLink(
                         isEnabled: !(couponController.isLoading ||
                             couponController.hasError),
-                        text: context.tr.seeRegulation,
+                        text: Tr.of(context).seeRegulation,
                         onTap: () {
                           Nav.to.pushNamed(
                             ParkingRoutes.regulation.completePath,
@@ -197,7 +198,7 @@ class _GenDeskPageState extends State<GenDeskPage> {
                   horizontal: const Spacing(2).value,
                 ),
                 child: Text(
-                  context.tr.mainDoubts,
+                  Tr.of(context).mainDoubts,
                   style: context.textTheme.titleLarge,
                 ),
               ),

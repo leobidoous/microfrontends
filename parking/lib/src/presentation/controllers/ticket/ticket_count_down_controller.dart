@@ -142,5 +142,8 @@ double changePercent({
   required int fullSeconds,
   required int currentSecond,
 }) {
-  return (((currentSecond * 100) / fullSeconds) / 100).toPrecision(2);
+  return double.tryParse(
+        (currentSecond * 100 / fullSeconds / 100).toStringAsPrecision(2),
+      ) ??
+      0;
 }

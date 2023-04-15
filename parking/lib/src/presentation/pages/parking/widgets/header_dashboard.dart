@@ -1,4 +1,4 @@
-part of 'parking_page.dart';
+part of '../parking_page.dart';
 
 class _HeaderDashboard extends StatelessWidget {
   @override
@@ -7,12 +7,12 @@ class _HeaderDashboard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
-          context.tr.titleParkingDashBoard,
+          Tr.of(context).titleParkingDashBoard,
           style: context.textTheme.titleLarge,
         ),
         Spacing.sm.vertical,
         Text(
-          context.tr.subtitleParkingDashBoard,
+          Tr.of(context).subtitleParkingDashBoard,
           style: context.textTheme.bodyMedium,
         ),
       ],

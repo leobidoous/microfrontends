@@ -1,6 +1,5 @@
 import 'package:core/core.dart';
 
-
 class ParkingRoutes {
   static const BasePath root = BasePath('/parking/');
   static const BasePath addTicketByPlate = BasePath(
@@ -9,6 +8,7 @@ class ParkingRoutes {
   );
   static const BasePath regulation = BasePath('/regulation/', root);
   static const BasePath historyPayment = BasePath('/history_payment/', root);
+  static const BasePath scanBardCode = BasePath('/scar_bar_code/', root);
   static const BasePath parkingAmountInfo = BasePath(
     '/parking_amount_info/',
     root,

@@ -21,7 +21,7 @@ class ParkingAmountInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GenAppBar(title: context.tr.parking),
+      appBar: const GenAppBar(title: 'Estacionamento'),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(const Spacing(2).value),

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:wallet/wallet.dart';
 
+import '../../../../../l10n/translations.dart';
 import '../../../../domain/entities/dashboard/ticket_entity.dart';
 import '../../../../infra/models/ticket/ticket_payment_model.dart';
 import '../../../controllers/ticket/payment_voucher_controller.dart';
@@ -119,7 +120,7 @@ class _TicketVoucherDetailsPageState extends State<TicketVoucherDetailsPage> {
                               horizontal: const Spacing(2).value,
                             ),
                             child: Text(
-                              context.tr.voucherToEmail,
+                              Tr.of(context).voucherToEmail,
                               softWrap: true,
                               style: context.textTheme.bodyLarge,
                             ),
@@ -198,7 +199,7 @@ class _TicketVoucherDetailsPageState extends State<TicketVoucherDetailsPage> {
                                   SizedBox.fromSize(
                                     size: const Size(100, 20),
                                     child: Text(
-                                      '${context.tr.address}:',
+                                      '${Tr.of(context).address}:',
                                       softWrap: true,
                                       style:
                                           context.textTheme.bodySmall?.copyWith(
@@ -268,7 +269,7 @@ class _TicketVoucherDetailsPageState extends State<TicketVoucherDetailsPage> {
                                   SizedBox.fromSize(
                                     size: const Size(100, 20),
                                     child: Text(
-                                      '${context.tr.ticketTitle}:',
+                                      '${Tr.of(context).ticketTitle}:',
                                       softWrap: true,
                                       style:
                                           context.textTheme.bodySmall?.copyWith(
@@ -375,7 +376,7 @@ class _TicketVoucherDetailsPageState extends State<TicketVoucherDetailsPage> {
                                 top: const Spacing(1).value,
                               ),
                               child: Text(
-                                context.tr.time,
+                                Tr.of(context).time,
                                 textAlign: TextAlign.left,
                                 style: context.textTheme.labelLarge?.copyWith(
                                   fontFamily: GoogleFonts.inter().fontFamily,
@@ -392,7 +393,7 @@ class _TicketVoucherDetailsPageState extends State<TicketVoucherDetailsPage> {
                                   SizedBox.fromSize(
                                     size: const Size(100, 20),
                                     child: Text(
-                                      context.tr.entry,
+                                      Tr.of(context).entry,
                                       softWrap: true,
                                       style:
                                           context.textTheme.bodySmall?.copyWith(
@@ -422,7 +423,7 @@ class _TicketVoucherDetailsPageState extends State<TicketVoucherDetailsPage> {
                                   SizedBox.fromSize(
                                     size: const Size(100, 20),
                                     child: Text(
-                                      '${context.tr.payment}:',
+                                      '${Tr.of(context).payment}:',
                                       softWrap: true,
                                       style:
                                           context.textTheme.bodySmall?.copyWith(
@@ -452,7 +453,7 @@ class _TicketVoucherDetailsPageState extends State<TicketVoucherDetailsPage> {
                                   SizedBox.fromSize(
                                     size: const Size(100, 20),
                                     child: Text(
-                                      '${context.tr.exit}:',
+                                      '${Tr.of(context).exit}:',
                                       softWrap: true,
                                       style:
                                           context.textTheme.bodySmall?.copyWith(
@@ -482,7 +483,7 @@ class _TicketVoucherDetailsPageState extends State<TicketVoucherDetailsPage> {
                                   SizedBox.fromSize(
                                     size: const Size(100, 20),
                                     child: Text(
-                                      '${context.tr.stay}:',
+                                      '${Tr.of(context).stay}:',
                                       softWrap: true,
                                       style:
                                           context.textTheme.bodySmall?.copyWith(
@@ -534,7 +535,7 @@ class _TicketVoucherDetailsPageState extends State<TicketVoucherDetailsPage> {
                                 top: const Spacing(1).value,
                               ),
                               child: Text(
-                                '${context.tr.paymentVoucher}  nº '
+                                '${Tr.of(context).paymentVoucher}  nº '
                                 '${widget.ticketPayment!.transacao}',
                                 textAlign: TextAlign.left,
                                 style: context.textTheme.labelLarge?.copyWith(
@@ -581,7 +582,7 @@ class _TicketVoucherDetailsPageState extends State<TicketVoucherDetailsPage> {
                         child: Padding(
                           padding: EdgeInsets.all(const Spacing(2).value),
                           child: GenButton.text(
-                            text: context.tr.consultTicket,
+                            text: Tr.of(context).consultTicket,
                             type: ButtonType.primary,
                             onPressed: Nav.to.pop,
                           ),

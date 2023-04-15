@@ -2,6 +2,7 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
+import '../../../l10n/translations.dart';
 
 class TalkWithUs extends StatelessWidget {
   final bool isSafeArea;
@@ -26,7 +27,7 @@ class TalkWithUs extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: Text(
-                  context.tr.canWeHelpYou,
+                  Tr.of(context).canWeHelpYou,
                   style: context.textTheme.titleMedium?.copyWith(
                     fontWeight: context.textTheme.fontWeightBold,
                     color: context.colorScheme.secondary,
@@ -36,7 +37,7 @@ class TalkWithUs extends StatelessWidget {
               LocalTheme.dark(
                 builder: (context) {
                   return Text(
-                    context.tr.contactSupport,
+                    Tr.of(context).contactSupport,
                     style: context.textTheme.bodyMedium?.copyWith(
                       color: context.colorScheme.secondary,
                     ),
@@ -56,7 +57,7 @@ class TalkWithUs extends StatelessWidget {
             bottom: isSafeArea,
             child: GenButton.iconText(
               onPressed: () => DM.i.get<ZendeskController>().openChat(),
-              text: context.tr.contactUs,
+              text: Tr.of(context).contactUs,
               type: ButtonType.background,
               icon: GenIcons.messageCircle,
             ),

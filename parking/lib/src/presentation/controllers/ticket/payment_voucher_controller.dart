@@ -22,7 +22,7 @@ class PaymentVoucherController extends GenController {
           await imagePath.writeAsBytes(image);
 
           /// Share Plugin
-          await Share.shareFiles([imagePath.path]);
+          // await Share.shareFiles([imagePath.path]);
           showButton = true;
           Future.delayed(const Duration(seconds: 2), () => showButton = false);
         }

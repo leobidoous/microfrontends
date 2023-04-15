@@ -2,6 +2,7 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../l10n/translations.dart';
 import '../../../../domain/entities/dashboard/ticket_entity.dart';
 import '../../../controllers/ticket/ticket_submit_controller.dart';
 import 'ticket_shopping_info.dart';
@@ -76,7 +77,7 @@ class TicketHeader extends StatelessWidget {
               ),
             if (!ticket.discount.hasDescont)
               Text(
-                context.tr.offDiscount,
+                Tr.of(context).offDiscount,
                 textAlign: TextAlign.center,
                 style: context.textTheme.bodyLarge,
               ),

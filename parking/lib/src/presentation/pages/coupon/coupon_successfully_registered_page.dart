@@ -135,7 +135,7 @@ class _CouponSuccessfullyRegisteredPageState
                 GenButton.text(
                   onPressed: () {
                     Nav.to.pushReplacementNamed(
-                      SharedRoutes.scanBardCode,
+                      ParkingRoutes.scanBardCode,
                       arguments: (code) {
                         Nav.to.pushNamed(
                           TicketRoutes.root,

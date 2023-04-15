@@ -2,6 +2,7 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../l10n/translations.dart';
 import '../../../../domain/entities/dashboard/coupon_entity.dart';
 import '../../../../domain/entities/dashboard/ticket_entity.dart';
 import '../../../controllers/parking/parking_coupon_controller.dart';
@@ -50,7 +51,7 @@ class CouponCardNew extends StatelessWidget {
                   child: TextLink(
                     isEnabled: !(couponController.isLoading ||
                         couponController.hasError),
-                    text: context.tr.seeRegulation,
+                    text: Tr.of(context).seeRegulation,
                     onTap: () {
                       Nav.to.pushNamed(
                         ParkingRoutes.regulation,
@@ -79,7 +80,7 @@ class CouponCardNew extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        context.tr.addCouponsLabel,
+                        Tr.of(context).addCouponsLabel,
                         textAlign: TextAlign.center,
                         style: context.textTheme.titleMedium?.copyWith(
                           fontWeight: context.textTheme.fontWeightBold,
@@ -87,7 +88,7 @@ class CouponCardNew extends StatelessWidget {
                       ),
                       Spacing.sm.vertical,
                       Text(
-                        context.tr.registeredCoupons,
+                        Tr.of(context).registeredCoupons,
                         textAlign: TextAlign.center,
                       ),
                       Spacing.sm.vertical,
@@ -112,7 +113,7 @@ class CouponCardNew extends StatelessWidget {
                             ),
                           if (!couponController.isLoading)
                             Text(
-                              context.tr.validCoupons(coupon.qtdCoupon),
+                              Tr.of(context).validCoupons(coupon.qtdCoupon),
                               textAlign: TextAlign.center,
                               style: context.textTheme.bodySmall?.copyWith(
                                 fontWeight: FontWeight.w600,
@@ -125,7 +126,7 @@ class CouponCardNew extends StatelessWidget {
                             TextLink(
                               isEnabled: !(couponController.isLoading ||
                                   couponController.hasError),
-                              text: context.tr.seeCoupons,
+                              text: Tr.of(context).seeCoupons,
                               onTap: () {
                                 Nav.to.pushNamed(
                                   CouponRoutes.couponsList,
@@ -146,7 +147,7 @@ class CouponCardNew extends StatelessWidget {
                         ),
                       Spacing.sm.vertical,
                       Text(
-                        context.tr.anotationCoupons,
+                        Tr.of(context).anotationCoupons,
                         style: context.textTheme.labelSmall,
                         textAlign: TextAlign.center,
                       ),
@@ -171,7 +172,7 @@ class CouponCardNew extends StatelessWidget {
       builder: (context, ticket, child) {
         if (!hasUsedVoucher && !canGetFreeParking) {
           return GenButton.text(
-            text: context.tr.addCoupon,
+            text: Tr.of(context).addCoupon,
             onPressed: () async =>
                 await Nav.to.pushNamed(CouponRoutes.root).then((value) {
               onRefresh();
@@ -179,7 +180,7 @@ class CouponCardNew extends StatelessWidget {
           );
         } else if (canGetFreeParking && !hasUsedVoucher) {
           return GenButton.text(
-            text: context.tr.validateParking,
+            text: Tr.of(context).validateParking,
             type: ButtonType.tertiary,
             onPressed: () {
               if (ticket.ticket == null && ticket.plate == null) {
@@ -210,7 +211,7 @@ class CouponCardNew extends StatelessWidget {
           );
         } else {
           return GenButton.text(
-            text: context.tr.validateParking,
+            text: Tr.of(context).validateParking,
             type: ButtonType.tertiary,
             isEnabled: false,
           );
