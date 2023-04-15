@@ -91,11 +91,11 @@ abstract class Tr {
     Locale('pt')
   ];
 
-  /// No description provided for @home.
+  /// Labels de core
   ///
   /// In pt, this message translates to:
-  /// **'Início'**
-  String get home;
+  /// **'Core'**
+  String get core;
 }
 
 class _TrDelegate extends LocalizationsDelegate<Tr> {

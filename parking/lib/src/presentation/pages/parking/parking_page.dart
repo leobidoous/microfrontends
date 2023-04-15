@@ -13,7 +13,6 @@ import '../../routes/parking_routes.dart';
 import '../../routes/ticket_routes.dart';
 import '../../routes/vehicles_routes.dart';
 import '../../widgets/talk_with_us.dart';
-import '../ticket/ticket_submit_page.dart';
 import 'widgets/coupon_card.dart';
 import 'widgets/no_ticket_found_card.dart';
 import 'widgets/ticket_card.dart';
@@ -64,18 +63,7 @@ class _ParkingPageState extends State<ParkingPage> {
         Nav.to.pushNamed(
           ParkingRoutes.scanBardCode,
           arguments: (code) {
-            Nav.to.pushReplacementNamed(
-              TicketRoutes.root,
-              arguments: TicketSubmitPageArgs(
-                ticketOrPlate: code,
-                onPop: () {
-                  Nav.to.popUntil(
-                    ModalRoute.withName(ParkingRoutes.root.completePath),
-                  );
-                  getTicket();
-                },
-              ),
-            );
+            
           },
         );
         return;
@@ -92,15 +80,6 @@ class _ParkingPageState extends State<ParkingPage> {
       } else {
         Nav.to.pushNamed(
           TicketRoutes.root,
-          arguments: TicketSubmitPageArgs(
-            ticketOrPlate: ticket.plate ?? ticket.ticket ?? '',
-            onPop: () {
-              Nav.to.popUntil(
-                ModalRoute.withName(ParkingRoutes.root.completePath),
-              );
-              getTicket();
-            },
-          ),
         );
       }
     } else {

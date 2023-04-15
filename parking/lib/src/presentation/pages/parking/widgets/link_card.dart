@@ -252,7 +252,7 @@ class _BackgroundStyle extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: Spacing(1.5).value,
+              bottom: const Spacing(1.5).value,
               right: -64,
               child: DecoratedBox(
                 decoration: BoxDecoration(
@@ -271,13 +271,13 @@ class _BackgroundStyle extends StatelessWidget {
                   ),
                 ),
                 child: SizedBox.fromSize(
-                  size: Size(Spacing(8).value, Spacing(8).value),
+                  size: Size(const Spacing(8).value, const Spacing(8).value),
                 ),
               ),
             ),
             Positioned(
-              bottom: -Spacing(5).value,
-              left: -Spacing(3.0).value,
+              bottom: -const Spacing(5).value,
+              left: -const Spacing(3.0).value,
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   color: context.colorScheme.background.withOpacity(0.26),
@@ -295,7 +295,7 @@ class _BackgroundStyle extends StatelessWidget {
                   ),
                 ),
                 child: SizedBox.fromSize(
-                  size: Size(Spacing(8).value, Spacing(8).value),
+                  size: Size(const Spacing(8).value, const Spacing(8).value),
                 ),
               ),
             ),

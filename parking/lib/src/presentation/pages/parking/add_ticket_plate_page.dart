@@ -3,11 +3,9 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../l10n/translations.dart';
-import '../../../../parking.dart';
 import '../../../infra/models/vehicles/vehicle_model.dart';
 import '../../controllers/parking/parking_add_plate_controller.dart';
 import '../../routes/ticket_routes.dart';
-import '../ticket/ticket_submit_page.dart';
 
 class AddTicketPlatePage extends StatefulWidget {
   const AddTicketPlatePage({super.key});
@@ -87,7 +85,7 @@ class _HasVehicleRegistered extends StatelessWidget {
             ),
             child: _InfoLocationMall(
               name: shopping.name,
-              address: shopping.address ?? 'Endereço não encontrado',
+              address: shopping.address,
             ),
           ),
           Padding(
@@ -146,18 +144,6 @@ class _HasVehicleRegistered extends StatelessWidget {
               onPressed: () {
                 Nav.to.pushNamed(
                   TicketRoutes.root,
-                  arguments: TicketSubmitPageArgs(
-                    ticketOrPlate:
-                        controller.selectedPlate?.trim().replaceAll('-', '') ??
-                            '',
-                    onPop: () {
-                      Nav.to.popUntil(
-                        ModalRoute.withName(
-                          ParkingRoutes.root.completePath,
-                        ),
-                      );
-                    },
-                  ),
                 );
               },
             ),
@@ -219,15 +205,6 @@ class _HasVehicleRegistered extends StatelessWidget {
                 }
                 Nav.to.pushNamed(
                   TicketRoutes.root,
-                  arguments: TicketSubmitPageArgs(
-                    ticketOrPlate:
-                        textController.text.trim().replaceAll('-', ''),
-                    onPop: () {
-                      Nav.to.popUntil(
-                        ModalRoute.withName(ParkingRoutes.root.completePath),
-                      );
-                    },
-                  ),
                 );
               },
             ),
@@ -254,7 +231,7 @@ class _NotHasVehicleRegistered extends StatelessWidget {
         children: [
           _InfoLocationMall(
             name: shopping.name,
-            address: shopping.address ?? 'Endereço não encontrado',
+            address: shopping.address,
           ),
           Padding(
             padding: EdgeInsets.only(top: const Spacing(2.5).value),
@@ -299,17 +276,6 @@ class _NotHasVehicleRegistered extends StatelessWidget {
                 }
                 Nav.to.pushNamed(
                   TicketRoutes.root,
-                  arguments: TicketSubmitPageArgs(
-                    ticketOrPlate:
-                        textController.text.trim().replaceAll('-', ''),
-                    onPop: () {
-                      Nav.to.popUntil(
-                        ModalRoute.withName(
-                          ParkingRoutes.root.completePath,
-                        ),
-                      );
-                    },
-                  ),
                 );
               },
             ),

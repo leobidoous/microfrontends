@@ -12,15 +12,15 @@ Color statusTicketColor(int id) {
   switch (id) {
     case 1:
       //status em aberto
-      return AppColorsBase.buttonColor;//.primary;
+      return AppColorsBase.buttonColor; //.primary;
     case 2:
       //status pago
-      return AppColorsBase.buttonColor;//.success;
+      return AppColorsBase.buttonColor; //.success;
     case 3:
       //status expirado
-      return AppColorsBase.buttonColor;//.danger;
+      return AppColorsBase.buttonColor; //.danger;
     default:
-      return AppColorsBase.buttonColor;//.primary;
+      return AppColorsBase.buttonColor; //.primary;
   }
 }
 
@@ -68,7 +68,7 @@ class TicketCard extends StatelessWidget {
                     ),
                     Spacing.xs.vertical,
                     Text(
-                      permanenceTime(lastTime: ticket.entradaDatahora),
+                      DateFormat.toDateTime(ticket.entradaDatahora),
                       overflow: TextOverflow.ellipsis,
                       style: context.textTheme.bodyMedium,
                     ),

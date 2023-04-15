@@ -1,0 +1,7 @@
+{
+    "@@locale": "pt",
+    "auth": "Autenticação",
+    "@auth": {
+        "description": "Labels de autenticação"
+    }
+}

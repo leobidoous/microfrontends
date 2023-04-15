@@ -132,8 +132,7 @@ runGet() {
 }
 
 runTranslate() {
-  cd $1 || exit;
-
+  cd "$1" || exit
   if [ -f "pubspec.yaml" ]; then
     echo "Generating translations $1..."
     flutter gen-l10n --arb-dir=lib/core/l10n/ --template-arb-file=intl_pt.arb --output-localization-file=translations.dart --output-class=Tr --output-dir=lib/l10n --no-synthetic-package
@@ -251,7 +250,11 @@ case $1 in
   runBuildIOS $2
   ;;
 --translate)
-  runTranslate
+  # exclude hidden
+  dirs=($(find . -not -path '*/\.*' -not -path '*/storybook' -maxdepth 1 -type d))
+  for dir in "${dirs[@]}"; do
+    runTranslate $dir $2
+  done
   ;;
 --runner)
   # exclude hidden

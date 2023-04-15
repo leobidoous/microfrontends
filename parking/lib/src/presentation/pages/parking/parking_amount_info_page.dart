@@ -2,11 +2,9 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../parking.dart';
 import '../../../domain/entities/dashboard/coupon_entity.dart';
 import '../../routes/coupon_routes.dart';
 import '../../routes/ticket_routes.dart';
-import '../ticket/ticket_submit_page.dart';
 
 class ParkingAmountInfoPage extends StatelessWidget {
   const ParkingAmountInfoPage({
@@ -63,14 +61,6 @@ class ParkingAmountInfoPage extends StatelessWidget {
                 onPressed: () {
                   Nav.to.pushNamed(
                     TicketRoutes.root,
-                    arguments: TicketSubmitPageArgs(
-                      ticketOrPlate: ticketOrPlate,
-                      onPop: () {
-                        Nav.to.popUntil(
-                          ModalRoute.withName(ParkingRoutes.root.completePath),
-                        );
-                      },
-                    ),
                   );
                 },
                 text: 'Pagar',

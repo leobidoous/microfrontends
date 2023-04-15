@@ -28,6 +28,9 @@ class HomeModule extends Module {
       ),
     ),
 
+    /// Shopping
+    Bind.factory<ShoppingEntity>((i) => ShoppingModel.fromMap({})),
+
     /// Controllers
     Bind.lazySingleton<HomeController>(
       (i) => HomeController(sessionController: i.get<SessionController>()),

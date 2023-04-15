@@ -30,7 +30,7 @@ class MallLocation extends StatelessWidget {
                   Text(shopping.name),
                   Spacing.xxs.vertical,
                   Text(
-                    shopping.address ?? '-',
+                    shopping.address,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ],

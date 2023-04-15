@@ -5,5 +5,5 @@ class TrPt extends Tr {
   TrPt([String locale = 'pt']) : super(locale);
 
   @override
-  String get home => 'Início';
+  String get wallet => 'Carteira';
 }

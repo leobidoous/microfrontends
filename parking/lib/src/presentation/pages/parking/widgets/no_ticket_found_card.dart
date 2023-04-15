@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import '../../../../../l10n/translations.dart';
 import '../../../routes/parking_routes.dart';
 import '../../../routes/ticket_routes.dart';
-import '../../ticket/ticket_submit_page.dart';
 
 class NoTicketFoundCard extends StatelessWidget {
   const NoTicketFoundCard({
@@ -42,19 +41,7 @@ class NoTicketFoundCard extends StatelessWidget {
             await Nav.to.pushNamed(
               ParkingRoutes.scanBardCode,
               arguments: (code) async {
-                await Nav.to.pushReplacementNamed(
-                  TicketRoutes.root,
-                  arguments: TicketSubmitPageArgs(
-                    ticketOrPlate: code,
-                    onPop: () {
-                      Nav.to.popUntil(
-                        ModalRoute.withName(
-                          ParkingRoutes.root.completePath,
-                        ),
-                      );
-                    },
-                  ),
-                );
+                await Nav.to.pushReplacementNamed(TicketRoutes.root);
               },
             ).then((_) => onRefresh?.call());
           },

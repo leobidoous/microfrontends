@@ -1,0 +1,7 @@
+{
+    "@@locale": "pt",
+    "wallet": "Carteira",
+    "@wallet": {
+        "description": "Labels de carteira"
+    }
+}

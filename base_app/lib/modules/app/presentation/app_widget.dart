@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'app_localizations_delegate.dart';
 import 'controllers/theme_controller.dart';
 
 class AppWidget extends StatefulWidget {
@@ -51,7 +52,8 @@ class _AppWidgetState extends State<AppWidget> {
                       debugShowCheckedModeBanner:
                           DM.i.get<EnvironmentEntity>().flavor != Flavor.prod,
                       locale: const Locale('pt', 'BR'),
-                      localizationsDelegates: const [
+                      localizationsDelegates: [
+                        ...AppLocalizationsDelegate.getDelegates,
                         GlobalCupertinoLocalizations.delegate,
                         GlobalMaterialLocalizations.delegate,
                         GlobalWidgetsLocalizations.delegate,
