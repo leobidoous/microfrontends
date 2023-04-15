@@ -1,17 +1,18 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-
 class GenExpansion<T> extends StatefulWidget {
   final bool showDivider;
   final Widget title;
-  final Widget body;
+  final Widget? body;
   final T value;
   final bool isSelected;
   final Function(T)? onTap;
+  final EdgeInsets padding;
   const GenExpansion({
     super.key,
     this.onTap,
+    this.padding = EdgeInsets.zero,
     required this.body,
     required this.value,
     this.isSelected = false,
@@ -58,45 +59,54 @@ class _GenExpansionState<T> extends State<GenExpansion<T>>
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        if (animationController.isCompleted) {
-          animationController.reverse();
-        } else {
-          animationController.forward();
-        }
-        widget.onTap?.call(widget.value);
-      },
-      child: AnimatedBuilder(
-        animation: animationController,
-        child: widget.body,
-        builder: (_, child) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                children: [
-                  Expanded(child: widget.title),
-                  Spacing.sm.horizontal,
-                  RotationTransition(
-                    turns: rotateAnimation,
-                    child: Icon(
-                      Icons.keyboard_arrow_down_rounded,
-                      color: AppColorsBase.neutrla5,
-                      size: const Spacing(3).value,
-                    ),
-                  ),
-                ],
-              ),
-              FadeTransition(
-                opacity: animation,
-                child: SizeTransition(sizeFactor: animation, child: child!),
-              ),
-              if (widget.showDivider) const Divider(height: 0),
-            ],
-          );
+    return Semantics(
+      button: true,
+      child: InkWell(
+        onTap: () {
+          if (animationController.isCompleted) {
+            animationController.reverse();
+          } else {
+            animationController.forward();
+          }
+          widget.onTap?.call(widget.value);
         },
+        child: AnimatedBuilder(
+          animation: animationController,
+          child: widget.body,
+          builder: (_, child) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: widget.padding,
+                  child: Row(
+                    children: [
+                      Expanded(child: widget.title),
+                      Spacing.sm.horizontal,
+                      RotationTransition(
+                        turns: rotateAnimation,
+                        child: Icon(
+                          Icons.keyboard_arrow_down_rounded,
+                          color: AppColorsBase.neutrla5,
+                          size: const Spacing(3).value,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                FadeTransition(
+                  opacity: animation,
+                  child: SizeTransition(
+                    sizeFactor: animation,
+                    child: child ?? const SizedBox(),
+                  ),
+                ),
+                if (widget.showDivider) const Divider(height: 0),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

@@ -89,8 +89,10 @@ class AppColorsBase {
   static Color get kTicketColor => const Color(0xFFFAFAFA);
 
   // Background colors
-  static Color get kScaffoldBackgroundColorSecondary => const Color(0xFFFCFCFC);
   static Color get kContainerColor => const Color(0xFFE7E3FF);
+  static Color get kSecondaryColor => const Color(0xFFDDA004);
+
+
   
 
   static Color get grey0 => const Color(0xFFCCCED0);

@@ -13,6 +13,7 @@ export 'package:base_style_sheet/src/presentation/widgets/empties/search_respons
 export 'package:base_style_sheet/src/presentation/widgets/gen_app_bar.dart';
 export 'package:base_style_sheet/src/presentation/widgets/gen_checkbox_tile.dart';
 export 'package:base_style_sheet/src/presentation/widgets/gen_dialog.dart';
+export 'package:base_style_sheet/src/presentation/widgets/gen_expansion.dart';
 export 'package:base_style_sheet/src/presentation/widgets/gen_loading.dart';
 export 'package:base_style_sheet/src/presentation/widgets/gen_radio_tile.dart';
 export 'package:base_style_sheet/src/presentation/widgets/gen_refresh_indicator.dart';

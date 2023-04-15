@@ -96,7 +96,7 @@ class _GenAppBarState extends State<GenAppBar> {
         ),
         if (widget.showDivider)
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: const Spacing(6).value),
+            padding: EdgeInsets.symmetric(horizontal: const Spacing(3).value),
             child: Divider(
               height: 0,
               color: AppColorsBase.grey3,

@@ -40,7 +40,7 @@ class _PinCodeFormViewState extends State<PinCodeFormView> {
         decoration: BoxDecoration(
           borderRadius: context.theme.borderRadiusXSM,
           border: Border.all(color: const Color(0xFFE7E7EF)),
-          color: AppColorsBase.kScaffoldBackgroundColorSecondary,
+          color: AppColorsBase.neutrla0,
         ),
       );
 

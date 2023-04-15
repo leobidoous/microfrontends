@@ -18,6 +18,7 @@ class DashboardPage extends StatefulWidget {
   State<DashboardPage> createState() => _DashboardPageState();
 }
 
+// ignore_for_file: lines_longer_than_80_chars
 class _DashboardPageState extends State<DashboardPage> {
   final controller = DM.i.get<DashboardController>();
   final notificationsController = DM.i.get<NotificationsController>();

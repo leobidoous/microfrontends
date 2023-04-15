@@ -9,7 +9,6 @@ import '../controllers/credit_card/change_favorite_card_controller.dart';
 import '../controllers/credit_card/remove_credit_card_controller.dart';
 import '../pages/wallet/wallet_page.dart';
 import 'add_credit_card_module.dart';
-import 'select_payment_method_module.dart';
 
 class WalletModule extends Module {
   static List<Bind> get exportedBinds => [

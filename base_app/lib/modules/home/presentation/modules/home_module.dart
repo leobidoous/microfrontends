@@ -19,7 +19,7 @@ import 'dashboard_module.dart';
 class HomeModule extends Module {
   @override
   final List<Bind> binds = [
-    /// Stores
+    /// Session
     Bind.lazySingleton<SessionEntity>((i) => i.get<AppController>().session),
     Bind.lazySingleton<SessionController>(
       (i) => SessionController(
@@ -27,6 +27,8 @@ class HomeModule extends Module {
         authUsecase: i.get<AuthUsecase>(),
       ),
     ),
+
+    /// Controllers
     Bind.lazySingleton<HomeController>(
       (i) => HomeController(sessionController: i.get<SessionController>()),
     ),

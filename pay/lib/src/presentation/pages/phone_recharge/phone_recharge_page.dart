@@ -31,7 +31,6 @@ class _PhoneRechargePageState extends State<PhoneRechargePage> {
         title: 'Recarga de celular',
         showDivider: false,
       ),
-      backgroundColor: AppColorsBase.kScaffoldBackgroundColorSecondary,
       body: SafeArea(
         child: Column(
           children: [

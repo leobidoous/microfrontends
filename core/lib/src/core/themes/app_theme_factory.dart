@@ -119,7 +119,7 @@ class AppThemeFactory {
       highlightColor: Colors.transparent,
       shadowColor: Colors.transparent,
       colorScheme: baseLightColorScheme,
-      scaffoldBackgroundColor: AppColorsBase.kScaffoldBackgroundColorSecondary,
+      scaffoldBackgroundColor: AppColorsBase.neutrla0,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       textTheme: const TextTheme().copyWith(
         displayLarge: appTextStyle.displayLarge,
