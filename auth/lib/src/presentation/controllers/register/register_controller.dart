@@ -8,8 +8,8 @@ import '../../../domain/usecases/i_user_usecase.dart';
 import '../auth/auth_controller.dart';
 import '../timer_controller.dart';
 
-class LoginController extends GenController<ILoginFailure, bool> {
-  LoginController({
+class RegisterController extends GenController<ILoginFailure, bool> {
+  RegisterController({
     required this.userUsecase,
     required this.authUsecase,
     required this.loginUsecase,

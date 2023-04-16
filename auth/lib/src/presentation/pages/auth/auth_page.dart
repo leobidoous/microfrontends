@@ -75,7 +75,13 @@ class _AuthPageState extends State<AuthPage> {
                     child: GenButton.text(
                       type: ButtonType.background,
                       onPressed: () {
-                        Nav.to.pushNamed(AuthRoutes.register);
+                        Nav.to.pushNamed(
+                          AuthRoutes.register,
+                          arguments: {
+                            'redirectTo': controller.redirectTo,
+                            'onLoginCallback': controller.onLoginCallback,
+                          },
+                        );
                       },
                       text: 'Cadastro',
                     ),

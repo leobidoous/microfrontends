@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:core/core.dart';
 
 
-class LoginTimerController extends GenController<Exception, int> {
-  LoginTimerController() : super(60);
+class TimerController extends GenController<Exception, int> {
+  TimerController() : super(60);
 
   Timer? timer;
   late int counter;

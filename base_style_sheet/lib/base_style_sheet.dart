@@ -16,6 +16,7 @@ export 'package:base_style_sheet/src/presentation/widgets/dividers/dashed_divide
 export 'package:base_style_sheet/src/presentation/widgets/empties/list_empty.dart';
 export 'package:base_style_sheet/src/presentation/widgets/empties/search_response_empty.dart';
 export 'package:base_style_sheet/src/presentation/widgets/gen_app_bar.dart';
+export 'package:base_style_sheet/src/presentation/widgets/gen_bottom_sheet.dart';
 export 'package:base_style_sheet/src/presentation/widgets/gen_checkbox_tile.dart';
 export 'package:base_style_sheet/src/presentation/widgets/gen_dialog.dart';
 export 'package:base_style_sheet/src/presentation/widgets/gen_expansion.dart';
@@ -23,6 +24,7 @@ export 'package:base_style_sheet/src/presentation/widgets/gen_loading.dart';
 export 'package:base_style_sheet/src/presentation/widgets/gen_radio_tile.dart';
 export 'package:base_style_sheet/src/presentation/widgets/gen_refresh_indicator.dart';
 export 'package:base_style_sheet/src/presentation/widgets/gen_scroll_content.dart';
+export 'package:base_style_sheet/src/presentation/widgets/gen_terms.dart';
 export 'package:base_style_sheet/src/presentation/widgets/image_view/gen_image.dart';
 export 'package:base_style_sheet/src/presentation/widgets/inputs/gen_input_field.dart';
 export 'package:base_style_sheet/src/presentation/widgets/inputs/input_label.dart';

@@ -8,9 +8,9 @@ import '../../../infra/usecases/user_usecase.dart';
 import '../../controllers/auth/auth_controller.dart';
 import '../../controllers/login/login_controller.dart';
 import '../../controllers/timer_controller.dart';
-import '../../pages/login/login_page.dart';
+import '../../pages/register/register_page.dart';
 
-class LoginModule extends Module {
+class RegisterModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton(
@@ -40,7 +40,7 @@ class LoginModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute(
       Modular.initialRoute,
-      child: (_, args) => LoginPage(
+      child: (_, args) => RegisterPage(
         onLoginCallback: args.data['onLoginCallback'],
         redirectTo: args.data['redirectTo'],
       ),

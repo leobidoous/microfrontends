@@ -10,6 +10,7 @@ import '../../auth_routes.dart';
 import '../../controllers/auth/auth_controller.dart';
 import '../../pages/auth/auth_page.dart';
 import '../login/login_module.dart';
+import '../register/register_module.dart';
 
 class AuthModule extends Module {
   static late final BasePath _redirectTo;
@@ -81,5 +82,6 @@ class AuthModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute(Modular.initialRoute, child: (_, args) => const AuthPage()),
     ModuleRoute(AuthRoutes.login.path, module: LoginModule()),
+    ModuleRoute(AuthRoutes.register.path, module: RegisterModule()),
   ];
 }
