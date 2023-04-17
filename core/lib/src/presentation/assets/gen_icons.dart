@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart' show IconData;
 
 class GenIcons {
-  static const _kFontFam = 'Gen_icon';
-  static const String? _kFontPkg = null;
+  static const _kFontFam = 'gen_icons';
+  static const String _kFontPkg = 'core';
 
   static const addcircle = IconData(
     0xe800,
