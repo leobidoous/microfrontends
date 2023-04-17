@@ -4,17 +4,18 @@ import 'package:flutter/material.dart';
 
 import '../../../../../l10n/translations.dart';
 import '../../../routes/parking_routes.dart';
-import '../../../routes/ticket_routes.dart';
 
 class NoTicketFoundCard extends StatelessWidget {
   const NoTicketFoundCard({
     super.key,
-    this.onRefresh,
+    required this.onRefresh,
     required this.isEnabled,
+    required this.onScanTicket,
   });
 
   final bool isEnabled;
-  final VoidCallback? onRefresh;
+  final Function() onRefresh;
+  final Function() onScanTicket;
 
   @override
   Widget build(BuildContext context) {
@@ -37,14 +38,7 @@ class NoTicketFoundCard extends StatelessWidget {
         Spacing.md.vertical,
         GenButton.text(
           text: Tr.of(context).scanTicketButton,
-          onPressed: () async {
-            await Nav.to.pushNamed(
-              ParkingRoutes.scanTicket.relativePath,
-              arguments: (code) async {
-                await Nav.to.pushReplacementNamed(TicketRoutes.root);
-              },
-            ).then((_) => onRefresh?.call());
-          },
+          onPressed: onScanTicket,
         ),
         Spacing.md.vertical,
         GenButton.text(
@@ -54,7 +48,7 @@ class NoTicketFoundCard extends StatelessWidget {
           onPressed: () async {
             await Nav.to
                 .pushNamed(ParkingRoutes.enterPlateNumber.relativePath)
-                .then((value) => onRefresh?.call());
+                .then((value) => onRefresh());
           },
         ),
         Spacing.xs.vertical,

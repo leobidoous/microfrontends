@@ -49,7 +49,24 @@ class _ParkingPageState extends State<ParkingPage> {
     );
   }
 
-  void _onScanOrPayOrValidateTicket() {
+  Future<void> _onScanTicket() async {
+    await Nav.to.pushNamed(
+      ParkingRoutes.scanTicket.relativePath,
+      arguments: (code) async {
+        await Nav.to
+            .pushReplacementNamed(
+              TicketRoutes.root.prevPath(),
+              arguments: TicketSubmitPageArgs(
+                ticketOrPlate: code,
+                onPop: Nav.to.pop,
+              ),
+            )
+            .then((_) => getTicket());
+      },
+    ).then((_) => getTicket());
+  }
+
+  void _onScanOrPayOrValidateTicket() async {
     final ticket = controller.ticketController.state;
     final coupon = controller.couponController.state;
     if (session.customer.emailVerifiedAt.isNotEmpty) {
@@ -57,24 +74,10 @@ class _ParkingPageState extends State<ParkingPage> {
         Nav.to.pushNamed(TicketRoutes.ticketTracking.relativePath);
         return;
       }
-      if (ticket.ticket == null && ticket.plate == null) {
-        Nav.to.pushNamed(
-          ParkingRoutes.scanTicket.relativePath,
-          arguments: (code) {
-            Nav.to.pushReplacementNamed(
-              TicketRoutes.root,
-              arguments: TicketSubmitPageArgs(
-                ticketOrPlate: code,
-                onPop: () {
-                  Nav.to.popUntil(
-                    ModalRoute.withName(ParkingRoutes.root.relativePath),
-                  );
-                  getTicket();
-                },
-              ),
-            );
-          },
-        );
+
+      if (ticket.ticket == null && ticket.plate == null ||
+          controller.ticketController.hasError) {
+        await _onScanTicket();
         return;
       }
       if (ticket.discount.percentOfDiscount != 1) {
@@ -92,9 +95,7 @@ class _ParkingPageState extends State<ParkingPage> {
           arguments: TicketSubmitPageArgs(
             ticketOrPlate: ticket.plate ?? ticket.ticket ?? '',
             onPop: () {
-              Nav.to.popUntil(
-                ModalRoute.withName(ParkingRoutes.root.relativePath),
-              );
+              Nav.to.pop();
               getTicket();
             },
           ),
@@ -242,10 +243,8 @@ class _ParkingPageState extends State<ParkingPage> {
                                       false)));
                   return NoTicketFoundCard(
                     isEnabled: isEnabled,
-                    onRefresh: () {
-                      getCoupon();
-                      getTicket();
-                    },
+                    onRefresh: getTicket,
+                    onScanTicket: _onScanTicket,
                   );
                 },
               ),

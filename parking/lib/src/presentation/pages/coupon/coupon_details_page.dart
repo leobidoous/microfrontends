@@ -143,7 +143,9 @@ class _CouponDetailsPageState extends State<CouponDetailsPage> {
               child: GenButton.text(
                 onPressed: () {
                   Nav.to.pop();
-                  Nav.to.pushReplacementNamed(CouponRoutes.root);
+                  Nav.to.pushReplacementNamed(
+                    CouponRoutes.root.prevPath(2),
+                  );
                 },
                 text: 'Registrar novo cupom',
               ),

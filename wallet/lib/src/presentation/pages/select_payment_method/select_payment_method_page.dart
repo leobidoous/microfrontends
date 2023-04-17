@@ -146,7 +146,12 @@ class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
       border: context.theme.borderZero,
       padding: EdgeInsets.all(const Spacing(2).value),
       onTap: () {
-        Nav.to.pushNamed(WalletRoutes.addCreditCard.completePath).then((value) {
+        Nav.to
+            .pushNamed(
+          WalletRoutes.addCreditCard.prevPath(),
+          forRoot: true,
+        )
+            .then((value) {
           if (value is CreditCardEntity) {
             cardsController.addNewCreditCard(value);
           }

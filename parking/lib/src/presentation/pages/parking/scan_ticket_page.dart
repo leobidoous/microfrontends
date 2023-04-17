@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 
 import '../../controllers/ticket/scan_ticket_controller.dart';
 import '../../routes/parking_routes.dart';
-import '../../routes/ticket_routes.dart';
-import '../ticket/ticket_submit/ticket_submit_page.dart';
 
 class ScanTicketPage extends StatefulWidget {
-  const ScanTicketPage({super.key});
+  const ScanTicketPage({super.key, required this.onScanCode});
+
+  final Future Function(String) onScanCode;
 
   @override
   State<ScanTicketPage> createState() => _ScanTicketPageState();
@@ -49,13 +49,7 @@ class _ScanTicketPageState extends State<ScanTicketPage> {
         showClose: true,
       );
     } else {
-      await Nav.to.pushNamed(
-        TicketRoutes.root.prevPath(),
-        arguments: TicketSubmitPageArgs(
-          ticketOrPlate: code,
-          onPop: () {},
-        ),
-      );
+      await widget.onScanCode(code);
     }
   }
 
@@ -150,7 +144,10 @@ class _ScanTicketPageState extends State<ScanTicketPage> {
                   controller.timer.cancel();
                   controller.scanController.scanController?.pauseCamera();
                   await Nav.to
-                      .pushNamed(ParkingRoutes.enterTicketNumber.prevPath())
+                      .pushReplacementNamed(
+                    ParkingRoutes.enterTicketNumber.prevPath(),
+                    arguments: widget.onScanCode,
+                  )
                       .then((value) {
                     controller.scanController.scanController?.resumeCamera();
                   });

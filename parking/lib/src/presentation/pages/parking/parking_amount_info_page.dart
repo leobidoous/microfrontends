@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/entities/dashboard/coupon_entity.dart';
 import '../../routes/coupon_routes.dart';
+import '../../routes/parking_routes.dart';
 import '../../routes/ticket_routes.dart';
+import '../ticket/ticket_submit/ticket_submit_page.dart';
 
 class ParkingAmountInfoPage extends StatelessWidget {
   const ParkingAmountInfoPage({
@@ -60,7 +62,19 @@ class ParkingAmountInfoPage extends StatelessWidget {
               GenButton.text(
                 onPressed: () {
                   Nav.to.pushNamed(
-                    TicketRoutes.root,
+                    TicketRoutes.root.prevPath(),
+                    arguments: TicketSubmitPageArgs(
+                      ticketOrPlate: ticketOrPlate,
+                      onPop: () {
+                        Nav.to.popUntil(
+                          ModalRoute.withName(
+                            DM.i.get<BasePath<ParkingRoutes>>().concate(
+                              [ParkingRoutes.root],
+                            ).completePath,
+                          ),
+                        );
+                      },
+                    ),
                   );
                 },
                 text: 'Pagar',
@@ -69,8 +83,11 @@ class ParkingAmountInfoPage extends StatelessWidget {
               Spacing.sm.vertical,
               GenButton.text(
                 onPressed: () {
-                  Nav.to.pushReplacementNamed(
-                    CouponRoutes.couponsList,
+                  Nav.to.pushNamed(
+                    ParkingRoutes.root.concate([
+                      CouponRoutes.root,
+                      CouponRoutes.couponsList,
+                    ]).prevPath(2),
                     arguments: false,
                   );
                 },

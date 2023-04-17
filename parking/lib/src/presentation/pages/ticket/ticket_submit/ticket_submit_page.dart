@@ -136,7 +136,7 @@ class _TicketSubmitPageState extends State<TicketSubmitPage> {
           controller.state.plate != null
               ? () {}
               : await Nav.to.pushNamed(
-                  TicketRoutes.ticketVoucherDetails,
+                  TicketRoutes.ticketVoucherDetails.prevPath(),
                   arguments: [
                     paymentController.state,
                     paymentMethodController.state,
@@ -145,7 +145,7 @@ class _TicketSubmitPageState extends State<TicketSubmitPage> {
                   Nav.to.popUntil(
                     ModalRoute.withName(TicketRoutes.root.completePath),
                   );
-                  Nav.to.pushNamed(TicketRoutes.ticketTracking);
+                  Nav.to.pushNamed(TicketRoutes.ticketTracking.prevPath(2));
                 });
         });
       }

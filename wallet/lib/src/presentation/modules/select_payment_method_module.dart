@@ -38,9 +38,7 @@ class SelectPaymentMethodModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute(
       Modular.initialRoute,
-      child: (_, args) => SelectPaymentMethodPage(
-        onSelected: args.data['onSelected'],
-      ),
+      child: (_, args) => SelectPaymentMethodPage(onSelected: args.data),
     ),
   ];
 }

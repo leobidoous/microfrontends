@@ -25,11 +25,16 @@ import 'ticket_window_module.dart';
 import 'vehicle_module.dart';
 
 class ParkingModule extends Module {
-  ParkingModule({required BasePath<WalletRoutes> walletPath}) {
+  ParkingModule({
+    required BasePath<WalletRoutes> walletPath,
+    required BasePath<ParkingRoutes> parentPath,
+  }) {
     _walletPath = walletPath;
+    _parentPath = parentPath;
   }
 
   static late final BasePath<WalletRoutes> _walletPath;
+  static late final BasePath<ParkingRoutes> _parentPath;
 
   @override
   final List<Bind> binds = [
@@ -42,9 +47,7 @@ class ParkingModule extends Module {
       ),
     ),
     Bind.factory<ParkingRepository>(
-      (i) => ParkingRepository(
-        datasource: i.get<ParkingDatasource>(),
-      ),
+      (i) => ParkingRepository(datasource: i.get<ParkingDatasource>()),
     ),
     Bind.factory<ParkingUsecase>(
       (i) => ParkingUsecase(
@@ -54,6 +57,7 @@ class ParkingModule extends Module {
     ),
 
     Bind.factory<BasePath<WalletRoutes>>((i) => _walletPath),
+    Bind.factory<BasePath<ParkingRoutes>>((i) => _parentPath),
 
     /// Controllers
     Bind.lazySingleton<ParkingController>(
@@ -93,7 +97,7 @@ class ParkingModule extends Module {
     ),
     ChildRoute(
       ParkingRoutes.scanTicket.path,
-      child: (_, args) => const ScanTicketPage(),
+      child: (_, args) => ScanTicketPage(onScanCode: args.data),
     ),
     ChildRoute(
       ParkingRoutes.regulation.path,

@@ -74,6 +74,7 @@ class HomeModule extends Module {
     ModuleRoute(
       ParkingRoutes.root.path,
       module: ParkingModule(
+        parentPath: HomeRoutes.root.concate<ParkingRoutes>([]),
         walletPath: HomeRoutes.start.concate<WalletRoutes>(
           [WalletRoutes.root],
         ),

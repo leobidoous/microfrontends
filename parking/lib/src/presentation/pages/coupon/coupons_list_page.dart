@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:wallet/wallet.dart';
 import '../../controllers/coupon/coupons_list_controller.dart';
 import '../../routes/coupon_routes.dart';
+import '../../routes/parking_routes.dart';
 
 class CouponsListPage extends StatefulWidget {
   const CouponsListPage({super.key, required this.freeParking});
@@ -95,12 +96,14 @@ class _CouponsListPageState extends State<CouponsListPage> {
                         child: GenButton.text(
                           onPressed: () {
                             if (widget.freeParking) {
-                              // Nav.to.pushReplacementNamed(
-                              //   SharedRoutes.enterTicketNumber,
-                              // );
+                              Nav.to.pushReplacementNamed(
+                                ParkingRoutes.enterTicketNumber.prevPath(2),
+                              );
                               return;
                             }
-                            Nav.to.pushReplacementNamed(CouponRoutes.root);
+                            Nav.to.pushReplacementNamed(
+                              CouponRoutes.root.prevPath(2),
+                            );
                           },
                           type: widget.freeParking
                               ? ButtonType.tertiary
@@ -124,7 +127,10 @@ class _CouponsListPageState extends State<CouponsListPage> {
   Widget _couponListItem(TransactionEntity transaction) {
     return InkWell(
       onTap: () {
-        Nav.to.pushNamed(CouponRoutes.couponDetails, arguments: transaction);
+        Nav.to.pushNamed(
+          CouponRoutes.couponDetails.prevPath(),
+          arguments: transaction,
+        );
       },
       child: CustomPaint(
         painter: CouponBorderPainter(),

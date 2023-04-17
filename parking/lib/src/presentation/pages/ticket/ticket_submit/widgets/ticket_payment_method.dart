@@ -176,11 +176,14 @@ class _TicketPaymentMethodState extends State<TicketPaymentMethod> {
             text: 'Trocar',
             onTap: () {
               Nav.to.pushNamed(
-                WalletRoutes.selectPaymentMethod,
+                DM.i.get<BasePath<WalletRoutes>>().concate(
+                  [WalletRoutes.selectPaymentMethod],
+                ),
                 arguments: (credCard) {
                   widget.paymentMethodController.onChangeCard(credCard);
                   Nav.to.pop();
                 },
+                forRoot: true,
               );
             },
           ),
