@@ -1,10 +1,10 @@
 import 'package:core/core.dart';
-import 'package:pay/src/presentation/modules/phone_recharge_module.dart';
-import 'package:pay/src/presentation/pay_routes.dart';
 import 'package:wallet/wallet.dart';
 
 import '../controllers/pay_controller.dart';
 import '../pages/pay_page.dart';
+import '../pay_routes.dart';
+import 'phone_recharge_module.dart';
 
 class PayModule extends Module {
   @override

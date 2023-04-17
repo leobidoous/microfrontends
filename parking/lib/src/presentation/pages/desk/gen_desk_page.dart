@@ -12,7 +12,7 @@ import '../../controllers/parking/parking_ticket_controller.dart';
 import '../../routes/parking_routes.dart';
 import '../../routes/ticket_routes.dart';
 import '../../widgets/talk_with_us.dart';
-import '../ticket/ticket_submit_page.dart';
+import '../ticket/ticket_submit/ticket_submit_page.dart';
 import 'widgets/desk_card.dart';
 import 'widgets/faq_list.dart';
 

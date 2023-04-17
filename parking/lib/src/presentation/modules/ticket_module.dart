@@ -5,7 +5,7 @@ import '../../infra/usecases/parking/parking_usecase.dart';
 import '../controllers/ticket/ticket_payment_controller.dart';
 import '../controllers/ticket/ticket_payment_method_controller.dart';
 import '../controllers/ticket/ticket_submit_controller.dart';
-import '../pages/ticket/ticket_submit_page.dart';
+import '../pages/ticket/ticket_submit/ticket_submit_page.dart';
 
 class TicketModule extends Module {
   @override

@@ -181,7 +181,7 @@ class _DeskCardState extends State<DeskCard> {
                 return GenButton.text(
                   onPressed: () async {
                     await Nav.to
-                        .pushNamed(TicketWindowRoutes.root.path)
+                        .pushNamed(TicketWindowRoutes.root.relativePath)
                         .then((value) => widget.onReturn());
                   },
                   text: status == DeskCardStatus.pending

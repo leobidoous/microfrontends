@@ -2,17 +2,17 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart' hide UnknowError, ServerError;
 import 'package:flutter/material.dart';
 
-import '../../../../l10n/translations.dart';
-import '../../../domain/entities/dashboard/ticket_entity.dart';
-import '../../../domain/entities/ticket/ticket_payment_request_entity.dart';
-import '../../../domain/failures/dashboard/dashboard_failure.dart';
-import '../../controllers/ticket/ticket_payment_controller.dart';
-import '../../controllers/ticket/ticket_payment_method_controller.dart';
-import '../../controllers/ticket/ticket_submit_controller.dart';
-import '../../routes/parking_routes.dart';
-import '../../routes/ticket_routes.dart';
-import 'widgets/ticket_card_details.dart';
-import 'widgets/ticket_header.dart';
+import '../../../../../l10n/translations.dart';
+import '../../../../domain/entities/dashboard/ticket_entity.dart';
+import '../../../../domain/entities/ticket/ticket_payment_request_entity.dart';
+import '../../../../domain/failures/dashboard/dashboard_failure.dart';
+import '../../../controllers/ticket/ticket_payment_controller.dart';
+import '../../../controllers/ticket/ticket_payment_method_controller.dart';
+import '../../../controllers/ticket/ticket_submit_controller.dart';
+import '../../../routes/parking_routes.dart';
+import '../../../routes/ticket_routes.dart';
+import '../widgets/ticket_card_details.dart';
+import '../widgets/ticket_header.dart';
 import 'widgets/ticket_payment_method.dart';
 
 class TicketSubmitPageArgs {

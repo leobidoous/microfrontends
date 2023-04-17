@@ -3,10 +3,10 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:wallet/wallet.dart';
 
-import '../../../../../l10n/translations.dart';
-import '../../../../domain/entities/dashboard/ticket_entity.dart';
-import '../../../controllers/ticket/ticket_payment_method_controller.dart';
-import '../../../controllers/ticket/ticket_submit_controller.dart';
+import '../../../../../../l10n/translations.dart';
+import '../../../../../domain/entities/dashboard/ticket_entity.dart';
+import '../../../../controllers/ticket/ticket_payment_method_controller.dart';
+import '../../../../controllers/ticket/ticket_submit_controller.dart';
 
 class TicketPaymentMethod extends StatefulWidget {
   const TicketPaymentMethod({

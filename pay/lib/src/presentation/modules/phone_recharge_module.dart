@@ -1,11 +1,10 @@
 import 'package:core/core.dart';
-import 'package:pay/src/presentation/controllers/phone_recharge/phone_recharge_controller.dart';
-import 'package:pay/src/presentation/pages/phone_recharge/phone_recharge_page.dart';
 
 import '../controllers/phone_recharge/payment_method_controller.dart';
+import '../controllers/phone_recharge/phone_recharge_controller.dart';
+import '../pages/phone_recharge/phone_recharge_page.dart';
 
 class PhoneRechargeModule extends Module {
-    
   @override
   final List<Bind> binds = [
     /// Controllers

@@ -93,11 +93,11 @@ abstract class Tr {
     Locale('pt')
   ];
 
-  /// Labels de pagamento
+  /// Labels de open banking
   ///
   /// In pt, this message translates to:
-  /// **'Pagamento'**
-  String get pay;
+  /// **'Open Banking'**
+  String get openBanking;
 }
 
 class _TrDelegate extends LocalizationsDelegate<Tr> {

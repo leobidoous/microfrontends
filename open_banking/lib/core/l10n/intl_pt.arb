@@ -1,0 +1,7 @@
+{
+    "@@locale": "pt",
+    "openBanking": "Pagamento",
+    "@openBanking": {
+        "description": "Labels de open banking"
+    }
+}

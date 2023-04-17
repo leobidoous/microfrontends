@@ -49,7 +49,7 @@ class _ScanCouponPageState extends State<ScanCouponPage> {
         controller.onAddError(value);
       }
       if ((controller.error?.length ?? 0) >= 3) {
-        Nav.to.pushReplacementNamed(TicketWindowRoutes.root);
+        Nav.to.pushReplacementNamed(TicketWindowRoutes.root.relativePath);
       }
     });
   }
