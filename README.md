@@ -2,6 +2,11 @@
 
 Este projeto tem a finalidade de ajudar e agilizar novos projetos Flutter, voltados para micro-frontends, facilitando a abstração de vários componentes e funcionalidades geralmente sempre utilizadas em projetos de pequeno, médio e grande porte.
 
+
+## Dependências
+
+É recomendado que, antes da execução do projeto, seja rodado o seguinte comando: `lefthook install -f`.
+* Obs.: Caso nao tenha o lefthook instalado localmente, instalá-lo.
 ## Inicializando o projeto
 
 Para inicializar o projeto, foi definido uma série de scripts que visam agilizar alguns comandos utilizados. Para inicializar o projeto, assim que clonado, deve-se criar os seguintes arquivos:
