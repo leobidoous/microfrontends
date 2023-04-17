@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 
-import '../../../domain/entities/gen_desk/faq_entity.dart';
-import '../../../domain/usecases/gen_desk/i_desk_usecase.dart';
+import '../../../domain/entities/desk/faq_entity.dart';
+import '../../../domain/usecases/desk/i_desk_usecase.dart';
 
 class FetchFAQController extends GenController<Exception, List<FAQEntity>> {
   final IDeskUsecase usecase;

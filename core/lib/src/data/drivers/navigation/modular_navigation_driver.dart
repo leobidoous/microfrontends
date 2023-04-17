@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../../../core.dart';
 import '../../../infra/drivers/navigation/navigation_arguments_driver.dart';
 import '../../../infra/drivers/navigation/navigation_driver.dart';
 import 'modular_navigation_arguments_driver.dart';
@@ -16,14 +16,17 @@ class ModularNavigationDriver implements INavigationDriver {
 
   static ModularNavigationDriver? _instance;
 
-
   ///
   /// Static instance for DM
   ///
   static ModularNavigationDriver i() {
     _instance ??= ModularNavigationDriver._();
+    Modular.to.path;
     return _instance!;
   }
+
+  @override
+  BasePath get path => BasePath(Modular.to.path);
 
   @override
   INavigationArgumentsDriver get args => _args;

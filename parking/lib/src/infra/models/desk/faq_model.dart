@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 
-import '../../../domain/entities/gen_desk/faq_entity.dart';
+import '../../../domain/entities/desk/faq_entity.dart';
 
 class FAQModel extends FAQEntity with EquatableMixin {
   FAQModel({

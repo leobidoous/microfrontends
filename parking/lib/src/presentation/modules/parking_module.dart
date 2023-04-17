@@ -8,8 +8,12 @@ import '../controllers/parking/parking_coupon_controller.dart';
 import '../controllers/parking/parking_ticket_controller.dart';
 import '../pages/parking/parking_amount_info_page.dart';
 import '../pages/parking/parking_page.dart';
+import '../routes/coupon_routes.dart';
+import '../routes/desk_routes.dart';
 import '../routes/parking_routes.dart';
 import '../routes/ticket_routes.dart';
+import 'coupon_module.dart';
+import 'desk_module.dart';
 import 'ticket_module.dart';
 
 class ParkingModule extends Module {
@@ -69,5 +73,7 @@ class ParkingModule extends Module {
       ),
     ),
     ModuleRoute(TicketRoutes.root.path, module: TicketModule()),
+    ModuleRoute(DeskRoutes.root.path, module: GenDeskModule()),
+    ModuleRoute(CouponRoutes.root.path, module: CouponModule()),
   ];
 }

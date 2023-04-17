@@ -5,9 +5,15 @@ import '../../../domain/enums/desk_cart_status_enum.dart';
 import '../../../infra/datasources/coupon/i_coupon_datasource.dart';
 
 class CouponDatasource extends ICouponDatasource {
-  final IFirebaseStorageDriver storageDriver;
+  CouponDatasource({
+    required this.client,
+    required this.baseUrl,
+    required this.storageDriver,
+  });
 
-  CouponDatasource({required this.storageDriver});
+  final String baseUrl;
+  final IHttpDriver client;
+  final IFirebaseStorageDriver storageDriver;
 
   @override
   Future<Either<Exception, List<TransactionEntity>>> fetchCoupons({
@@ -77,19 +83,20 @@ class CouponDatasource extends ICouponDatasource {
   @override
   Future<Either<Exception, Unit>> setParkingReleaseStatus({
     required DeskCardStatus status,
-    required String customerId,
-    required String marketplaceId,
   }) async {
-    final collection =
-        'marketplaces/$marketplaceId/customers/$customerId/parking';
-    final response = await storageDriver.docSet(
-      collectionDoc: collection,
-      data: {
-        'createdAt': Timestamp.now(),
-        'updatedAt': Timestamp.now(),
-        'status': status.toJson,
+    final response = await client.post(
+      '${baseUrl}parking/attempts/invoice',
+      data: {'status': status.toJson},
+    );
+    return response.fold(
+      (l) => Left(Exception(l.data)),
+      (r) {
+        try {
+          return Right(unit);
+        } catch (e) {
+          return Left(Exception(e));
+        }
       },
     );
-    return response;
   }
 }

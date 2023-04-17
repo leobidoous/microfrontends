@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:wallet/wallet.dart';
 
 import '../../../l10n/translations.dart';
-import '../../presentation/routes/gen_desk_routes.dart';
+import '../../presentation/routes/desk_routes.dart';
 import '../../presentation/routes/ticket_routes.dart';
 import '../../presentation/routes/vehicles_routes.dart';
 
@@ -88,13 +88,14 @@ extension LinkCardTypeExt on LinkCardType {
   Function get nav {
     switch (this) {
       case LinkCardType.ticket:
-        return () => Nav.to.pushNamed(TicketRoutes.ticketTracking);
+        return () => Nav.to.pushNamed(TicketRoutes.ticketTracking.relativePath);
       case LinkCardType.desk:
-        return () => Nav.to.pushNamed(GenDeskRoutes.root);
+        return () => Nav.to.pushNamed(DeskRoutes.root.relativePath);
       case LinkCardType.wallet:
-        return () => Nav.to.pushNamed(WalletRoutes.root.relativePath);
+        final route = '../start/${WalletRoutes.root.relativePath}';
+        return () => Nav.to.pushNamed(route, forRoot: true);
       case LinkCardType.vehicle:
-        return () => Nav.to.pushNamed(VehiclesRoutes.listVehicles);
+        return () => Nav.to.pushNamed(VehiclesRoutes.listVehicles.relativePath);
       default:
         return () {};
     }

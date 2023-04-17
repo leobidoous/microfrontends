@@ -16,7 +16,5 @@ abstract class ICouponDatasource {
   Future<Either<Exception, Object>> onValidateCoupon();
   Future<Either<Exception, Unit>> setParkingReleaseStatus({
     required DeskCardStatus status,
-    required String customerId,
-    required String marketplaceId,
   });
 }

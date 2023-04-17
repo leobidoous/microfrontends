@@ -1,9 +1,9 @@
 import 'package:core/core.dart';
 
-import 'gen_desk_routes.dart';
+import 'desk_routes.dart';
 
 class TicketWindowRoutes {
-  static const BasePath root = BasePath('/ticket_window/', GenDeskRoutes.root);
+  static const BasePath root = BasePath('/ticket_window/', DeskRoutes.root);
   static const BasePath takePhoto = BasePath('/take_picture/', root);
   static const BasePath reviewPhoto = BasePath('/review_photo/', root);
   static const BasePath reviewPhotoBeforeSubmit = BasePath(

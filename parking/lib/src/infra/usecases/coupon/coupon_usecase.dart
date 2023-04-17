@@ -39,10 +39,6 @@ class CouponUsecase extends ICouponUsecase {
   Future<Either<Exception, Unit>> setParkingReleaseStatus({
     required DeskCardStatus status,
   }) {
-    return repository.setParkingReleaseStatus(
-      status: status,
-      customerId: session.customer.id,
-      marketplaceId: session.claims.marketplaceId,
-    );
+    return repository.setParkingReleaseStatus(status: status);
   }
 }

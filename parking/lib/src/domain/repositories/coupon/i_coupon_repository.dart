@@ -14,9 +14,7 @@ abstract class ICouponRepository {
     required String qrcode,
   });
   Future<Either<Exception, Object>> onValidateCoupon();
-   Future<Either<Exception, Unit>> setParkingReleaseStatus({
+  Future<Either<Exception, Unit>> setParkingReleaseStatus({
     required DeskCardStatus status,
-    required String customerId,
-    required String marketplaceId,
   });
 }

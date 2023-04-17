@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 
+import '../../../../core.dart';
 import 'navigation_arguments_driver.dart';
 
 ///
@@ -16,6 +17,11 @@ abstract class INavigationDriver {
   /// Current context
   ///
   BuildContext? get context;
+
+  ///
+  /// Current path
+  ///
+  BasePath get path;
 
   ///
   /// Push a named route to the stack

@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../alerts/gen_alert.dart';
@@ -21,6 +21,12 @@ class ImageUrl extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (url.isEmpty) {
+      return SvgPicture.asset(
+        'assets/images/server/server_error.svg',
+        fit: fit,
+      );
+    }
     return CachedNetworkImage(
       imageUrl: url,
       placeholder: (context, url) => const GenLoading(),

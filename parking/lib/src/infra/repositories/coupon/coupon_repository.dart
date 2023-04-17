@@ -103,13 +103,7 @@ class CouponRepository extends ICouponRepository {
   @override
   Future<Either<Exception, Unit>> setParkingReleaseStatus({
     required DeskCardStatus status,
-    required String customerId,
-    required String marketplaceId,
   }) {
-    return datasource.setParkingReleaseStatus(
-      status: status,
-      marketplaceId: marketplaceId,
-      customerId: customerId,
-    );
+    return datasource.setParkingReleaseStatus(status: status);
   }
 }

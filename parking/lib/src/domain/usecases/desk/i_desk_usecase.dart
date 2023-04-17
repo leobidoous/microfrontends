@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
 
-import '../../entities/gen_desk/faq_entity.dart';
+import '../../entities/desk/faq_entity.dart';
 import '../../enums/desk_cart_status_enum.dart';
 
 abstract class IDeskUsecase {
