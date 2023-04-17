@@ -29,7 +29,22 @@ class HomeModule extends Module {
     ),
 
     /// Shopping
-    Bind.factory<ShoppingEntity>((i) => ShoppingModel.fromMap({})),
+    Bind.factory<ShoppingEntity>(
+      (i) => ShoppingEntity(
+        id: 3,
+        name: 'name',
+        type: 'type',
+        latitude: 'latitude',
+        longitude: 'longitude',
+        qrcode: 'qrcode',
+        idAdministrator: 1,
+        updatedAt: 'updatedAt',
+        createdAt: 'createdAt',
+        address: 'address',
+        logoImage: '',
+        cnpj: 'cnpj',
+      ),
+    ),
 
     /// Controllers
     Bind.lazySingleton<HomeController>(
@@ -56,7 +71,14 @@ class HomeModule extends Module {
         ModuleRoute(ProfileRoutes.root.path, module: ProfileModule()),
       ],
     ),
-    ModuleRoute(ParkingRoutes.root.path, module: ParkingModule()),
+    ModuleRoute(
+      ParkingRoutes.root.path,
+      module: ParkingModule(
+        walletPath: HomeRoutes.start.concate<WalletRoutes>(
+          [WalletRoutes.root],
+        ),
+      ),
+    ),
     ModuleRoute(PayRoutes.root.path, module: PayModule()),
     ChildRoute(
       SharedRoutes.fallback.path,

@@ -20,7 +20,7 @@ class CouponSubmissionResultPage extends StatefulWidget {
 class _CouponSubmissionResultPageState
     extends State<CouponSubmissionResultPage> {
   final couponController = DM.i.get<ParkingCouponController>();
-  final shopping = DM.i.get<ShoppingModel>();
+  final shopping = DM.i.get<ShoppingEntity>();
 
   @override
   void initState() {
@@ -112,8 +112,8 @@ class _CouponSubmissionResultPageState
                       GenButton.text(
                         onPressed: () {
                           Nav.to.pushNamed(
-                            TicketWindowRoutes
-                                .scanTicketOrEnterPlate.relativePath,
+                            TicketWindowRoutes.scanTicketOrEnterPlate
+                                .prevPath(),
                           );
                         },
                         text: 'Escanear tíquete',
@@ -125,7 +125,7 @@ class _CouponSubmissionResultPageState
                         onPressed: () {
                           Nav.to.popUntil(
                             ModalRoute.withName(
-                              TicketWindowRoutes.takePhoto.completePath,
+                              TicketWindowRoutes.takePhoto.prevPath(),
                             ),
                           );
                         },

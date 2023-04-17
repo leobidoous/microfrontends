@@ -2,8 +2,14 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 class MallLocation extends StatelessWidget {
-  final ShoppingModel shopping;
-  const MallLocation({super.key, required this.shopping});
+  const MallLocation({
+    super.key,
+    required this.shopping,
+    this.padding = EdgeInsets.zero,
+  });
+
+  final ShoppingEntity shopping;
+  final EdgeInsets padding;
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +21,7 @@ class MallLocation extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: const Spacing(2).value,
-          vertical: const Spacing(1).value,
-        ),
+        padding: padding,
         child: Row(
           children: [
             Icon(GenIcons.locationPinAlt, color: AppColorsBase.grey6),

@@ -34,7 +34,7 @@ class TicketCard extends StatelessWidget {
   });
 
   final TicketEntity ticket;
-  final ShoppingModel shopping;
+  final ShoppingEntity shopping;
   final Function() onPayOrValidateTicket;
   final ParkingCouponController controller;
 
@@ -50,7 +50,13 @@ class TicketCard extends StatelessWidget {
           style: context.textTheme.titleMedium,
         ),
         Spacing.md.vertical,
-        MallLocation(shopping: shopping),
+        MallLocation(
+          shopping: shopping,
+          padding: EdgeInsets.symmetric(
+            horizontal: const Spacing(2).value,
+            vertical: const Spacing(1).value,
+          ),
+        ),
         Spacing.md.vertical,
         Padding(
           padding: EdgeInsets.symmetric(

@@ -133,7 +133,7 @@ class _EnterCouponManuallyPageState extends State<EnterCouponManuallyPage> {
                   }
                   reviewController.onClear();
                   Nav.to.pushNamed(
-                    TicketWindowRoutes.couponSubmissionResult.relativePath,
+                    TicketWindowRoutes.couponSubmissionResult.prevPath(),
                   );
                 });
               },

@@ -7,7 +7,7 @@ import '../../../../../l10n/translations.dart';
 class TicketShoppingInfo extends StatelessWidget {
   const TicketShoppingInfo({super.key, required this.shopping});
 
-  final ShoppingModel shopping;
+  final ShoppingEntity shopping;
 
   @override
   Widget build(BuildContext context) {

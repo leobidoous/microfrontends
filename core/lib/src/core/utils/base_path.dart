@@ -24,7 +24,7 @@ import 'package:equatable/equatable.dart' show EquatableMixin;
 /// Nav.pushNamed(steps);
 /// Nav.pushNamed(email);
 /// ```
-class BasePath with EquatableMixin {
+class BasePath<T> with EquatableMixin {
   /// Current route path
   final String path;
 
@@ -40,12 +40,19 @@ class BasePath with EquatableMixin {
     return '$base${!base.endsWith('/') ? path : path.replaceFirst('/', '')}';
   }
 
-  BasePath concate(List<BasePath> childs) {
-    return BasePath([this, ...childs].join().replaceAll('//', '/'));
+  BasePath<S> concate<S>(List<BasePath> childs) {
+    return BasePath<S>(
+      [this, ...childs.map((e) => e.relativePath)].join().replaceAll('//', '/'),
+    );
   }
 
   /// Relative path
   String get relativePath => path.replaceFirst('/', '');
+
+  String prevPath([int qtd = 1]) {
+    String previousRelative = '../' * qtd;
+    return '$previousRelative$relativePath';
+  }
 
   @override
   String toString() => completePath;

@@ -49,9 +49,8 @@ class HeaderUser extends StatelessWidget {
                       width: 10,
                       height: 10,
                       decoration: BoxDecoration(
-                        color: const Color(0xFFFC4E69),
-                        borderRadius:
-                            BorderRadius.circular(const Spacing(0.5).value),
+                        color: context.colorScheme.error,
+                        shape: BoxShape.circle,
                       ),
                     ),
                   ),

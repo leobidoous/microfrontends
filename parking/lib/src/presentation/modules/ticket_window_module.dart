@@ -63,15 +63,15 @@ class TicketWindowModule extends Module {
     ),
     ChildRoute(
       TicketWindowRoutes.enterCouponManually.path,
-      child: (_, args) => EnterCouponManuallyPage(files: args.data['files']),
+      child: (_, args) => EnterCouponManuallyPage(files: args.data),
     ),
     ChildRoute(
       TicketWindowRoutes.reviewPhoto.path,
-      child: (_, args) => ReviewPhotosPage(file: args.data['file']),
+      child: (_, args) => ReviewPhotosPage(file: args.data),
     ),
     ChildRoute(
       TicketWindowRoutes.couponOcrRecognized.path,
-      child: (_, args) => CouponOcrRecognizedPage(files: args.data['files']),
+      child: (_, args) => CouponOcrRecognizedPage(files: args.data),
     ),
     ChildRoute(
       TicketWindowRoutes.couponSubmissionResult.path,

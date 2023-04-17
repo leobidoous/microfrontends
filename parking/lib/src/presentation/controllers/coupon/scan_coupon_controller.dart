@@ -7,7 +7,7 @@ import '../../../domain/failures/coupon/coupon_failure.dart';
 import '../../../domain/usecases/coupon/i_coupon_usecase.dart';
 
 class ScanCouponController extends GenController<List<ICouponFailure>, String> {
-  final QrCodeScanController scanController;
+  final CodeScanController scanController;
   final ICouponUsecase couponUsecase;
   late Timer timer;
 

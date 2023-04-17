@@ -6,10 +6,9 @@ import 'package:wallet/wallet.dart';
 
 import '../../routes/coupon_routes.dart';
 
-
 class CouponDetailsPage extends StatefulWidget {
   const CouponDetailsPage({super.key, required this.transaction});
-  
+
   final TransactionEntity transaction;
 
   @override
@@ -17,7 +16,7 @@ class CouponDetailsPage extends StatefulWidget {
 }
 
 class _CouponDetailsPageState extends State<CouponDetailsPage> {
-  final ShoppingModel shopping = DM.i.get<ShoppingModel>();
+  final ShoppingEntity shopping = DM.i.get<ShoppingEntity>();
   late final String sellerLabel;
 
   @override

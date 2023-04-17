@@ -3,28 +3,26 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../l10n/translations.dart';
-import '../../../domain/entities/dashboard/ticket_entity.dart';
 import '../../controllers/gen_desk/fetch_faq_controller.dart';
 import '../../controllers/gen_desk/gen_desk_controller.dart';
 import '../../controllers/parking/parking_controller.dart';
 import '../../controllers/parking/parking_coupon_controller.dart';
 import '../../controllers/parking/parking_ticket_controller.dart';
 import '../../routes/parking_routes.dart';
-import '../../routes/ticket_routes.dart';
 import '../../widgets/talk_with_us.dart';
-import '../ticket/ticket_submit/ticket_submit_page.dart';
 import 'widgets/desk_card.dart';
 import 'widgets/faq_list.dart';
 
 class GenDeskPage extends StatefulWidget {
   const GenDeskPage({super.key});
 
+
   @override
   State<GenDeskPage> createState() => _GenDeskPageState();
 }
 
 class _GenDeskPageState extends State<GenDeskPage> {
-  final shopping = DM.i.get<ShoppingModel>();
+  final shopping = DM.i.get<ShoppingEntity>();
   final faqController = DM.i.get<FetchFAQController>();
   final deskController = DM.i.get<GenDeskController>();
   final parkingController = DM.i.get<ParkingController>();
@@ -52,86 +50,10 @@ class _GenDeskPageState extends State<GenDeskPage> {
     );
   }
 
-  void _onScanPayOrValidateTicket() {
-    final ticket = ticketController.state;
-    final coupon = couponController.state;
-    if (session.customer.emailVerifiedAt.isNotEmpty) {
-      if (ticket.status.code == 2) {
-        Nav.to.pushNamed(TicketRoutes.ticketTracking);
-        return;
-      }
-      if (ticket.ticket == null && ticket.plate == null) {
-        // Nav.to.pushNamed(
-        //   SharedRoutes.scanBardCode,
-        //   arguments: (code) {
-        //     Nav.to.pushReplacementNamed(
-        //       TicketRoutes.root,
-        //       arguments: TicketSubmitPageArgs(
-        //         ticketOrPlate: code,
-        //         onPop: () {
-        //           Nav.to.popUntil(
-        //             ModalRoute.withName(ParkingRoutes.root.completePath),
-        //           );
-        //         },
-        //       ),
-        //     );
-        //   },
-        // );
-        return;
-      }
-      if (ticket.discount.percentOfDiscount != 1) {
-        Nav.to.pushNamed(
-          ParkingRoutes.parkingAmountInfo,
-          arguments: [
-            ticket.plate ?? ticket.ticket,
-            coupon,
-          ],
-        );
-        return;
-      } else {
-        Nav.to.pushNamed(
-          TicketRoutes.root,
-          arguments: TicketSubmitPageArgs(
-            ticketOrPlate: ticket.plate ?? ticket.ticket ?? '',
-            onPop: () {
-              Nav.to.popUntil(
-                ModalRoute.withName(ParkingRoutes.root.completePath),
-              );
-            },
-          ),
-        );
-      }
-    } else {
-      GenDialog.show(
-        context,
-        GenAlert.emailVerified(context),
-        showClose: true,
-      );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GenAppBar(
-        title: Tr.of(context).deskTitle,
-        actions: [
-          ValueListenableBuilder<TicketEntity>(
-            valueListenable: ticketController,
-            builder: (context, ticket, child) {
-              return AppBarButton(
-                isEnabled: !ticketController.isLoading,
-                onTap: _onScanPayOrValidateTicket,
-                child: Icon(
-                  GenIcons.barCode,
-                  color: context.colorScheme.primary,
-                  size: const Spacing(3).value,
-                ),
-              );
-            },
-          ),
-        ],
-      ),
+      appBar: GenAppBar(title: Tr.of(context).deskTitle),
       body: GenRefreshIndicator(
         onRefresh: () async {
           faqController.fetchFAQs();
@@ -170,7 +92,7 @@ class _GenDeskPageState extends State<GenDeskPage> {
                         text: Tr.of(context).seeRegulation,
                         onTap: () {
                           Nav.to.pushNamed(
-                            ParkingRoutes.regulation.completePath,
+                            ParkingRoutes.regulation.prevPath(),
                             arguments: couponController.parkingRoleUrl,
                           );
                         },

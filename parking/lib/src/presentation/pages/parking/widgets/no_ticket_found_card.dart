@@ -39,7 +39,7 @@ class NoTicketFoundCard extends StatelessWidget {
           text: Tr.of(context).scanTicketButton,
           onPressed: () async {
             await Nav.to.pushNamed(
-              ParkingRoutes.scanBardCode,
+              ParkingRoutes.scanTicket.relativePath,
               arguments: (code) async {
                 await Nav.to.pushReplacementNamed(TicketRoutes.root);
               },
@@ -53,7 +53,7 @@ class NoTicketFoundCard extends StatelessWidget {
           isEnabled: isEnabled,
           onPressed: () async {
             await Nav.to
-                .pushNamed(ParkingRoutes.addTicketByPlate)
+                .pushNamed(ParkingRoutes.enterPlateNumber.relativePath)
                 .then((value) => onRefresh?.call());
           },
         ),

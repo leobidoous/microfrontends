@@ -50,14 +50,11 @@ flutter:
     - .environment/
     - assets/
     - assets/mocks/
-    - assets/icons/
     - assets/icons/nav_bar/
     - assets/icons/bottom_nav_bar/
     - assets/logos/
     - assets/images/
-    - assets/images/onboard_refill_phone/
-    - assets/images/onboarding/gen/
-    - assets/images/providers/
+    - assets/images/onboarding/
     - assets/images/wallet/
     - assets/images/parking/
     - assets/images/server/

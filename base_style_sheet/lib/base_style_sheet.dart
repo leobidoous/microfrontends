@@ -1,5 +1,6 @@
 library base_style_sheet;
 
+export 'package:base_style_sheet/src/domain/enums/code_scan_type_enum.dart';
 export 'package:base_style_sheet/src/presentation/shapes/coupom_border_painter.dart';
 export 'package:base_style_sheet/src/presentation/shapes/inverse_border_shape.dart';
 export 'package:base_style_sheet/src/presentation/views/confirm_exit_view.dart';
@@ -8,7 +9,7 @@ export 'package:base_style_sheet/src/presentation/widgets/alerts/gen_alert.dart'
 export 'package:base_style_sheet/src/presentation/widgets/buttons/app_bar_button.dart';
 export 'package:base_style_sheet/src/presentation/widgets/buttons/gen_button.dart';
 export 'package:base_style_sheet/src/presentation/widgets/camera/camera_view.dart';
-export 'package:base_style_sheet/src/presentation/widgets/camera/qr_code_scan/qr_code_scan_view.dart';
+export 'package:base_style_sheet/src/presentation/widgets/camera/code_scan_view.dart';
 export 'package:base_style_sheet/src/presentation/widgets/containers/gen_card.dart';
 export 'package:base_style_sheet/src/presentation/widgets/containers/gen_shimmer.dart';
 export 'package:base_style_sheet/src/presentation/widgets/containers/local_theme.dart';

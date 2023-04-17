@@ -45,11 +45,11 @@ class CouponModule extends Module {
         parkingUsecase: DM.i.get<ParkingUsecase>(),
       ),
     ),
-    Bind.factory<QrCodeScanController>((i) => QrCodeScanController()),
+    Bind.factory<CodeScanController>((i) => CodeScanController()),
     Bind.factory<ScanCouponController>(
       (i) => ScanCouponController(
         couponUsecase: DM.i.get<CouponUsecase>(),
-        scanController: DM.i.get<QrCodeScanController>(),
+        scanController: DM.i.get<CodeScanController>(),
       ),
     ),
   ];
@@ -62,25 +62,19 @@ class CouponModule extends Module {
     ),
     ChildRoute(
       CouponRoutes.couponDetails.path,
-      child: (_, args) => CouponDetailsPage(
-        transaction: args.data['transaction'],
-      ),
+      child: (_, args) => CouponDetailsPage(transaction: args.data),
     ),
     ChildRoute(
       CouponRoutes.couponsList.path,
-      child: (_, args) => CouponsListPage(
-        freeParking: args.data['freeParking'],
-      ),
+      child: (_, args) => CouponsListPage(freeParking: args.data),
     ),
     ChildRoute(
       CouponRoutes.couponsList.path,
-      child: (_, args) => CouponsListPage(
-        freeParking: args.data['freeParking'],
-      ),
+      child: (_, args) => CouponsListPage(freeParking: args.data),
     ),
     ChildRoute(
       CouponRoutes.couponSubmit.path,
-      child: (_, args) => CouponSubmitPage(qrcode: args.data['qrcode']),
+      child: (_, args) => CouponSubmitPage(qrcode: args.data),
     ),
     ChildRoute(
       CouponRoutes.couponSuccessfullyRegistered.path,

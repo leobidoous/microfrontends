@@ -148,24 +148,24 @@ class _ScanTicketOrEnterPlatePageState
               children: [
                 GenButton.text(
                   onPressed: () {
-                    // Nav.to.pushNamed(
-                    //   SharedRoutes.scanBardCode,
-                    //   arguments: (code) {
-                    //     Nav.to.pushReplacementNamed(
-                    //       TicketRoutes.root,
-                    //       arguments: TicketSubmitPageArgs(
-                    //         ticketOrPlate: code,
-                    //         onPop: () {
-                    //           Nav.to.popUntil(
-                    //             ModalRoute.withName(
-                    //               ParkingRoutes.root.completePath,
-                    //             ),
-                    //           );
-                    //         },
-                    //       ),
-                    //     );
-                    //   },
-                    // );
+                    Nav.to.pushNamed(
+                      ParkingRoutes.scanTicket.prevPath(2),
+                      arguments: (code) {
+                        Nav.to.pushReplacementNamed(
+                          TicketRoutes.root,
+                          arguments: TicketSubmitPageArgs(
+                            ticketOrPlate: code,
+                            onPop: () {
+                              Nav.to.popUntil(
+                                ModalRoute.withName(
+                                  ParkingRoutes.root.completePath,
+                                ),
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    );
                   },
                   text: 'Escanear tíquete',
                 ),
@@ -185,6 +185,7 @@ class _ScanTicketOrEnterPlatePageState
                     autofocus: false,
                     controller: textController,
                     padding: EdgeInsets.zero,
+                    textCapitalization: TextCapitalization.characters,
                     inputFormatters: [FormMasks.plate()],
                     validators: [
                       FormValidators.emptyField,
@@ -198,9 +199,10 @@ class _ScanTicketOrEnterPlatePageState
                 Spacing.md.vertical,
                 GenButton.text(
                   onPressed: () {
+                    FocusScope.of(context).requestFocus(FocusNode());
                     if (!(formKey.currentState?.validate() ?? false)) return;
                     Nav.to.pushNamed(
-                      TicketRoutes.root,
+                      TicketRoutes.root.prevPath(2),
                       arguments: TicketSubmitPageArgs(
                         ticketOrPlate: textController.text,
                         onPop: () {

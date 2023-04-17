@@ -27,7 +27,8 @@ class HelloUser extends StatelessWidget {
               ),
               children: <TextSpan>[
                 TextSpan(
-                  text: '${breakName.first} ${breakName.last}',
+                  text:
+                      '''${breakName.first.capitalize} ${breakName.last.capitalize}''',
                   style: context.textTheme.bodyLarge!.copyWith(
                     fontFamily: context.textTheme.secodaryFontFamily,
                     fontWeight: AppFontWeight.bold.value,

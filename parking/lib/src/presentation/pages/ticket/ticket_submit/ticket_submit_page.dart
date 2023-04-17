@@ -35,7 +35,7 @@ class _TicketSubmitPageState extends State<TicketSubmitPage> {
   final paymentController = DM.i.get<TicketPaymentController>();
   final session = DM.i.get<SessionEntity>();
   final controller = DM.i.get<TicketSubmitController>();
-  final shopping = DM.i.get<ShoppingModel>();
+  final shopping = DM.i.get<ShoppingEntity>();
 
   @override
   void initState() {

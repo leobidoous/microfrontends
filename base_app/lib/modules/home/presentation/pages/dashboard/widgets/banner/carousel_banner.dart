@@ -36,11 +36,13 @@ class _CarouselBannerState extends State<CarouselBanner> {
                 onPageChanged: (index, reason) {
                   setState(() => selected = index);
                 },
+                autoPlay: true,
                 disableCenter: true,
                 height: const Spacing(18).value,
                 enlargeFactor: .2,
                 viewportFraction: .9,
                 enlargeCenterPage: true,
+                autoPlayInterval: const Duration(seconds: 5),
               ),
               itemBuilder: (context, index, realIndex) => _bannerItem(
                 state[index],

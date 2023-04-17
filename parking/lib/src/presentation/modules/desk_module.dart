@@ -6,8 +6,6 @@ import '../../infra/usecases/desk/desk_usecase.dart';
 import '../controllers/gen_desk/fetch_faq_controller.dart';
 import '../controllers/gen_desk/gen_desk_controller.dart';
 import '../pages/desk/gen_desk_page.dart';
-import '../routes/ticket_window_routes.dart';
-import 'ticket_window_module.dart';
 
 class GenDeskModule extends Module {
   @override
@@ -45,6 +43,5 @@ class GenDeskModule extends Module {
       Modular.initialRoute,
       child: (_, args) => const GenDeskPage(),
     ),
-    ModuleRoute(TicketWindowRoutes.root.path, module: TicketWindowModule()),
   ];
 }

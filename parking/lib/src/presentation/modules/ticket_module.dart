@@ -31,12 +31,7 @@ class TicketModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute(
       Modular.initialRoute,
-      child: (_, args) => TicketSubmitPage(
-        args: TicketSubmitPageArgs(
-          ticketOrPlate: args.data['ticketOrPlate'],
-          onPop: args.data['onPop'],
-        ),
-      ),
+      child: (_, args) => TicketSubmitPage(args: args.data),
     ),
   ];
 }

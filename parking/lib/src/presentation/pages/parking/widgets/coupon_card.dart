@@ -25,7 +25,7 @@ class CouponCardNew extends StatelessWidget {
   final ParkingCouponController couponController;
   final ParkingTicketController ticketController;
   final VoidCallback onRefresh;
-  final ShoppingModel shopping;
+  final ShoppingEntity shopping;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class CouponCardNew extends StatelessWidget {
                     text: Tr.of(context).seeRegulation,
                     onTap: () {
                       Nav.to.pushNamed(
-                        ParkingRoutes.regulation,
+                        ParkingRoutes.regulation.relativePath,
                         arguments: couponController.parkingRoleUrl,
                       );
                     },
@@ -61,7 +61,13 @@ class CouponCardNew extends StatelessWidget {
                 ),
               ),
               Spacing.sm.vertical,
-              MallLocation(shopping: shopping),
+              MallLocation(
+                shopping: shopping,
+                padding: EdgeInsets.symmetric(
+                  horizontal: const Spacing(2).value,
+                  vertical: const Spacing(1).value,
+                ),
+              ),
               Spacing.sm.vertical,
               if (couponController.hasError)
                 RequestError(
@@ -128,7 +134,12 @@ class CouponCardNew extends StatelessWidget {
                               text: Tr.of(context).seeCoupons,
                               onTap: () {
                                 Nav.to.pushNamed(
-                                  CouponRoutes.couponsList,
+                                  ParkingRoutes.root.concate(
+                                    [
+                                      CouponRoutes.root,
+                                      CouponRoutes.couponsList
+                                    ],
+                                  ).prevPath(),
                                   arguments: coupon.canGetFreeParking,
                                 );
                               },
@@ -172,8 +183,11 @@ class CouponCardNew extends StatelessWidget {
         if (!hasUsedVoucher && !canGetFreeParking) {
           return GenButton.text(
             text: Tr.of(context).addCoupon,
-            onPressed: () async =>
-                await Nav.to.pushNamed(CouponRoutes.root).then((value) {
+            onPressed: () async => await Nav.to
+                .pushNamed(
+              CouponRoutes.root.relativePath,
+            )
+                .then((value) {
               onRefresh();
             }),
           );
@@ -183,18 +197,16 @@ class CouponCardNew extends StatelessWidget {
             type: ButtonType.tertiary,
             onPressed: () {
               if (ticket.ticket == null && ticket.plate == null) {
-                // Nav.to.pushNamed(SharedRoutes.enterTicketNumber);
+                Nav.to.pushNamed(ParkingRoutes.enterTicketNumber.relativePath);
                 return;
               }
               if (ticketController.state.status.code == 2) {
                 Nav.to.pushNamed(
-                  TicketRoutes.ticketTracking,
+                  TicketRoutes.ticketTracking.relativePath,
                   arguments: ticket.ticket ?? ticket.plate,
                 );
               } else {
-                Nav.to.pushNamed(
-                  TicketRoutes.root,
-                );
+                Nav.to.pushNamed(TicketRoutes.root.relativePath);
               }
             },
           );

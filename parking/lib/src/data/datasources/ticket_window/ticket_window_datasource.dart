@@ -102,7 +102,9 @@ class TicketWindowDatasource extends ITicketWindowDatasource {
             final response = await graphQlClient.request(
               data: GraphRequestData(
                 document: TicketWindowMutations.updateCoupon,
-                options: GraphQlDriverOptions(operationName: 'updateCoupon'),
+                options: GraphQlDriverOptions(
+                  operationName: 'UpdateTaxInvoice',
+                ),
                 variables: {
                   'id': r
                       .data['data']['importTaxInvoice']['payments'].first['id'],

@@ -13,7 +13,7 @@ class TicketHeader extends StatelessWidget {
     required this.controller,
   });
 
-  final ShoppingModel shopping;
+  final ShoppingEntity shopping;
   final TicketSubmitController controller;
 
   @override

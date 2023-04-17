@@ -85,19 +85,30 @@ extension LinkCardTypeExt on LinkCardType {
     }
   }
 
-  Function get nav {
+  VoidCallback nav(dynamic Function(LinkCardType)? arguments) {
+    final args = arguments?.call(this);
     switch (this) {
       case LinkCardType.ticket:
-        return () => Nav.to.pushNamed(TicketRoutes.ticketTracking.relativePath);
+        return () => Nav.to.pushNamed(
+              TicketRoutes.ticketTracking.relativePath,
+              arguments: args,
+            );
       case LinkCardType.desk:
-        return () => Nav.to.pushNamed(DeskRoutes.root.relativePath);
+        return () => Nav.to.pushNamed(
+              DeskRoutes.root.relativePath,
+              arguments: args,
+            );
       case LinkCardType.wallet:
-        final route = '../start/${WalletRoutes.root.relativePath}';
-        return () => Nav.to.pushNamed(route, forRoot: true);
+        return () => Nav.to.pushNamed(
+              DM.i.get<BasePath<WalletRoutes>>(),
+              forRoot: true,
+              arguments: args,
+            );
       case LinkCardType.vehicle:
-        return () => Nav.to.pushNamed(VehiclesRoutes.listVehicles.relativePath);
-      default:
-        return () {};
+        return () => Nav.to.pushNamed(
+              VehiclesRoutes.listVehicles.relativePath,
+              arguments: args,
+            );
     }
   }
 }

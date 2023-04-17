@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
@@ -7,18 +5,18 @@ import 'package:flutter/material.dart';
 import '../../../../l10n/translations.dart';
 import '../../../domain/entities/dashboard/coupon_entity.dart';
 import '../../../domain/entities/dashboard/ticket_entity.dart';
-import '../../../domain/enums/link_card_type_enum.dart';
 import '../../../domain/failures/dashboard/dashboard_failure.dart';
 import '../../controllers/parking/parking_controller.dart';
 import '../../routes/parking_routes.dart';
 import '../../routes/ticket_routes.dart';
 import '../../widgets/talk_with_us.dart';
+import '../ticket/ticket_submit/ticket_submit_page.dart';
 import 'widgets/coupon_card.dart';
+import 'widgets/link_card.dart';
 import 'widgets/no_ticket_found_card.dart';
 import 'widgets/ticket_card.dart';
 
 part 'widgets/header_dashboard.dart';
-part 'widgets/link_card.dart';
 
 class ParkingPage extends StatefulWidget {
   const ParkingPage({super.key});
@@ -30,7 +28,7 @@ class ParkingPage extends StatefulWidget {
 class _ParkingPageState extends State<ParkingPage> {
   final session = DM.i.get<SessionEntity>();
   final controller = DM.i.get<ParkingController>();
-  final shopping = DM.i.get<ShoppingModel>();
+  final shopping = DM.i.get<ShoppingEntity>();
 
   @override
   void initState() {
@@ -51,24 +49,37 @@ class _ParkingPageState extends State<ParkingPage> {
     );
   }
 
-  void _onScanPayOrValidateTicket() {
+  void _onScanOrPayOrValidateTicket() {
     final ticket = controller.ticketController.state;
     final coupon = controller.couponController.state;
     if (session.customer.emailVerifiedAt.isNotEmpty) {
       if (ticket.status.code == 2) {
-        Nav.to.pushNamed(TicketRoutes.ticketTracking);
+        Nav.to.pushNamed(TicketRoutes.ticketTracking.relativePath);
         return;
       }
       if (ticket.ticket == null && ticket.plate == null) {
         Nav.to.pushNamed(
-          ParkingRoutes.scanBardCode,
-          arguments: (code) {},
+          ParkingRoutes.scanTicket.relativePath,
+          arguments: (code) {
+            Nav.to.pushReplacementNamed(
+              TicketRoutes.root,
+              arguments: TicketSubmitPageArgs(
+                ticketOrPlate: code,
+                onPop: () {
+                  Nav.to.popUntil(
+                    ModalRoute.withName(ParkingRoutes.root.relativePath),
+                  );
+                  getTicket();
+                },
+              ),
+            );
+          },
         );
         return;
       }
       if (ticket.discount.percentOfDiscount != 1) {
         Nav.to.pushNamed(
-          ParkingRoutes.parkingAmountInfo,
+          ParkingRoutes.parkingAmountInfo.relativePath,
           arguments: {
             'ticketOrPlate': ticket.plate ?? ticket.ticket,
             'coupon': coupon,
@@ -77,7 +88,16 @@ class _ParkingPageState extends State<ParkingPage> {
         return;
       } else {
         Nav.to.pushNamed(
-          TicketRoutes.root,
+          TicketRoutes.root.relativePath,
+          arguments: TicketSubmitPageArgs(
+            ticketOrPlate: ticket.plate ?? ticket.ticket ?? '',
+            onPop: () {
+              Nav.to.popUntil(
+                ModalRoute.withName(ParkingRoutes.root.relativePath),
+              );
+              getTicket();
+            },
+          ),
         );
       }
     } else {
@@ -100,7 +120,7 @@ class _ParkingPageState extends State<ParkingPage> {
             valueListenable: controller.ticketController,
             builder: (context, ticket, child) {
               return AppBarButton(
-                onTap: _onScanPayOrValidateTicket,
+                onTap: _onScanOrPayOrValidateTicket,
                 isEnabled: !controller.ticketController.isLoading,
                 child: Icon(
                   GenIcons.barCode,
@@ -129,7 +149,20 @@ class _ParkingPageState extends State<ParkingPage> {
                 child: _HeaderDashboard(),
               ),
               Spacing.lg.vertical,
-              _LinkCard(),
+              LinkCard(
+                arguments: (cartType) {
+                  switch (cartType) {
+                    default:
+                      return null;
+                  }
+                },
+                isEnabled: (cartType) {
+                  switch (cartType) {
+                    default:
+                      return true;
+                  }
+                },
+              ),
               Spacing.lg.vertical,
               Padding(
                 padding: EdgeInsets.symmetric(
@@ -222,7 +255,7 @@ class _ParkingPageState extends State<ParkingPage> {
             ticket: state,
             shopping: shopping,
             controller: controller.couponController,
-            onPayOrValidateTicket: _onScanPayOrValidateTicket,
+            onPayOrValidateTicket: _onScanOrPayOrValidateTicket,
           );
         },
       ),

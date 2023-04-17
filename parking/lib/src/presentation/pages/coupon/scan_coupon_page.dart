@@ -43,13 +43,13 @@ class _ScanCouponPageState extends State<ScanCouponPage> {
   Future<void> submitCode(String code) async {
     controller.timer.cancel();
     await Nav.to
-        .pushNamed(CouponRoutes.couponSubmit, arguments: code)
+        .pushNamed(CouponRoutes.couponSubmit.relativePath, arguments: code)
         .then((value) async {
       if (value is ICouponFailure) {
         controller.onAddError(value);
       }
       if ((controller.error?.length ?? 0) >= 3) {
-        Nav.to.pushReplacementNamed(TicketWindowRoutes.root.relativePath);
+        Nav.to.pushReplacementNamed(TicketWindowRoutes.root.prevPath());
       }
     });
   }
@@ -137,31 +137,35 @@ class _ScanCouponPageState extends State<ScanCouponPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBody: true,
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          QrCodeScanView(controller: controller.scanController),
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: GenAppBar(
-              showDivider: false,
-              automaticallyImplyLeading: false,
-              toolbarHeight: context.theme.appBarTheme.appBarHeight,
-              backgroundColor: Colors.transparent,
-              actions: [
-                AppBarButton(
-                  onTap: Nav.to.pop,
-                  child: const Icon(Icons.close_rounded),
+    return LocalTheme.dark(
+      builder: (context) {
+        return Scaffold(
+          extendBody: true,
+          body: Stack(
+            fit: StackFit.expand,
+            children: [
+              CodeScanView(controller: controller.scanController),
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                child: GenAppBar(
+                  showDivider: false,
+                  automaticallyImplyLeading: false,
+                  toolbarHeight: context.theme.appBarTheme.appBarHeight,
+                  backgroundColor: Colors.transparent,
+                  actions: [
+                    AppBarButton(
+                      onTap: Nav.to.pop,
+                      child: const Icon(Icons.close_rounded),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

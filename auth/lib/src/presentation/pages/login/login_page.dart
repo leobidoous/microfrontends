@@ -1,3 +1,4 @@
+import 'package:auth/auth.dart';
 import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart' hide ServerError, UnknowError;
 import 'package:flutter/material.dart';
@@ -86,7 +87,15 @@ class _LoginPagePageState extends State<LoginPage> {
           onConfirm: Nav.to.pop,
         ),
         showClose: true,
-      );
+      ).then((value) {
+        Nav.to.pushReplacementNamed(
+          AuthRoutes.register.prevPath(),
+          arguments: {
+            'onLoginCallback': widget.onLoginCallback,
+            'redirectTo': widget.redirectTo,
+          },
+        );
+      });
     }
   }
 

@@ -28,7 +28,7 @@ class GenInputField extends StatefulWidget {
     this.enabled = true,
     this.labelWidget,
     this.autovalidateMode = AutovalidateMode.onUserInteraction,
-    this.padding = const EdgeInsets.symmetric(vertical: 8),
+    this.padding = EdgeInsets.zero,
     this.obscureText = false,
     this.onFieldSubmitted,
     this.onEditingComplete,

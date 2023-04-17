@@ -26,7 +26,7 @@ class DashboardController
       'closesMallAddress': 'Industrial da Serra Ouro. Alexânia - GO',
       'closesMallName': 'Outlet Premium Brasília',
       'closestMallDistance': 112486.56429895831,
-      'closestMallId': 8,
+      'closestMallId': 3,
     };
     const motherCampaign = CampaignMallEntity(
       id: 1,
@@ -40,7 +40,7 @@ class DashboardController
             '''https://firebasestorage.googleapis.com/v0/b/neru-teste.appspot.com/o/events%2Fgetmo%2Fbanner_default_getmo.jpg?alt=media&token=84dd11fa-22b9-4aab-99c3-68ecbe412764''',
         path: '',
       ),
-      shoppingId: 1,
+      shoppingId: 3,
       typeCampaign: '',
       rules: '',
     );

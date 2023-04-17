@@ -157,7 +157,7 @@ class _CouponSuccessfullyRegisteredPageState
                 Spacing.sm.vertical,
                 GenButton.text(
                   onPressed: () {
-                    Nav.to.pushReplacementNamed(ParkingRoutes.addTicketByPlate);
+                    Nav.to.pushReplacementNamed(ParkingRoutes.enterPlateNumber);
                   },
                   type: ButtonType.background,
                   text: 'Digite a placa',

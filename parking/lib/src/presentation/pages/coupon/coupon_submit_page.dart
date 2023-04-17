@@ -22,7 +22,7 @@ class CouponSubmitPage extends StatefulWidget {
 class _CouponSubmitPageState extends State<CouponSubmitPage> {
   final couponController = DM.i.get<ParkingController>().couponController;
   final controller = DM.i.get<CouponSubmitController>();
-  final shopping = DM.i.get<ShoppingModel>();
+  final shopping = DM.i.get<ShoppingEntity>();
 
   @override
   void initState() {

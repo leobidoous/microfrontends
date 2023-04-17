@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:wallet/wallet.dart';
 
+import '../../../app/presentation/controllers/session_controller.dart';
 import '../../data/dashboard_datasource.dart';
 import '../../data/notification_datasource.dart';
 import '../../infra/repositories/dashboard_repository.dart';
@@ -56,13 +57,13 @@ class DashboardModule extends Module {
     Bind.factory<DashboardController>(
       (i) => DashboardController(
         notificationsController: i.get(),
-        dashboardUsecase: i.get(),
+        dashboardUsecase: i.get<DashboardUsecase>(),
       ),
     ),
     Bind.factory<NotificationsController>(
       (i) => NotificationsController(
-        sessionController: i.get(),
-        notificationUsecase: i.get(),
+        sessionController: i.get<SessionController>(),
+        notificationUsecase: i.get<NotificationUsecase>(),
       ),
     ),
   ];

@@ -1,7 +1,17 @@
-part of '../parking_page.dart';
+import 'dart:math' as math;
 
+import 'package:base_style_sheet/base_style_sheet.dart';
+import 'package:core/core.dart';
+import 'package:flutter/material.dart';
 
-class _LinkCard extends StatelessWidget {
+import '../../../../domain/enums/link_card_type_enum.dart';
+
+class LinkCard extends StatelessWidget {
+  const LinkCard({super.key, required this.arguments, required this.isEnabled});
+
+  final dynamic Function(LinkCardType)? arguments;
+  final bool Function(LinkCardType) isEnabled;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -16,6 +26,8 @@ class _LinkCard extends StatelessWidget {
         separatorBuilder: (_, __) => Spacing.sm.horizontal,
         itemBuilder: (_, index) => _CardWidget(
           type: LinkCardType.values[index],
+          arguments: arguments,
+          isEnabled: isEnabled,
         ),
       ),
     );
@@ -23,47 +35,59 @@ class _LinkCard extends StatelessWidget {
 }
 
 class _CardWidget extends StatelessWidget {
-  final LinkCardType type;
+  const _CardWidget({
+    required this.type,
+    required this.arguments,
+    required this.isEnabled,
+  });
 
-  const _CardWidget({required this.type});
+  final dynamic Function(LinkCardType)? arguments;
+  final bool Function(LinkCardType) isEnabled;
+  final LinkCardType type;
 
   @override
   Widget build(context) {
-    return Material(
-      color: type.color,
-      borderRadius: context.theme.borderRadiusMD,
-      child: InkWell(
-        onTap: () => type.nav(),
+    return Opacity(
+      opacity: isEnabled(type) ? 1 : .5,
+      child: Material(
+        color: type.color,
         borderRadius: context.theme.borderRadiusMD,
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            minWidth: const Spacing(17.5).value,
-            maxWidth: const Spacing(17.5).value,
-          ),
-          child: Stack(
-            alignment: Alignment.center,
-            fit: StackFit.expand,
-            children: [
-              _BackgroundStyle(type: type),
-              Positioned(
-                right: const Spacing(2).value / 2,
-                bottom: const Spacing(2).value,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: type.color,
-                    boxShadow: [context.theme.shadowLightmodeLevel1],
-                    borderRadius: context.theme.borderRadiusSM,
-                  ),
-                  padding: EdgeInsets.all(const Spacing(1.5).value),
-                  child: Icon(
-                    GenIcons.rightOutline,
-                    size: AppFontSize.iconButton.value,
-                    color: context.colorScheme.background,
-                  ),
-                ),
+        child: Semantics(
+          button: true,
+          child: InkWell(
+            onTap: type.nav(arguments),
+            borderRadius: context.theme.borderRadiusMD,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minWidth: const Spacing(17.5).value,
+                maxWidth: const Spacing(17.5).value,
               ),
-              _buildCardText,
-            ],
+              child: Stack(
+                alignment: Alignment.center,
+                fit: StackFit.expand,
+                children: [
+                  _BackgroundStyle(type: type),
+                  Positioned(
+                    right: const Spacing(2).value / 2,
+                    bottom: const Spacing(2).value,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: type.color,
+                        boxShadow: [context.theme.shadowLightmodeLevel1],
+                        borderRadius: context.theme.borderRadiusSM,
+                      ),
+                      padding: EdgeInsets.all(const Spacing(1.5).value),
+                      child: Icon(
+                        GenIcons.rightOutline,
+                        size: AppFontSize.iconButton.value,
+                        color: context.colorScheme.background,
+                      ),
+                    ),
+                  ),
+                  _buildCardText,
+                ],
+              ),
+            ),
           ),
         ),
       ),

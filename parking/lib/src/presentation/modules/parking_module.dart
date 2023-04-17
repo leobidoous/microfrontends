@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:wallet/wallet.dart';
 
 import '../../data/datasources/parking/parking_datasource.dart';
 import '../../infra/repositories/parking/parking_repository.dart';
@@ -6,20 +7,33 @@ import '../../infra/usecases/parking/parking_usecase.dart';
 import '../controllers/parking/parking_controller.dart';
 import '../controllers/parking/parking_coupon_controller.dart';
 import '../controllers/parking/parking_ticket_controller.dart';
+import '../controllers/ticket/scan_ticket_controller.dart';
+import '../pages/parking/enter_ticket_number_page.dart';
 import '../pages/parking/parking_amount_info_page.dart';
 import '../pages/parking/parking_page.dart';
+import '../pages/parking/parking_regulation_page.dart';
+import '../pages/parking/scan_ticket_page.dart';
 import '../routes/coupon_routes.dart';
 import '../routes/desk_routes.dart';
 import '../routes/parking_routes.dart';
 import '../routes/ticket_routes.dart';
+import '../routes/ticket_window_routes.dart';
 import 'coupon_module.dart';
 import 'desk_module.dart';
 import 'ticket_module.dart';
+import 'ticket_window_module.dart';
+import 'vehicle_module.dart';
 
 class ParkingModule extends Module {
+  ParkingModule({required BasePath<WalletRoutes> walletPath}) {
+    _walletPath = walletPath;
+  }
+
+  static late final BasePath<WalletRoutes> _walletPath;
+
   @override
   final List<Bind> binds = [
-    /// Parking dashboard
+    /// Parking
     Bind.factory<ParkingDatasource>(
       (i) => ParkingDatasource(
         client: i.get<DioClientDriver>(),
@@ -39,6 +53,8 @@ class ParkingModule extends Module {
       ),
     ),
 
+    Bind.factory<BasePath<WalletRoutes>>((i) => _walletPath),
+
     /// Controllers
     Bind.lazySingleton<ParkingController>(
       (i) => ParkingController(
@@ -57,14 +73,17 @@ class ParkingModule extends Module {
         usecase: i.get<ParkingUsecase>(),
       ),
     ),
+    Bind.factory<CodeScanController>((i) => CodeScanController()),
+    Bind.factory<ScanTicketController>(
+      (i) => ScanTicketController(
+        scanController: DM.i.get<CodeScanController>(),
+      ),
+    ),
   ];
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute(
-      Modular.initialRoute,
-      child: (_, args) => const ParkingPage(),
-    ),
+    ChildRoute(Modular.initialRoute, child: (_, args) => const ParkingPage()),
     ChildRoute(
       ParkingRoutes.parkingAmountInfo.path,
       child: (_, args) => ParkingAmountInfoPage(
@@ -72,8 +91,22 @@ class ParkingModule extends Module {
         ticketOrPlate: args.data['ticketOrPlate'],
       ),
     ),
-    ModuleRoute(TicketRoutes.root.path, module: TicketModule()),
+    ChildRoute(
+      ParkingRoutes.scanTicket.path,
+      child: (_, args) => const ScanTicketPage(),
+    ),
+    ChildRoute(
+      ParkingRoutes.regulation.path,
+      child: (_, args) => ParkingRegulationPage(rulesUrl: args.data),
+    ),
+    ChildRoute(
+      ParkingRoutes.enterTicketNumber.path,
+      child: (_, args) => const EnterTicketNumberPage(),
+    ),
     ModuleRoute(DeskRoutes.root.path, module: GenDeskModule()),
+    ModuleRoute(TicketRoutes.root.path, module: TicketModule()),
     ModuleRoute(CouponRoutes.root.path, module: CouponModule()),
+    ModuleRoute(TicketWindowRoutes.root.path, module: TicketWindowModule()),
+    ModuleRoute(ParkingRoutes.enterPlateNumber.path, module: VehicleModule()),
   ];
 }

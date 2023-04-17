@@ -9,8 +9,8 @@ import '../../models/vehicles/model_vehicle_model.dart';
 import '../../models/vehicles/remove_vehicle_model.dart';
 import '../../models/vehicles/vehicle_model.dart';
 
-class VehiclesUsecases extends IVechicleUsecase {
-  VehiclesUsecases({required this.repository});
+class VehiclesUsecase extends IVechicleUsecase {
+  VehiclesUsecase({required this.repository});
 
   final IVehiclesRepository repository;
 

@@ -85,7 +85,7 @@ class _ReviewPhotosPageState extends State<ReviewPhotosPage> {
                           .recognizePhotos(controller.state)
                           .then((value) {
                         Nav.to.pushNamed(
-                          TicketWindowRoutes.enterCouponManually.relativePath,
+                          TicketWindowRoutes.enterCouponManually.prevPath(),
                           arguments: controller.state,
                         );
                       });
