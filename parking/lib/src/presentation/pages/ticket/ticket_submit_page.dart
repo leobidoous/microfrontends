@@ -222,7 +222,8 @@ class _TicketSubmitPageState extends State<TicketSubmitPage> {
                     TicketPaymentMethod(
                       paymentMethodController: paymentMethodController,
                       ticketSubmitController: controller,
-                      emailVerified: session.customer.emailVerifiedAt.isNotEmpty,
+                      emailVerified:
+                          session.customer.emailVerifiedAt.isNotEmpty,
                     ),
                   ]
                 ],

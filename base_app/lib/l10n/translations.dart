@@ -58,6 +58,7 @@ import 'translations_pt.dart';
 /// you wish to add from the pop-up menu in the Value field. This list should
 /// be consistent with the languages listed in the Tr.supportedLocales
 /// property.
+// ignore_for_file: lines_longer_than_80_chars 
 abstract class Tr {
   Tr(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 

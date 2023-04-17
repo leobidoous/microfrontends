@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+// ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart' as intl;
 
 import 'translations_pt.dart';
@@ -58,8 +59,10 @@ import 'translations_pt.dart';
 /// you wish to add from the pop-up menu in the Value field. This list should
 /// be consistent with the languages listed in the Tr.supportedLocales
 /// property.
+// ignore_for_file: lines_longer_than_80_chars
 abstract class Tr {
-  Tr(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  Tr(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -79,7 +82,8 @@ abstract class Tr {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -87,9 +91,7 @@ abstract class Tr {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[
-    Locale('pt')
-  ];
+  static const List<Locale> supportedLocales = <Locale>[Locale('pt')];
 
   /// Labels de shopping
   ///
@@ -107,24 +109,23 @@ class _TrDelegate extends LocalizationsDelegate<Tr> {
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['pt'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['pt'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_TrDelegate old) => false;
 }
 
 Tr lookupTr(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'pt': return TrPt();
+    case 'pt':
+      return TrPt();
   }
 
   throw FlutterError(
-    'Tr.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'Tr.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }
