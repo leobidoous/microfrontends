@@ -2,7 +2,6 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../domain/entities/billing_address_entity.dart';
 import '../../../controllers/add_credit_card/add_credit_card_address_controller.dart';
 
 class CreditCardAddressForm extends StatefulWidget {

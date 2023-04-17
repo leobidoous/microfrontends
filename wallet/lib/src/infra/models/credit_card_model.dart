@@ -1,11 +1,9 @@
 import 'dart:convert';
 
-import 'package:core/core.dart' hide BillingAddressModel;
+import 'package:core/core.dart';
 
-import '../../domain/entities/billing_address_entity.dart' ;
 import '../../domain/entities/credit_card_entity.dart';
 import '../../domain/enums/credit_card_type.dart';
-import 'billing_address_model.dart';
 
 class CreditCardModel extends CreditCardEntity with EquatableMixin {
   CreditCardModel({

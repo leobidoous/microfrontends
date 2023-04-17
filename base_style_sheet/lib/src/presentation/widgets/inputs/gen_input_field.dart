@@ -148,22 +148,22 @@ class _GenInputFieldState extends State<GenInputField> {
               floatingLabelBehavior: widget.floatingLabelBehavior,
               border: OutlineInputBorder(
                 borderSide: BorderSide(color: AppColorsBase.grey7),
-                borderRadius: context.theme.borderRadiusXSM,
+                borderRadius: context.theme.borderRadiusSM,
               ),
               enabledBorder: OutlineInputBorder(
-                borderRadius: context.theme.borderRadiusXSM,
+                borderRadius: context.theme.borderRadiusSM,
                 borderSide: BorderSide(color: AppColorsBase.grey7),
               ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: context.theme.borderRadiusXSM,
+                borderRadius: context.theme.borderRadiusSM,
                 borderSide: BorderSide(color: AppColorsBase.grey7),
               ),
               errorBorder: OutlineInputBorder(
-                borderRadius: context.theme.borderRadiusXSM,
+                borderRadius: context.theme.borderRadiusSM,
                 borderSide: BorderSide(color: AppColorsBase.error0),
               ),
               focusedErrorBorder: OutlineInputBorder(
-                borderRadius: context.theme.borderRadiusXSM,
+                borderRadius: context.theme.borderRadiusSM,
                 borderSide: BorderSide(color: AppColorsBase.error0),
               ),
               alignLabelWithHint: true,

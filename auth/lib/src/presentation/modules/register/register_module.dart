@@ -1,39 +1,26 @@
+import 'package:auth/src/presentation/controllers/login/login_controller.dart';
+import 'package:auth/src/presentation/controllers/register/register_address_controller.dart';
+import 'package:auth/src/presentation/controllers/register/register_controller.dart';
+import 'package:auth/src/presentation/modules/login/login_module.dart';
 import 'package:core/core.dart';
 
-import '../../../data/datasources/login_datasource.dart';
-import '../../../infra/repositories/login_repository.dart';
-import '../../../infra/usecases/auth_usecase.dart';
-import '../../../infra/usecases/login_usecase.dart';
-import '../../../infra/usecases/user_usecase.dart';
-import '../../controllers/auth/auth_controller.dart';
-import '../../controllers/login/login_controller.dart';
-import '../../controllers/timer_controller.dart';
 import '../../pages/register/register_page.dart';
 
 class RegisterModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton(
-      (i) => LoginDatasource(graphQlClient: DM.i.get<GraphQlClientDriver>()),
-    ),
-    Bind.lazySingleton(
-      (i) => LoginRepository(datasource: DM.i.get<LoginDatasource>()),
-    ),
-    Bind.lazySingleton(
-      (i) => LoginUsecase(repository: DM.i.get<LoginRepository>()),
-    ),
+    /// Login
+    ...LoginModule.exportedBinds,
 
     /// Controllers
-    Bind.lazySingleton(
-      (i) => LoginController(
-        userUsecase: DM.i.get<UserUsecase>(),
-        authUsecase: DM.i.get<AuthUsecase>(),
-        loginUsecase: DM.i.get<LoginUsecase>(),
-        authController: DM.i.get<AuthController>(),
-        timerController: DM.i.get<TimerController>(),
+    Bind.factory<RegisterController>(
+      (i) => RegisterController(loginController: i.get<LoginController>()),
+    ),
+    Bind.factory<RegisterAddressController>(
+      (i) => RegisterAddressController(
+        usecase: i.get<SearchPostalCodeUsecase>(),
       ),
     ),
-    Bind.lazySingleton((i) => TimerController()),
   ];
 
   @override

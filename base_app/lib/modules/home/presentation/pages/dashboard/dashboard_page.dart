@@ -34,33 +34,26 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: GenAppBar.zero(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: GenScrollContent(
-              padding: EdgeInsets.symmetric(vertical: const Spacing(3).value),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: const Spacing(3).value,
-                    ),
-                    child: HeaderUser(),
-                  ),
-                  Spacing.lg.vertical,
-                  CarouselBanner(controller: controller),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: const Spacing(3).value,
-                    ),
-                    child: _dashServices,
-                  ),
-                ],
+      body: GenScrollContent(
+        padding: EdgeInsets.symmetric(vertical: const Spacing(3).value),
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: const Spacing(3).value,
               ),
+              child: HeaderUser(),
             ),
-          ),
-        ],
+            Spacing.lg.vertical,
+            CarouselBanner(controller: controller),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: const Spacing(3).value,
+              ),
+              child: _dashServices,
+            ),
+          ],
+        ),
       ),
     );
   }

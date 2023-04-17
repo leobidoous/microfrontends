@@ -1,9 +1,8 @@
 import 'dart:convert';
 
-import 'package:core/core.dart' hide BillingAddressModel;
+import 'package:core/core.dart';
 
 import '../../domain/entities/order_entity.dart';
-import 'billing_address_model.dart';
 import 'order_item_model.dart';
 import 'seller_model.dart';
 

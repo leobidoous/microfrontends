@@ -6,7 +6,11 @@ import '../../infra/usecases/parking/parking_usecase.dart';
 import '../controllers/parking/parking_controller.dart';
 import '../controllers/parking/parking_coupon_controller.dart';
 import '../controllers/parking/parking_ticket_controller.dart';
+import '../pages/parking/parking_amount_info_page.dart';
 import '../pages/parking/parking_page.dart';
+import '../routes/parking_routes.dart';
+import '../routes/ticket_routes.dart';
+import 'ticket_module.dart';
 
 class ParkingModule extends Module {
   @override
@@ -57,5 +61,13 @@ class ParkingModule extends Module {
       Modular.initialRoute,
       child: (_, args) => const ParkingPage(),
     ),
+    ChildRoute(
+      ParkingRoutes.parkingAmountInfo.path,
+      child: (_, args) => ParkingAmountInfoPage(
+        coupon: args.data['coupon'],
+        ticketOrPlate: args.data['ticketOrPlate'],
+      ),
+    ),
+    ModuleRoute(TicketRoutes.root.path, module: TicketModule()),
   ];
 }

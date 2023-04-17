@@ -3,12 +3,10 @@ import 'package:core/core.dart';
 import '../../../wallet.dart';
 import '../../data/datasources/wallet/wallet_datasource.dart';
 import '../../infra/repositories/wallet/wallet_repository.dart';
-import '../../infra/usecases/credit_card/credit_card_usecase.dart';
 import '../../infra/usecases/wallet/wallet_usecase.dart';
 import '../controllers/credit_card/change_favorite_card_controller.dart';
 import '../controllers/credit_card/remove_credit_card_controller.dart';
 import '../pages/wallet/wallet_page.dart';
-import 'add_credit_card_module.dart';
 
 class WalletModule extends Module {
   static List<Bind> get exportedBinds => [

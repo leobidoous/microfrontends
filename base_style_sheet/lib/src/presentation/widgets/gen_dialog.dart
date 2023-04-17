@@ -133,12 +133,7 @@ class _GenDialog extends StatelessWidget {
                           ),
                         ),
                       ),
-                    Flexible(
-                      child: Material(
-                        color: context.colorScheme.background,
-                        child: child,
-                      ),
-                    ),
+                    Flexible(child: child),
                   ],
                 ),
               ),

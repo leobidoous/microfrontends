@@ -1,6 +1,5 @@
 import 'package:core/core.dart';
 
-import '../../../domain/entities/billing_address_entity.dart';
 import '../../../domain/entities/credit_card_entity.dart';
 import '../../../domain/usecases/credit_card/i_credit_card_usecase.dart';
 import '../../../infra/models/credit_card_model.dart';

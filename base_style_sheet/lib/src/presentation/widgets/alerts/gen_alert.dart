@@ -222,6 +222,7 @@ class GenAlert extends StatelessWidget {
           Spacing.md.vertical,
           Flexible(
             child: GenScrollContent(
+              expanded: false,
               child: SelectableText(
                 content!,
                 textAlign: TextAlign.center,

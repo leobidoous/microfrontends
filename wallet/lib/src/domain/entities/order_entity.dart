@@ -1,6 +1,5 @@
 import 'package:core/core.dart';
 
-import 'billing_address_entity.dart';
 import 'order_item_entity.dart';
 import 'seller_entity.dart';
 

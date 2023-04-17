@@ -35,21 +35,25 @@ class GenScrollContent extends StatelessWidget {
       child: child,
     );
     if (expanded) {
-      if (onRefresh != null) {
-        return GenRefreshIndicator(
-          onRefresh: onRefresh!,
-          child: Column(
+      switch (scrollDirection) {
+        case Axis.vertical:
+          if (onRefresh != null) {
+            return GenRefreshIndicator(
+              onRefresh: onRefresh!,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [Expanded(child: scroll)],
+              ),
+            );
+          }
+          return Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [Expanded(child: scroll)],
-          ),
-        );
+          );
+        default:
+          return scroll;
       }
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [Expanded(child: scroll)],
-      );
-    }
-    if (onRefresh != null) {
+    } else if (onRefresh != null) {
       return GenRefreshIndicator(child: scroll, onRefresh: onRefresh!);
     }
     return scroll;

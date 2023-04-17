@@ -8,7 +8,7 @@ class AppColorsBase {
   static Color get primary7Color => const Color(0xFF5542BE);
   static Color get buttonColor => const Color(0xFF531DAB);
   static Color get textButtonColor => const Color(0xFF6D54FC);
-  static Color get primary1Color => const Color(0xFFF4EDFF);
+  static Color get primaryColor => const Color(0xFF6D54FC);
   static Color get genpagAccentColor => const Color(0xFF0cbab4);
   static Color get genpagAppBarColor => Colors.white24;
   static Color get genPurpleBackgroundColor => const Color(0xFFF4EDFF);

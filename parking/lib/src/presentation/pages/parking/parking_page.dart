@@ -1,17 +1,17 @@
 import 'dart:math' as math;
+
 import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:wallet/wallet.dart';
+
 import '../../../../l10n/translations.dart';
 import '../../../domain/entities/dashboard/coupon_entity.dart';
 import '../../../domain/entities/dashboard/ticket_entity.dart';
+import '../../../domain/enums/link_card_type_enum.dart';
 import '../../../domain/failures/dashboard/dashboard_failure.dart';
 import '../../controllers/parking/parking_controller.dart';
-import '../../routes/gen_desk_routes.dart';
 import '../../routes/parking_routes.dart';
 import '../../routes/ticket_routes.dart';
-import '../../routes/vehicles_routes.dart';
 import '../../widgets/talk_with_us.dart';
 import 'widgets/coupon_card.dart';
 import 'widgets/no_ticket_found_card.dart';
@@ -62,19 +62,17 @@ class _ParkingPageState extends State<ParkingPage> {
       if (ticket.ticket == null && ticket.plate == null) {
         Nav.to.pushNamed(
           ParkingRoutes.scanBardCode,
-          arguments: (code) {
-            
-          },
+          arguments: (code) {},
         );
         return;
       }
       if (ticket.discount.percentOfDiscount != 1) {
         Nav.to.pushNamed(
           ParkingRoutes.parkingAmountInfo,
-          arguments: [
-            ticket.plate ?? ticket.ticket,
-            coupon,
-          ],
+          arguments: {
+            'ticketOrPlate': ticket.plate ?? ticket.ticket,
+            'coupon': coupon,
+          },
         );
         return;
       } else {

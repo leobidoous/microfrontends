@@ -28,17 +28,17 @@ class AppModule extends Module {
     ...AuthModule.exportedBinds,
 
     /// App configuration and environment
-    Bind.singleton((i) => _appConfiguration),
-    Bind.singleton((i) => _appConfiguration.environment),
+    Bind.singleton<AppConfiguration>((i) => _appConfiguration),
+    Bind.singleton<EnvironmentEntity>((i) => _appConfiguration.environment),
 
     /// GraphQl
-    Bind.factory(
+    Bind.factory<GraphQLClient>(
       (i) => GraphQLClient(
         link: Link.from([]),
         cache: GraphQLCache(store: HiveStore()),
       ),
     ),
-    Bind.factory(
+    Bind.factory<GraphQlClientDriver>(
       (i) => GraphQlClientDriver(
         baseUrl: i.get<EnvironmentEntity>().endpointGraphql,
         client: i.get<GraphQLClient>(),
@@ -51,7 +51,7 @@ class AppModule extends Module {
     ),
 
     /// Http client | Dio
-    Bind.factory(
+    Bind.factory<BaseOptions>(
       (i) => BaseOptions(
         connectTimeout: 15000,
         receiveTimeout: 15000,
@@ -62,8 +62,8 @@ class AppModule extends Module {
         },
       ),
     ),
-    Bind.factory((i) => Dio(i.get<BaseOptions>())),
-    Bind.factory(
+    Bind.factory<Dio>((i) => Dio(i.get<BaseOptions>())),
+    Bind.factory<DioClientDriver>(
       (i) => DioClientDriver(
         client: i.get<Dio>()
           ..options.baseUrl = i.get<EnvironmentEntity>().appBaseUrl
@@ -79,49 +79,63 @@ class AppModule extends Module {
       ),
     ),
 
-    /// Postal code search
-    Bind.factory(
+    /// Search zip code
+    Bind.factory<SearchPostalCodeDatasource>(
       (i) => SearchPostalCodeDatasource(
         client: DioClientDriver(client: Dio(i.get<BaseOptions>())),
       ),
     ),
-    Bind.factory(
+    Bind.factory<SearchPostalCodeRepository>(
       (i) => SearchPostalCodeRepository(
         datasource: i.get<SearchPostalCodeDatasource>(),
       ),
     ),
-    Bind.factory(
+    Bind.factory<SearchPostalCodeUsecase>(
       (i) => SearchPostalCodeUsecase(
         repository: i.get<SearchPostalCodeRepository>(),
       ),
     ),
 
     /// Local user
-    Bind.factory(
+    Bind.factory<LocalUserDatasource>(
       (i) => LocalUserDatasource(
         prefsDriver: i.get<PreferencesStorageDriver>(),
       ),
     ),
-    Bind.factory(
+    Bind.factory<LocalUserRepository>(
       (i) => LocalUserRepository(datasource: i.get<LocalUserDatasource>()),
     ),
-    Bind.factory(
+    Bind.factory<LocalUserUsecase>(
       (i) => LocalUserUsecase(repository: i.get<LocalUserRepository>()),
     ),
 
     /// Firebase
-    Bind.lazySingleton((i) => GlobalConfigs.firebaseDriver),
-    Bind.lazySingleton((i) => GlobalConfigs.firebaseAuthDriver),
-    Bind.lazySingleton((i) => GlobalConfigs.crashlyticsDriver),
-    Bind.lazySingleton((i) => GlobalConfigs.firebaseStorageDriver),
-    Bind.lazySingleton((i) => GlobalConfigs.firebaseNotificationsDriver),
+    Bind.lazySingleton<FirebaseDriver>((i) => GlobalConfigs.firebaseDriver),
+    Bind.lazySingleton<FirebaseAuthDriver>(
+      (i) => GlobalConfigs.firebaseAuthDriver,
+    ),
+    Bind.lazySingleton<FirebaseCrashlyticsDriver>(
+      (i) => GlobalConfigs.crashlyticsDriver,
+    ),
+    Bind.lazySingleton<FirebaseStorageDriver>(
+      (i) => GlobalConfigs.firebaseStorageDriver,
+    ),
+    Bind.lazySingleton<FirebaseNotificationsDriver>(
+      (i) => GlobalConfigs.firebaseNotificationsDriver,
+    ),
 
     /// Local notification
-    Bind.lazySingleton((i) => GlobalConfigs.localNotificationsDriver),
-    Bind.lazySingleton((i) => GlobalConfigs.localNotificationsService),
+    Bind.lazySingleton<LocalNotificationsDriver>(
+      (i) => GlobalConfigs.localNotificationsDriver,
+    ),
+    Bind.lazySingleton<LocalNotificationsService>(
+      (i) => GlobalConfigs.localNotificationsService,
+    ),
 
     /// Preferences storage
-    Bind.lazySingleton((i) => GlobalConfigs.preferencesStorageDriver),
+    Bind.lazySingleton<PreferencesStorageDriver>(
+      (i) => GlobalConfigs.preferencesStorageDriver,
+    ),
 
     /// Controllers
     Bind.lazySingleton<AppController>(
@@ -133,7 +147,7 @@ class AppModule extends Module {
     Bind.factory<ThemeController>(
       (i) => ThemeController(localUserUsecase: i.get<LocalUserUsecase>()),
     ),
-    Bind.factory(
+    Bind.factory<SplashController>(
       (i) => SplashController(
         appController: i.get<AppController>(),
         userUsecase: i.get<UserUsecase>(),

@@ -38,6 +38,7 @@ export 'package:core/src/data/drivers/graphql_client_driver.dart';
 export 'package:core/src/data/drivers/local_notifications_driver.dart';
 export 'package:core/src/data/drivers/preferences_storage_driver.dart';
 export 'package:core/src/data/interceptors/graphql_interceptor.dart';
+export 'package:core/src/domain/entities/billing_address_entity.dart';
 export 'package:core/src/domain/entities/claims_entity.dart';
 export 'package:core/src/domain/entities/customer_entity.dart';
 export 'package:core/src/domain/entities/device_info_entity.dart';

@@ -1,5 +1,6 @@
+import 'package:core/core.dart';
+
 import '../enums/credit_card_type.dart';
-import 'billing_address_entity.dart';
 
 class CreditCardEntity {
   final String id;

@@ -38,6 +38,7 @@ class ListEmpty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GenScrollContent(
+      expanded: false,
       padding: padding,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

@@ -4,12 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:wallet/wallet.dart';
 
 class ListActivity extends StatelessWidget {
-  final FetchTransactionsController controller;
+  const ListActivity({super.key, required this.controller});
 
-  const ListActivity({
-    super.key,
-    required this.controller,
-  });
+  final FetchTransactionsController controller;
 
   @override
   Widget build(BuildContext context) {

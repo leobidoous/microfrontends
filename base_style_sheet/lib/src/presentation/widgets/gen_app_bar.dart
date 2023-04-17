@@ -68,14 +68,16 @@ class _GenAppBarState extends State<GenAppBar> {
                 ? Nav.to.canPop()
                     ? Semantics(
                         button: true,
-                        child: SizedBox(
-                          height: const Spacing(3).value,
-                          width: const Spacing(3).value,
-                          child: InkWell(
-                            onTap: widget.onBackTap ?? Nav.to.pop,
-                            borderRadius: AppThemeBase.borderRadiusSM,
-                            child: Padding(
-                              padding: EdgeInsets.all(const Spacing(3).value),
+                        child: InkWell(
+                          onTap: widget.onBackTap ?? Nav.to.pop,
+                          borderRadius: AppThemeBase.borderRadiusSM,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              left: const Spacing(2).value,
+                            ),
+                            child: SizedBox(
+                              height: const Spacing(3).value,
+                              width: const Spacing(3).value,
                               child: (widget.leadingIcon != null)
                                   ? widget.leadingIcon
                                   : Icon(

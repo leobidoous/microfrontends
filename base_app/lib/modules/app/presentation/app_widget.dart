@@ -20,6 +20,7 @@ class _AppWidgetState extends State<AppWidget> {
   void initState() {
     super.initState();
     Modular.setNavigatorKey(GlobalKey<NavigatorState>());
+
     /// Set observers on application
     Modular.setObservers(
       [

@@ -2,7 +2,9 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 class FormHeader extends StatelessWidget {
-  const FormHeader({super.key});
+  const FormHeader({super.key, this.text = 'Acesse sua conta'});
+
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class FormHeader extends StatelessWidget {
         ),
         Spacing.md.vertical,
         Text(
-          'Acesse sua conta',
+          text,
           style: context.textTheme.titleMedium,
         ),
       ],
