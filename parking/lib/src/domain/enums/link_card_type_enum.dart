@@ -89,23 +89,21 @@ extension LinkCardTypeExt on LinkCardType {
     final args = arguments?.call(this);
     switch (this) {
       case LinkCardType.ticket:
-        return () => Nav.to.pushNamed(
-              TicketRoutes.ticketTracking.relativePath,
-              arguments: args,
-            );
+        return () => Nav.to.pushNamed(TicketRoutes.ticketTracking);
+
       case LinkCardType.desk:
-        return () => Nav.to.pushNamed(
-              DeskRoutes.root.relativePath,
-              arguments: args,
-            );
+        return () => Nav.to.pushNamed(DeskRoutes.root, arguments: args);
+
       case LinkCardType.wallet:
         return () => Nav.to.pushNamed(
               DM.i.get<BasePath<WalletRoutes>>(),
               forRoot: true,
               arguments: args,
             );
+
       case LinkCardType.vehicle:
-        return () => Nav.to.pushNamed(VehiclesRoutes.root.relativePath);
+        return () => Nav.to.pushNamed(VehiclesRoutes.root);
+
       default:
         return () {};
     }
