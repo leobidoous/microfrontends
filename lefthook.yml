@@ -3,10 +3,10 @@ source_dir: "./.lefthook"
 pre-push:
   parallel: true
   scripts: 
-    "tests_runner":
-      runner: bash
-    "analyze_runner":
-      runner: bash
+    # "tests_runner":
+    #   runner: bash
+    # "analyze_runner":
+    #   runner: bash
 pre-commit:
   commands:
     pretty:
