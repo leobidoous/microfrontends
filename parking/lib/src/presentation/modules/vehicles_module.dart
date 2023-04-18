@@ -7,6 +7,7 @@ import '../../infra/usecases/vehicles/vehicles_usecase.dart';
 import '../controllers/parking/parking_enter_plate_number_controller.dart';
 import '../controllers/vehicles/add_vehicle_controller.dart';
 import '../controllers/vehicles/vehicle_list_controller.dart';
+import '../pages/parking/enter_plate_number_page.dart';
 import '../pages/vehicles/add_vehicle_page.dart';
 import '../pages/vehicles/vehicles_page.dart';
 import '../routes/vehicles_routes.dart';
@@ -63,6 +64,10 @@ class VehiclesModule extends Module {
         ChildRoute(
           VehiclesRoutes.addVehicle.path,
           child: (_, args) => const AddVehiclePage(),
+        ),
+        ChildRoute(
+          VehiclesRoutes.enterPlateNumber.path,
+          child: (_, args) => const EnterPlateNumberPage(),
         ),
       ];
 }

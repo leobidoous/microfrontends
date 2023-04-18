@@ -13,8 +13,8 @@ import '../../../routes/ticket_routes.dart';
 import '../../../widgets/coupon_registration_status.dart';
 import 'shopping_location.dart';
 
-class CouponCardNew extends StatelessWidget {
-  const CouponCardNew({
+class CouponCard extends StatelessWidget {
+  const CouponCard({
     super.key,
     required this.couponController,
     required this.ticketController,
@@ -197,7 +197,7 @@ class CouponCardNew extends StatelessWidget {
             type: ButtonType.tertiary,
             onPressed: () {
               if (ticket.ticket == null && ticket.plate == null) {
-                Nav.to.pushNamed(ParkingRoutes.enterTicketNumber.relativePath);
+                Nav.to.pushNamed(ParkingRoutes.enterTicketNumber);
                 return;
               }
               if (ticketController.state.status.code == 2) {
@@ -206,7 +206,7 @@ class CouponCardNew extends StatelessWidget {
                   arguments: ticket.ticket ?? ticket.plate,
                 );
               } else {
-                Nav.to.pushNamed(TicketRoutes.root.relativePath);
+                Nav.to.pushNamed(TicketRoutes.root);
               }
             },
           );

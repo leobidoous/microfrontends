@@ -145,7 +145,7 @@ class _ScanTicketPageState extends State<ScanTicketPage> {
                   controller.scanController.scanController?.pauseCamera();
                   await Nav.to
                       .pushReplacementNamed(
-                    ParkingRoutes.enterTicketNumber.prevPath(),
+                    ParkingRoutes.enterTicketNumber,
                     arguments: widget.onScanCode,
                   )
                       .then((value) {

@@ -55,7 +55,7 @@ class _ParkingPageState extends State<ParkingPage> {
       arguments: (code) async {
         await Nav.to
             .pushReplacementNamed(
-              TicketRoutes.root.prevPath(),
+              TicketRoutes.root,
               arguments: TicketSubmitPageArgs(
                 ticketOrPlate: code,
                 onPop: Nav.to.pop,
@@ -91,11 +91,13 @@ class _ParkingPageState extends State<ParkingPage> {
         return;
       } else {
         Nav.to.pushNamed(
-          TicketRoutes.root.relativePath,
+          TicketRoutes.root,
           arguments: TicketSubmitPageArgs(
             ticketOrPlate: ticket.plate ?? ticket.ticket ?? '',
             onPop: () {
-              Nav.to.pop();
+              Nav.to.popUntil(
+                ModalRoute.withName(ParkingRoutes.root.completePath),
+              );
               getTicket();
             },
           ),
@@ -181,7 +183,7 @@ class _ParkingPageState extends State<ParkingPage> {
                 padding: EdgeInsets.symmetric(
                   horizontal: const Spacing(2).value,
                 ),
-                child: CouponCardNew(
+                child: CouponCard(
                   ticketController: controller.ticketController,
                   couponController: controller.couponController,
                   onRefresh: getCoupon,

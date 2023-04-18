@@ -147,11 +147,11 @@ class _ScanTicketOrEnterPlatePageState
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 GenButton.text(
-                  onPressed: () {
-                    Nav.to.pushNamed(
-                      ParkingRoutes.scanTicket.prevPath(2),
-                      arguments: (code) {
-                        Nav.to.pushReplacementNamed(
+                  onPressed: () async {
+                    await Nav.to.pushNamed(
+                      ParkingRoutes.scanTicket,
+                      arguments: (code) async {
+                        await Nav.to.pushReplacementNamed(
                           TicketRoutes.root,
                           arguments: TicketSubmitPageArgs(
                             ticketOrPlate: code,
@@ -202,7 +202,7 @@ class _ScanTicketOrEnterPlatePageState
                     FocusScope.of(context).requestFocus(FocusNode());
                     if (!(formKey.currentState?.validate() ?? false)) return;
                     Nav.to.pushNamed(
-                      TicketRoutes.root.prevPath(2),
+                      TicketRoutes.root,
                       arguments: TicketSubmitPageArgs(
                         ticketOrPlate: textController.text,
                         onPop: () {

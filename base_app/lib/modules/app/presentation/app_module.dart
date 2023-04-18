@@ -69,7 +69,7 @@ class AppModule extends Module {
           ..options.baseUrl = i.get<EnvironmentEntity>().appBaseUrl
           ..interceptors.addAll(
             [
-              LogInterceptor(requestBody: true),
+              LogInterceptor(requestBody: false),
               DioAuthInterceptor(
                 authUsecase: i.get<AuthUsecase>(),
                 localUserUsecase: i.get<LocalUserUsecase>(),
@@ -125,12 +125,19 @@ class AppModule extends Module {
     ),
 
     /// Local notification
-    Bind.lazySingleton<LocalNotificationsDriver>(
+    Bind.factory<LocalNotificationsDriver>(
       (i) => GlobalConfigs.localNotificationsDriver,
     ),
     Bind.lazySingleton<LocalNotificationsService>(
       (i) => GlobalConfigs.localNotificationsService,
     ),
+
+    /// Location
+    Bind.factory<LocationService>((i) => GlobalConfigs.locationService),
+    Bind.factory<LocationDriver>((i) => GlobalConfigs.locationDriver),
+
+    /// Permissions
+    Bind.factory<PermissionService>((i) => GlobalConfigs.permissionService),
 
     /// Preferences storage
     Bind.lazySingleton<PreferencesStorageDriver>(
@@ -206,6 +213,13 @@ class GlobalConfigs {
   /// Preferences storage configs
   static PreferencesStorageDriver get preferencesStorageDriver =>
       PreferencesStorageDriver();
+
+  /// Location
+  static LocationDriver get locationDriver => LocationDriver();
+  static LocationService get locationService => LocationService();
+
+  /// Permission
+  static PermissionService get permissionService => PermissionService();
 
   /// Local notification global configs
   static LocalNotificationsDriver get localNotificationsDriver =>

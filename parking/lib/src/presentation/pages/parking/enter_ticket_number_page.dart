@@ -57,11 +57,11 @@ class _EnterTicketNumberPageState extends State<EnterTicketNumberPage> {
             Spacing.md.vertical,
             GenButton.text(
               text: 'Escanear tíquete',
-              onPressed: () {
-                Nav.to.pushNamed(
-                  ParkingRoutes.scanTicket.completePath,
-                  arguments: (code) {
-                    Nav.to.pushNamed(
+              onPressed: () async {
+                await Nav.to.pushReplacementNamed(
+                  ParkingRoutes.scanTicket,
+                  arguments: (code) async {
+                    await Nav.to.pushNamed(
                       TicketRoutes.root,
                       arguments: TicketSubmitPageArgs(
                         ticketOrPlate: code,

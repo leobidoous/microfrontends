@@ -10,6 +10,9 @@ import '../../../profile/presentation/profile_module.dart';
 import '../../../profile/presentation/profile_routes.dart';
 import '../../../shared/presentation/pages/fallback_page.dart';
 import '../../../shared/presentation/shared_routes.dart';
+import '../../data/home_datasource.dart';
+import '../../infra/repositories/home_repository.dart';
+import '../../infra/usecases/home_usecase.dart';
 import '../controllers/home_controller.dart';
 import '../pages/home_page.dart';
 import '../routes/dashboard_routes.dart';
@@ -19,6 +22,22 @@ import 'dashboard_module.dart';
 class HomeModule extends Module {
   @override
   final List<Bind> binds = [
+    /// Home
+    Bind.lazySingleton<HomeDatasource>(
+      (i) => HomeDatasource(
+        client: i.get<DioClientDriver>(),
+        locationService: i.get<LocationService>(),
+        permissionService: i.get<PermissionService>(),
+        baseUrl: i.get<EnvironmentEntity>().endpointCampaign,
+      ),
+    ),
+    Bind.lazySingleton<HomeRepository>(
+      (i) => HomeRepository(datasource: i.get<HomeDatasource>()),
+    ),
+    Bind.lazySingleton<HomeUsecase>(
+      (i) => HomeUsecase(repository: i.get<HomeRepository>()),
+    ),
+
     /// Session
     Bind.lazySingleton<SessionEntity>((i) => i.get<AppController>().session),
     Bind.lazySingleton<SessionController>(
@@ -48,7 +67,10 @@ class HomeModule extends Module {
 
     /// Controllers
     Bind.lazySingleton<HomeController>(
-      (i) => HomeController(sessionController: i.get<SessionController>()),
+      (i) => HomeController(
+        sessionController: i.get<SessionController>(),
+        homeUsecase: i.get<HomeUsecase>(),
+      ),
     ),
     Bind.lazySingleton<ZendeskController>(
       (i) => ZendeskController(session: i.get<SessionController>().state),
@@ -72,9 +94,8 @@ class HomeModule extends Module {
       ],
     ),
     ModuleRoute(
-      ParkingRoutes.root.path,
+      ParkingRoutes(parent: HomeRoutes.root).initial.path,
       module: ParkingModule(
-        parentPath: HomeRoutes.root.concate<ParkingRoutes>([]),
         walletPath: HomeRoutes.start.concate<WalletRoutes>(
           [WalletRoutes.root],
         ),

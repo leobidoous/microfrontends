@@ -14,13 +14,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final controller = DM.i.get<HomeController>();
-  final textController = TextEditingController();
-
-  @override
-  void dispose() {
-    textController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {

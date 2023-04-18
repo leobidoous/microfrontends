@@ -3,7 +3,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../l10n/translations.dart';
-import '../../../routes/parking_routes.dart';
+import '../../../routes/vehicles_routes.dart';
 
 class NoTicketFoundCard extends StatelessWidget {
   const NoTicketFoundCard({
@@ -47,7 +47,7 @@ class NoTicketFoundCard extends StatelessWidget {
           isEnabled: isEnabled,
           onPressed: () async {
             await Nav.to
-                .pushNamed(ParkingRoutes.enterPlateNumber.relativePath)
+                .pushNamed(VehiclesRoutes.enterPlateNumber)
                 .then((value) => onRefresh());
           },
         ),
