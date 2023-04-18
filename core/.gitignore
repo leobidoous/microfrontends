@@ -8,15 +8,13 @@
 .buildlog/
 .history
 .svn/
+migrate_working_dir/
 
 # IntelliJ related
 *.iml
 *.ipr
 *.iws
 .idea/
-
-.flutter-plugins
-.flutter-plugins-dependencies
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
@@ -25,10 +23,20 @@
 
 # Flutter/Dart/Pub related
 # Libraries should not include pubspec.lock, per https://dart.dev/guides/libraries/private-files#pubspeclock.
-/pubspec.lock
 **/doc/api/
-.dart_tool/
-.packages
-build/
+**/ios/Flutter/.last_build_id
 .flutter-plugins
 .flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+.dart_tool/
+build/
+pubspec.lock
+**/ios/Podfile.lock
+
+# Mac
+.DS_Store
+
+# Web related
+lib/generated_plugin_registrant.dart

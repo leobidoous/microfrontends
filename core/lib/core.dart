@@ -18,6 +18,7 @@ export 'package:core/src/core/themes/typography/typography_constants.dart';
 export 'package:core/src/core/themes/typography/typography_extension.dart';
 export 'package:core/src/core/utils/base_path.dart';
 export 'package:core/src/core/utils/dependency_manager.dart';
+export 'package:core/src/core/utils/formats/utils_formats.dart';
 export 'package:core/src/core/utils/formats/date_formats.dart';
 export 'package:core/src/core/utils/formats/number_formats.dart';
 export 'package:core/src/core/utils/load_mock.dart';

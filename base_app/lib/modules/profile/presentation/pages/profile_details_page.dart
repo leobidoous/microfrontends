@@ -37,7 +37,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
               Spacing.sm.vertical,
               CustomInputField(
                 readOnly: true,
-                initialValue: customer.cpf,
+                initialValue: UtilsFormats.cpf(customer.cpf),
                 labelWidget: const InputLabel(label: 'CPF'),
               ),
               Spacing.sm.vertical,
@@ -49,7 +49,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
               Spacing.sm.vertical,
               CustomInputField(
                 readOnly: true,
-                initialValue: customer.phone,
+                initialValue: UtilsFormats.phone(customer.phone),
                 labelWidget: const InputLabel(label: 'Telefone'),
               ),
               Spacing.md.vertical,

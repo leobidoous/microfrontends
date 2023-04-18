@@ -1,0 +1,7 @@
+{
+    "@@locale": "pt",
+    "promotion": "Promoção",
+    "@promotion": {
+        "description": "Labels de Promoção"
+    }
+}

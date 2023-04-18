@@ -5,8 +5,10 @@ import 'package:core/core.dart';
 import '../../auth.dart';
 
 class AuthRouterGuard extends RouteGuard {
-  final BasePath path;
   AuthRouterGuard({required this.path}) : super(redirectTo: path.completePath);
+
+  final BasePath path;
+
   @override
   FutureOr<bool> canActivate(String path, ParallelRoute route) async {
     final usecase = DM.i.get<LocalUserUsecase>();
