@@ -13,8 +13,8 @@ import '../../../routes/ticket_routes.dart';
 import '../../../widgets/coupon_registration_status.dart';
 import 'shopping_location.dart';
 
-class CouponCardNew extends StatelessWidget {
-  const CouponCardNew({
+class CouponCard extends StatelessWidget {
+  const CouponCard({
     super.key,
     required this.couponController,
     required this.ticketController,

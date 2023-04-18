@@ -67,11 +67,7 @@ class ParkingAmountInfoPage extends StatelessWidget {
                       ticketOrPlate: ticketOrPlate,
                       onPop: () {
                         Nav.to.popUntil(
-                          ModalRoute.withName(
-                            DM.i.get<BasePath<ParkingRoutes>>().concate(
-                              [ParkingRoutes.root],
-                            ).completePath,
-                          ),
+                          ModalRoute.withName(ParkingRoutes.root.completePath),
                         );
                       },
                     ),
@@ -87,7 +83,7 @@ class ParkingAmountInfoPage extends StatelessWidget {
                     ParkingRoutes.root.concate([
                       CouponRoutes.root,
                       CouponRoutes.couponsList,
-                    ]).prevPath(2),
+                    ]),
                     arguments: false,
                   );
                 },

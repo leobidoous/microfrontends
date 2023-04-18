@@ -181,7 +181,7 @@ class _ParkingPageState extends State<ParkingPage> {
                 padding: EdgeInsets.symmetric(
                   horizontal: const Spacing(2).value,
                 ),
-                child: CouponCardNew(
+                child: CouponCard(
                   ticketController: controller.ticketController,
                   couponController: controller.couponController,
                   onRefresh: getCoupon,

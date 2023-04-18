@@ -82,7 +82,9 @@ Future<void> runBaseApp({required AppConfiguration appConfiguration}) async {
       ),
       GlobalConfigs.crashlyticsDriver.init(),
       GlobalConfigs.graphQlService.init(),
+      GlobalConfigs.locationService.init(),
     ]);
+    
     return runApp(
       ModularApp(
         module: AppModule(appConfiguration: appConfiguration),
