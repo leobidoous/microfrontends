@@ -19,7 +19,7 @@ class ListMainServicesWidgets extends StatelessWidget {
       children: [
         ItemMainServices(
           title: 'Comprar',
-          icon: GenIcons.carShopping,
+          icon: CoreIcons.carShopping,
           onTap: () => GenDialog.show(
             context,
             GenAlert.noImplementation(
@@ -30,7 +30,7 @@ class ListMainServicesWidgets extends StatelessWidget {
         ),
         const ItemMainServices(
           title: 'Nas lojas',
-          icon: GenIcons.shop,
+          icon: CoreIcons.shop,
           // onTap: () => Nav.to.pushNamed(
           //   Routes.IN_SHOPS,
           //   arguments: controller.isCouponEnabled,
@@ -38,7 +38,7 @@ class ListMainServicesWidgets extends StatelessWidget {
         ),
         const ItemMainServices(
           title: 'Pagamentos',
-          icon: GenIcons.coinsAlt,
+          icon: CoreIcons.coinsAlt,
           // onTap: () => Nav.to.pushNamed(
           //   Routes.PAYMENT_OPTIONS,
           //   arguments: controller.isLinkC.value,

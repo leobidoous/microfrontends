@@ -172,7 +172,7 @@ class _InformPhoneNumberViewState extends State<InformPhoneNumberView> {
                           child: Text(
                             'Cadastrado',
                             style: context.textTheme.labelSmall?.copyWith(
-                              color: AppColorsBase.textButtonColor,
+                              color: context.colorScheme.primary,
                               fontWeight: context.textTheme.fontWeightRegular,
                             ),
                           ),

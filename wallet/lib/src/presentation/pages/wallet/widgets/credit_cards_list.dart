@@ -294,7 +294,7 @@ class _CreditCardsListState extends State<CreditCardsList> {
                 ),
                 Spacing.xs.horizontal,
                 Icon(
-                  GenIcons.deleteOutline,
+                  CoreIcons.deleteOutline,
                   color: AppColorsBase.grey7,
                   size: const Spacing(2.5).value,
                 ),

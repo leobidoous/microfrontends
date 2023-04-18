@@ -78,7 +78,7 @@ class _CardWidget extends StatelessWidget {
                       ),
                       padding: EdgeInsets.all(const Spacing(1.5).value),
                       child: Icon(
-                        GenIcons.rightOutline,
+                        CoreIcons.rightOutline,
                         size: AppFontSize.iconButton.value,
                         color: context.colorScheme.background,
                       ),
@@ -154,7 +154,7 @@ class _BackgroundStyle extends StatelessWidget {
               top: -20.0,
               left: -40.0,
               child: Icon(
-                GenIcons.scancodeOutline,
+                CoreIcons.scancodeOutline,
                 size: 112.0,
                 color: context.colorScheme.background.withOpacity(0.26),
               ),
@@ -163,7 +163,7 @@ class _BackgroundStyle extends StatelessWidget {
               bottom: 8.0,
               right: 0,
               child: Icon(
-                GenIcons.barCode,
+                CoreIcons.barCode,
                 size: 80.0,
                 color: context.colorScheme.background.withOpacity(0.26),
               ),
@@ -174,17 +174,17 @@ class _BackgroundStyle extends StatelessWidget {
         return Stack(
           children: [
             Positioned(
-              top: -20.0,
-              left: -20.0,
+              top: -10.0,
+              left: -10.0,
               child: Icon(
-                GenIcons.informationCircleOutline,
+                CoreIcons.informationCircleOutline,
                 size: 98.0,
                 color: context.colorScheme.background.withOpacity(0.26),
               ),
             ),
             Positioned(
-              bottom: const Spacing(1.5).value,
-              right: -64,
+              bottom: const Spacing(4).value,
+              right: -14,
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   color: context.colorScheme.background.withOpacity(0.26),
@@ -202,7 +202,7 @@ class _BackgroundStyle extends StatelessWidget {
                   ),
                 ),
                 child: SizedBox.fromSize(
-                  size: Size(const Spacing(8).value, const Spacing(8).value),
+                  size: Size(const Spacing(10).value, const Spacing(10).value),
                 ),
               ),
             ),
@@ -226,7 +226,7 @@ class _BackgroundStyle extends StatelessWidget {
                   ),
                 ),
                 child: SizedBox.fromSize(
-                  size: Size(const Spacing(8).value, const Spacing(8).value),
+                  size: Size(const Spacing(10).value, const Spacing(10).value),
                 ),
               ),
             ),
@@ -249,7 +249,7 @@ class _BackgroundStyle extends StatelessWidget {
               bottom: 36.0,
               left: -50,
               child: Icon(
-                GenIcons.money,
+                CoreIcons.money,
                 size: 64.0,
                 color: context.colorScheme.background.withOpacity(0.26),
               ),
@@ -277,7 +277,7 @@ class _BackgroundStyle extends StatelessWidget {
               bottom: 8.0,
               left: -20,
               child: Icon(
-                GenIcons.carSide,
+                CoreIcons.carSide,
                 size: 98.0,
                 color: context.colorScheme.background.withOpacity(.4),
               ),

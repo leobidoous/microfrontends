@@ -70,7 +70,7 @@ class _DashboardPageState extends State<DashboardPage> {
         // Spacing.md.vertical,
         // Center(
         //   child: Icon(
-        //     GenIcons.downOutline,
+        //     CoreIcons.downOutline,
         //     color: AppColorsBase.textButtonColor,
         //     size: AppFontSize.titleMedium.value,
         //   ),
@@ -331,7 +331,7 @@ class _DashboardPageState extends State<DashboardPage> {
         //             backgroundColor:
         //                 AppColorsBase.textButtonColor,
         //             child: Icon(
-        //               GenIcons.rightOutline,
+        //               CoreIcons.rightOutline,
         //               color: AppColorsBase.kWhite,
         //               size: AppFontSize.titleMedium.value,
         //             ),
@@ -386,7 +386,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     ),
                     Spacing.xxs.horizontal,
                     Icon(
-                      GenIcons.rightOutline,
+                      CoreIcons.rightOutline,
                       color: context.colorScheme.primary,
                       size: 14.responsiveHeight,
                     ),

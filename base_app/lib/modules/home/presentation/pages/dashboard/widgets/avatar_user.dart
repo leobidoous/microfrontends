@@ -23,7 +23,7 @@ class AvatarUser extends StatelessWidget {
           style: context.textTheme.bodyMedium!.copyWith(
             fontFamily: context.textTheme.secodaryFontFamily,
             fontSize: AppFontSize.iconButton.value,
-            color: AppColorsBase.kWhite,
+            color: context.colorScheme.background,
           ),
         ),
       ),

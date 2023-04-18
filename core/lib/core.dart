@@ -95,7 +95,6 @@ export 'package:core/src/infra/services/local_notifications_service.dart';
 export 'package:core/src/infra/usecases/local_user_usecase.dart';
 export 'package:core/src/infra/usecases/search_postal_code_usecase.dart';
 export 'package:core/src/presentation/assets/core_icons.dart';
-export 'package:core/src/presentation/assets/gen_icons.dart';
 export 'package:core/src/presentation/controllers/camera/camera_controller.dart';
 export 'package:core/src/presentation/controllers/camera/code_scan_controller.dart';
 export 'package:core/src/presentation/controllers/zendesk_controller.dart';

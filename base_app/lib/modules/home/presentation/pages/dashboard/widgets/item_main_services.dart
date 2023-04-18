@@ -28,7 +28,6 @@ class ItemMainServices extends StatelessWidget {
               child: Center(
                 child: Icon(
                   icon,
-                  color: AppColorsBase.textButtonColor,
                   size: 20,
                 ),
               ),

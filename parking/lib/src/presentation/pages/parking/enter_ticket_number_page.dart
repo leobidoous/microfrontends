@@ -30,7 +30,7 @@ class _EnterTicketNumberPageState extends State<EnterTicketNumberPage> {
           AppBarButton(
             onTap: DM.i.get<ZendeskController>().openChat,
             child: Icon(
-              GenIcons.messageCircle,
+              CoreIcons.contactUs,
               size: const Spacing(3).value,
             ),
           ),

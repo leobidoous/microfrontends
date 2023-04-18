@@ -76,7 +76,7 @@ class _CouponSubmitPageState extends State<CouponSubmitPage> {
                 actions: [
                   AppBarButton(
                     child: Icon(
-                      GenIcons.messageCircle,
+                      CoreIcons.contactUs,
                       color: context.colorScheme.onBackground,
                     ),
                     onTap: () => DM.i.get<ZendeskController>().openChat(),
@@ -100,7 +100,7 @@ class _CouponSubmitPageState extends State<CouponSubmitPage> {
                 actions: [
                   AppBarButton(
                     child: Icon(
-                      GenIcons.messageCircle,
+                      CoreIcons.contactUs,
                       color: context.colorScheme.onBackground,
                     ),
                     onTap: () => DM.i.get<ZendeskController>().openChat(),
@@ -123,7 +123,7 @@ class _CouponSubmitPageState extends State<CouponSubmitPage> {
               actions: [
                 AppBarButton(
                   child: Icon(
-                    GenIcons.messageCircle,
+                    CoreIcons.contactUs,
                     color: context.colorScheme.onBackground,
                   ),
                   onTap: () => DM.i.get<ZendeskController>().openChat(),

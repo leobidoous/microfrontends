@@ -112,6 +112,6 @@ flutter:
         - asset: fonts/Inter/Inter-Light.ttf
         - asset: fonts/Inter/Inter-Medium.ttf
         - asset: fonts/Inter/Inter-Regular.ttf
-    - family: gen_icons
+    - family: Core_icons
       fonts:
-        - asset: fonts/gen_icons/Gen_icon.ttf
+        - asset: fonts/core_icons/core_icons.ttf

@@ -35,8 +35,6 @@ class _VehiclesPageState extends State<VehiclesPage> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).textTheme;
-
     return Scaffold(
       backgroundColor: context.colorScheme.background,
       appBar: GenAppBar(
@@ -145,7 +143,7 @@ class _VehiclesPageState extends State<VehiclesPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          surfaceTintColor: AppColorsBase.kWhite,
+          surfaceTintColor: context.colorScheme.background,
           shape: RoundedRectangleBorder(
             borderRadius: AppThemeBase.borderRadiusLG,
           ),
@@ -166,7 +164,7 @@ class _VehiclesPageState extends State<VehiclesPage> {
                 padding: EdgeInsets.all(const Spacing(1).value),
                 child: DecoratedBox(
                   decoration: BoxDecoration(
-                    color: AppColorsBase.kWhite,
+                    color: context.colorScheme.background,
                     border: Border.all(
                       color: context.colorScheme.primary,
                     ),
@@ -180,7 +178,7 @@ class _VehiclesPageState extends State<VehiclesPage> {
                           horizontal: const Spacing(3).value,
                         ),
                         child: Icon(
-                          GenIcons.carSide,
+                          CoreIcons.carSide,
                           size: 26,
                           color: AppColorsBase.greyText01,
                         ),
@@ -199,7 +197,7 @@ class _VehiclesPageState extends State<VehiclesPage> {
                                 brand,
                                 style: context.textTheme.bodyLarge?.copyWith(
                                   fontFamily: GoogleFonts.inter().fontFamily,
-                                  color: AppColorsBase.primary10Color,
+                                  color: context.colorScheme.onBackground,
                                 ),
                               ),
                               Padding(

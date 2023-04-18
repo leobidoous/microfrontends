@@ -40,7 +40,7 @@ class _EnterPlateNumberPageState extends State<EnterPlateNumberPage> {
           AppBarButton(
             onTap: DM.i.get<ZendeskController>().openChat,
             child: Icon(
-              GenIcons.messageCircle,
+              CoreIcons.contactUs,
               color: context.colorScheme.onBackground,
               size: const Spacing(3).value,
             ),
@@ -276,7 +276,7 @@ class _VehicleCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(
-                GenIcons.car,
+                CoreIcons.car,
                 color: context.colorScheme.primary,
                 size: 16.0,
               ),

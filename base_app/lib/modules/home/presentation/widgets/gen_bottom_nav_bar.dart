@@ -76,12 +76,11 @@ class _GenBottomNavBarState extends State<GenBottomNavBar> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SvgPicture.asset(
+                Icon(
                   item.asset,
-                  height: const Spacing(2.5).value.responsiveHeight,
-                  width: const Spacing(2.5).value.responsiveWidth,
+                  size: const Spacing(2.5).value.responsiveHeight,
                   color: isSelected
-                      ? AppColorsBase.textButtonColor
+                      ? context.colorScheme.primary
                       : AppColorsBase.neutrla3,
                 ),
                 Spacing.xs.vertical,
@@ -91,7 +90,7 @@ class _GenBottomNavBarState extends State<GenBottomNavBar> {
                   overflow: TextOverflow.ellipsis,
                   style: context.textTheme.labelSmall?.copyWith(
                     color: isSelected
-                        ? AppColorsBase.textButtonColor
+                        ? context.colorScheme.primary
                         : AppColorsBase.neutrla3,
                     fontWeight: isSelected
                         ? FontWeight.w500

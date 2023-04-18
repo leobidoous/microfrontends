@@ -41,7 +41,7 @@ class _CouponDetailsPageState extends State<CouponDetailsPage> {
         actions: [
           AppBarButton(
             child: Icon(
-              GenIcons.messageCircle,
+              CoreIcons.contactUs,
               color: context.colorScheme.onBackground,
             ),
             onTap: () => DM.i.get<ZendeskController>().openChat(),
@@ -160,7 +160,7 @@ class _CouponDetailsPageState extends State<CouponDetailsPage> {
     return Row(
       children: [
         Icon(
-          GenIcons.locationPinAlt,
+          CoreIcons.pin,
           color: AppColorsBase.grey9,
         ),
         Spacing.xs.horizontal,

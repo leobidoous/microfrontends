@@ -59,7 +59,7 @@ class SearchPlaceErrorView extends StatelessWidget {
                       type: ButtonType.background,
                       text: 'Fale conosco',
                       onPressed: () => DM.i.get<ZendeskController>().openChat(),
-                      icon: GenIcons.messageCircle,
+                      icon: CoreIcons.contactUs,
                     ),
                   ],
                 ),

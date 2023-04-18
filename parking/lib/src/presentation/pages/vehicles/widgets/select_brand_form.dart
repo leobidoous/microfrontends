@@ -71,7 +71,7 @@ class _SelectBrandFormState extends State<_SelectBrandForm> {
                   autofocus: false,
                   suffixIcon: (controller.selectedBrand != null)
                       ? Icon(
-                          GenIcons.checkCircleOutline,
+                          CoreIcons.checkCircle,
                           color: context.colorScheme.primary,
                         )
                       : null,

@@ -19,7 +19,7 @@ class CardVehicle extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColorsBase.kWhite,
+        color: context.colorScheme.background,
         borderRadius: AppThemeBase.borderRadiusSM,
         border: Border.all(
           color: AppColorsBase.grey3,
@@ -38,7 +38,7 @@ class CardVehicle extends StatelessWidget {
                 right: const Spacing(3).value,
               ),
               child: Icon(
-                GenIcons.carSide,
+                CoreIcons.carSide,
                 size: 26,
                 color: AppColorsBase.greyText01,
               ),
@@ -69,7 +69,7 @@ class CardVehicle extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: context.textTheme.bodyLarge?.copyWith(
                           fontFamily: GoogleFonts.inter().fontFamily,
-                          color: AppColorsBase.primary10Color,
+                          color: context.colorScheme.onBackground,
                         ),
                       ),
                     ),
@@ -100,7 +100,7 @@ class CardVehicle extends StatelessWidget {
               onPressed: onPressed,
               highlightColor: Colors.red.withOpacity(.16),
               icon: Icon(
-                GenIcons.deleteOutline,
+                CoreIcons.deleteOutline,
                 size: 24,
                 color: AppColorsBase.error0,
               ),

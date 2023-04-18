@@ -124,7 +124,7 @@ class _ParkingPageState extends State<ParkingPage> {
                 onTap: _onScanOrPayOrValidateTicket,
                 isEnabled: !controller.ticketController.isLoading,
                 child: Icon(
-                  GenIcons.barCode,
+                  CoreIcons.barCode,
                   color: context.colorScheme.primary,
                   size: const Spacing(3).value,
                 ),

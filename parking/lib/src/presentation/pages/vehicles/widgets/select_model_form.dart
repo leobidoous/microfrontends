@@ -71,7 +71,7 @@ class _SelectModelFormState extends State<_SelectModelForm> {
                   autofocus: false,
                   suffixIcon: (controller.selectedModel != null)
                       ? Icon(
-                          GenIcons.checkCircleOutline,
+                          CoreIcons.checkCircle,
                           color: context.colorScheme.primary,
                         )
                       : null,

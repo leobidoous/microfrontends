@@ -33,7 +33,7 @@ class DeleteCreditCard extends StatelessWidget {
         );
       },
       child: Icon(
-        GenIcons.deleteOutline,
+        CoreIcons.deleteOutline,
         color: AppColorsBase.grey7,
         size: const Spacing(2.5).value,
       ),

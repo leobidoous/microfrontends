@@ -167,7 +167,7 @@ class _TicketSubmitPageState extends State<TicketSubmitPage> {
           actions: [
             AppBarButton(
               child: Icon(
-                GenIcons.messageCircle,
+                CoreIcons.contactUs,
                 color: context.colorScheme.onBackground,
               ),
               onTap: () => DM.i.get<ZendeskController>().openChat(),

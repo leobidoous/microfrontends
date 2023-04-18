@@ -51,6 +51,7 @@ flutter:
     - assets/
     - assets/mocks/
     - assets/images/
+    - assets/logos/
     - assets/images/wallet/
     - assets/images/parking/
     - assets/images/server/

@@ -13,13 +13,13 @@ extension LinkCardTypeExt on LinkCardType {
   Color get color {
     switch (this) {
       case LinkCardType.ticket:
-        return AppColorsBase.error1;
+        return AppColorsBase.error2;
       case LinkCardType.desk:
-        return AppColorsBase.primaryColor;
+        return AppColorsBase.primary8;
       case LinkCardType.wallet:
         return AppColorsBase.success2;
       case LinkCardType.vehicle:
-        return AppColorsBase.kWarning;
+        return AppColorsBase.warning1;
 
       default:
         return AppColorsBase.error0;
@@ -58,29 +58,29 @@ extension LinkCardTypeExt on LinkCardType {
     switch (this) {
       case LinkCardType.ticket:
         return [
-          GenIcons.scancodeOutline,
-          GenIcons.barCode,
+          CoreIcons.scancodeOutline,
+          CoreIcons.barCode,
         ];
       case LinkCardType.desk:
         return [
-          GenIcons.informationCircleOutline,
-          GenIcons.scancodeOutline,
+          CoreIcons.informationCircleOutline,
+          CoreIcons.scancodeOutline,
         ];
       case LinkCardType.wallet:
         return [
-          GenIcons.money,
-          GenIcons.scancodeOutline,
+          CoreIcons.money,
+          CoreIcons.scancodeOutline,
         ];
       case LinkCardType.vehicle:
         return [
-          GenIcons.carSide,
-          GenIcons.scancodeOutline,
+          CoreIcons.carSide,
+          CoreIcons.scancodeOutline,
         ];
 
       default:
         return [
-          GenIcons.scancodeOutline,
-          GenIcons.scancodeOutline,
+          CoreIcons.scancodeOutline,
+          CoreIcons.scancodeOutline,
         ];
     }
   }

@@ -32,15 +32,15 @@ class HomeModule extends Module {
     Bind.factory<ShoppingEntity>(
       (i) => ShoppingEntity(
         id: 3,
-        name: 'name',
-        type: 'type',
+        name: 'Shopping bonsucesso',
+        type: 'tiaguinho',
         latitude: 'latitude',
         longitude: 'longitude',
         qrcode: 'qrcode',
         idAdministrator: 1,
         updatedAt: 'updatedAt',
         createdAt: 'createdAt',
-        address: 'address',
+        address: 'Rua das oliveiras, nº 20 - 65040-380',
         logoImage: '',
         cnpj: 'cnpj',
       ),

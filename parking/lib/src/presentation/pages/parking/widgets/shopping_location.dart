@@ -24,7 +24,7 @@ class MallLocation extends StatelessWidget {
         padding: padding,
         child: Row(
           children: [
-            Icon(GenIcons.locationPinAlt, color: AppColorsBase.grey6),
+            Icon(CoreIcons.pin, color: AppColorsBase.grey6),
             Spacing.sm.horizontal,
             Expanded(
               child: Column(

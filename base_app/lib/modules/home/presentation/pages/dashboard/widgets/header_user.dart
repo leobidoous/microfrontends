@@ -25,13 +25,13 @@ class HeaderUser extends StatelessWidget {
             InkWell(
               onTap: () => zenDeskController.openChat(),
               child: Icon(
-                GenIcons.messageCircleChat,
-                color: AppColorsBase.kBlack,
+                CoreIcons.contactUs,
                 size: AppFontSize.iconButton.value,
               ),
             ),
             Spacing.md.horizontal,
             InkWell(
+              ///TODO: ADICIONAR FLOW DE NOTIFICAÇÕES
               // onTap: () => Nav.to.pushNamed(
               //   Routes.NOTIFICATIONS_PAGE,
               //   arguments: controller.resultNotifications,
@@ -39,8 +39,7 @@ class HeaderUser extends StatelessWidget {
               child: Stack(
                 children: [
                   Icon(
-                    GenIcons.bellAlt,
-                    color: AppColorsBase.kBlack,
+                    CoreIcons.bellAlt,
                     size: AppFontSize.iconButton.value,
                   ),
                   Positioned(

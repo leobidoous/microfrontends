@@ -59,7 +59,7 @@ class TalkWithUs extends StatelessWidget {
               onPressed: () => DM.i.get<ZendeskController>().openChat(),
               text: Tr.of(context).contactUs,
               type: ButtonType.background,
-              icon: GenIcons.messageCircle,
+              icon: CoreIcons.contactUs,
             ),
           ),
         )

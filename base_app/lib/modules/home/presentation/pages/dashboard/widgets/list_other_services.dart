@@ -16,12 +16,12 @@ class ListOtherServicesWidgets extends StatelessWidget {
       children: [
         const ItemOtherServices(
           title: 'Estacionamento',
-          icon: GenIcons.car,
+          icon: CoreIcons.car,
           // onTap: () => Nav.to.pushNamed(ParkingRoutes.root.completePath),
         ),
         ItemOtherServices(
           title: 'Lojas',
-          icon: GenIcons.building,
+          icon: CoreIcons.building,
           onTap: () => GenDialog.show(
             context,
             GenAlert.noImplementation(
@@ -33,7 +33,7 @@ class ListOtherServicesWidgets extends StatelessWidget {
         ),
         ItemOtherServices(
           title: 'Campanhas',
-          icon: GenIcons.gift,
+          icon: CoreIcons.gift,
           onTap: () => GenDialog.show(
             context,
             GenAlert.noImplementation(

@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:flutter/material.dart' show IconData;
 import 'package:wallet/wallet.dart';
 
 import '../../modules/home/presentation/routes/dashboard_routes.dart';
@@ -25,18 +26,18 @@ extension BottomNavBarTypeExt on BottomNavBarType {
     }
   }
 
-  String get asset {
+  IconData get asset {
     switch (this) {
       case BottomNavBarType.home:
-        return 'assets/icons/bottom_nav_bar/home.svg';
+        return CoreIcons.home;
       case BottomNavBarType.search:
-        return 'assets/icons/bottom_nav_bar/search.svg';
+        return CoreIcons.search;
       case BottomNavBarType.payment:
-        return 'assets/icons/bottom_nav_bar/payment.svg';
+        return CoreIcons.payment;
       case BottomNavBarType.wallet:
-        return 'assets/icons/bottom_nav_bar/wallet.svg';
+        return CoreIcons.wallet;
       case BottomNavBarType.profile:
-        return 'assets/icons/bottom_nav_bar/profile.svg';
+        return CoreIcons.profile;
     }
   }
 

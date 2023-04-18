@@ -51,7 +51,7 @@ class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
         actions: [
           AppBarButton(
             child: Icon(
-              GenIcons.messageCircle,
+              CoreIcons.contactUs,
               color: context.colorScheme.onBackground,
             ),
             onTap: () => DM.i.get<ZendeskController>().openChat(),
