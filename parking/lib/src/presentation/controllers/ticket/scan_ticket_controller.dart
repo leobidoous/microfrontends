@@ -9,7 +9,7 @@ class ScanTicketController extends GenController<List<Exception>, String> {
   ScanTicketController({required this.scanController}) : super('');
 
   void startTime(Function() callback) {
-    timer = Timer(const Duration(seconds: 10), () async {
+    timer = Timer(const Duration(seconds: 60), () async {
       await callback();
       startTime(callback);
     });

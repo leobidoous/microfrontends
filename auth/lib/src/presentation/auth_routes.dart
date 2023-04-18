@@ -1,7 +1,14 @@
 import 'package:core/core.dart';
 
 class AuthRoutes {
-  static const BasePath root = BasePath('/auth/');
-  static const BasePath login = BasePath('/login/', root);
-  static const BasePath register = BasePath('/register/', root);
+  AuthRoutes({required BasePath parent}) {
+    _parent = parent;
+  }
+
+  BasePath get initial => root;
+  static late final BasePath _parent;
+
+  static BasePath root = BasePath('/auth/', _parent);
+  static BasePath login = BasePath('/login/', root);
+  static BasePath register = BasePath('/register/', root);
 }

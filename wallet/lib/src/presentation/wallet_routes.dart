@@ -1,9 +1,16 @@
 import 'package:core/core.dart';
 
 class WalletRoutes {
-  static const BasePath root = BasePath('/wallet/');
-  static const BasePath addCreditCard = BasePath('/add_credit_card/', root);
-  static const BasePath selectPaymentMethod = BasePath(
+  WalletRoutes({required BasePath parent}) {
+    _parent = parent;
+  }
+
+  BasePath get initial => root;
+  static late final BasePath _parent;
+
+  static BasePath root = BasePath('/wallet/', _parent);
+  static BasePath addCreditCard = BasePath('/add_credit_card/', root);
+  static BasePath selectPaymentMethod = BasePath(
     '/select_payment_method/',
     root,
   );

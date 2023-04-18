@@ -86,7 +86,7 @@ class HomeModule extends Module {
       children: [
         ModuleRoute(DashboardRoutes.root.path, module: DashboardModule()),
         ModuleRoute(
-          WalletRoutes.root.path,
+          WalletRoutes(parent: HomeRoutes.start).initial.path,
           transition: TransitionType.fadeIn,
           module: WalletModule(),
         ),

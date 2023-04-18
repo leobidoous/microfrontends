@@ -1,10 +1,14 @@
+import 'package:auth/auth.dart';
 import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:wallet/wallet.dart';
 
 import '../../../app/presentation/controllers/session_controller.dart';
+import '../../../home/presentation/routes/home_routes.dart';
 import '../../domain/entities/profile_menu_item_entity.dart';
 import '../../domain/enums/menu_item_type_enum.dart';
+import '../profile_routes.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -18,8 +22,23 @@ class _ProfilePageState extends State<ProfilePage> {
   final sessionController = DM.i.get<SessionController>();
 
   List<ProfileMenuItemEntity> get menuItems => [
-        ProfileMenuItemEntity(name: 'Meus dados', assetIcon: ''),
-        ProfileMenuItemEntity(name: 'Carteira', assetIcon: ''),
+        ProfileMenuItemEntity(
+          name: 'Meus dados',
+          assetIcon: '',
+          onTap: () {
+            Nav.to.pushNamed(ProfileRoutes.profileDetails);
+          },
+        ),
+        ProfileMenuItemEntity(
+          name: 'Carteira',
+          assetIcon: '',
+          onTap: () {
+            Nav.to.pushNamed(
+              HomeRoutes.start.concate([WalletRoutes.root]),
+              forRoot: true,
+            );
+          },
+        ),
         ProfileMenuItemEntity(name: 'Notificações', assetIcon: ''),
         ProfileMenuItemEntity(name: 'Minha localização', assetIcon: ''),
         ProfileMenuItemEntity(
@@ -56,11 +75,6 @@ class _ProfilePageState extends State<ProfilePage> {
           },
         ),
       ];
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,8 +125,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                       Expanded(
                                         child: _menuListItem(
                                           menuItems[index],
-                                          errorTheme: menuItems[index] ==
-                                              menuItems.last,
+                                          errorTheme:
+                                              index == menuItems.length - 1,
                                         ),
                                       ),
                                       Spacing.sm.horizontal,
@@ -146,6 +160,9 @@ class _ProfilePageState extends State<ProfilePage> {
         vertical: const Spacing(1.5).value,
         horizontal: const Spacing(2).value,
       ),
+      onTap: () {
+        Nav.to.pushNamed(AuthRoutes.login, forRoot: true);
+      },
       color: AppColorsBase.neutrla2,
       child: Row(
         children: [
@@ -193,7 +210,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Row(
       children: [
         Icon(
-          Icons.abc,
+          Icons.arrow_right_rounded,
           color:
               errorTheme ? context.colorScheme.error : AppColorsBase.neutrla5,
         ),
