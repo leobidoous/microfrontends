@@ -6,7 +6,10 @@ import 'package:wallet/wallet.dart';
 import '../../../domain/entities/dashboard/coupon_entity.dart';
 import '../../routes/coupon_routes.dart';
 import '../../routes/parking_routes.dart';
+import '../../routes/ticket_routes.dart';
+import '../../routes/vehicles_routes.dart';
 import '../../widgets/coupon_registration_status.dart';
+import '../ticket/ticket_submit/ticket_submit_page.dart';
 
 class CouponSuccessfullyRegisteredPageArgs {
   CouponSuccessfullyRegisteredPageArgs({
@@ -131,25 +134,25 @@ class _CouponSuccessfullyRegisteredPageState
               Spacing.xxl.vertical,
               if (freeParking) ...[
                 GenButton.text(
-                  onPressed: () {
-                    // Nav.to.pushReplacementNamed(
-                    //   SharedRoutes.scanBardCode,
-                    //   arguments: (code) {
-                    //     Nav.to.pushNamed(
-                    //       TicketRoutes.root,
-                    //       arguments: TicketSubmitPageArgs(
-                    //         ticketOrPlate: code,
-                    //         onPop: () {
-                    //           Nav.to.popUntil(
-                    //             ModalRoute.withName(
-                    //               ParkingRoutes.root.completePath,
-                    //             ),
-                    //           );
-                    //         },
-                    //       ),
-                    //     );
-                    //   },
-                    // );
+                  onPressed: () async {
+                    await Nav.to.pushReplacementNamed(
+                      ParkingRoutes.scanTicket,
+                      arguments: (code) async {
+                        await Nav.to.pushNamed(
+                          TicketRoutes.root,
+                          arguments: TicketSubmitPageArgs(
+                            ticketOrPlate: code,
+                            onPop: () {
+                              Nav.to.popUntil(
+                                ModalRoute.withName(
+                                  ParkingRoutes.root.completePath,
+                                ),
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    );
                   },
                   type: ButtonType.tertiary,
                   text: 'Validar tíquete',
@@ -157,7 +160,9 @@ class _CouponSuccessfullyRegisteredPageState
                 Spacing.sm.vertical,
                 GenButton.text(
                   onPressed: () {
-                    Nav.to.pushReplacementNamed(ParkingRoutes.enterPlateNumber);
+                    Nav.to.pushReplacementNamed(
+                      VehiclesRoutes.enterPlateNumber,
+                    );
                   },
                   type: ButtonType.background,
                   text: 'Digite a placa',

@@ -62,7 +62,7 @@ class ParkingAmountInfoPage extends StatelessWidget {
               GenButton.text(
                 onPressed: () {
                   Nav.to.pushNamed(
-                    TicketRoutes.root.prevPath(),
+                    TicketRoutes.root,
                     arguments: TicketSubmitPageArgs(
                       ticketOrPlate: ticketOrPlate,
                       onPop: () {

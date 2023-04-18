@@ -6,8 +6,11 @@ import 'package:flutter/material.dart';
 import '../../../../l10n/translations.dart';
 import '../../../domain/entities/dashboard/coupon_entity.dart';
 import '../../controllers/parking/parking_coupon_controller.dart';
+import '../../routes/parking_routes.dart';
+import '../../routes/ticket_routes.dart';
 import '../../routes/ticket_window_routes.dart';
 import '../../widgets/coupon_registration_status.dart';
+import '../ticket/ticket_submit/ticket_submit_page.dart';
 
 class CouponSubmissionResultPage extends StatefulWidget {
   const CouponSubmissionResultPage({super.key});
@@ -84,24 +87,24 @@ class _CouponSubmissionResultPageState
                       Spacing.sm.vertical,
                       GenButton.text(
                         onPressed: () {
-                          // Nav.to.pushNamed(
-                          //   SharedRoutes.scanBardCode,
-                          //   arguments: (code) {
-                          //     Nav.to.pushReplacementNamed(
-                          //       TicketRoutes.root,
-                          //       arguments: TicketSubmitPageArgs(
-                          //         ticketOrPlate: code,
-                          //         onPop: () {
-                          //           Nav.to.popUntil(
-                          //             ModalRoute.withName(
-                          //               ParkingRoutes.root.completePath,
-                          //             ),
-                          //           );
-                          //         },
-                          //       ),
-                          //     );
-                          //   },
-                          // );
+                          Nav.to.pushNamed(
+                            ParkingRoutes.root,
+                            arguments: (code) {
+                              Nav.to.pushReplacementNamed(
+                                TicketRoutes.root,
+                                arguments: TicketSubmitPageArgs(
+                                  ticketOrPlate: code,
+                                  onPop: () {
+                                    Nav.to.popUntil(
+                                      ModalRoute.withName(
+                                        ParkingRoutes.root.completePath,
+                                      ),
+                                    );
+                                  },
+                                ),
+                              );
+                            },
+                          );
                         },
                         type: ButtonType.tertiary,
                         text: 'Pagar',

@@ -6,6 +6,7 @@ import '../../infra/repositories/parking/parking_repository.dart';
 import '../../infra/usecases/parking/parking_usecase.dart';
 import '../controllers/parking/parking_controller.dart';
 import '../controllers/parking/parking_coupon_controller.dart';
+import '../controllers/parking/parking_enter_plate_number_controller.dart';
 import '../controllers/parking/parking_ticket_controller.dart';
 import '../controllers/ticket/scan_ticket_controller.dart';
 import '../pages/parking/enter_ticket_number_page.dart';
@@ -75,6 +76,11 @@ class ParkingModule extends Module {
       ),
     ),
     Bind.factory<CodeScanController>((i) => CodeScanController()),
+    Bind.factory<ParkingEnterPlateNumberController>(
+      (i) => ParkingEnterPlateNumberController(
+        usecase: i.get(),
+      ),
+    ),
     Bind.factory<ScanTicketController>(
       (i) => ScanTicketController(
         scanController: DM.i.get<CodeScanController>(),
@@ -107,7 +113,7 @@ class ParkingModule extends Module {
     ModuleRoute(DeskRoutes.root.path, module: GenDeskModule()),
     ModuleRoute(TicketRoutes.root.path, module: TicketModule()),
     ModuleRoute(CouponRoutes.root.path, module: CouponModule()),
-    ModuleRoute(TicketWindowRoutes.root.path, module: TicketWindowModule()),
     ModuleRoute(VehiclesRoutes.root.path, module: VehiclesModule()),
+    ModuleRoute(TicketWindowRoutes.root.path, module: TicketWindowModule()),
   ];
 }

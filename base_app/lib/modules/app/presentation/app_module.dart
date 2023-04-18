@@ -69,13 +69,7 @@ class AppModule extends Module {
           ..options.baseUrl = i.get<EnvironmentEntity>().appBaseUrl
           ..interceptors.addAll(
             [
-              LogInterceptor(
-                requestBody: false,
-                requestHeader: true,
-                responseHeader: false,
-                request: false,
-                responseBody: false,
-              ),
+              LogInterceptor(requestBody: false),
               DioAuthInterceptor(
                 authUsecase: i.get<AuthUsecase>(),
                 localUserUsecase: i.get<LocalUserUsecase>(),

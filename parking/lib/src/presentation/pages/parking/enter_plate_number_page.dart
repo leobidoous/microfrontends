@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import '../../../../l10n/translations.dart';
 import '../../../infra/models/vehicles/vehicle_model.dart';
 import '../../controllers/parking/parking_enter_plate_number_controller.dart';
+import '../../routes/parking_routes.dart';
 import '../../routes/ticket_routes.dart';
+import '../ticket/ticket_submit/ticket_submit_page.dart';
 import 'widgets/shopping_location.dart';
 
 class EnterPlateNumberPage extends StatefulWidget {
@@ -67,8 +69,8 @@ class _EnterPlateNumberPageState extends State<EnterPlateNumberPage> {
 
 class _HasVehicleRegistered extends StatelessWidget {
   _HasVehicleRegistered({required this.vehicles});
+  
   final List<VehicleModel> vehicles;
-
   final controller = DM.i.get<ParkingEnterPlateNumberController>();
   final shopping = DM.i.get<ShoppingEntity>();
   final textController = TextEditingController();
@@ -122,6 +124,14 @@ class _HasVehicleRegistered extends StatelessWidget {
             onPressed: () {
               Nav.to.pushNamed(
                 TicketRoutes.root,
+                arguments: TicketSubmitPageArgs(
+                  ticketOrPlate: textController.text,
+                  onPop: () {
+                    Nav.to.popUntil(
+                      ModalRoute.withName(ParkingRoutes.root.completePath),
+                    );
+                  },
+                ),
               );
             },
           ),
@@ -162,6 +172,14 @@ class _HasVehicleRegistered extends StatelessWidget {
               }
               Nav.to.pushNamed(
                 TicketRoutes.root,
+                arguments: TicketSubmitPageArgs(
+                  ticketOrPlate: textController.text,
+                  onPop: () {
+                    Nav.to.popUntil(
+                      ModalRoute.withName(ParkingRoutes.root.completePath),
+                    );
+                  },
+                ),
               );
             },
           ),
@@ -222,11 +240,15 @@ class _NotHasVehicleRegistered extends StatelessWidget {
                 return;
               }
               Nav.to.pushNamed(
-                TicketRoutes.root.prevPath(),
-                arguments: {
-                  'ticketOrPlate': textController.text,
-                  'onPop': () {},
-                },
+                TicketRoutes.root,
+                arguments: TicketSubmitPageArgs(
+                  ticketOrPlate: textController.text,
+                  onPop: () {
+                    Nav.to.popUntil(
+                      ModalRoute.withName(ParkingRoutes.root.completePath),
+                    );
+                  },
+                ),
               );
             },
           ),
