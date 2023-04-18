@@ -14,5 +14,5 @@ pre-commit:
       run: flutter format {staged_files} && git add {staged_files}
 commit-msg:
   scripts:
-    "commit-msg/template_checker":
+    "template_checker":
       runner: bash
