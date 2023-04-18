@@ -3,9 +3,6 @@ import 'package:intl/intl.dart' as intl;
 import 'translations.dart';
 
 /// The translations for Portuguese (`pt`).
-// ignore_for_file: lines_longer_than_80_chars
-// ignore_for_file: unnecessary_string_interpolations
-// ignore_for_file: no_leading_underscores_for_local_identifiers    
 class TrPt extends Tr {
   TrPt([String locale = 'pt']) : super(locale);
 
@@ -270,7 +267,7 @@ class TrPt extends Tr {
   String get registerVehicle => 'Cadastre o seu veículo para agilizar a liberação do estacionamento.';
 
   @override
-  String get whichBran => 'Qual é a marca do veículo?';
+  String get whichBrand => 'Qual é a marca do veículo?';
 
   @override
   String get whichModel => 'Escreva o modelo do veículo.';
@@ -321,7 +318,4 @@ class TrPt extends Tr {
 
   @override
   String get typePlate => 'Digitar placa';
-
-  @override
-  String get wallet => 'Carteira';
 }

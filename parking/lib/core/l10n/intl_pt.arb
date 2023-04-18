@@ -100,7 +100,7 @@
     "alreadyRegistered": "Ops! Você já cadastrou essa placa.",
     "close": "Fechar",
     "registerVehicle": "Cadastre o seu veículo para agilizar a liberação do estacionamento.",
-    "whichBran": "Qual é a marca do veículo?",
+    "whichBrand": "Qual é a marca do veículo?",
     "whichModel": "Escreva o modelo do veículo.",
     "whichPlate": "Escreva a placa do veículo.",
     "brand": "Marca",
@@ -123,9 +123,5 @@
         }
     },
     "addCouponsLabel": "Adicione seus cupons fiscais para ganhar estacionamento gratuito",
-    "typePlate": "Digitar placa",
-    "wallet": "Carteira",
-    "@wallet": {
-        "description": "Labels de carteira"
-    }
+    "typePlate": "Digitar placa"
 }

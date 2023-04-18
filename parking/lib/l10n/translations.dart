@@ -58,7 +58,6 @@ import 'translations_pt.dart';
 /// you wish to add from the pop-up menu in the Value field. This list should
 /// be consistent with the languages listed in the Tr.supportedLocales
 /// property.
-// ignore_for_file: lines_longer_than_80_chars 
 abstract class Tr {
   Tr(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
@@ -578,11 +577,11 @@ abstract class Tr {
   /// **'Cadastre o seu veículo para agilizar a liberação do estacionamento.'**
   String get registerVehicle;
 
-  /// No description provided for @whichBran.
+  /// No description provided for @whichBrand.
   ///
   /// In pt, this message translates to:
   /// **'Qual é a marca do veículo?'**
-  String get whichBran;
+  String get whichBrand;
 
   /// No description provided for @whichModel.
   ///
@@ -679,12 +678,6 @@ abstract class Tr {
   /// In pt, this message translates to:
   /// **'Digitar placa'**
   String get typePlate;
-
-  /// Labels de carteira
-  ///
-  /// In pt, this message translates to:
-  /// **'Carteira'**
-  String get wallet;
 }
 
 class _TrDelegate extends LocalizationsDelegate<Tr> {

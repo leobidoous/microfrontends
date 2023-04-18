@@ -232,6 +232,7 @@ class _BackgroundStyle extends StatelessWidget {
             ),
           ],
         );
+
       case LinkCardType.wallet:
         return Stack(
           children: [

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-// ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart' as intl;
 
 import 'translations_pt.dart';

@@ -105,10 +105,9 @@ extension LinkCardTypeExt on LinkCardType {
               arguments: args,
             );
       case LinkCardType.vehicle:
-        return () => Nav.to.pushNamed(
-              VehiclesRoutes.listVehicles.relativePath,
-              arguments: args,
-            );
+        return () => Nav.to.pushNamed(VehiclesRoutes.root.relativePath);
+      default:
+        return () {};
     }
   }
 }
