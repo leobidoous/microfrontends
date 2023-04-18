@@ -59,9 +59,9 @@ class _TicketSubmitPageState extends State<TicketSubmitPage> {
     )
         .then((value) async {
       if (controller.hasError) {
-        await GenDialog.show(
+        await CustomDialog.show(
           context,
-          GenAlert.ticketNotFoundError(context),
+          CustomAlert.ticketNotFoundError(context),
           showClose: true,
         ).then((value) => Nav.to.pop());
         return;
@@ -75,9 +75,9 @@ class _TicketSubmitPageState extends State<TicketSubmitPage> {
 
   Future<void> _onValidateOrPayTicket() async {
     if (!session.customer.emailVerifiedAt.isNotEmpty) {
-      await GenDialog.show(
+      await CustomDialog.show(
         context,
-        GenAlert.emailVerified(context),
+        CustomAlert.emailVerified(context),
         showClose: true,
       );
       return;
@@ -98,23 +98,23 @@ class _TicketSubmitPageState extends State<TicketSubmitPage> {
         .then((value) async {
       if (paymentController.hasError) {
         if (paymentController.error is ServerError) {
-          await GenDialog.show(
+          await CustomDialog.show(
             context,
-            GenAlert.serverError(context),
+            CustomAlert.serverError(context),
             showClose: true,
           );
         } else if (paymentController.error is UnknowError) {
-          await GenDialog.show(
+          await CustomDialog.show(
             context,
-            GenAlert.paymentError(context),
+            CustomAlert.paymentError(context),
             showClose: true,
           );
         }
       } else {
         if (controller.state.discount.percentOfDiscount == 1) {
-          await GenDialog.show(
+          await CustomDialog.show(
             context,
-            GenAlert.freeTicketSuccess(context),
+            CustomAlert.freeTicketSuccess(context),
             showClose: true,
           ).then((value) {
             Nav.to.popUntil(
@@ -123,9 +123,9 @@ class _TicketSubmitPageState extends State<TicketSubmitPage> {
           });
           return;
         }
-        await GenDialog.show(
+        await CustomDialog.show(
           context,
-          GenAlert.ticketPaidSuccess(
+          CustomAlert.ticketPaidSuccess(
             context,
             double.tryParse(paymentController.state.valorPago) ?? 0,
             controller.state.validadeDatahora,
@@ -159,7 +159,7 @@ class _TicketSubmitPageState extends State<TicketSubmitPage> {
         return false;
       },
       child: Scaffold(
-        appBar: GenAppBar(
+        appBar: CustomAppBar(
           backgroundColor: context.colorScheme.background,
           title: Tr.of(context).ticketTitle,
           leadingIcon: const Icon(Icons.close),
@@ -198,14 +198,14 @@ class _TicketSubmitPageState extends State<TicketSubmitPage> {
 
   Widget get _ticketDetails {
     final ticket = controller.state;
-    return GenRefreshIndicator(
+    return CustomRefreshIndicator(
       onRefresh: () async {
         _onFetchTicketDetails();
       },
       child: Column(
         children: [
           Expanded(
-            child: GenScrollContent(
+            child: CustomScrollContent(
               padding: EdgeInsets.all(const Spacing(2).value),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -243,9 +243,9 @@ class _TicketSubmitPageState extends State<TicketSubmitPage> {
           valueListenable: paymentController,
           builder: (context, value, child) {
             if (controller.isLoading) {
-              return GenShimmer(height: AppThemeBase.buttonHeightMD);
+              return CustomShimmer(height: AppThemeBase.buttonHeightMD);
             }
-            return GenButton.text(
+            return CustomButton.text(
               text: (controller.state.discount.percentOfDiscount != 1)
                   ? Tr.of(context).payTextButton
                   : Tr.of(context).validateParking,

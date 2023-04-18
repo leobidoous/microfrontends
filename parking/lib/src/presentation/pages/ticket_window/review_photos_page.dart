@@ -31,7 +31,7 @@ class _ReviewPhotosPageState extends State<ReviewPhotosPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GenAppBar.zero(),
+      appBar: CustomAppBar.zero(),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.fromLTRB(
@@ -79,7 +79,7 @@ class _ReviewPhotosPageState extends State<ReviewPhotosPage> {
               ValueListenableBuilder<List<File>>(
                 valueListenable: ocrController,
                 builder: (context, state, child) {
-                  return GenButton.text(
+                  return CustomButton.text(
                     onPressed: () {
                       ocrController
                           .recognizePhotos(controller.state)
@@ -96,7 +96,7 @@ class _ReviewPhotosPageState extends State<ReviewPhotosPage> {
                 },
               ),
               Spacing.sm.vertical,
-              GenButton.text(
+              CustomButton.text(
                 onPressed: Nav.to.pop,
                 text: 'Enviar mais cupons',
                 type: ButtonType.background,

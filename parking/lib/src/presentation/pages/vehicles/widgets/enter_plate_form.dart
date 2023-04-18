@@ -34,9 +34,9 @@ class __EnterPLaStalateForm extends State<_EnterPlateForm> {
       if (controller.hasError) {
         switch (controller.error.runtimeType) {
           case SomeWrongInformationFailure:
-            GenDialog.show(
+            CustomDialog.show(
               context,
-              GenAlert.vehicleRegisterFailure(
+              CustomAlert.vehicleRegisterFailure(
                 context,
                 description: controller.error?.message,
               ),
@@ -44,9 +44,9 @@ class __EnterPLaStalateForm extends State<_EnterPlateForm> {
             );
             break;
           case WrongTokenFailure:
-            GenDialog.show(
+            CustomDialog.show(
               context,
-              GenAlert.vehicleRegisterFailure(
+              CustomAlert.vehicleRegisterFailure(
                 context,
                 description: controller.error?.message ??
                     'O token fornecido não possui autorização.',
@@ -55,9 +55,9 @@ class __EnterPLaStalateForm extends State<_EnterPlateForm> {
             );
             break;
           case NotFoundModelFailure:
-            GenDialog.show(
+            CustomDialog.show(
               context,
-              GenAlert.vehicleRegisterFailure(
+              CustomAlert.vehicleRegisterFailure(
                 context,
                 description:
                     controller.error?.message ?? 'O modelo não foi encontrado.',
@@ -66,9 +66,9 @@ class __EnterPLaStalateForm extends State<_EnterPlateForm> {
             );
             break;
           default:
-            GenDialog.show(
+            CustomDialog.show(
               context,
-              GenAlert.vehicleRegisterFailure(
+              CustomAlert.vehicleRegisterFailure(
                 context,
                 description:
                     controller.error?.message ?? 'Houve um error desconhecido',
@@ -78,9 +78,9 @@ class __EnterPLaStalateForm extends State<_EnterPlateForm> {
             break;
         }
       } else {
-        await GenDialog.show(
+        await CustomDialog.show(
           context,
-          GenAlert.vehicleRegisterSuccess(context),
+          CustomAlert.vehicleRegisterSuccess(context),
           showClose: true,
         ).then(
           (_) => Nav.to.popUntil(
@@ -97,7 +97,7 @@ class __EnterPLaStalateForm extends State<_EnterPlateForm> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Expanded(
-          child: GenScrollContent(
+          child: CustomScrollContent(
             padding: EdgeInsets.fromLTRB(
               const Spacing(2).value,
               const Spacing(2).value,
@@ -128,7 +128,7 @@ class __EnterPLaStalateForm extends State<_EnterPlateForm> {
                 ),
                 Form(
                   key: formKey,
-                  child: GenInputField(
+                  child: CustomInputField(
                     controller: plateController,
                     hintText: Tr.of(context).plate,
                     autofocus: false,
@@ -161,7 +161,7 @@ class __EnterPLaStalateForm extends State<_EnterPlateForm> {
                 child: StreamBuilder<bool>(
                   stream: stream,
                   initialData: false,
-                  builder: (context, snapshot) => GenButton.text(
+                  builder: (context, snapshot) => CustomButton.text(
                     isEnabled: snapshot.data!,
                     isLoading: controller.isLoading,
                     type: ButtonType.tertiary,

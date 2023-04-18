@@ -36,7 +36,7 @@ class _CouponDetailsPageState extends State<CouponDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GenAppBar(
+      appBar: CustomAppBar(
         title: 'Cupom Fiscal',
         actions: [
           AppBarButton(
@@ -53,7 +53,7 @@ class _CouponDetailsPageState extends State<CouponDetailsPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
-              child: GenScrollContent(
+              child: CustomScrollContent(
                 padding: EdgeInsets.all(const Spacing(2).value),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -140,7 +140,7 @@ class _CouponDetailsPageState extends State<CouponDetailsPage> {
                 const Spacing(2).value,
                 const Spacing(2).value,
               ),
-              child: GenButton.text(
+              child: CustomButton.text(
                 onPressed: () {
                   Nav.to.pop();
                   Nav.to.pushReplacementNamed(

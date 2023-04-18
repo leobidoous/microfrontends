@@ -27,7 +27,7 @@ class _PhoneRechargePageState extends State<PhoneRechargePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GenAppBar(
+      appBar: const CustomAppBar(
         title: 'Recarga de celular',
         showDivider: false,
       ),
@@ -99,7 +99,7 @@ class _PhoneRechargePageState extends State<PhoneRechargePage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            child: GenScrollContent(
+            child: CustomScrollContent(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -152,12 +152,12 @@ class _PhoneRechargePageState extends State<PhoneRechargePage> {
             ),
           ),
           Spacing.sm.vertical,
-          GenButton.text(
+          CustomButton.text(
             text: 'Confirmar pagamento',
             type: ButtonType.tertiary,
           ),
           Spacing.sm.vertical,
-          GenButton.text(
+          CustomButton.text(
             text: 'Cancelar',
             type: ButtonType.background,
           ),

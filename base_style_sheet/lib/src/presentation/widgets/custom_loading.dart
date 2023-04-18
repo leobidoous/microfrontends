@@ -22,16 +22,15 @@ import 'package:flutter/material.dart'
         Tween,
         Widget;
 
-
 enum LoadingType { primary, linear }
 
-class GenLoading extends StatefulWidget {
+class CustomLoading extends StatefulWidget {
   final LoadingType type;
   final double width;
   final double height;
   final Duration duration;
   final Widget Function(BuildContext, int)? itemBuilder;
-  const GenLoading({
+  const CustomLoading({
     Key? key,
     this.type = LoadingType.primary,
     this.width = 40,
@@ -41,10 +40,11 @@ class GenLoading extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<GenLoading> createState() => _GenLoadingState();
+  State<CustomLoading> createState() => _CustomLoadingState();
 }
 
-class _GenLoadingState extends State<GenLoading> with TickerProviderStateMixin {
+class _CustomLoadingState extends State<CustomLoading>
+    with TickerProviderStateMixin {
   late AnimationController scaleCtrl;
   late AnimationController rotateCtrl;
   late Animation<double> scale;

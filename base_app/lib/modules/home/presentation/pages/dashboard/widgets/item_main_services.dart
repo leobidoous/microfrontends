@@ -20,7 +20,7 @@ class ItemMainServices extends StatelessWidget {
       children: [
         InkWell(
           onTap: onTap,
-          child: GenCard(
+          child: CustomCard(
             radius: BorderRadius.circular(const Spacing(1).value),
             child: SizedBox(
               width: 56,

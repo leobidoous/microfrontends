@@ -35,9 +35,9 @@ class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
         return;
       }
       Nav.to.pop();
-      await GenDialog.show(
+      await CustomDialog.show(
         context,
-        GenAlert.deleteCardError(context),
+        CustomAlert.deleteCardError(context),
         showClose: true,
       );
     });
@@ -46,7 +46,7 @@ class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GenAppBar(
+      appBar: CustomAppBar(
         title: 'Pagamento',
         actions: [
           AppBarButton(
@@ -74,7 +74,7 @@ class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
                 valueListenable: cardsController,
                 builder: (context, value, child) {
                   if (cardsController.isLoading) {
-                    return const Center(child: GenLoading());
+                    return const Center(child: CustomLoading());
                   } else if (cardsController.hasError) {
                     return Center(
                       child: RequestError(
@@ -93,7 +93,7 @@ class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
                       ),
                     );
                   }
-                  return GenRefreshIndicator(
+                  return CustomRefreshIndicator(
                     onRefresh: () async {
                       cardsController.fetchCreditCards();
                     },
@@ -141,7 +141,7 @@ class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
   }
 
   Widget get _addNewCreditCard {
-    return GenCard(
+    return CustomCard(
       shaddow: const [],
       border: context.theme.borderZero,
       padding: EdgeInsets.all(const Spacing(2).value),

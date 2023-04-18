@@ -1,9 +1,9 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import 'alerts/gen_alert.dart';
-import 'buttons/gen_button.dart';
-import 'gen_dialog.dart';
+import 'alerts/custom_alert.dart';
+import 'buttons/custom_button.dart';
+import 'custom_dialog.dart';
 
 class RequestError extends StatelessWidget {
   final String message;
@@ -45,9 +45,9 @@ class RequestError extends StatelessWidget {
                   children: [
                     InkWell(
                       onDoubleTap: () {
-                        GenDialog.show(
+                        CustomDialog.show(
                           context,
-                          GenAlert(
+                          CustomAlert(
                             asset: 'assets/images/server/server_error.svg',
                             title: 'Serviço temporariamente indisponível',
                             content: message,
@@ -76,7 +76,7 @@ class RequestError extends StatelessWidget {
             if (onPressed != null)
               Padding(
                 padding: const EdgeInsets.only(top: 12),
-                child: GenButton.text(
+                child: CustomButton.text(
                   onPressed: onPressed,
                   text: btnLabel,
                   type: btnType,

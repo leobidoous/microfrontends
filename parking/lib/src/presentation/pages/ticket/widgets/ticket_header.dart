@@ -24,12 +24,12 @@ class TicketHeader extends StatelessWidget {
         if (controller.isLoading) {
           return Column(
             children: [
-              GenShimmer(
+              CustomShimmer(
                 height: const Spacing(1.5).value,
                 width: const Spacing(30).value,
               ),
               Spacing.xs.vertical,
-              GenShimmer(
+              CustomShimmer(
                 height: const Spacing(1.5).value,
                 width: const Spacing(15).value,
               ),

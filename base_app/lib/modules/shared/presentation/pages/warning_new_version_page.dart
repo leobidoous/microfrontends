@@ -47,13 +47,13 @@ class _WarningNewVersionPageState extends State<WarningNewVersionPage> {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 64.0),
-            GenButton.text(
+            CustomButton.text(
               text: 'Atualizar',
               onPressed: controller.goToStore,
             ),
             if (!widget.args.forceUpdate) ...[
               Spacing.sm.vertical,
-              GenButton.text(
+              CustomButton.text(
                 text: 'Continuar',
                 type: ButtonType.background,
                 onPressed: () {

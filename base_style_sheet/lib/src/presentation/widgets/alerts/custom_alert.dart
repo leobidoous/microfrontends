@@ -1,11 +1,11 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../buttons/gen_button.dart';
-import '../gen_scroll_content.dart';
+import '../buttons/custom_button.dart';
+import '../custom_scroll_content.dart';
 
-class GenAlert extends StatelessWidget {
-  const GenAlert({
+class CustomAlert extends StatelessWidget {
+  const CustomAlert({
     super.key,
     required this.asset,
     required this.title,
@@ -28,7 +28,7 @@ class GenAlert extends StatelessWidget {
   final Function()? onCancel;
 
   /// No Implementation
-  factory GenAlert.noImplementation(BuildContext context) => GenAlert(
+  factory CustomAlert.noImplementation(BuildContext context) => CustomAlert(
         asset: 'assets/images/server/warning.svg',
         title: 'Desculpe!',
         content: 'Em breve disponível para você!',
@@ -36,7 +36,7 @@ class GenAlert extends StatelessWidget {
         onConfirm: Nav.to.pop,
       );
 
-  factory GenAlert.emailVerified(BuildContext context) => GenAlert(
+  factory CustomAlert.emailVerified(BuildContext context) => CustomAlert(
         asset: 'assets/images/finalize-registration.svg',
         title: 'Finalize seu cadastro!',
         content:
@@ -46,7 +46,7 @@ class GenAlert extends StatelessWidget {
       );
 
   /// Info
-  factory GenAlert.cvcInfo(BuildContext context) => GenAlert(
+  factory CustomAlert.cvcInfo(BuildContext context) => CustomAlert(
         asset: 'assets/images/wallet/cvc_info.svg',
         title: 'Onde fica o CVC?',
         content: 'O CVC (Código de Verificação do Cartão) é um código de três '
@@ -56,13 +56,13 @@ class GenAlert extends StatelessWidget {
       );
 
   /// Confirm
-  factory GenAlert.validateAfterConfirm(
+  factory CustomAlert.validateAfterConfirm(
     BuildContext context, {
     required String btnCancelLabel,
     required String btnConfirmLabel,
     required Function() onConfirm,
   }) =>
-      GenAlert(
+      CustomAlert(
         asset: 'assets/images/parking/plate_warning.svg',
         title: 'Você tem certeza que deseja sair?',
         content: 'Ao sair, você perderá seu progresso até aqui',
@@ -72,13 +72,13 @@ class GenAlert extends StatelessWidget {
       );
 
   /// Warning
-  factory GenAlert.plateWarning(BuildContext context) => GenAlert(
+  factory CustomAlert.plateWarning(BuildContext context) => CustomAlert(
         asset: 'assets/images/parking/plate_warning.svg',
         title: 'Você já cadastrou essa placa.',
         btnConfirmLabel: 'Fechar',
         onConfirm: Nav.to.pop,
       );
-  factory GenAlert.paymentMethodWarning(BuildContext context) => GenAlert(
+  factory CustomAlert.paymentMethodWarning(BuildContext context) => CustomAlert(
         asset: 'assets/images/wallet/card_warning.svg',
         title: 'Atenção!',
         content: 'Só é possível realizar o pagamento com cartão de crédito.',
@@ -87,28 +87,28 @@ class GenAlert extends StatelessWidget {
       );
 
   /// Error
-  factory GenAlert.deleteCardError(BuildContext context) => GenAlert(
+  factory CustomAlert.deleteCardError(BuildContext context) => CustomAlert(
         asset: 'assets/images/wallet/card_error.svg',
         title: 'Não foi possível excluir o cartão!',
         content: 'Contate nosso time de suporte para mais informações.',
         btnConfirmLabel: 'Fale conosco',
         onConfirm: Nav.to.pop,
       );
-  factory GenAlert.paymentError(BuildContext context) => GenAlert(
+  factory CustomAlert.paymentError(BuildContext context) => CustomAlert(
         asset: 'assets/images/wallet/card_error.svg',
         title: 'Falha no pagamento',
         content: 'Adicione outro cartão e tente novamente.',
         btnConfirmLabel: 'Adicionar outro cartão',
         onConfirm: Nav.to.pop,
       );
-  factory GenAlert.ticketReadingError(BuildContext context) => GenAlert(
+  factory CustomAlert.ticketReadingError(BuildContext context) => CustomAlert(
         asset: 'assets/images/parking/ticket_reading_error.svg',
         title:
             'Não foi possível realizar a leitura do tíquete de estacionamento.',
         btnConfirmLabel: 'Digitar código',
         onConfirm: Nav.to.pop,
       );
-  factory GenAlert.couponReadingError(BuildContext context) => GenAlert(
+  factory CustomAlert.couponReadingError(BuildContext context) => CustomAlert(
         asset: 'assets/images/parking/ticket_reading_error.svg',
         title: 'Erro na leitura do cupom fiscal',
         content: 'Após a terceira tentativa de leitura, direcionaremos '
@@ -116,7 +116,7 @@ class GenAlert extends StatelessWidget {
         btnConfirmLabel: 'Tentar novamente',
         onConfirm: Nav.to.pop,
       );
-  factory GenAlert.serverError(BuildContext context) => GenAlert(
+  factory CustomAlert.serverError(BuildContext context) => CustomAlert(
         asset: 'assets/images/server/server_error.svg',
         title: 'Erro no servidor',
         subtitle: 'Serviço temporariamente '
@@ -124,11 +124,11 @@ class GenAlert extends StatelessWidget {
         btnConfirmLabel: 'Tentar novamente',
         onConfirm: Nav.to.pop,
       );
-  factory GenAlert.ticketNotFoundError(
+  factory CustomAlert.ticketNotFoundError(
     BuildContext context, {
     Function()? onConfirm,
   }) =>
-      GenAlert(
+      CustomAlert(
         asset: 'assets/images/parking/ticket_reading_error.svg',
         title: 'Placa ou tíquete não encontrado.',
         subtitle: 'Não conseguimos encontrar esse tíquete ou placa.',
@@ -137,35 +137,36 @@ class GenAlert extends StatelessWidget {
       );
 
   /// Success
-  factory GenAlert.cardRegisterSuccess(BuildContext context) => GenAlert(
+  factory CustomAlert.cardRegisterSuccess(BuildContext context) => CustomAlert(
         asset: 'assets/images/wallet/new_card_success.svg',
         title: 'Cartão cadastrado com sucesso!',
         btnConfirmLabel: 'Fechar',
         onConfirm: Nav.to.pop,
       );
-  factory GenAlert.vehicleRegisterSuccess(BuildContext context) => GenAlert(
+  factory CustomAlert.vehicleRegisterSuccess(BuildContext context) =>
+      CustomAlert(
         asset: 'assets/images/parking/successful_vehicle_registration.svg',
         title: 'Veículo cadastrado com sucesso!',
         btnConfirmLabel: 'Fechar',
         onConfirm: Nav.to.pop,
       );
-  factory GenAlert.vehicleRegisterFailure(
+  factory CustomAlert.vehicleRegisterFailure(
     BuildContext context, {
     String? description,
   }) =>
-      GenAlert(
+      CustomAlert(
         asset: 'assets/images/parking/vehicle_already_registered.svg',
         title: description ?? 'Houve um error ao cadastrar o veículo',
         btnConfirmLabel: 'Fechar',
         onConfirm: Nav.to.pop,
       );
 
-  factory GenAlert.freeTicketSuccess(
+  factory CustomAlert.freeTicketSuccess(
     BuildContext context, {
     DateTime? dateLimit,
     VoidCallback? onTap,
   }) =>
-      GenAlert(
+      CustomAlert(
         asset: 'assets/images/parking/free_ticket_success.svg',
         title: 'Você ganhou o estacionamento gratuito!',
         content: dateLimit != null
@@ -176,14 +177,14 @@ class GenAlert extends StatelessWidget {
         onConfirm: onTap ?? Nav.to.pop,
       );
 
-  factory GenAlert.ticketPaidSuccess(
+  factory CustomAlert.ticketPaidSuccess(
     BuildContext context,
     double value,
     DateTime dateLimit, {
     bool? isPlate = false,
     VoidCallback? onPressed,
   }) =>
-      GenAlert(
+      CustomAlert(
         asset: 'assets/images/parking/ticket_paid_success.svg',
         title: 'Tíquete pago com sucesso! Sua saída está liberada.',
         content: NumberFormat.toCurrency(value),
@@ -221,7 +222,7 @@ class GenAlert extends StatelessWidget {
         if (content != null) ...[
           Spacing.md.vertical,
           Flexible(
-            child: GenScrollContent(
+            child: CustomScrollContent(
               expanded: false,
               child: SelectableText(
                 content!,
@@ -238,7 +239,7 @@ class GenAlert extends StatelessWidget {
           children: [
             if (onCancel != null) ...[
               Expanded(
-                child: GenButton.text(
+                child: CustomButton.text(
                   onPressed: onCancel,
                   text: btnCancelLabel,
                   type: ButtonType.background,
@@ -247,7 +248,7 @@ class GenAlert extends StatelessWidget {
               Spacing.sm.horizontal,
             ],
             Expanded(
-              child: GenButton.text(
+              child: CustomButton.text(
                 onPressed: onConfirm,
                 text: btnConfirmLabel,
               ),

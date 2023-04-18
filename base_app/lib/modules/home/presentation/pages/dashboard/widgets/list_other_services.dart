@@ -22,9 +22,9 @@ class ListOtherServicesWidgets extends StatelessWidget {
         ItemOtherServices(
           title: 'Lojas',
           icon: CoreIcons.building,
-          onTap: () => GenDialog.show(
+          onTap: () => CustomDialog.show(
             context,
-            GenAlert.noImplementation(
+            CustomAlert.noImplementation(
               context,
             ),
             showClose: true,
@@ -34,9 +34,9 @@ class ListOtherServicesWidgets extends StatelessWidget {
         ItemOtherServices(
           title: 'Campanhas',
           icon: CoreIcons.gift,
-          onTap: () => GenDialog.show(
+          onTap: () => CustomDialog.show(
             context,
-            GenAlert.noImplementation(
+            CustomAlert.noImplementation(
               context,
             ),
             showClose: true,

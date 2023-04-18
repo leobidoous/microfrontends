@@ -14,7 +14,7 @@ class RegisterPhoneView extends StatefulWidget {
 class _RegisterPhoneViewState extends State<RegisterPhoneView> {
   @override
   Widget build(BuildContext context) {
-    return GenScrollContent(
+    return CustomScrollContent(
       padding: EdgeInsets.all(const Spacing(3).value),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -30,7 +30,7 @@ class _RegisterPhoneViewState extends State<RegisterPhoneView> {
             ),
           ),
           Spacing.sm.vertical,
-          const GenInputField(
+          const CustomInputField(
             hintText: 'Ex: (00) 00000-0000',
             keyboardType: TextInputType.name,
             labelWidget: InputLabel(
@@ -38,7 +38,7 @@ class _RegisterPhoneViewState extends State<RegisterPhoneView> {
             ),
           ),
           Spacing.sm.vertical,
-          GenButton.text(text: 'Avançar'),
+          CustomButton.text(text: 'Avançar'),
         ],
       ),
     );

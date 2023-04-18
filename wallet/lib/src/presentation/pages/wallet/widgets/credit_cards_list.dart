@@ -42,7 +42,7 @@ class _CreditCardsListState extends State<CreditCardsList> {
           return Row(
             children: [
               Expanded(
-                child: GenScrollContent(
+                child: CustomScrollContent(
                   scrollDirection: Axis.horizontal,
                   padding: EdgeInsets.symmetric(
                     horizontal: const Spacing(2).value,
@@ -72,7 +72,7 @@ class _CreditCardsListState extends State<CreditCardsList> {
           child: Row(
             children: [
               Expanded(
-                child: GenScrollContent(
+                child: CustomScrollContent(
                   scrollDirection: Axis.horizontal,
                   padding: EdgeInsets.symmetric(
                     horizontal: const Spacing(2).value,
@@ -106,7 +106,7 @@ class _CreditCardsListState extends State<CreditCardsList> {
       padding: isLast
           ? EdgeInsets.zero
           : EdgeInsets.only(right: const Spacing(2).value),
-      child: GenCard(
+      child: CustomCard(
         border: Border.all(
           color: AppColorsBase.neutrla2,
           width: 1,
@@ -137,9 +137,9 @@ class _CreditCardsListState extends State<CreditCardsList> {
             }
           });
         } else {
-          GenDialog.show(
+          CustomDialog.show(
             context,
-            GenAlert.emailVerified(context),
+            CustomAlert.emailVerified(context),
             showClose: true,
           );
         }
@@ -241,7 +241,7 @@ class _CreditCardsListState extends State<CreditCardsList> {
                     if (widget.favoriteCardController.isChangingFavorite(
                       card,
                     )) {
-                      return GenLoading(
+                      return CustomLoading(
                         height: const Spacing(3).value,
                         width: const Spacing(3).value,
                       );
@@ -283,9 +283,9 @@ class _CreditCardsListState extends State<CreditCardsList> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      GenShimmer(height: const Spacing(1.5).value),
+                      CustomShimmer(height: const Spacing(1.5).value),
                       Spacing.xxs.vertical,
-                      GenShimmer(
+                      CustomShimmer(
                         height: const Spacing(1.5).value,
                         width: 40.responsiveWidth,
                       ),
@@ -312,11 +312,11 @@ class _CreditCardsListState extends State<CreditCardsList> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Flexible(
-                        child: GenShimmer(height: const Spacing(1.5).value),
+                        child: CustomShimmer(height: const Spacing(1.5).value),
                       ),
                       Spacing.xxs.vertical,
                       Flexible(
-                        child: GenShimmer(
+                        child: CustomShimmer(
                           height: const Spacing(1.5).value,
                           width: 60.responsiveWidth,
                         ),

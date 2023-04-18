@@ -19,9 +19,9 @@ class CouponOcrRecognizedPage extends StatefulWidget {
 
 class _CouponOcrRecognizedPageState extends State<CouponOcrRecognizedPage> {
   Future<void> _showWarning() async {
-    await GenDialog.show(
+    await CustomDialog.show(
       context,
-      GenAlert.validateAfterConfirm(
+      CustomAlert.validateAfterConfirm(
         context,
         btnCancelLabel: 'Cancelar',
         btnConfirmLabel: 'Sair',
@@ -40,7 +40,7 @@ class _CouponOcrRecognizedPageState extends State<CouponOcrRecognizedPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GenAppBar.zero(),
+      appBar: CustomAppBar.zero(),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.fromLTRB(
@@ -95,7 +95,7 @@ class _CouponOcrRecognizedPageState extends State<CouponOcrRecognizedPage> {
                 ),
               ),
               Spacing.sm.vertical,
-              GenButton.text(
+              CustomButton.text(
                 onPressed: () {
                   Nav.to.pushNamed(
                     TicketWindowRoutes.couponSubmissionResult.relativePath,
@@ -105,7 +105,7 @@ class _CouponOcrRecognizedPageState extends State<CouponOcrRecognizedPage> {
                 text: 'Confirmar valor',
               ),
               Spacing.sm.vertical,
-              GenButton.text(
+              CustomButton.text(
                 onPressed: () {
                   Nav.to.popUntil(
                     ModalRoute.withName(
@@ -116,7 +116,7 @@ class _CouponOcrRecognizedPageState extends State<CouponOcrRecognizedPage> {
                 text: 'Enviar mais cupons',
               ),
               Spacing.sm.vertical,
-              GenButton.text(
+              CustomButton.text(
                 onPressed: _showWarning,
                 text: 'Validar depois',
                 type: ButtonType.background,

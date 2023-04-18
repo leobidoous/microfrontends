@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 
 import 'input_label.dart';
 
-class GenInputField extends StatefulWidget {
-  const GenInputField({
+class CustomInputField extends StatefulWidget {
+  const CustomInputField({
     Key? key,
     this.textCapitalization = TextCapitalization.sentences,
     this.inputFormatters = const [],
@@ -65,10 +65,10 @@ class GenInputField extends StatefulWidget {
   final FloatingLabelBehavior floatingLabelBehavior;
 
   @override
-  State<GenInputField> createState() => _GenInputFieldState();
+  State<CustomInputField> createState() => _CustomInputFieldState();
 }
 
-class _GenInputFieldState extends State<GenInputField> {
+class _CustomInputFieldState extends State<CustomInputField> {
   BoxConstraints get boxConstraints => BoxConstraints(
         minHeight: AppThemeBase.inputHeightMD,
         minWidth: AppThemeBase.inputHeightMD,

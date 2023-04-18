@@ -36,12 +36,12 @@ class NoTicketFoundCard extends StatelessWidget {
           style: context.textTheme.labelLarge,
         ),
         Spacing.md.vertical,
-        GenButton.text(
+        CustomButton.text(
           text: Tr.of(context).scanTicketButton,
           onPressed: onScanTicket,
         ),
         Spacing.md.vertical,
-        GenButton.text(
+        CustomButton.text(
           text: Tr.of(context).typePlate,
           type: ButtonType.background,
           isEnabled: isEnabled,

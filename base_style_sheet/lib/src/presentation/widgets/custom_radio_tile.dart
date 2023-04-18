@@ -1,9 +1,8 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-
-class GenRadioTile<T> extends StatelessWidget {
-  const GenRadioTile({
+class CustomRadioTile<T> extends StatelessWidget {
+  const CustomRadioTile({
     super.key,
     required this.value,
     required this.title,

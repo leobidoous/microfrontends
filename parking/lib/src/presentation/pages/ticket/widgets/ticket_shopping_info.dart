@@ -33,7 +33,7 @@ class TicketShoppingInfo extends StatelessWidget {
               SizedBox(
                 height: const Spacing(5).value,
                 width: const Spacing(6).value,
-                child: GenImage(
+                child: CustomImage(
                   url: shopping.logoImage,
                   radius: context.theme.borderRadiusXSM,
                 ),

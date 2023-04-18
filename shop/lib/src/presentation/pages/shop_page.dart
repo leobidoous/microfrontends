@@ -13,7 +13,7 @@ class _ShopPageState extends State<ShopPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GenAppBar(
+      appBar: CustomAppBar(
         title: 'Shop',
         automaticallyImplyLeading: Nav.to.canPop(),
       ),

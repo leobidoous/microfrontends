@@ -3,7 +3,8 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 class RegisterTermsView extends StatefulWidget {
-  const RegisterTermsView({Key? key, required this.scrollController}) : super(key: key);
+  const RegisterTermsView({Key? key, required this.scrollController})
+      : super(key: key);
 
   final ScrollController scrollController;
 
@@ -14,7 +15,7 @@ class RegisterTermsView extends StatefulWidget {
 class _RegisterTermsViewState extends State<RegisterTermsView> {
   @override
   Widget build(BuildContext context) {
-    return GenScrollContent(
+    return CustomScrollContent(
       padding: EdgeInsets.all(const Spacing(3).value),
       scrollController: widget.scrollController,
       child: Column(
@@ -47,11 +48,11 @@ class _RegisterTermsViewState extends State<RegisterTermsView> {
           Spacing.sm.vertical,
           _checkboxesTerms,
           Spacing.sm.vertical,
-          GenButton.text(
+          CustomButton.text(
             text: 'ACEITAR',
           ),
           Spacing.sm.vertical,
-          GenButton.text(
+          CustomButton.text(
             text: 'RECUSAR',
             type: ButtonType.background,
           ),
@@ -63,21 +64,21 @@ class _RegisterTermsViewState extends State<RegisterTermsView> {
   Widget get _checkboxesTerms {
     return Column(
       children: [
-        GenCheckboxTile(
+        CustomCheckboxTile(
           title: Text(
             'Termos e Condições',
             style: context.textTheme.bodyMedium,
           ),
           value: false,
         ),
-        GenCheckboxTile(
+        CustomCheckboxTile(
           title: Text(
             'Política de Dados e Privacidade',
             style: context.textTheme.bodyMedium,
           ),
           value: true,
         ),
-        GenCheckboxTile(
+        CustomCheckboxTile(
           title: Text(
             'Política de Segurança',
             style: context.textTheme.bodyMedium,

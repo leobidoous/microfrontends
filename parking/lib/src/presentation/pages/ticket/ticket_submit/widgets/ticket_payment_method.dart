@@ -51,13 +51,13 @@ class _TicketPaymentMethodState extends State<TicketPaymentMethod> {
                     widget.paymentMethodController.hasError) {
                   return _addCreditCard;
                 } else if (widget.paymentMethodController.isLoading) {
-                  return GenCard(
+                  return CustomCard(
                     padding: EdgeInsets.all(const Spacing(2).value),
                     border: Border.all(color: AppColorsBase.grey12),
                     color: AppColorsBase.grey2,
                     child: Row(
                       children: [
-                        GenShimmer(
+                        CustomShimmer(
                           height: const Spacing(4).value.responsiveHeight,
                           width: const Spacing(5).value.responsiveWidth,
                         ),
@@ -66,9 +66,9 @@ class _TicketPaymentMethodState extends State<TicketPaymentMethod> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              GenShimmer(height: const Spacing(1.5).value),
+                              CustomShimmer(height: const Spacing(1.5).value),
                               Spacing.xs.vertical,
-                              GenShimmer(
+                              CustomShimmer(
                                 height: const Spacing(1.5).value,
                                 width: const Spacing(8).value,
                               ),
@@ -76,7 +76,7 @@ class _TicketPaymentMethodState extends State<TicketPaymentMethod> {
                           ),
                         ),
                         Spacing.sm.horizontal,
-                        GenShimmer(
+                        CustomShimmer(
                           height: const Spacing(1.5).value,
                           width: const Spacing(8).value,
                         ),
@@ -94,7 +94,7 @@ class _TicketPaymentMethodState extends State<TicketPaymentMethod> {
   }
 
   Widget get _addCreditCard {
-    return GenCard(
+    return CustomCard(
       padding: EdgeInsets.all(const Spacing(2).value),
       border: Border.all(color: AppColorsBase.grey12),
       color: AppColorsBase.grey2,
@@ -106,9 +106,9 @@ class _TicketPaymentMethodState extends State<TicketPaymentMethod> {
             }
           });
         } else {
-          GenDialog.show(
+          CustomDialog.show(
             context,
-            GenAlert.emailVerified(context),
+            CustomAlert.emailVerified(context),
             showClose: true,
           );
         }
@@ -134,7 +134,7 @@ class _TicketPaymentMethodState extends State<TicketPaymentMethod> {
 
   Widget get _paymentCreditCard {
     final card = widget.paymentMethodController.state;
-    return GenCard(
+    return CustomCard(
       padding: EdgeInsets.all(const Spacing(2).value),
       border: Border.all(color: AppColorsBase.grey12),
       color: AppColorsBase.grey2,

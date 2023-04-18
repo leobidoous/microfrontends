@@ -43,9 +43,9 @@ class _ScanTicketPageState extends State<ScanTicketPage> {
   Future<void> submitCode(String code) async {
     controller.timer.cancel();
     if (code.isEmpty) {
-      await GenDialog.show(
+      await CustomDialog.show(
         context,
-        GenAlert.ticketReadingError(context),
+        CustomAlert.ticketReadingError(context),
         showClose: true,
       );
     } else {
@@ -72,7 +72,7 @@ class _ScanTicketPageState extends State<ScanTicketPage> {
     return LocalTheme.dark(
       builder: (context) {
         return Scaffold(
-          appBar: GenAppBar.zero(),
+          appBar: CustomAppBar.zero(),
           backgroundColor: context.colorScheme.background.withOpacity(
             .85,
           ),
@@ -118,7 +118,7 @@ class _ScanTicketPageState extends State<ScanTicketPage> {
                     ),
                   ),
                   Spacing.sm.vertical,
-                  GenButton.text(text: 'Entendi', onPressed: Nav.to.pop),
+                  CustomButton.text(text: 'Entendi', onPressed: Nav.to.pop),
                 ],
               ),
             ),
@@ -157,7 +157,7 @@ class _ScanTicketPageState extends State<ScanTicketPage> {
                 top: 0,
                 left: 0,
                 right: 0,
-                child: GenAppBar(
+                child: CustomAppBar(
                   showDivider: false,
                   automaticallyImplyLeading: false,
                   toolbarHeight: context.theme.appBarTheme.appBarHeight,

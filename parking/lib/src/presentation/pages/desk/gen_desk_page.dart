@@ -16,7 +16,6 @@ import 'widgets/faq_list.dart';
 class GenDeskPage extends StatefulWidget {
   const GenDeskPage({super.key});
 
-
   @override
   State<GenDeskPage> createState() => _GenDeskPageState();
 }
@@ -53,15 +52,15 @@ class _GenDeskPageState extends State<GenDeskPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GenAppBar(title: Tr.of(context).deskTitle),
-      body: GenRefreshIndicator(
+      appBar: CustomAppBar(title: Tr.of(context).deskTitle),
+      body: CustomRefreshIndicator(
         onRefresh: () async {
           faqController.fetchFAQs();
           deskController.fetchParkingReleaseStatus();
           getCoupon();
           getTicket();
         },
-        child: GenScrollContent(
+        child: CustomScrollContent(
           padding: EdgeInsets.symmetric(vertical: const Spacing(2).value),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -70,7 +69,7 @@ class _GenDeskPageState extends State<GenDeskPage> {
                 padding: EdgeInsets.symmetric(
                   horizontal: const Spacing(2).value,
                 ),
-                child: GenImage(
+                child: CustomImage(
                   url: shopping.logoImage,
                   radius: context.theme.borderRadiusMD,
                   height: const Spacing(15).value.responsiveHeight,
@@ -129,7 +128,7 @@ class _GenDeskPageState extends State<GenDeskPage> {
                 padding: EdgeInsets.symmetric(
                   horizontal: const Spacing(2).value,
                 ),
-                child: GenCard(
+                child: CustomCard(
                   padding: EdgeInsets.all(const Spacing(2).value),
                   border: Border.all(
                     color: AppColorsBase.neutrla3,

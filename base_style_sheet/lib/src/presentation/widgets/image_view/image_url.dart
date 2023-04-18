@@ -1,9 +1,9 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../alerts/gen_alert.dart';
-import '../gen_dialog.dart';
-import '../gen_loading.dart';
+import '../alerts/custom_alert.dart';
+import '../custom_dialog.dart';
+import '../custom_loading.dart';
 
 class ImageUrl extends StatelessWidget {
   final BoxFit fit;
@@ -29,7 +29,7 @@ class ImageUrl extends StatelessWidget {
     }
     return CachedNetworkImage(
       imageUrl: url,
-      placeholder: (context, url) => const GenLoading(),
+      placeholder: (context, url) => const CustomLoading(),
       imageBuilder: (context, image) {
         return Image(
           image: image,
@@ -39,9 +39,9 @@ class ImageUrl extends StatelessWidget {
       errorWidget: (context, url, error) {
         return InkWell(
           onTap: () {
-            GenDialog.show(
+            CustomDialog.show(
               context,
-              GenAlert.serverError(context),
+              CustomAlert.serverError(context),
               showClose: true,
             );
           },

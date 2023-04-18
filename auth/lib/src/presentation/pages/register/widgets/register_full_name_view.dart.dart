@@ -13,7 +13,7 @@ class RegisterFullNameView extends StatefulWidget {
 class _RegisterFullNameViewState extends State<RegisterFullNameView> {
   @override
   Widget build(BuildContext context) {
-    return GenScrollContent(
+    return CustomScrollContent(
       padding: EdgeInsets.all(const Spacing(3).value),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -32,7 +32,7 @@ class _RegisterFullNameViewState extends State<RegisterFullNameView> {
             ),
           ),
           Spacing.sm.vertical,
-          const GenInputField(
+          const CustomInputField(
             hintText: 'Ex: Leonardo Dias',
             keyboardType: TextInputType.name,
             labelWidget: InputLabel(
@@ -40,7 +40,7 @@ class _RegisterFullNameViewState extends State<RegisterFullNameView> {
             ),
           ),
           Spacing.sm.vertical,
-          GenButton.text(text: 'Avançar'),
+          CustomButton.text(text: 'Avançar'),
         ],
       ),
     );

@@ -22,7 +22,7 @@ class DeleteCreditCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        GenDialog.show(
+        CustomDialog.show(
           context,
           ConfirmRemoveCard(
             card: card,

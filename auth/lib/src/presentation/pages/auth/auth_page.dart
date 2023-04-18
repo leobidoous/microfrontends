@@ -53,7 +53,7 @@ class _AuthPageState extends State<AuthPage> {
                     ),
                   ),
                   Spacing.lg.vertical,
-                  GenButton.text(
+                  CustomButton.text(
                     onPressed: () {
                       Nav.to.pushNamed(
                         AuthRoutes.login,
@@ -72,7 +72,7 @@ class _AuthPageState extends State<AuthPage> {
                         primary: context.colorScheme.background,
                       ),
                     ),
-                    child: GenButton.text(
+                    child: CustomButton.text(
                       type: ButtonType.background,
                       onPressed: () {
                         Nav.to.pushNamed(

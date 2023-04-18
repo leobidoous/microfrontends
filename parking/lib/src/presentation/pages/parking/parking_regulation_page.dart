@@ -15,7 +15,7 @@ class _ParkingRegulationPageState extends State<ParkingRegulationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GenAppBar(title: 'Regulamento'),
+      appBar: const CustomAppBar(title: 'Regulamento'),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -23,7 +23,7 @@ class _ParkingRegulationPageState extends State<ParkingRegulationPage> {
             Expanded(child: GenPdfView(url: widget.rulesUrl)),
             Padding(
               padding: EdgeInsets.all(const Spacing(2).value),
-              child: GenButton.text(
+              child: CustomButton.text(
                 text: 'Voltar',
                 onPressed: Nav.to.pop,
               ),

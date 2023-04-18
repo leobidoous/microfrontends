@@ -12,7 +12,7 @@ class _OpenBankingPageState extends State<OpenBankingPage> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: GenAppBar(title: 'Open Banking'),
+      appBar: CustomAppBar(title: 'Open Banking'),
     );
   }
 }

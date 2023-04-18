@@ -37,9 +37,9 @@ class _TakePicturePageState extends State<TakePicturePage> {
     cameraController.takePicture().then((value) {
       value.fold(
         (l) {
-          GenDialog.show(
+          CustomDialog.show(
             context,
-            GenAlert.serverError(context),
+            CustomAlert.serverError(context),
             showClose: true,
           );
         },
@@ -116,7 +116,7 @@ class _TakePicturePageState extends State<TakePicturePage> {
             right: 0,
             child: LocalTheme.dark(
               builder: (context) {
-                return GenAppBar(
+                return CustomAppBar(
                   showDivider: false,
                   backgroundColor:
                       context.colorScheme.background.withOpacity(.5),

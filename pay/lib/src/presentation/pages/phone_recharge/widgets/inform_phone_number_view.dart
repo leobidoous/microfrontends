@@ -38,13 +38,13 @@ class _InformPhoneNumberViewState extends State<InformPhoneNumberView> {
                 ),
               ),
               Spacing.sm.vertical,
-              GenInputField(
+              CustomInputField(
                 hintText: 'DDD + Número',
                 inputFormatters: [FormMasks.phone()],
                 validators: const [FormValidators.emptyField],
               ),
               Spacing.md.vertical,
-              GenButton.text(
+              CustomButton.text(
                 text: 'Continuar',
                 onPressed: () => widget.onInformPhone(''),
               ),
@@ -112,7 +112,7 @@ class _InformPhoneNumberViewState extends State<InformPhoneNumberView> {
     bool isPrimary = false,
     bool isSelected = false,
   }) {
-    return GenCard(
+    return CustomCard(
       padding: EdgeInsets.all(const Spacing(1).value),
       border:
           isSelected ? Border.all(color: context.colorScheme.primary) : null,

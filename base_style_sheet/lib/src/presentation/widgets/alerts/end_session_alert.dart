@@ -23,9 +23,9 @@ import 'package:flutter/material.dart'
         Widget,
         WillPopScope;
 
-import '../buttons/gen_button.dart';
-import '../containers/gen_card.dart';
-import '../gen_scroll_content.dart';
+import '../buttons/custom_button.dart';
+import '../containers/custom_card.dart';
+import '../custom_scroll_content.dart';
 
 class EndSessionAlert extends StatelessWidget {
   const EndSessionAlert({super.key});
@@ -43,8 +43,8 @@ class EndSessionAlert extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Flexible(
-                child: GenCard(
-                  child: GenScrollContent(
+                child: CustomCard(
+                  child: CustomScrollContent(
                     padding: EdgeInsets.all(const Spacing(2).value),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -71,7 +71,7 @@ class EndSessionAlert extends StatelessWidget {
                           style: context.textTheme.bodyMedium,
                         ),
                         const SizedBox(height: 16),
-                        GenButton.text(
+                        CustomButton.text(
                           onPressed: Nav.to.pop,
                           text: 'Ir para o login',
                         ),

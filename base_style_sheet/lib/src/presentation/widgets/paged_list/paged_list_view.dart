@@ -1,8 +1,8 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
+import '../custom_loading.dart';
 import '../empties/list_empty.dart';
-import '../gen_loading.dart';
 import '../request_error.dart';
 import 'paged_list_controller.dart';
 
@@ -95,7 +95,7 @@ class _PagedListViewState<S, E> extends State<PagedListView<S, E>> {
               Center(
                 child: Padding(
                   padding: widget.padding,
-                  child: const GenLoading(),
+                  child: const CustomLoading(),
                 ),
               );
         } else if (controller.hasError && state.isEmpty) {
@@ -192,7 +192,7 @@ class _PagedListViewState<S, E> extends State<PagedListView<S, E>> {
       if (controller.isLoading)
         widget.newPageProgressIndicatorBuilder?.call(context) ??
             Center(
-              child: GenLoading(
+              child: CustomLoading(
                 width: const Spacing(3).value,
                 height: const Spacing(3).value,
               ),

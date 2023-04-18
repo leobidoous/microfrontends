@@ -2,7 +2,6 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../domain/failures/login/login_failure.dart';
 import '../../../controllers/login/login_controller.dart';
 import 'form_header.dart';
 
@@ -24,45 +23,9 @@ class PinCodeFormView extends StatefulWidget {
 
 class _PinCodeFormViewState extends State<PinCodeFormView> {
   final controller = DM.i.get<LoginController>();
-  final pinFocus = FocusNode();
   final formKey = GlobalKey<FormState>();
   late final String phoneNumber;
-
-  TextStyle? get pinTextStyle => context.textTheme.bodyLarge?.copyWith(
-        fontWeight: context.textTheme.fontWeightMedium,
-        color: const Color(0xFF4E4B59),
-      );
-
-  PinTheme get defaultTheme => PinTheme(
-        width: const Spacing(7).value,
-        height: const Spacing(7).value,
-        textStyle: pinTextStyle,
-        decoration: BoxDecoration(
-          borderRadius: context.theme.borderRadiusXSM,
-          border: Border.all(color: const Color(0xFFE7E7EF)),
-          color: AppColorsBase.neutrla0,
-        ),
-      );
-
-  PinTheme get focusedTheme => PinTheme(
-        width: const Spacing(7).value,
-        height: const Spacing(7).value,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: context.colorScheme.primary),
-          borderRadius: context.theme.borderRadiusXSM,
-        ),
-      );
-
-  PinTheme get errorTheme => PinTheme(
-        width: const Spacing(7).value,
-        height: const Spacing(7).value,
-        textStyle: pinTextStyle,
-        decoration: BoxDecoration(
-          border: Border.all(color: context.colorScheme.error),
-          borderRadius: context.theme.borderRadiusXSM,
-        ),
-      );
+  final pinFocus = FocusNode();
 
   @override
   void initState() {
@@ -90,7 +53,7 @@ class _PinCodeFormViewState extends State<PinCodeFormView> {
 
   @override
   Widget build(BuildContext context) {
-    return GenScrollContent(
+    return CustomScrollContent(
       padding: EdgeInsets.all(const Spacing(2).value),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -112,34 +75,12 @@ class _PinCodeFormViewState extends State<PinCodeFormView> {
             builder: (context, value, child) {
               return Form(
                 key: formKey,
-                child: Pinput(
-                  length: 6,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: CustomPinField(
                   focusNode: pinFocus,
+                  onChanged: (input) => controller.validateCode(input ?? ''),
                   controller: widget.textController,
-                  defaultPinTheme: defaultTheme,
-                  focusedPinTheme: focusedTheme,
-                  errorPinTheme: errorTheme,
-                  pinAnimationType: PinAnimationType.fade,
-                  pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
-                  showCursor: true,
-                  onSubmitted: _onValidateCode,
+                  onComplete: _onValidateCode,
                   errorText: controller.error?.message,
-                  onChanged: (_) => controller.validateCode(_),
-                  errorBuilder: (errorText, pin) {
-                    if (controller.error is! InvalidCodeError) {
-                      return const SizedBox();
-                    }
-                    return Padding(
-                      padding: EdgeInsets.only(top: const Spacing(1).value),
-                      child: Text(
-                        errorText!,
-                        style: pinTextStyle?.copyWith(
-                          color: context.colorScheme.error,
-                        ),
-                      ),
-                    );
-                  },
                   validator: (input) {
                     String? error;
                     for (var val in [FormValidators.emptyField]) {
@@ -150,9 +91,6 @@ class _PinCodeFormViewState extends State<PinCodeFormView> {
                     }
                     return error ?? controller.error?.message;
                   },
-                  onCompleted: _onValidateCode,
-                  closeKeyboardWhenCompleted: true,
-                  keyboardType: TextInputType.number,
                 ),
               );
             },
@@ -189,7 +127,7 @@ class _PinCodeFormViewState extends State<PinCodeFormView> {
           ValueListenableBuilder(
             valueListenable: controller,
             builder: (context, value, child) {
-              return GenButton.text(
+              return CustomButton.text(
                 text: 'Confirmar',
                 isEnabled: controller.codeIsValid,
                 isLoading: controller.isLoading,

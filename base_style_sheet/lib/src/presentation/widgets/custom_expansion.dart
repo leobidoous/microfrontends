@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-class GenExpansion<T> extends StatefulWidget {
+class CustomExpansion<T> extends StatefulWidget {
   final bool showDivider;
   final Widget title;
   final Widget? body;
@@ -9,7 +9,7 @@ class GenExpansion<T> extends StatefulWidget {
   final bool isSelected;
   final Function(T)? onTap;
   final EdgeInsets padding;
-  const GenExpansion({
+  const CustomExpansion({
     super.key,
     this.onTap,
     this.padding = EdgeInsets.zero,
@@ -21,10 +21,10 @@ class GenExpansion<T> extends StatefulWidget {
   });
 
   @override
-  State<GenExpansion<T>> createState() => _GenExpansionState<T>();
+  State<CustomExpansion<T>> createState() => _CustomExpansionState<T>();
 }
 
-class _GenExpansionState<T> extends State<GenExpansion<T>>
+class _CustomExpansionState<T> extends State<CustomExpansion<T>>
     with SingleTickerProviderStateMixin {
   late final AnimationController animationController;
   late final Animation<double> animation;
@@ -44,7 +44,7 @@ class _GenExpansionState<T> extends State<GenExpansion<T>>
   }
 
   @override
-  void didUpdateWidget(covariant GenExpansion<T> oldWidget) {
+  void didUpdateWidget(covariant CustomExpansion<T> oldWidget) {
     if (!widget.isSelected && animationController.isCompleted) {
       animationController.reverse();
     }

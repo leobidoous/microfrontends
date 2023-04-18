@@ -102,7 +102,7 @@ class _CreditCardAddressFormState extends State<CreditCardAddressForm> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Expanded(
-          child: GenScrollContent(
+          child: CustomScrollContent(
             padding: EdgeInsets.fromLTRB(
               const Spacing(2).value,
               const Spacing(2).value,
@@ -126,7 +126,7 @@ class _CreditCardAddressFormState extends State<CreditCardAddressForm> {
         SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child: GenButton.text(
+            child: CustomButton.text(
               type: ButtonType.tertiary,
               isLoading: widget.isLoading,
               onPressed: onConfirm,
@@ -150,7 +150,7 @@ class _CreditCardAddressFormState extends State<CreditCardAddressForm> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const InputLabel(label: 'CEP*'),
-                GenInputField(
+                CustomInputField(
                   controller: postalCodeController,
                   keyboardType: TextInputType.number,
                   focusNode: postalCodeFocus,
@@ -161,7 +161,7 @@ class _CreditCardAddressFormState extends State<CreditCardAddressForm> {
                   suffixIcon: controller.isLoading
                       ? SizedBox(
                           width: AppThemeBase.inputHeightMD,
-                          child: const GenLoading(),
+                          child: const CustomLoading(),
                         )
                       : controller.hasError
                           ? InkWell(
@@ -198,7 +198,7 @@ class _CreditCardAddressFormState extends State<CreditCardAddressForm> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           const InputLabel(label: 'Rua*'),
-                          GenInputField(
+                          CustomInputField(
                             keyboardType: TextInputType.streetAddress,
                             hintText: 'Nome da rua',
                             onChanged: (input) {
@@ -223,7 +223,7 @@ class _CreditCardAddressFormState extends State<CreditCardAddressForm> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           const InputLabel(label: 'Número*'),
-                          GenInputField(
+                          CustomInputField(
                             hintText: '0',
                             onChanged: (input) {
                               if (input == null) return;
@@ -255,7 +255,7 @@ class _CreditCardAddressFormState extends State<CreditCardAddressForm> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           const InputLabel(label: 'Bairro*'),
-                          GenInputField(
+                          CustomInputField(
                             hintText: 'Nome do bairro',
                             controller: districtController,
                             focusNode: districtFocus,
@@ -281,7 +281,7 @@ class _CreditCardAddressFormState extends State<CreditCardAddressForm> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           const InputLabel(label: 'Complemento'),
-                          GenInputField(
+                          CustomInputField(
                             hintText: 'Ex.: Próximo à...',
                             controller: complementController,
                             onChanged: (input) {
@@ -310,7 +310,7 @@ class _CreditCardAddressFormState extends State<CreditCardAddressForm> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           const InputLabel(label: 'Cidade*'),
-                          GenInputField(
+                          CustomInputField(
                             hintText: 'Nome da cidade',
                             validators: const [FormValidators.emptyField],
                             controller: cityController,
@@ -331,7 +331,7 @@ class _CreditCardAddressFormState extends State<CreditCardAddressForm> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           const InputLabel(label: 'UF*'),
-                          GenInputField(
+                          CustomInputField(
                             hintText: 'UF',
                             focusNode: ufFocus,
                             controller: ufController,

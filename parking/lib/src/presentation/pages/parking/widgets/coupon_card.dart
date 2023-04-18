@@ -29,14 +29,14 @@ class CouponCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GenCard(
+    return CustomCard(
       child: ValueListenableBuilder<CouponEntity>(
         valueListenable: couponController,
         builder: (_, coupon, child) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              GenImage(
+              CustomImage(
                 url: shopping.logoImage,
                 height: const Spacing(15).value.responsiveHeight,
               ),
@@ -98,7 +98,7 @@ class CouponCard extends StatelessWidget {
                       ),
                       Spacing.sm.vertical,
                       if (couponController.isLoading)
-                        GenShimmer(height: const Spacing(1.5).value),
+                        CustomShimmer(height: const Spacing(1.5).value),
                       if (!couponController.isLoading)
                         CouponRegistrationStatus(
                           max: coupon.campaignValue,
@@ -112,7 +112,7 @@ class CouponCard extends StatelessWidget {
                                 : MainAxisAlignment.spaceBetween,
                         children: [
                           if (couponController.isLoading)
-                            GenShimmer(
+                            CustomShimmer(
                               height: const Spacing(1.5).value,
                               width: const Spacing(8).value,
                             ),
@@ -148,7 +148,7 @@ class CouponCard extends StatelessWidget {
                       ),
                       Spacing.sm.vertical,
                       if (couponController.isLoading)
-                        GenShimmer(height: AppThemeBase.buttonHeightMD),
+                        CustomShimmer(height: AppThemeBase.buttonHeightMD),
                       if (!couponController.isLoading)
                         _couponCTA(
                           context,
@@ -181,7 +181,7 @@ class CouponCard extends StatelessWidget {
       valueListenable: ticketController,
       builder: (context, ticket, child) {
         if (!hasUsedVoucher && !canGetFreeParking) {
-          return GenButton.text(
+          return CustomButton.text(
             text: Tr.of(context).addCoupon,
             onPressed: () async => await Nav.to
                 .pushNamed(
@@ -192,7 +192,7 @@ class CouponCard extends StatelessWidget {
             }),
           );
         } else if (canGetFreeParking && !hasUsedVoucher) {
-          return GenButton.text(
+          return CustomButton.text(
             text: Tr.of(context).validateParking,
             type: ButtonType.tertiary,
             onPressed: () {
@@ -211,7 +211,7 @@ class CouponCard extends StatelessWidget {
             },
           );
         } else {
-          return GenButton.text(
+          return CustomButton.text(
             text: Tr.of(context).validateParking,
             type: ButtonType.tertiary,
             isEnabled: false,

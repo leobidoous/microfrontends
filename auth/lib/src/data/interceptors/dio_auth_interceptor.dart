@@ -87,9 +87,9 @@ class DioAuthInterceptor extends QueuedInterceptor {
   }
 
   Future<void> _finishSession() async {
-    await GenDialog.show(
+    await CustomDialog.show(
       Nav.to.context!,
-      GenAlert.serverError(Nav.to.context!),
+      CustomAlert.serverError(Nav.to.context!),
       showClose: true,
     ).whenComplete(
       () async {

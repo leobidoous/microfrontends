@@ -36,7 +36,7 @@ class _FAQListState extends State<FAQList> {
       valueListenable: controller,
       builder: (context, state, child) {
         if (controller.isLoading) {
-          return const Center(child: GenLoading());
+          return const Center(child: CustomLoading());
         } else if (controller.hasError) {
           return Center(
             child: RequestError(

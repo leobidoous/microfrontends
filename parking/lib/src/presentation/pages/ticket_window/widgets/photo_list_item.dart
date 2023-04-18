@@ -25,7 +25,7 @@ class PhotoListItem extends StatelessWidget {
       constraints: BoxConstraints(minHeight: AppThemeBase.inputHeightMD),
       child: Row(
         children: [
-          GenImage(
+          CustomImage(
             file: File(file.path),
             fit: BoxFit.cover,
             radius: context.theme.borderRadiusSM,

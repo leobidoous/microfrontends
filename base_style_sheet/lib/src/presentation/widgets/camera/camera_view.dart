@@ -3,7 +3,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../containers/local_theme.dart';
-import '../gen_loading.dart';
+import '../custom_loading.dart';
 
 class CameraView extends StatefulWidget {
   final Widget? child;
@@ -34,7 +34,7 @@ class _CameraViewState extends State<CameraView> {
                         'Iniciando câmera',
                         style: context.textTheme.bodyMedium,
                       ),
-                      const GenLoading(),
+                      const CustomLoading(),
                     ],
                   ),
                 );

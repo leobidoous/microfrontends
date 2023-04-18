@@ -36,7 +36,7 @@ class _SelectModelFormState extends State<_SelectModelForm> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Expanded(
-          child: GenScrollContent(
+          child: CustomScrollContent(
             padding: EdgeInsets.fromLTRB(
               const Spacing(2).value,
               const Spacing(2).value,
@@ -65,7 +65,7 @@ class _SelectModelFormState extends State<_SelectModelForm> {
                     ),
                   ),
                 ),
-                GenInputField(
+                CustomInputField(
                   controller: modelController,
                   hintText: Tr.of(context).model,
                   autofocus: false,
@@ -154,7 +154,7 @@ class _SelectModelFormState extends State<_SelectModelForm> {
               horizontal: const Spacing(2).value,
               vertical: const Spacing(2).value,
             ),
-            child: GenButton.text(
+            child: CustomButton.text(
               isEnabled: controller.selectedModel != null,
               onPressed: widget.onContinue,
               text: 'Continuar',

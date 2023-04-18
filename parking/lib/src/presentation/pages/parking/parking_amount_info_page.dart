@@ -21,7 +21,7 @@ class ParkingAmountInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GenAppBar(title: 'Estacionamento'),
+      appBar: const CustomAppBar(title: 'Estacionamento'),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(const Spacing(2).value),
@@ -59,7 +59,7 @@ class ParkingAmountInfoPage extends StatelessWidget {
                 ),
               ),
               Spacing.xxxl.vertical,
-              GenButton.text(
+              CustomButton.text(
                 onPressed: () {
                   Nav.to.pushNamed(
                     TicketRoutes.root,
@@ -77,7 +77,7 @@ class ParkingAmountInfoPage extends StatelessWidget {
                 type: ButtonType.tertiary,
               ),
               Spacing.sm.vertical,
-              GenButton.text(
+              CustomButton.text(
                 onPressed: () {
                   Nav.to.pushNamed(
                     ParkingRoutes.root.concate([

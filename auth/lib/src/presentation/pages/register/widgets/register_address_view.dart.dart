@@ -75,7 +75,7 @@ class _RegisterAddressViewState extends State<RegisterAddressView> {
 
   @override
   Widget build(BuildContext context) {
-    return GenScrollContent(
+    return CustomScrollContent(
       padding: EdgeInsets.all(const Spacing(3).value),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -93,7 +93,7 @@ class _RegisterAddressViewState extends State<RegisterAddressView> {
           Spacing.sm.vertical,
           _addressForm,
           Spacing.sm.vertical,
-          GenButton.text(text: 'Avançar'),
+          CustomButton.text(text: 'Avançar'),
         ],
       ),
     );
@@ -109,7 +109,7 @@ class _RegisterAddressViewState extends State<RegisterAddressView> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const InputLabel(label: 'CEP*'),
-              GenInputField(
+              CustomInputField(
                 controller: postalCodeController,
                 keyboardType: TextInputType.number,
                 focusNode: postalCodeFocus,
@@ -120,7 +120,7 @@ class _RegisterAddressViewState extends State<RegisterAddressView> {
                 suffixIcon: controller.isLoading
                     ? SizedBox(
                         width: AppThemeBase.inputHeightMD,
-                        child: const GenLoading(),
+                        child: const CustomLoading(),
                       )
                     : controller.hasError
                         ? InkWell(
@@ -157,7 +157,7 @@ class _RegisterAddressViewState extends State<RegisterAddressView> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         const InputLabel(label: 'Rua*'),
-                        GenInputField(
+                        CustomInputField(
                           keyboardType: TextInputType.streetAddress,
                           hintText: 'Nome da rua',
                           onChanged: (input) {
@@ -182,7 +182,7 @@ class _RegisterAddressViewState extends State<RegisterAddressView> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         const InputLabel(label: 'Número*'),
-                        GenInputField(
+                        CustomInputField(
                           hintText: '0',
                           onChanged: (input) {
                             if (input == null) return;
@@ -214,7 +214,7 @@ class _RegisterAddressViewState extends State<RegisterAddressView> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         const InputLabel(label: 'Bairro*'),
-                        GenInputField(
+                        CustomInputField(
                           hintText: 'Nome do bairro',
                           controller: districtController,
                           focusNode: districtFocus,
@@ -240,7 +240,7 @@ class _RegisterAddressViewState extends State<RegisterAddressView> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         const InputLabel(label: 'Complemento'),
-                        GenInputField(
+                        CustomInputField(
                           hintText: 'Ex.: Próximo à...',
                           controller: complementController,
                           onChanged: (input) {
@@ -269,7 +269,7 @@ class _RegisterAddressViewState extends State<RegisterAddressView> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         const InputLabel(label: 'Cidade*'),
-                        GenInputField(
+                        CustomInputField(
                           hintText: 'Nome da cidade',
                           validators: const [FormValidators.emptyField],
                           controller: cityController,
@@ -290,7 +290,7 @@ class _RegisterAddressViewState extends State<RegisterAddressView> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         const InputLabel(label: 'UF*'),
-                        GenInputField(
+                        CustomInputField(
                           hintText: 'UF',
                           focusNode: ufFocus,
                           controller: ufController,

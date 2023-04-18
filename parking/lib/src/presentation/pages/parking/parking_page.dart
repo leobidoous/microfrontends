@@ -104,9 +104,9 @@ class _ParkingPageState extends State<ParkingPage> {
         );
       }
     } else {
-      GenDialog.show(
+      CustomDialog.show(
         context,
-        GenAlert.emailVerified(context),
+        CustomAlert.emailVerified(context),
         showClose: true,
       );
     }
@@ -115,7 +115,7 @@ class _ParkingPageState extends State<ParkingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GenAppBar(
+      appBar: CustomAppBar(
         title: Tr.of(context).parking,
         onBackTap: Nav.to.pop,
         actions: [
@@ -135,12 +135,12 @@ class _ParkingPageState extends State<ParkingPage> {
           ),
         ],
       ),
-      body: GenRefreshIndicator(
+      body: CustomRefreshIndicator(
         onRefresh: () async {
           getCoupon();
           getTicket();
         },
-        child: GenScrollContent(
+        child: CustomScrollContent(
           padding: EdgeInsets.only(top: const Spacing(2).value),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -219,14 +219,14 @@ class _ParkingPageState extends State<ParkingPage> {
   }
 
   Widget get _ticketCard {
-    return GenCard(
+    return CustomCard(
       child: ValueListenableBuilder<TicketEntity>(
         valueListenable: controller.ticketController,
         builder: (_, state, child) {
           if (controller.ticketController.isLoading) {
             return SizedBox(
               height: const Spacing(50).value.responsiveHeight,
-              child: const Center(child: GenLoading()),
+              child: const Center(child: CustomLoading()),
             );
           }
           if (controller.ticketController.error.runtimeType ==

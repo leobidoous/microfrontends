@@ -209,7 +209,7 @@ class TicketCard extends StatelessWidget {
             child: ValueListenableBuilder(
               valueListenable: controller,
               builder: (context, state, child) {
-                return GenButton.text(
+                return CustomButton.text(
                   text: (ticket.discount.percentOfDiscount == 1)
                       ? Tr.of(context).validateParking
                       : Tr.of(context).payTextButton,

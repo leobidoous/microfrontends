@@ -1,8 +1,8 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-class GenShimmer extends StatelessWidget {
-  const GenShimmer({
+class CustomShimmer extends StatelessWidget {
+  const CustomShimmer({
     super.key,
     this.width = double.infinity,
     required this.height,

@@ -36,9 +36,9 @@ class _ProfilePageState extends State<ProfilePage> {
           name: 'Sair da conta',
           assetIcon: '',
           onTap: () async {
-            GenDialog.show(
+            CustomDialog.show(
               context,
-              GenAlert(
+              CustomAlert(
                 asset: 'assets/images/server/warning.svg',
                 title: 'Você tem certeza que deseja sair da conta?',
                 btnConfirmLabel: 'Sair',
@@ -65,12 +65,12 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GenAppBar(title: 'Configurações'),
+      appBar: const CustomAppBar(title: 'Configurações'),
       body: SafeArea(
         child: Column(
           children: [
             Expanded(
-              child: GenScrollContent(
+              child: CustomScrollContent(
                 padding: EdgeInsets.all(const Spacing(3).value),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -90,7 +90,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       itemBuilder: (_, index) {
                         switch (menuItems[index].type) {
                           case MenuItemType.expandable:
-                            return GenExpansion(
+                            return CustomExpansion(
                               value: menuItems[index],
                               body: const SizedBox(),
                               showDivider: false,
@@ -140,7 +140,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget get _validateEmailWarning {
-    return GenCard(
+    return CustomCard(
       radius: context.theme.borderRadiusSM,
       padding: EdgeInsets.symmetric(
         vertical: const Spacing(1.5).value,

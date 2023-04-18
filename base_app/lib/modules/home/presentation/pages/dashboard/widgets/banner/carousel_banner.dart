@@ -49,7 +49,7 @@ class _CarouselBannerState extends State<CarouselBanner> {
               ),
             ),
             Spacing.xs.vertical,
-            GenScrollContent(
+            CustomScrollContent(
               scrollDirection: Axis.horizontal,
               child: SizedBox(
                 width: context.kSize.width,
@@ -81,7 +81,7 @@ class _CarouselBannerState extends State<CarouselBanner> {
   }
 
   Widget _bannerItem(CampaignMallEntity item) {
-    return GenCard(
+    return CustomCard(
       onTap: () {
         switch (item.id) {
           case 1:
@@ -98,7 +98,7 @@ class _CarouselBannerState extends State<CarouselBanner> {
       radius: context.theme.borderRadiusSM,
       child: ClipRRect(
         borderRadius: context.theme.borderRadiusSM,
-        child: GenImage(
+        child: CustomImage(
           url: item.bannerUrl.url,
           fit: BoxFit.cover,
         ),

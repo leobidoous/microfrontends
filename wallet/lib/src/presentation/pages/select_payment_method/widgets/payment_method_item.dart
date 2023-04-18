@@ -23,7 +23,7 @@ class PaymentMethodItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GenCard(
+    return CustomCard(
       shaddow: const [],
       onTap: () => onSelected(card),
       border: context.theme.borderZero,

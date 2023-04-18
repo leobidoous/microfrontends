@@ -15,7 +15,7 @@ class TransactionListItem extends StatelessWidget {
         ? transaction.seller.displayName
         : '-';
 
-    return GenCard(
+    return CustomCard(
       shaddow: const [],
       border: context.theme.borderZero,
       padding: EdgeInsets.all(const Spacing(1).value),

@@ -73,7 +73,7 @@ class _CouponListItemState extends State<CouponListItem> {
       color: context.colorScheme.background,
       child: Form(
         key: formKey,
-        child: GenInputField(
+        child: CustomInputField(
           hintText: 'Ex.: 150,00',
           keyboardType: TextInputType.number,
           validators: [
@@ -144,7 +144,7 @@ class _CouponListItemState extends State<CouponListItem> {
       ),
       child: Row(
         children: [
-          GenImage(
+          CustomImage(
             file: File(widget.coupon.file.path),
             fit: BoxFit.cover,
             radius: context.theme.borderRadiusSM,

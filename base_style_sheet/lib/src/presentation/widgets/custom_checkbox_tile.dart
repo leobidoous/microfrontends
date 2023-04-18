@@ -1,8 +1,8 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-class GenCheckboxTile extends StatelessWidget {
-  const GenCheckboxTile({
+class CustomCheckboxTile extends StatelessWidget {
+  const CustomCheckboxTile({
     super.key,
     required this.title,
     required this.value,

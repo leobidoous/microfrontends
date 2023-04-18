@@ -13,7 +13,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GenAppBar(
+      appBar: CustomAppBar(
         title: 'Meu perfil',
         automaticallyImplyLeading: Navigator.of(context).canPop(),
         // onBackTap: Navigator.of(context).pop,

@@ -25,7 +25,7 @@ class FAQListItem extends StatefulWidget {
 class _FAQListItemState extends State<FAQListItem> {
   @override
   Widget build(BuildContext context) {
-    return GenExpansion<FAQEntity>(
+    return CustomExpansion<FAQEntity>(
       showDivider: !widget.isLast,
       value: widget.faq,
       onTap: widget.onTap,

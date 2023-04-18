@@ -1,8 +1,8 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../alerts/gen_alert.dart';
-import '../gen_dialog.dart';
+import '../alerts/custom_alert.dart';
+import '../custom_dialog.dart';
 
 class GenPdfView extends StatefulWidget {
   const GenPdfView({super.key, this.asset, this.url});
@@ -31,9 +31,9 @@ class _GenPdfViewState extends State<GenPdfView> {
         controller: controller,
         pageLayoutMode: PdfPageLayoutMode.continuous,
         onDocumentLoadFailed: (details) async {
-          await GenDialog.show(
+          await CustomDialog.show(
             context,
-            GenAlert.serverError(context),
+            CustomAlert.serverError(context),
             showClose: true,
           ).then((value) => Nav.to.pop());
         },

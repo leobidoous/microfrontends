@@ -22,8 +22,8 @@ import 'package:flutter/material.dart'
         TextSpan,
         Widget;
 
-import '../../gen_dialog.dart';
-import '../../gen_scroll_content.dart';
+import '../../custom_dialog.dart';
+import '../../custom_scroll_content.dart';
 
 class ImageError extends StatefulWidget {
   final String error;
@@ -40,7 +40,7 @@ class _ImageErrorState extends State<ImageError> {
 
     return InkWell(
       onTap: () {
-        GenDialog.show(
+        CustomDialog.show(
           context,
           _buildErrorDialog(widget.error, null),
           showClose: true,
@@ -73,7 +73,7 @@ class _ImageErrorState extends State<ImageError> {
           ),
           Divider(color: context.colorScheme.onBackground),
           Flexible(
-            child: GenScrollContent(
+            child: CustomScrollContent(
               child: RichText(
                 text: TextSpan(
                   text: '$error',

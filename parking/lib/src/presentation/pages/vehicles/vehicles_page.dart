@@ -37,7 +37,7 @@ class _VehiclesPageState extends State<VehiclesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colorScheme.background,
-      appBar: GenAppBar(
+      appBar: CustomAppBar(
         title: Tr.of(context).titleVehicle,
         showDivider: false,
         onBackTap: Nav.to.pop,
@@ -47,7 +47,7 @@ class _VehiclesPageState extends State<VehiclesPage> {
         builder: (context, state, child) {
           if (controller.isLoading) {
             return const Center(
-              child: GenLoading(),
+              child: CustomLoading(),
             );
           } else if (state.isEmpty) {
             return _EmptyListVehicleWidget(
@@ -248,7 +248,7 @@ class _VehiclesPageState extends State<VehiclesPage> {
                 padding: EdgeInsets.only(
                   top: const Spacing(4).value,
                 ),
-                child: GenButton.text(
+                child: CustomButton.text(
                   text: Tr.of(context).yesRemov,
                   type: ButtonType.primary,
                   isSafe: true,

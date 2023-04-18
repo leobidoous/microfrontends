@@ -24,7 +24,7 @@ class ChooseRechargeValueView extends StatelessWidget {
           child: ValueListenableBuilder(
             valueListenable: ValueNotifier(false),
             builder: (context, state, child) {
-              return GenRefreshIndicator(
+              return CustomRefreshIndicator(
                 onRefresh: () async {},
                 child: ListView.separated(
                   itemCount: 10,
@@ -39,7 +39,7 @@ class ChooseRechargeValueView extends StatelessWidget {
                     color: AppColorsBase.neutrla1,
                   ),
                   itemBuilder: (_, index) {
-                    return GenRadioTile(
+                    return CustomRadioTile(
                       isSelected: (index + 1) % 2 == 0,
                       value: index,
                       onChanged: (value) {},
@@ -59,7 +59,7 @@ class ChooseRechargeValueView extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.all(const Spacing(2).value),
-          child: GenButton.text(
+          child: CustomButton.text(
             text: 'Continuar',
             onPressed: () => onChooseValue(''),
           ),

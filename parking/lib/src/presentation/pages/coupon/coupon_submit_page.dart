@@ -40,9 +40,9 @@ class _CouponSubmitPageState extends State<CouponSubmitPage> {
       if (controller.error is InvalidCodeError ||
           controller.error is KeyNotInformedError ||
           controller.error is CouponQueryError) {
-        await GenDialog.show(
+        await CustomDialog.show(
           context,
-          GenAlert.couponReadingError(context),
+          CustomAlert.couponReadingError(context),
           showClose: true,
         );
         Nav.to.pop(response: controller.error);
@@ -71,7 +71,7 @@ class _CouponSubmitPageState extends State<CouponSubmitPage> {
         builder: (context, value, child) {
           if (controller.isLoading) {
             return Scaffold(
-              appBar: GenAppBar(
+              appBar: CustomAppBar(
                 title: 'Cupom Fiscal',
                 actions: [
                   AppBarButton(
@@ -83,7 +83,7 @@ class _CouponSubmitPageState extends State<CouponSubmitPage> {
                   ),
                 ],
               ),
-              body: const Center(child: GenLoading()),
+              body: const Center(child: CustomLoading()),
             );
           } else if (controller.hasError) {
             if (controller.error is CouponAlreadyRegisteredError) {
@@ -95,7 +95,7 @@ class _CouponSubmitPageState extends State<CouponSubmitPage> {
               return SearchPlaceErrorView(error: controller.error!);
             }
             return Scaffold(
-              appBar: GenAppBar(
+              appBar: CustomAppBar(
                 title: 'Cupom Fiscal',
                 actions: [
                   AppBarButton(
@@ -118,7 +118,7 @@ class _CouponSubmitPageState extends State<CouponSubmitPage> {
             );
           }
           return Scaffold(
-            appBar: GenAppBar(
+            appBar: CustomAppBar(
               title: 'Cupom Fiscal',
               actions: [
                 AppBarButton(

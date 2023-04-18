@@ -1,8 +1,8 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-class GenAppBar extends StatefulWidget with PreferredSizeWidget {
-  const GenAppBar({
+class CustomAppBar extends StatefulWidget with PreferredSizeWidget {
+  const CustomAppBar({
     super.key,
     this.leadingIcon,
     this.title,
@@ -26,14 +26,14 @@ class GenAppBar extends StatefulWidget with PreferredSizeWidget {
   final bool automaticallyImplyLeading;
 
   @override
-  State<GenAppBar> createState() => _GenAppBarState();
+  State<CustomAppBar> createState() => _CustomAppBarState();
 
   @override
   Size get preferredSize =>
       Size(double.infinity, toolbarHeight ?? AppThemeBase.appBarHeight);
 
-  factory GenAppBar.zero() {
-    return const GenAppBar(
+  factory CustomAppBar.zero() {
+    return const CustomAppBar(
       toolbarHeight: 0,
       showDivider: false,
       automaticallyImplyLeading: false,
@@ -41,7 +41,7 @@ class GenAppBar extends StatefulWidget with PreferredSizeWidget {
   }
 }
 
-class _GenAppBarState extends State<GenAppBar> {
+class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
     return Column(

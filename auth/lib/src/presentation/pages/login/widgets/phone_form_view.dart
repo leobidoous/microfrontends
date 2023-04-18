@@ -42,7 +42,7 @@ class _PhoneFormViewState extends State<PhoneFormView> {
   Widget build(BuildContext context) {
     return Form(
       key: formKey,
-      child: GenScrollContent(
+      child: CustomScrollContent(
         padding: EdgeInsets.all(const Spacing(2).value),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -62,7 +62,7 @@ class _PhoneFormViewState extends State<PhoneFormView> {
                 fontWeight: context.textTheme.fontWeightLight,
               ),
             ),
-            GenInputField(
+            CustomInputField(
               controller: textController,
               hintText: 'Ex: (00) 00000-0000',
               onFieldSubmitted: (_) => widget.onConfirm(_),
@@ -85,7 +85,7 @@ class _PhoneFormViewState extends State<PhoneFormView> {
             ValueListenableBuilder(
               valueListenable: controller,
               builder: (context, value, child) {
-                return GenButton.text(
+                return CustomButton.text(
                   text: 'Receber código por SMS',
                   isEnabled: controller.phoneIsValid,
                   isLoading: controller.isLoading,

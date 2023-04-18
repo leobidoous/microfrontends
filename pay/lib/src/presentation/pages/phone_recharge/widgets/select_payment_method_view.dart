@@ -41,7 +41,7 @@ class _SelectPaymentMethodViewState extends State<SelectPaymentMethodView> {
             valueListenable: cardsController,
             builder: (context, state, child) {
               if (cardsController.isLoading) {
-                return const Center(child: GenLoading());
+                return const Center(child: CustomLoading());
               } else if (cardsController.hasError) {
                 return Center(
                   child: RequestError(
@@ -78,7 +78,7 @@ class _SelectPaymentMethodViewState extends State<SelectPaymentMethodView> {
                 ),
                 itemCount: state.length,
               );
-            },  
+            },
           ),
         ),
       ],

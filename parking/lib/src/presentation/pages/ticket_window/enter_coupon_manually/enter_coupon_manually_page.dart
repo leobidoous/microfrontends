@@ -51,7 +51,7 @@ class _EnterCouponManuallyPageState extends State<EnterCouponManuallyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GenAppBar(title: 'Registro de cupom'),
+      appBar: const CustomAppBar(title: 'Registro de cupom'),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(const Spacing(2).value),
@@ -124,11 +124,14 @@ class _EnterCouponManuallyPageState extends State<EnterCouponManuallyPage> {
               ),
             ),
             Spacing.lg.vertical,
-            GenButton.text(
+            CustomButton.text(
               onPressed: () {
                 controller.uploadCoupons().then((value) {
                   if (controller.hasError) {
-                    GenDialog.show(context, GenAlert.serverError(context));
+                    CustomDialog.show(
+                      context,
+                      CustomAlert.serverError(context),
+                    );
                     return;
                   }
                   reviewController.onClear();

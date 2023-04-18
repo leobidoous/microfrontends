@@ -51,7 +51,7 @@ class _CouponSuccessfullyRegisteredPageState
       resting = (coupon.campaignValue - coupon.amount) / 100;
     }
     return Scaffold(
-      appBar: GenAppBar(
+      appBar: CustomAppBar(
         automaticallyImplyLeading: false,
         showDivider: false,
         actions: [
@@ -133,7 +133,7 @@ class _CouponSuccessfullyRegisteredPageState
               ],
               Spacing.xxl.vertical,
               if (freeParking) ...[
-                GenButton.text(
+                CustomButton.text(
                   onPressed: () async {
                     await Nav.to.pushReplacementNamed(
                       ParkingRoutes.scanTicket,
@@ -158,7 +158,7 @@ class _CouponSuccessfullyRegisteredPageState
                   text: 'Validar tíquete',
                 ),
                 Spacing.sm.vertical,
-                GenButton.text(
+                CustomButton.text(
                   onPressed: () {
                     Nav.to.pushReplacementNamed(
                       VehiclesRoutes.enterPlateNumber,
@@ -170,7 +170,7 @@ class _CouponSuccessfullyRegisteredPageState
                 Spacing.sm.vertical,
               ],
               if (!freeParking) ...[
-                GenButton.text(
+                CustomButton.text(
                   onPressed: () {
                     Nav.to.pushReplacementNamed(CouponRoutes.root);
                   },
@@ -179,7 +179,7 @@ class _CouponSuccessfullyRegisteredPageState
                 Spacing.sm.vertical,
               ],
               if (!freeParking)
-                GenButton.text(
+                CustomButton.text(
                   type: ButtonType.background,
                   text: 'Ver cupons fiscais',
                   onPressed: () {

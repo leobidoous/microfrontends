@@ -35,7 +35,7 @@ class _EnterPlateNumberPageState extends State<EnterPlateNumberPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GenAppBar(
+      appBar: CustomAppBar(
         title: 'Estacionamento',
         showDivider: false,
         actions: [
@@ -53,7 +53,7 @@ class _EnterPlateNumberPageState extends State<EnterPlateNumberPage> {
         valueListenable: controller,
         builder: (context, state, child) {
           if (controller.isLoading) {
-            return const Center(child: GenLoading());
+            return const Center(child: CustomLoading());
           }
           if (state.isNotEmpty) {
             return _HasVehicleRegistered(
@@ -69,7 +69,7 @@ class _EnterPlateNumberPageState extends State<EnterPlateNumberPage> {
 
 class _HasVehicleRegistered extends StatelessWidget {
   _HasVehicleRegistered({required this.vehicles});
-  
+
   final List<VehicleModel> vehicles;
   final controller = DM.i.get<ParkingEnterPlateNumberController>();
   final shopping = DM.i.get<ShoppingEntity>();
@@ -78,7 +78,7 @@ class _HasVehicleRegistered extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GenScrollContent(
+    return CustomScrollContent(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -118,7 +118,7 @@ class _HasVehicleRegistered extends StatelessWidget {
             ),
           ),
           Spacing.sm.vertical,
-          GenButton.text(
+          CustomButton.text(
             text: Tr.of(context).continueButton,
             type: ButtonType.tertiary,
             onPressed: () {
@@ -148,7 +148,7 @@ class _HasVehicleRegistered extends StatelessWidget {
           Spacing.sm.vertical,
           Form(
             key: formKey,
-            child: GenInputField(
+            child: CustomInputField(
               controller: textController,
               keyboardType: TextInputType.text,
               textCapitalization: TextCapitalization.characters,
@@ -163,7 +163,7 @@ class _HasVehicleRegistered extends StatelessWidget {
             ),
           ),
           Spacing.sm.vertical,
-          GenButton.text(
+          CustomButton.text(
             text: Tr.of(context).continueButton,
             type: ButtonType.background,
             onPressed: () {
@@ -196,7 +196,7 @@ class _NotHasVehicleRegistered extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GenScrollContent(
+    return CustomScrollContent(
       padding: EdgeInsets.all(const Spacing(3).value),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -217,7 +217,7 @@ class _NotHasVehicleRegistered extends StatelessWidget {
           Spacing.sm.vertical,
           Form(
             key: formKey,
-            child: GenInputField(
+            child: CustomInputField(
               controller: textController,
               keyboardType: TextInputType.text,
               textCapitalization: TextCapitalization.characters,
@@ -232,7 +232,7 @@ class _NotHasVehicleRegistered extends StatelessWidget {
             ),
           ),
           Spacing.sm.vertical,
-          GenButton.text(
+          CustomButton.text(
             text: Tr.of(context).continueButton,
             onPressed: () {
               FocusScope.of(context).requestFocus(FocusNode());

@@ -14,7 +14,7 @@ class RegisterEmailView extends StatefulWidget {
 class _RegisterEmailViewState extends State<RegisterEmailView> {
   @override
   Widget build(BuildContext context) {
-    return GenScrollContent(
+    return CustomScrollContent(
       padding: EdgeInsets.all(const Spacing(3).value),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -30,13 +30,13 @@ class _RegisterEmailViewState extends State<RegisterEmailView> {
             ),
           ),
           Spacing.sm.vertical,
-          const GenInputField(
+          const CustomInputField(
             hintText: 'Ex: email@exemplo.com.br',
             keyboardType: TextInputType.name,
             labelWidget: InputLabel(label: 'Insira seu e-mail'),
           ),
           Spacing.sm.vertical,
-          GenButton.text(text: 'Avançar'),
+          CustomButton.text(text: 'Avançar'),
         ],
       ),
     );

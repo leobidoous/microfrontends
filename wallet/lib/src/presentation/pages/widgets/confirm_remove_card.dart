@@ -81,7 +81,7 @@ class ConfirmRemoveCard extends StatelessWidget {
         ValueListenableBuilder(
           valueListenable: removeCardController,
           builder: (_, state, child) {
-            return GenButton.text(
+            return CustomButton.text(
               text: 'Sim, excluir',
               onPressed: () async {
                 await onRemoveCard(card.id);

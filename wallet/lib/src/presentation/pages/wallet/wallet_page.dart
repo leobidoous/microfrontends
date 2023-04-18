@@ -51,9 +51,9 @@ class _WalletPageState extends State<WalletPage> {
         return;
       }
       Nav.to.pop();
-      await GenDialog.show(
+      await CustomDialog.show(
         context,
-        GenAlert.deleteCardError(context),
+        CustomAlert.deleteCardError(context),
         showClose: true,
       );
     });
@@ -67,9 +67,9 @@ class _WalletPageState extends State<WalletPage> {
         cardsController.fetchCreditCards();
         return;
       }
-      GenDialog.show(
+      CustomDialog.show(
         context,
-        GenAlert.serverError(context),
+        CustomAlert.serverError(context),
         showClose: true,
       );
     });
@@ -78,7 +78,7 @@ class _WalletPageState extends State<WalletPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GenAppBar(
+      appBar: CustomAppBar(
         title: 'Carteira',
         automaticallyImplyLeading: Nav.to.canPop(),
         actions: [
@@ -92,7 +92,7 @@ class _WalletPageState extends State<WalletPage> {
         ],
       ),
       resizeToAvoidBottomInset: false,
-      body: GenRefreshIndicator(
+      body: CustomRefreshIndicator(
         onRefresh: () async {
           cardsController.fetchCreditCards();
           listController.refresh();
@@ -100,7 +100,7 @@ class _WalletPageState extends State<WalletPage> {
         child: SafeArea(
           child: LayoutBuilder(
             builder: (context, constrains) {
-              return GenScrollContent(
+              return CustomScrollContent(
                 child: SizedBox(
                   height: constrains.maxHeight,
                   child: Column(

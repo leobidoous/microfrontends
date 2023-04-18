@@ -32,9 +32,9 @@ class _CouponSubmissionResultPageState
   }
 
   Future<void> _showWarning() async {
-    await GenDialog.show(
+    await CustomDialog.show(
       context,
-      GenAlert.validateAfterConfirm(
+      CustomAlert.validateAfterConfirm(
         context,
         btnCancelLabel: 'Cancelar',
         btnConfirmLabel: 'Sair',
@@ -55,7 +55,7 @@ class _CouponSubmissionResultPageState
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        appBar: GenAppBar.zero(),
+        appBar: CustomAppBar.zero(),
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.all(const Spacing(2).value),
@@ -63,7 +63,7 @@ class _CouponSubmissionResultPageState
               valueListenable: couponController,
               builder: (context, state, child) {
                 if (couponController.isLoading) {
-                  return const Center(child: GenLoading());
+                  return const Center(child: CustomLoading());
                 } else if (couponController.hasError) {
                   return Center(
                     child: RequestError(
@@ -85,7 +85,7 @@ class _CouponSubmissionResultPageState
                     Spacing.sm.vertical,
                     if (!state.canGetFreeParking) ...[
                       Spacing.sm.vertical,
-                      GenButton.text(
+                      CustomButton.text(
                         onPressed: () {
                           Nav.to.pushNamed(
                             ParkingRoutes.root,
@@ -112,7 +112,7 @@ class _CouponSubmissionResultPageState
                     ],
                     if (state.canGetFreeParking) ...[
                       Spacing.sm.vertical,
-                      GenButton.text(
+                      CustomButton.text(
                         onPressed: () {
                           Nav.to.pushNamed(
                             TicketWindowRoutes.scanTicketOrEnterPlate
@@ -124,7 +124,7 @@ class _CouponSubmissionResultPageState
                     ],
                     if (!state.canGetFreeParking) ...[
                       Spacing.sm.vertical,
-                      GenButton.text(
+                      CustomButton.text(
                         onPressed: () {
                           Nav.to.popUntil(
                             ModalRoute.withName(
@@ -136,7 +136,7 @@ class _CouponSubmissionResultPageState
                       ),
                     ],
                     Spacing.sm.vertical,
-                    GenButton.text(
+                    CustomButton.text(
                       text: 'Validar depois',
                       onPressed: _showWarning,
                       type: ButtonType.background,
@@ -152,7 +152,7 @@ class _CouponSubmissionResultPageState
   }
 
   Widget _submissionResult(CouponEntity coupon) {
-    return GenRefreshIndicator(
+    return CustomRefreshIndicator(
       onRefresh: () async {
         couponController.fetchCoupon(
           idShopping: shopping.id.toString(),
@@ -160,7 +160,7 @@ class _CouponSubmissionResultPageState
       },
       child: LayoutBuilder(
         builder: (context, constrains) {
-          return GenScrollContent(
+          return CustomScrollContent(
             child: SizedBox(
               height: constrains.maxHeight,
               child: Column(

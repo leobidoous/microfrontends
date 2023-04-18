@@ -20,9 +20,9 @@ class ListMainServicesWidgets extends StatelessWidget {
         ItemMainServices(
           title: 'Comprar',
           icon: CoreIcons.carShopping,
-          onTap: () => GenDialog.show(
+          onTap: () => CustomDialog.show(
             context,
-            GenAlert.noImplementation(
+            CustomAlert.noImplementation(
               context,
             ),
             showClose: true,

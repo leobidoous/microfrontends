@@ -79,7 +79,7 @@ class _ScanCouponPageState extends State<ScanCouponPage> {
     return LocalTheme.dark(
       builder: (context) {
         return Scaffold(
-          appBar: GenAppBar.zero(),
+          appBar: CustomAppBar.zero(),
           backgroundColor: context.colorScheme.background.withOpacity(
             .85,
           ),
@@ -125,7 +125,7 @@ class _ScanCouponPageState extends State<ScanCouponPage> {
                     ),
                   ),
                   Spacing.sm.vertical,
-                  GenButton.text(text: 'Entendi', onPressed: Nav.to.pop),
+                  CustomButton.text(text: 'Entendi', onPressed: Nav.to.pop),
                 ],
               ),
             ),
@@ -149,7 +149,7 @@ class _ScanCouponPageState extends State<ScanCouponPage> {
                 top: 0,
                 left: 0,
                 right: 0,
-                child: GenAppBar(
+                child: CustomAppBar(
                   showDivider: false,
                   automaticallyImplyLeading: false,
                   toolbarHeight: context.theme.appBarTheme.appBarHeight,

@@ -65,21 +65,21 @@ class _LoginPagePageState extends State<LoginPage> {
 
   Future<void> _showDialogError(ILoginFailure? error) async {
     if (controller.error is ServerError) {
-      await GenDialog.show(
+      await CustomDialog.show(
         context,
-        GenAlert.serverError(context),
+        CustomAlert.serverError(context),
         showClose: true,
       );
     } else if (controller.error is UnknowError) {
-      await GenDialog.show(
+      await CustomDialog.show(
         context,
-        GenAlert.serverError(context),
+        CustomAlert.serverError(context),
         showClose: true,
       );
     } else if (controller.error is AccountNotExist) {
-      await GenDialog.show(
+      await CustomDialog.show(
         context,
-        GenAlert(
+        CustomAlert(
           asset: 'assets/images/server/warning.svg',
           title: 'Você não tem um cadastro ativo conosco.',
           content: controller.error?.message ?? '',
@@ -105,7 +105,7 @@ class _LoginPagePageState extends State<LoginPage> {
       onWillPop: () async => false,
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: GenAppBar(
+        appBar: CustomAppBar(
           title: 'Login',
           showDivider: false,
           onBackTap: () {

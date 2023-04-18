@@ -19,7 +19,7 @@ class _TicketWindowPageState extends State<TicketWindowPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GenAppBar.zero(),
+      appBar: CustomAppBar.zero(),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(const Spacing(2).value),
@@ -27,7 +27,7 @@ class _TicketWindowPageState extends State<TicketWindowPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
-                child: GenScrollContent(
+                child: CustomScrollContent(
                   padding: EdgeInsets.only(top: const Spacing(5).value),
                   child: AnimatedTextKit(
                     repeatForever: false,
@@ -47,14 +47,14 @@ class _TicketWindowPageState extends State<TicketWindowPage> {
                 ),
               ),
               Spacing.sm.vertical,
-              GenButton.text(
+              CustomButton.text(
                 onPressed: () {
                   Nav.to.pushNamed(TicketWindowRoutes.takePhoto.relativePath);
                 },
                 text: Tr.of(context).takePicture,
               ),
               Spacing.sm.vertical,
-              GenButton.text(
+              CustomButton.text(
                 onPressed: Nav.to.pop,
                 text: Tr.of(context).close,
                 type: ButtonType.background,

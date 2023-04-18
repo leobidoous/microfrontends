@@ -36,7 +36,7 @@ class _DeskCardState extends State<DeskCard> {
         return ValueListenableBuilder<DeskCardStatus>(
           valueListenable: widget.deskController,
           builder: (context, status, child) {
-            return GenCard(
+            return CustomCard(
               border: Border.all(
                 color: context.colorScheme.primary,
                 width: context.textTheme.lineHeightMedium,
@@ -97,17 +97,17 @@ class _DeskCardState extends State<DeskCard> {
             builder: (context, constrains) {
               return Column(
                 children: [
-                  GenShimmer(
+                  CustomShimmer(
                     height: const Spacing(1.5).value,
                     width: constrains.maxWidth * .85,
                   ),
                   Spacing.xs.vertical,
-                  GenShimmer(
+                  CustomShimmer(
                     height: const Spacing(1.5).value,
                     width: constrains.maxWidth * .9,
                   ),
                   Spacing.xs.vertical,
-                  GenShimmer(
+                  CustomShimmer(
                     height: const Spacing(1.5).value,
                     width: constrains.maxWidth * .7,
                   ),
@@ -132,7 +132,7 @@ class _DeskCardState extends State<DeskCard> {
           ),
         ),
         Spacing.sm.vertical,
-        if (isLoading) GenShimmer(height: const Spacing(1.5).value),
+        if (isLoading) CustomShimmer(height: const Spacing(1.5).value),
         if (!isLoading)
           CouponRegistrationStatus(
             max: coupon.campaignValue.toDouble(),
@@ -145,7 +145,7 @@ class _DeskCardState extends State<DeskCard> {
             children: [
               if (isLoading)
                 Expanded(
-                  child: GenShimmer(height: const Spacing(1.5).value),
+                  child: CustomShimmer(height: const Spacing(1.5).value),
                 ),
               if (!isLoading)
                 Expanded(
@@ -171,14 +171,14 @@ class _DeskCardState extends State<DeskCard> {
         ],
         if (isLoading) ...[
           Spacing.lg.vertical,
-          GenShimmer(height: AppThemeBase.buttonHeightMD),
+          CustomShimmer(height: AppThemeBase.buttonHeightMD),
         ],
         if (!isLoading && !hasError) ...[
           if (status != DeskCardStatus.initial) ...[
             Spacing.lg.vertical,
             LocalTheme.light(
               builder: (context) {
-                return GenButton.text(
+                return CustomButton.text(
                   onPressed: () async {
                     await Nav.to
                         .pushNamed(TicketWindowRoutes.root.prevPath())

@@ -1,52 +1,24 @@
 import 'package:core/core.dart';
-import 'package:flutter/material.dart'
-    show
-        Align,
-        Alignment,
-        Border,
-        BorderRadius,
-        BoxDecoration,
-        BoxShadow,
-        BuildContext,
-        Colors,
-        Column,
-        Container,
-        EdgeInsets,
-        Flexible,
-        GestureDetector,
-        Icon,
-        Icons,
-        Key,
-        MainAxisAlignment,
-        MainAxisSize,
-        Material,
-        MaterialLocalizations,
-        Padding,
-        SafeArea,
-        StatelessWidget,
-        Widget,
-        WillPopScope,
-        showGeneralDialog;
+import 'package:flutter/material.dart';
 
-import 'request_error.dart';
+class CustomBottomSheet {
 
-class GenDialog {
   static Future<bool?> show(
     BuildContext context,
     Widget child, {
     bool showClose = false,
     EdgeInsets? padding,
   }) async {
-    return await showGeneralDialog<bool>(
+    return await showModalBottomSheet<bool>(
       context: context,
-      barrierDismissible: false,
+      isScrollControlled: true,
+      useSafeArea: true,
+
       barrierColor: Colors.black.withOpacity(0.8),
-      transitionDuration: const Duration(milliseconds: 250),
-      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
-      pageBuilder: (_, animation, secondaryAnimation) {
+      builder: (context) {
         return WillPopScope(
           onWillPop: () async => false,
-          child: _GenDialog(
+          child: _GenBottomSheet(
             showClose: showClose,
             padding: padding,
             child: child,
@@ -55,29 +27,14 @@ class GenDialog {
       },
     );
   }
-
-  Future<bool?> error(
-    BuildContext context, {
-    required String message,
-    EdgeInsets? padding,
-  }) async {
-    return await show(
-      context,
-      Padding(
-        padding: padding ?? EdgeInsets.all(const Spacing(3).value),
-        child: RequestError(message: message, padding: EdgeInsets.zero),
-      ),
-      showClose: true,
-    );
-  }
 }
 
-class _GenDialog extends StatelessWidget {
-  final bool showClose;
+class _GenBottomSheet extends StatelessWidget {
   final Widget child;
+  final bool showClose;
   final EdgeInsets? padding;
 
-  const _GenDialog({
+  const _GenBottomSheet({
     Key? key,
     required this.showClose,
     required this.child,
@@ -86,8 +43,7 @@ class _GenDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
+    return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -133,14 +89,18 @@ class _GenDialog extends StatelessWidget {
                           ),
                         ),
                       ),
-                    Flexible(child: child),
+                    Flexible(
+                      child: Material(
+                        color: context.colorScheme.background,
+                        child: child,
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
           ),
         ],
-      ),
-    );
+      );
   }
 }

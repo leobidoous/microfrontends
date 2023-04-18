@@ -26,7 +26,7 @@ class _CouponsListPageState extends State<CouponsListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GenAppBar(title: 'Acompanhamento'),
+      appBar: const CustomAppBar(title: 'Acompanhamento'),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -47,7 +47,7 @@ class _CouponsListPageState extends State<CouponsListPage> {
                 builder: (context, state, child) {
                   if (controller.isLoading) {
                     return const Center(
-                      child: GenLoading(),
+                      child: CustomLoading(),
                     );
                   } else if (controller.hasError) {
                     return Center(
@@ -72,7 +72,7 @@ class _CouponsListPageState extends State<CouponsListPage> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Expanded(
-                        child: GenRefreshIndicator(
+                        child: CustomRefreshIndicator(
                           onRefresh: () async {
                             controller.fetchCoupons();
                           },
@@ -93,7 +93,7 @@ class _CouponsListPageState extends State<CouponsListPage> {
                       ),
                       Padding(
                         padding: EdgeInsets.all(const Spacing(2).value),
-                        child: GenButton.text(
+                        child: CustomButton.text(
                           onPressed: () {
                             if (widget.freeParking) {
                               Nav.to.pushReplacementNamed(

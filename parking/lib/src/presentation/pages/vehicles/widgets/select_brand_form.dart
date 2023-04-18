@@ -36,7 +36,7 @@ class _SelectBrandFormState extends State<_SelectBrandForm> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Expanded(
-          child: GenScrollContent(
+          child: CustomScrollContent(
             padding: EdgeInsets.fromLTRB(
               const Spacing(2).value,
               const Spacing(2).value,
@@ -65,7 +65,7 @@ class _SelectBrandFormState extends State<_SelectBrandForm> {
                     ),
                   ),
                 ),
-                GenInputField(
+                CustomInputField(
                   controller: brandController,
                   hintText: Tr.of(context).brand,
                   autofocus: false,
@@ -154,7 +154,7 @@ class _SelectBrandFormState extends State<_SelectBrandForm> {
               horizontal: const Spacing(2).value,
               vertical: const Spacing(2).value,
             ),
-            child: GenButton.text(
+            child: CustomButton.text(
               isEnabled: controller.selectedBrand != null,
               onPressed: widget.onContinue,
               text: 'Continuar',

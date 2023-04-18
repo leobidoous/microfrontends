@@ -1,24 +1,52 @@
 import 'package:core/core.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'
+    show
+        Align,
+        Alignment,
+        Border,
+        BorderRadius,
+        BoxDecoration,
+        BoxShadow,
+        BuildContext,
+        Colors,
+        Column,
+        Container,
+        EdgeInsets,
+        Flexible,
+        GestureDetector,
+        Icon,
+        Icons,
+        Key,
+        MainAxisAlignment,
+        MainAxisSize,
+        Material,
+        MaterialLocalizations,
+        Padding,
+        SafeArea,
+        StatelessWidget,
+        Widget,
+        WillPopScope,
+        showGeneralDialog;
 
-class GenBottomSheet {
+import 'request_error.dart';
 
+class CustomDialog {
   static Future<bool?> show(
     BuildContext context,
     Widget child, {
     bool showClose = false,
     EdgeInsets? padding,
   }) async {
-    return await showModalBottomSheet<bool>(
+    return await showGeneralDialog<bool>(
       context: context,
-      isScrollControlled: true,
-      useSafeArea: true,
-
+      barrierDismissible: false,
       barrierColor: Colors.black.withOpacity(0.8),
-      builder: (context) {
+      transitionDuration: const Duration(milliseconds: 250),
+      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+      pageBuilder: (_, animation, secondaryAnimation) {
         return WillPopScope(
           onWillPop: () async => false,
-          child: _GenBottomSheet(
+          child: _CustomDialog(
             showClose: showClose,
             padding: padding,
             child: child,
@@ -27,14 +55,29 @@ class GenBottomSheet {
       },
     );
   }
+
+  Future<bool?> error(
+    BuildContext context, {
+    required String message,
+    EdgeInsets? padding,
+  }) async {
+    return await show(
+      context,
+      Padding(
+        padding: padding ?? EdgeInsets.all(const Spacing(3).value),
+        child: RequestError(message: message, padding: EdgeInsets.zero),
+      ),
+      showClose: true,
+    );
+  }
 }
 
-class _GenBottomSheet extends StatelessWidget {
-  final Widget child;
+class _CustomDialog extends StatelessWidget {
   final bool showClose;
+  final Widget child;
   final EdgeInsets? padding;
 
-  const _GenBottomSheet({
+  const _CustomDialog({
     Key? key,
     required this.showClose,
     required this.child,
@@ -43,7 +86,8 @@ class _GenBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return SafeArea(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -89,18 +133,14 @@ class _GenBottomSheet extends StatelessWidget {
                           ),
                         ),
                       ),
-                    Flexible(
-                      child: Material(
-                        color: context.colorScheme.background,
-                        child: child,
-                      ),
-                    ),
+                    Flexible(child: child),
                   ],
                 ),
               ),
             ),
           ),
         ],
-      );
+      ),
+    );
   }
 }

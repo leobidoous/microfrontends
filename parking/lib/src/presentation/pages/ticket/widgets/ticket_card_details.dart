@@ -156,9 +156,9 @@ class _TicketCardDetailsState extends State<TicketCardDetails> {
                               Spacing.xs.horizontal,
                               InkWell(
                                 onTap: () {
-                                  GenDialog.show(
+                                  CustomDialog.show(
                                     context,
-                                    GenAlert.paymentMethodWarning(context),
+                                    CustomAlert.paymentMethodWarning(context),
                                     showClose: true,
                                   );
                                 },
@@ -223,7 +223,7 @@ class _TicketCardDetailsState extends State<TicketCardDetails> {
 
   Widget _value(DateTime time) {
     if (widget.isLoading) {
-      return GenShimmer(height: const Spacing(2.5).value);
+      return CustomShimmer(height: const Spacing(2.5).value);
     }
     return Text(
       DateFormat.toTime(time, pattern: 'HH:mm:ss'),
@@ -235,7 +235,7 @@ class _TicketCardDetailsState extends State<TicketCardDetails> {
 
   Widget _hour(DateTime time) {
     if (widget.isLoading) {
-      return GenShimmer(height: const Spacing(2.5).value);
+      return CustomShimmer(height: const Spacing(2.5).value);
     }
     return Text.rich(
       TextSpan(
@@ -260,7 +260,7 @@ class _TicketCardDetailsState extends State<TicketCardDetails> {
 
   Widget _price(String price, {Color? color}) {
     if (widget.isLoading) {
-      return GenShimmer(height: const Spacing(2.5).value);
+      return CustomShimmer(height: const Spacing(2.5).value);
     }
     return Text.rich(
       TextSpan(

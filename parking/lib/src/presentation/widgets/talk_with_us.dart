@@ -55,7 +55,7 @@ class TalkWithUs extends StatelessWidget {
           ),
           child: SafeArea(
             bottom: isSafeArea,
-            child: GenButton.iconText(
+            child: CustomButton.iconText(
               onPressed: () => DM.i.get<ZendeskController>().openChat(),
               text: Tr.of(context).contactUs,
               type: ButtonType.background,

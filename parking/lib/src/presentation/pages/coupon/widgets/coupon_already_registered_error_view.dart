@@ -19,7 +19,7 @@ class CouponAlreadyRegisteredErrorView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GenAppBar.zero(),
+      appBar: CustomAppBar.zero(),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(const Spacing(2).value),
@@ -28,7 +28,7 @@ class CouponAlreadyRegisteredErrorView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Spacing.sm.vertical,
-              GenScrollContent(
+              CustomScrollContent(
                 child: SvgPicture.asset(
                   'assets/images/parking/coupon_already_registred.svg',
                 ),
@@ -53,7 +53,7 @@ class CouponAlreadyRegisteredErrorView extends StatelessWidget {
                 ],
               ),
               Spacing.sm.vertical,
-              GenButton.text(
+              CustomButton.text(
                 text: 'Registrar novo cupom',
                 onPressed: () => Nav.to.pop(response: error),
               ),

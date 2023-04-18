@@ -10,7 +10,7 @@ class SearchPlaceErrorView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GenAppBar(
+      appBar: CustomAppBar(
         automaticallyImplyLeading: false,
         showDivider: false,
         actions: [
@@ -24,7 +24,7 @@ class SearchPlaceErrorView extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: GenScrollContent(
+              child: CustomScrollContent(
                 reverse: true,
                 padding: EdgeInsets.all(const Spacing(2).value),
                 child: Column(
@@ -50,12 +50,12 @@ class SearchPlaceErrorView extends StatelessWidget {
                       ),
                     ),
                     Spacing.xxxl.vertical,
-                    GenButton.text(
+                    CustomButton.text(
                       onPressed: () => Nav.to.pop(response: error),
                       text: 'Registrar novo cupom',
                     ),
                     Spacing.sm.vertical,
-                    GenButton.iconText(
+                    CustomButton.iconText(
                       type: ButtonType.background,
                       text: 'Fale conosco',
                       onPressed: () => DM.i.get<ZendeskController>().openChat(),

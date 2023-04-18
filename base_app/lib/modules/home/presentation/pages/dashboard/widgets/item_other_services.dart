@@ -18,7 +18,7 @@ class ItemOtherServices extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: GenCard(
+      child: CustomCard(
         radius: BorderRadius.circular(const Spacing(1).value),
         child: SizedBox(
           width: 96,

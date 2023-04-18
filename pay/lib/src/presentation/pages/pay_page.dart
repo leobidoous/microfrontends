@@ -13,7 +13,7 @@ class _PayPageState extends State<PayPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GenAppBar(
+      appBar: CustomAppBar(
         title: 'Pagamento',
         automaticallyImplyLeading: Nav.to.canPop(),
       ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../base_style_sheet.dart';
+import 'custom_refresh_indicator.dart';
 
-class GenScrollContent extends StatelessWidget {
-  const GenScrollContent({
+class CustomScrollContent extends StatelessWidget {
+  const CustomScrollContent({
     super.key,
     required this.child,
     this.scrollDirection = Axis.vertical,
@@ -38,7 +38,7 @@ class GenScrollContent extends StatelessWidget {
       switch (scrollDirection) {
         case Axis.vertical:
           if (onRefresh != null) {
-            return GenRefreshIndicator(
+            return CustomRefreshIndicator(
               onRefresh: onRefresh!,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -54,7 +54,7 @@ class GenScrollContent extends StatelessWidget {
           return scroll;
       }
     } else if (onRefresh != null) {
-      return GenRefreshIndicator(child: scroll, onRefresh: onRefresh!);
+      return CustomRefreshIndicator(child: scroll, onRefresh: onRefresh!);
     }
     return scroll;
   }

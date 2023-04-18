@@ -28,9 +28,9 @@ class _AddCreditCardPageState extends State<AddCreditCardPage> {
     FocusScope.of(context).requestFocus(FocusNode());
     creditCardController.createCreditCard(address).then((value) async {
       if (creditCardController.hasError) {
-        GenDialog.show(
+        CustomDialog.show(
           context,
-          GenAlert.paymentError(context),
+          CustomAlert.paymentError(context),
           showClose: true,
         ).then((value) {
           pageController.animateToPage(
@@ -45,9 +45,9 @@ class _AddCreditCardPageState extends State<AddCreditCardPage> {
         context: context,
         response: creditCardController.state,
       );
-      await GenDialog.show(
+      await CustomDialog.show(
         context,
-        GenAlert.cardRegisterSuccess(context),
+        CustomAlert.cardRegisterSuccess(context),
         showClose: true,
       );
     });
@@ -56,7 +56,7 @@ class _AddCreditCardPageState extends State<AddCreditCardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GenAppBar(
+      appBar: CustomAppBar(
         title: 'Cadastro de Cartão',
         actions: [
           AppBarButton(

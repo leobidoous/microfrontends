@@ -33,8 +33,8 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GenAppBar.zero(),
-      body: GenScrollContent(
+      appBar: CustomAppBar.zero(),
+      body: CustomScrollContent(
         padding: EdgeInsets.symmetric(vertical: const Spacing(3).value),
         child: Column(
           children: [

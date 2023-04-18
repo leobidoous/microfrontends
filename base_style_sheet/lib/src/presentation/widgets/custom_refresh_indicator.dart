@@ -9,12 +9,11 @@ import 'package:flutter/material.dart'
         Theme,
         Widget;
 
-
-class GenRefreshIndicator extends StatelessWidget {
+class CustomRefreshIndicator extends StatelessWidget {
   final Widget child;
   final Future<void> Function() onRefresh;
 
-  const GenRefreshIndicator({
+  const CustomRefreshIndicator({
     super.key,
     required this.child,
     required this.onRefresh,

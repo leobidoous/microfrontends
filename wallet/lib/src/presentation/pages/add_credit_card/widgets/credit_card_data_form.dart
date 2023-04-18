@@ -64,7 +64,7 @@ class _CreditCardDataFormState extends State<CreditCardDataForm> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Expanded(
-          child: GenScrollContent(
+          child: CustomScrollContent(
             padding: EdgeInsets.fromLTRB(
               const Spacing(2).value,
               const Spacing(2).value,
@@ -110,7 +110,7 @@ class _CreditCardDataFormState extends State<CreditCardDataForm> {
               stream: stream,
               initialData: false,
               builder: (context, snapshot) {
-                return GenButton.text(
+                return CustomButton.text(
                   isEnabled: snapshot.data!,
                   onPressed: widget.onContinue,
                   text: 'Continuar',
@@ -130,7 +130,7 @@ class _CreditCardDataFormState extends State<CreditCardDataForm> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const InputLabel(label: 'Número do cartão de crédito*'),
-          GenInputField(
+          CustomInputField(
             hintText: '0000 0000 0000 0000',
             controller: cardNumberController,
             focusNode: cardNumberFocus,
@@ -151,9 +151,9 @@ class _CreditCardDataFormState extends State<CreditCardDataForm> {
             textInputAction: TextInputAction.next,
             suffixIcon: InkWell(
               onTap: () {
-                GenDialog.show(
+                CustomDialog.show(
                   context,
-                  GenAlert.paymentMethodWarning(context),
+                  CustomAlert.paymentMethodWarning(context),
                   showClose: true,
                 );
               },
@@ -175,7 +175,7 @@ class _CreditCardDataFormState extends State<CreditCardDataForm> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const InputLabel(label: 'Data de validade*'),
-                    GenInputField(
+                    CustomInputField(
                       hintText: 'Mês/Ano',
                       keyboardType: TextInputType.number,
                       focusNode: dateFocus,
@@ -212,7 +212,7 @@ class _CreditCardDataFormState extends State<CreditCardDataForm> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const InputLabel(label: 'CVC*'),
-                    GenInputField(
+                    CustomInputField(
                       hintText: '0000',
                       keyboardType: TextInputType.number,
                       onChanged: (input) {
@@ -233,9 +233,9 @@ class _CreditCardDataFormState extends State<CreditCardDataForm> {
                       ],
                       suffixIcon: InkWell(
                         onTap: () {
-                          GenDialog.show(
+                          CustomDialog.show(
                             context,
-                            GenAlert.cvcInfo(context),
+                            CustomAlert.cvcInfo(context),
                             showClose: true,
                           );
                         },
@@ -254,7 +254,7 @@ class _CreditCardDataFormState extends State<CreditCardDataForm> {
           ),
           Spacing.sm.vertical,
           const InputLabel(label: 'Nome do titular do cartão*'),
-          GenInputField(
+          CustomInputField(
             hintText: 'Informe o nome completo do titular',
             controller: nameController,
             focusNode: nameFocus,
@@ -276,7 +276,7 @@ class _CreditCardDataFormState extends State<CreditCardDataForm> {
           ),
           Spacing.sm.vertical,
           const InputLabel(label: 'CPF / CNPJ do titular do cartão*'),
-          GenInputField(
+          CustomInputField(
             hintText: 'Informe o CPF ou CNPJ do titular',
             controller: cpfCnpjController,
             focusNode: cpfCnpjFocus,

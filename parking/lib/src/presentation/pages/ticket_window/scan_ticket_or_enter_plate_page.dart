@@ -31,9 +31,9 @@ class _ScanTicketOrEnterPlatePageState
   }
 
   Future<void> _showWarning() async {
-    await GenDialog.show(
+    await CustomDialog.show(
       context,
-      GenAlert.validateAfterConfirm(
+      CustomAlert.validateAfterConfirm(
         context,
         btnCancelLabel: 'Cancelar',
         btnConfirmLabel: 'Sair',
@@ -52,7 +52,7 @@ class _ScanTicketOrEnterPlatePageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GenAppBar.zero(),
+      appBar: CustomAppBar.zero(),
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
@@ -78,7 +78,7 @@ class _ScanTicketOrEnterPlatePageState
       children: [
         Expanded(
           child: Center(
-            child: GenScrollContent(
+            child: CustomScrollContent(
               padding: EdgeInsets.symmetric(vertical: const Spacing(5).value),
               child: AnimatedTextKit(
                 repeatForever: false,
@@ -98,7 +98,7 @@ class _ScanTicketOrEnterPlatePageState
           ),
         ),
         Spacing.sm.vertical,
-        GenButton.text(
+        CustomButton.text(
           text: 'Continuar',
           onPressed: () {
             pageController.animateToPage(
@@ -142,11 +142,11 @@ class _ScanTicketOrEnterPlatePageState
         Spacing.md.vertical,
         Flexible(
           flex: 6,
-          child: GenScrollContent(
+          child: CustomScrollContent(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                GenButton.text(
+                CustomButton.text(
                   onPressed: () async {
                     await Nav.to.pushNamed(
                       ParkingRoutes.scanTicket,
@@ -181,7 +181,7 @@ class _ScanTicketOrEnterPlatePageState
                 Spacing.md.vertical,
                 Form(
                   key: formKey,
-                  child: GenInputField(
+                  child: CustomInputField(
                     autofocus: false,
                     controller: textController,
                     padding: EdgeInsets.zero,
@@ -197,7 +197,7 @@ class _ScanTicketOrEnterPlatePageState
                   ),
                 ),
                 Spacing.md.vertical,
-                GenButton.text(
+                CustomButton.text(
                   onPressed: () {
                     FocusScope.of(context).requestFocus(FocusNode());
                     if (!(formKey.currentState?.validate() ?? false)) return;
@@ -219,7 +219,7 @@ class _ScanTicketOrEnterPlatePageState
                   text: 'Confirmar',
                 ),
                 Spacing.xxxl.vertical,
-                GenButton.text(
+                CustomButton.text(
                   onPressed: _showWarning,
                   type: ButtonType.background,
                   text: 'Validar depois',

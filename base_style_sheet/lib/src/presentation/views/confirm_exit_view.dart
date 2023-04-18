@@ -24,8 +24,8 @@ import 'package:flutter/material.dart'
         Widget,
         WillPopScope;
 
-import '../widgets/buttons/gen_button.dart';
-import '../widgets/containers/gen_card.dart';
+import '../widgets/buttons/custom_button.dart';
+import '../widgets/containers/custom_card.dart';
 
 class ConfirmExitView extends StatelessWidget {
   const ConfirmExitView({super.key});
@@ -43,7 +43,7 @@ class ConfirmExitView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Flexible(
-                child: GenCard(
+                child: CustomCard(
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.all(16),
                     child: Column(
@@ -71,7 +71,7 @@ class ConfirmExitView extends StatelessWidget {
                           style: context.textTheme.titleSmall,
                         ),
                         const SizedBox(height: 16),
-                        GenButton.text(
+                        CustomButton.text(
                           onPressed: Nav.to.pop,
                           text: 'Ir para o login',
                         ),

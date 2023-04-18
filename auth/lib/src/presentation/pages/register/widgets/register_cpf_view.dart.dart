@@ -14,7 +14,7 @@ class RegisterCpfView extends StatefulWidget {
 class _RegisterCpfViewState extends State<RegisterCpfView> {
   @override
   Widget build(BuildContext context) {
-    return GenScrollContent(
+    return CustomScrollContent(
       padding: EdgeInsets.all(const Spacing(3).value),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -30,13 +30,13 @@ class _RegisterCpfViewState extends State<RegisterCpfView> {
             ),
           ),
           Spacing.sm.vertical,
-          const GenInputField(
+          const CustomInputField(
             hintText: 'Ex: 000.000.000-00',
             keyboardType: TextInputType.name,
             labelWidget: InputLabel(label: 'Digite seu CPF'),
           ),
           Spacing.sm.vertical,
-          GenButton.text(text: 'Avançar'),
+          CustomButton.text(text: 'Avançar'),
         ],
       ),
     );

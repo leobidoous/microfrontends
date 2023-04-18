@@ -194,7 +194,7 @@ class _CodeScanViewState extends State<CodeScanView> {
             ),
             Spacing(context.screenWidth * .5 / 8).vertical,
             Center(
-              child: GenCard(
+              child: CustomCard(
                 onTap: widget.onEnterCodeManually,
                 color: AppColorsBase.neutrla4,
                 radius: context.theme.borderRadiusLG,

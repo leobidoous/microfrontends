@@ -8,7 +8,7 @@ class FeatCommingSoonPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GenAppBar(
+      appBar: const CustomAppBar(
         title: 'Em breve',
         leadingIcon: Icon(Icons.close_rounded),
       ),

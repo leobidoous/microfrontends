@@ -24,7 +24,7 @@ class _EnterTicketNumberPageState extends State<EnterTicketNumberPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GenAppBar(
+      appBar: CustomAppBar(
         title: Tr.of(context).parking,
         actions: [
           AppBarButton(
@@ -36,7 +36,7 @@ class _EnterTicketNumberPageState extends State<EnterTicketNumberPage> {
           ),
         ],
       ),
-      body: GenScrollContent(
+      body: CustomScrollContent(
         padding: EdgeInsets.all(const Spacing(3).value),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -55,7 +55,7 @@ class _EnterTicketNumberPageState extends State<EnterTicketNumberPage> {
               style: context.textTheme.labelMedium,
             ),
             Spacing.md.vertical,
-            GenButton.text(
+            CustomButton.text(
               text: 'Escanear tíquete',
               onPressed: () async {
                 await Nav.to.pushReplacementNamed(
@@ -85,7 +85,7 @@ class _EnterTicketNumberPageState extends State<EnterTicketNumberPage> {
               style: context.textTheme.labelMedium,
             ),
             Spacing.sm.vertical,
-            GenInputField(
+            CustomInputField(
               controller: ticketController,
               keyboardType: TextInputType.number,
               onChanged: (ticket) {
@@ -102,7 +102,7 @@ class _EnterTicketNumberPageState extends State<EnterTicketNumberPage> {
               hintText: 'Digite os números do tíquete',
             ),
             Spacing.sm.vertical,
-            GenButton.text(
+            CustomButton.text(
               text: 'Continuar',
               isEnabled: enableButton,
               type: enableButton ? ButtonType.primary : ButtonType.background,

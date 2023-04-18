@@ -1,10 +1,8 @@
-
-
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-class GenCard extends StatelessWidget {
-  const GenCard({
+class CustomCard extends StatelessWidget {
+  const CustomCard({
     super.key,
     this.radius,
     this.border,

@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../gen_loading.dart';
+import '../custom_loading.dart';
 
 enum ButtonType {
   primary,
@@ -10,7 +10,7 @@ enum ButtonType {
   background,
 }
 
-class GenButton extends StatefulWidget {
+class CustomButton extends StatefulWidget {
   final ButtonType type;
   final Function()? onPressed;
   final Widget child;
@@ -19,7 +19,7 @@ class GenButton extends StatefulWidget {
   final bool isSafe;
   final EdgeInsets padding;
 
-  const GenButton({
+  const CustomButton({
     Key? key,
     required this.child,
     required this.onPressed,
@@ -31,7 +31,7 @@ class GenButton extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<GenButton> createState() => _GenButtonState();
+  State<CustomButton> createState() => _CustomButtonState();
 
   static Widget iconValue(
     IconData iconData, {
@@ -84,7 +84,7 @@ class GenButton extends StatefulWidget {
     );
   }
 
-  factory GenButton.text({
+  factory CustomButton.text({
     ButtonType type = ButtonType.primary,
     Function()? onPressed,
     required String text,
@@ -93,7 +93,7 @@ class GenButton extends StatefulWidget {
     bool isSafe = false,
     EdgeInsets padding = EdgeInsets.zero,
   }) {
-    return GenButton(
+    return CustomButton(
       onPressed: onPressed,
       type: type,
       isEnabled: isEnabled,
@@ -102,7 +102,7 @@ class GenButton extends StatefulWidget {
       child: textValue(text, type: type),
     );
   }
-  factory GenButton.icon({
+  factory CustomButton.icon({
     ButtonType type = ButtonType.primary,
     Function()? onPressed,
     required IconData icon,
@@ -111,7 +111,7 @@ class GenButton extends StatefulWidget {
     bool isSafe = false,
     EdgeInsets padding = EdgeInsets.zero,
   }) {
-    return GenButton(
+    return CustomButton(
       onPressed: onPressed,
       type: type,
       isEnabled: isEnabled,
@@ -120,7 +120,7 @@ class GenButton extends StatefulWidget {
       child: iconValue(icon, type: type),
     );
   }
-  factory GenButton.iconText({
+  factory CustomButton.iconText({
     ButtonType type = ButtonType.primary,
     Function()? onPressed,
     required IconData icon,
@@ -130,7 +130,7 @@ class GenButton extends StatefulWidget {
     bool isSafe = false,
     EdgeInsets padding = EdgeInsets.zero,
   }) {
-    return GenButton(
+    return CustomButton(
       onPressed: onPressed,
       type: type,
       isEnabled: isEnabled,
@@ -149,7 +149,7 @@ class GenButton extends StatefulWidget {
   }
 }
 
-class _GenButtonState extends State<GenButton> {
+class _CustomButtonState extends State<CustomButton> {
   @override
   Widget build(BuildContext context) {
     return Opacity(
@@ -187,7 +187,7 @@ class _GenButtonState extends State<GenButton> {
             child: Padding(
               padding: const EdgeInsets.all(8),
               child: widget.isLoading
-                  ? const GenLoading(height: 16, width: 16)
+                  ? const CustomLoading(height: 16, width: 16)
                   : widget.child,
             ),
           ),

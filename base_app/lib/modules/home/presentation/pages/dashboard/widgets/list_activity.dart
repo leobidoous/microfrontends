@@ -14,7 +14,7 @@ class ListActivity extends StatelessWidget {
       valueListenable: controller,
       builder: (_, state, child) {
         if (controller.isLoading) {
-          return const Center(child: GenLoading());
+          return const Center(child: CustomLoading());
         } else if (controller.hasError) {
           return RequestError(
             message: controller.error.toString(),

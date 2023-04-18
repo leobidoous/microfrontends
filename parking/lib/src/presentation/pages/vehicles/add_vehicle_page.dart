@@ -57,7 +57,7 @@ class _AddVehiclePageState extends State<AddVehiclePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GenAppBar(
+      appBar: CustomAppBar(
         title: Tr.of(context).vehicleRegistration,
         onBackTap: () {
           if (currentPage == PagesType.selectBrand.index) {

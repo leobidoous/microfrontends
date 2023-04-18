@@ -18,10 +18,10 @@ import 'package:flutter/material.dart'
         StatelessWidget,
         Widget;
 
-import '../containers/gen_card.dart';
+import '../containers/custom_card.dart';
 import 'image_url.dart' show ImageUrl;
 
-class GenImage extends StatelessWidget {
+class CustomImage extends StatelessWidget {
   final File? file;
   final BoxFit fit;
   final String? url;
@@ -32,7 +32,7 @@ class GenImage extends StatelessWidget {
   final BorderRadius radius;
   final bool enableGestures;
 
-  const GenImage({
+  const CustomImage({
     Key? key,
     this.url,
     this.file,
@@ -50,7 +50,7 @@ class GenImage extends StatelessWidget {
     return SizedBox(
       width: width,
       height: height,
-      child: GenCard(
+      child: CustomCard(
         radius: radius,
         shaddow: shaddow,
         child: IgnorePointer(

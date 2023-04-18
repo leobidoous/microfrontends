@@ -20,7 +20,7 @@ import 'package:flutter/material.dart'
         TextSpan,
         Widget;
 
-import '../buttons/gen_button.dart';
+import '../buttons/custom_button.dart';
 
 class SearchResponseEmpty extends StatelessWidget {
   const SearchResponseEmpty({
@@ -63,7 +63,7 @@ class SearchResponseEmpty extends StatelessWidget {
           if (onPressed != null)
             Padding(
               padding: const EdgeInsets.only(top: 12.0),
-              child: GenButton.text(
+              child: CustomButton.text(
                 onPressed: onPressed,
                 text: btnLabel,
               ),

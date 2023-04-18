@@ -16,8 +16,8 @@ import 'package:flutter/material.dart'
         TextAlign,
         Widget;
 
-import '../buttons/gen_button.dart';
-import '../gen_scroll_content.dart';
+import '../buttons/custom_button.dart';
+import '../custom_scroll_content.dart';
 
 class ListEmpty extends StatelessWidget {
   final String? asset;
@@ -37,7 +37,7 @@ class ListEmpty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GenScrollContent(
+    return CustomScrollContent(
       expanded: false,
       padding: padding,
       child: Column(
@@ -65,7 +65,7 @@ class ListEmpty extends StatelessWidget {
           if (onPressed != null)
             Padding(
               padding: const EdgeInsets.only(top: 16),
-              child: GenButton.text(
+              child: CustomButton.text(
                 onPressed: onPressed,
                 text: btnLabel,
               ),
