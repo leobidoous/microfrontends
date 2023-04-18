@@ -24,6 +24,8 @@ if (flutterVersionName == null) {
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 
 android {
 
@@ -62,7 +64,7 @@ android {
 
     defaultConfig {
         applicationId "br.com.gen"
-        minSdkVersion 20
+        minSdkVersion 21
         targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -84,4 +86,9 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation group: 'com.zendesk', name: 'support', version: '5.0.9'
+    implementation group: 'com.zendesk', name: 'messaging', version: '5.2.2'
+    implementation group: 'com.zendesk', name: 'answerbot', version: '3.0.0'
+    implementation group: 'com.zendesk', name: 'chat', version: '3.0.0'
 }
