@@ -2,7 +2,6 @@ library core;
 
 export 'package:cached_network_image/cached_network_image.dart';
 export 'package:carousel_slider/carousel_slider.dart';
-export 'package:circular_countdown_timer/circular_countdown_timer.dart';
 export 'package:cloud_firestore/cloud_firestore.dart';
 export 'package:connectivity_plus/connectivity_plus.dart';
 export 'package:core/src/core/enums/flavors_enum.dart';
