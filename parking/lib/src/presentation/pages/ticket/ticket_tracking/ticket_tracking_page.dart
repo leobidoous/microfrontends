@@ -20,9 +20,7 @@ import 'widgets/info_ticket_history.dart';
 part '../ticket_tracking/widgets/circular_indicator_timer.dart';
 
 class TicketTrackingPage extends StatefulWidget {
-  const TicketTrackingPage({
-    super.key,
-  });
+  const TicketTrackingPage({super.key});
 
   @override
   State<TicketTrackingPage> createState() => _TicketTrackingPageState();

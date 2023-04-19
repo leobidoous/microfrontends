@@ -1,14 +1,14 @@
 import 'package:core/core.dart';
 
-import '../../../data/datasources/login_datasource.dart';
-import '../../../infra/repositories/login_repository.dart';
-import '../../../infra/usecases/auth_usecase.dart';
-import '../../../infra/usecases/login_usecase.dart';
-import '../../../infra/usecases/user_usecase.dart';
-import '../../controllers/auth/auth_controller.dart';
-import '../../controllers/login/login_controller.dart';
-import '../../controllers/timer_controller.dart';
-import '../../pages/login/login_page.dart';
+import '../../data/datasources/login_datasource.dart';
+import '../../infra/repositories/login_repository.dart';
+import '../../infra/usecases/auth_usecase.dart';
+import '../../infra/usecases/login_usecase.dart';
+import '../../infra/usecases/user_usecase.dart';
+import '../controllers/auth_controller.dart';
+import '../controllers/login_controller.dart';
+import '../controllers/timer_controller.dart';
+import '../pages/login/login_page.dart';
 
 class LoginModule extends Module {
   static List<Bind> get exportedBinds => [

@@ -1,13 +1,13 @@
 import 'package:core/core.dart';
 
-import '../../../data/datasources/register_datasource.dart';
-import '../../../infra/repositories/register_repository.dart';
-import '../../../infra/usecases/register_usecase.dart';
-import '../../controllers/login/login_controller.dart';
-import '../../controllers/register/register_address_controller.dart';
-import '../../controllers/register/register_controller.dart';
-import '../../pages/register/register_page.dart';
-import '../login/login_module.dart';
+import '../../data/datasources/register_datasource.dart';
+import '../../infra/repositories/register_repository.dart';
+import '../../infra/usecases/register_usecase.dart';
+import '../controllers/login_controller.dart';
+import '../controllers/register/register_address_controller.dart';
+import '../controllers/register/register_controller.dart';
+import '../pages/register/register_page.dart';
+import 'login_module.dart';
 
 class RegisterModule extends Module {
   @override

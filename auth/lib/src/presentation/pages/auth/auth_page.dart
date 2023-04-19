@@ -3,7 +3,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../auth.dart';
-import '../../controllers/auth/auth_controller.dart';
+import '../../controllers/auth_controller.dart';
 import 'widgets/auth_logo.dart';
 
 class AuthPage extends StatefulWidget {

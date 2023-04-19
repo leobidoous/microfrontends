@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
-import '../../../domain/failures/login_failure.dart';
-import '../../../domain/usecases/i_auth_usecase.dart';
-import '../../../domain/usecases/i_login_usecase.dart';
-import '../../../domain/usecases/i_user_usecase.dart';
-import '../auth/auth_controller.dart';
-import '../timer_controller.dart';
+import '../../domain/failures/login_failure.dart';
+import '../../domain/usecases/i_auth_usecase.dart';
+import '../../domain/usecases/i_login_usecase.dart';
+import '../../domain/usecases/i_user_usecase.dart';
+import 'auth_controller.dart';
+import 'timer_controller.dart';
 
 class LoginController extends GenController<ILoginFailure, bool> {
   LoginController({

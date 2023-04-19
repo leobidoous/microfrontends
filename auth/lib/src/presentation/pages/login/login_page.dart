@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../auth.dart';
 import '../../../domain/failures/login_failure.dart';
-import '../../controllers/login/login_controller.dart';
+import '../../controllers/login_controller.dart';
 import 'widgets/phone_form_view.dart';
 import 'widgets/pin_code_form_view.dart';
 
