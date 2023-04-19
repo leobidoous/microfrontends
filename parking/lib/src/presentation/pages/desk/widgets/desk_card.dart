@@ -2,6 +2,7 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/constants/custom_assets.dart';
 import '../../../../../l10n/translations.dart';
 import '../../../../domain/entities/dashboard/coupon_entity.dart';
 import '../../../../domain/enums/desk_cart_status_enum.dart';
@@ -73,7 +74,7 @@ class _DeskCardState extends State<DeskCard> {
         Row(
           children: [
             SvgPicture.asset(
-              'assets/images/wallet/gen_desk_card_car.svg',
+              CustomAssets.genDeskCard,
               width: const Spacing(5).value.responsiveWidth,
               height: const Spacing(5).value.responsiveHeight,
               color: textStyle?.color,

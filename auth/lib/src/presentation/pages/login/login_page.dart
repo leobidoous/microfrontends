@@ -1,9 +1,9 @@
-import 'package:auth/auth.dart';
 import 'package:base_style_sheet/base_style_sheet.dart';
-import 'package:core/core.dart' hide ServerError, UnknowError;
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../../../domain/failures/login/login_failure.dart';
+import '../../../../auth.dart';
+import '../../../domain/failures/login_failure.dart';
 import '../../controllers/login/login_controller.dart';
 import 'widgets/phone_form_view.dart';
 import 'widgets/pin_code_form_view.dart';
@@ -34,10 +34,10 @@ class _LoginPagePageState extends State<LoginPage> {
     super.dispose();
   }
 
-  Future<void> onRequestCode(String phone) async {
+  Future<void> onRequestPhoneCode(String phone) async {
     FocusScope.of(context).requestFocus(FocusNode());
     controller.phoneNumber = phone;
-    await controller.onRequestCode(phone: phone).then((value) async {
+    await controller.onRequestPhoneCode(phone: phone).then((value) async {
       if (controller.hasError) {
         await _showDialogError(controller.error);
         return;
@@ -50,10 +50,10 @@ class _LoginPagePageState extends State<LoginPage> {
     });
   }
 
-  Future<void> onValidateCode(String phone, String code) async {
+  Future<void> onValidatePhoneCode(String phone, String code) async {
     FocusScope.of(context).requestFocus(FocusNode());
     await controller
-        .onValidateCode(phone: phone, code: code)
+        .onValidatePhoneCode(phone: phone, code: code)
         .then((value) async {
       if (controller.hasError) {
         await _showDialogError(controller.error);
@@ -125,12 +125,12 @@ class _LoginPagePageState extends State<LoginPage> {
           children: [
             PhoneFormView(
               textController: phoneController,
-              onConfirm: onRequestCode,
+              onConfirm: onRequestPhoneCode,
             ),
             PinCodeFormView(
               textController: codeController,
-              onRequestCode: onRequestCode,
-              onConfirm: onValidateCode,
+              onRequestPhoneCode: onRequestPhoneCode,
+              onConfirm: onValidatePhoneCode,
             ),
           ],
         ),

@@ -1,4 +1,3 @@
-import 'package:auth/src/presentation/pages/register/widgets/register_terms_view.dart';
 import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +8,7 @@ import 'widgets/register_cpf_view.dart.dart';
 import 'widgets/register_email_view.dart';
 import 'widgets/register_full_name_view.dart.dart';
 import 'widgets/register_phone_view.dart';
+import 'widgets/register_terms_view.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({
@@ -44,6 +44,14 @@ class _RegisterPageState extends State<RegisterPage> {
     });
   }
 
+  void onNextPage() {
+    pageController.animateToPage(
+      pageIndex + 1,
+      curve: Curves.decelerate,
+      duration: const Duration(milliseconds: 250),
+    );
+  }
+
   @override
   void dispose() {
     pageController.dispose();
@@ -63,13 +71,32 @@ class _RegisterPageState extends State<RegisterPage> {
             setState(() => pageIndex = index);
           },
           controller: pageController,
+          physics: const NeverScrollableScrollPhysics(),
           children: [
-            const RegisterFullNameView(),
-            const RegisterCpfView(),
-            const RegisterPhoneView(),
-            const RegisterEmailView(),
+            RegisterFullNameView(
+              onConfirm: (fullName) {
+                onNextPage();
+              },
+            ),
+            RegisterCpfView(
+              onConfirm: (fullName) {
+                onNextPage();
+              },
+            ),
+            RegisterPhoneView(
+              onConfirm: (fullName) {
+                onNextPage();
+              },
+            ),
+            RegisterEmailView(
+              onConfirm: (fullName) {
+                onNextPage();
+              },
+            ),
             RegisterAddressView(
-              onConfirm: (address) {},
+              onConfirm: (address) {
+                onNextPage();
+              },
             ),
             RegisterTermsView(scrollController: scrollController),
           ],

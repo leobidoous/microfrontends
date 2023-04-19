@@ -1,8 +1,8 @@
 import 'package:core/core.dart';
-import 'package:wallet/wallet.dart';
+import 'package:wallet/wallet.dart' show SelectPaymentMethodModule;
 
-import '../controllers/pay_controller.dart';
-import '../pages/pay_page.dart';
+import '../controllers/scan_qr_code_controller.dart';
+import '../pages/scan_qr_code_page.dart';
 import '../pay_routes.dart';
 import 'phone_recharge_module.dart';
 
@@ -13,8 +13,9 @@ class PayModule extends Module {
     ...SelectPaymentMethodModule.exportedBinds,
 
     /// Controllers
-    Bind.factory<PayController>(
-      (i) => PayController(session: i.get<SessionEntity>()),
+    Bind.factory<CodeScanController>((i) => CodeScanController()),
+    Bind.factory<ScanQrCodeController>(
+      (i) => ScanQrCodeController(scanController: i.get<CodeScanController>()),
     ),
   ];
 
@@ -22,7 +23,8 @@ class PayModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute(
       Modular.initialRoute,
-      child: (_, args) => const PayPage(),
+      transition: TransitionType.downToUp,
+      child: (_, args) => const ScanQrCodePage(),
     ),
     ModuleRoute(PayRoutes.phoneRecharge.path, module: PhoneRechargeModule()),
   ];

@@ -1,5 +1,5 @@
 import 'package:base_style_sheet/base_style_sheet.dart';
-import 'package:core/core.dart' hide UnknowError, ServerError;
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../l10n/translations.dart';

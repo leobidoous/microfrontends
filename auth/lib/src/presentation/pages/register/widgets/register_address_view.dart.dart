@@ -1,6 +1,7 @@
 import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../controllers/register/register_address_controller.dart';
 import '../../login/widgets/form_header.dart';
@@ -32,6 +33,7 @@ class _RegisterAddressViewState extends State<RegisterAddressView> {
   final cityFocus = FocusNode();
   final ufController = TextEditingController();
   final ufFocus = FocusNode();
+  bool addressIsValid = false;
 
   @override
   void initState() {
@@ -73,6 +75,20 @@ class _RegisterAddressViewState extends State<RegisterAddressView> {
     widget.onConfirm(address);
   }
 
+  bool validateAddress(String? input) {
+    setState(() {
+      addressIsValid =
+          FormValidators.zipCode(postalCodeController.text) == null &&
+              FormValidators.emptyField(postalCodeController.text) == null &&
+              FormValidators.emptyField(streetController.text) == null &&
+              FormValidators.emptyField(districtController.text) == null &&
+              FormValidators.emptyField(cityController.text) == null &&
+              FormValidators.emptyField(numberController.text) == null &&
+              FormValidators.emptyField(ufController.text) == null;
+    });
+    return addressIsValid;
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollContent(
@@ -84,16 +100,16 @@ class _RegisterAddressViewState extends State<RegisterAddressView> {
           Spacing.sm.vertical,
           Text(
             'Com ele, a gente já adianta e deixa o seu cadastro completo!',
-            textScaleFactor: 1.0,
-            style: GoogleFonts.poppins(
-              fontSize: 14.0,
-              fontWeight: FontWeight.w300,
-            ),
+            style: context.textTheme.bodyMedium,
           ),
           Spacing.sm.vertical,
           _addressForm,
           Spacing.sm.vertical,
-          CustomButton.text(text: 'Avançar'),
+          CustomButton.text(
+            text: 'Avançar',
+            isEnabled: addressIsValid,
+            onPressed: () => widget.onConfirm(address),
+          ),
         ],
       ),
     );
@@ -115,6 +131,7 @@ class _RegisterAddressViewState extends State<RegisterAddressView> {
                 focusNode: postalCodeFocus,
                 hintText: '000.000-00',
                 inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
                   FormMasks.zipCode(),
                 ],
                 suffixIcon: controller.isLoading
@@ -140,8 +157,12 @@ class _RegisterAddressViewState extends State<RegisterAddressView> {
                     RegExp(r'[^0-9]'),
                     '',
                   );
+                  validateAddress(input);
                 },
-                validators: const [FormValidators.emptyField],
+                validators: const [
+                  FormValidators.emptyField,
+                  FormValidators.zipCode
+                ],
                 onFieldSubmitted: (postalCode) {
                   searchPostalCode();
                 },
@@ -163,6 +184,7 @@ class _RegisterAddressViewState extends State<RegisterAddressView> {
                           onChanged: (input) {
                             if (input == null) return;
                             address.line1 = input;
+                            validateAddress(input);
                           },
                           controller: streetController,
                           focusNode: streetFocus,
@@ -187,6 +209,7 @@ class _RegisterAddressViewState extends State<RegisterAddressView> {
                           onChanged: (input) {
                             if (input == null) return;
                             address.line2 = input;
+                            validateAddress(input);
                           },
                           focusNode: numberFocus,
                           controller: numberController,
@@ -221,6 +244,7 @@ class _RegisterAddressViewState extends State<RegisterAddressView> {
                           onChanged: (input) {
                             if (input == null) return;
                             address.neighborhood = input;
+                            validateAddress(input);
                           },
                           onFieldSubmitted: (input) {
                             FocusScope.of(context).requestFocus(
@@ -246,6 +270,7 @@ class _RegisterAddressViewState extends State<RegisterAddressView> {
                           onChanged: (input) {
                             if (input == null) return;
                             address.line3 = input;
+                            validateAddress(input);
                           },
                           onFieldSubmitted: (input) {
                             FocusScope.of(context).requestFocus(cityFocus);
@@ -273,6 +298,11 @@ class _RegisterAddressViewState extends State<RegisterAddressView> {
                           hintText: 'Nome da cidade',
                           validators: const [FormValidators.emptyField],
                           controller: cityController,
+                          onChanged: (input) {
+                            if (input == null) return;
+                            address.city = input;
+                            validateAddress(input);
+                          },
                           onFieldSubmitted: (input) {
                             FocusScope.of(context).requestFocus(ufFocus);
                           },
@@ -294,6 +324,11 @@ class _RegisterAddressViewState extends State<RegisterAddressView> {
                           hintText: 'UF',
                           focusNode: ufFocus,
                           controller: ufController,
+                          onChanged: (input) {
+                            if (input == null) return;
+                            address.state = input;
+                            validateAddress(input);
+                          },
                           onFieldSubmitted: (input) {
                             onConfirm();
                           },

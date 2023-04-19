@@ -1,4 +1,3 @@
-
 import 'package:core/core.dart';
 
 abstract class ILoginFailure extends IGenFailure {}

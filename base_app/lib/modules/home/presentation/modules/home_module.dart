@@ -90,15 +90,18 @@ class HomeModule extends Module {
           transition: TransitionType.fadeIn,
           module: WalletModule(),
         ),
+        ModuleRoute(
+          PayRoutes(parent: HomeRoutes.start).initial.path,
+          transition: TransitionType.fadeIn,
+          module: PayModule(),
+        ),
         ModuleRoute(ProfileRoutes.root.path, module: ProfileModule()),
       ],
     ),
     ModuleRoute(
       ParkingRoutes(parent: HomeRoutes.root).initial.path,
       module: ParkingModule(
-        walletPath: HomeRoutes.start.concate<WalletRoutes>(
-          [WalletRoutes.root],
-        ),
+        walletPath: HomeRoutes.start.concate<WalletRoutes>(WalletRoutes.root),
       ),
     ),
     ModuleRoute(PayRoutes.root.path, module: PayModule()),

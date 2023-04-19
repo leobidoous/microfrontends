@@ -1,4 +1,4 @@
-import 'package:core/core.dart' hide UnknowError;
+import 'package:core/core.dart';
 import 'package:wallet/wallet.dart';
 
 import '../../../domain/entities/dashboard/coupon_entity.dart';

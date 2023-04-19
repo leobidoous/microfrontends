@@ -1,16 +1,36 @@
-import 'package:auth/src/presentation/pages/login/widgets/form_header.dart';
 import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
+import '../../login/widgets/form_header.dart';
+
 class RegisterFullNameView extends StatefulWidget {
-  const RegisterFullNameView({super.key});
+  const RegisterFullNameView({super.key, required this.onConfirm});
+
+  final Function(String) onConfirm;
 
   @override
   State<RegisterFullNameView> createState() => _RegisterFullNameViewState();
 }
 
 class _RegisterFullNameViewState extends State<RegisterFullNameView> {
+  final textController = TextEditingController();
+  bool fullNameIsValid = false;
+
+  bool validateFullName(String? input) {
+    setState(() {
+      fullNameIsValid = FormValidators.invalidFullName(input) == null &&
+          FormValidators.emptyField(input) == null;
+    });
+    return fullNameIsValid;
+  }
+
+  @override
+  void dispose() {
+    textController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollContent(
@@ -20,27 +40,31 @@ class _RegisterFullNameViewState extends State<RegisterFullNameView> {
         children: [
           const FormHeader(
             text:
-                'Olá, seja bem-vindo(a)! \nPara começar, digite seu nome completo:',
+                '''Olá, seja bem-vindo(a)! \nPara começar, digite seu nome completo:''',
           ),
           Spacing.sm.vertical,
           Text(
             'Digite seu nome sem abreviações, igual ao seu documento.',
-            textScaleFactor: 1.0,
-            style: GoogleFonts.poppins(
-              fontSize: 14.0,
-              fontWeight: FontWeight.w300,
-            ),
+            style: context.textTheme.bodyMedium,
           ),
           Spacing.sm.vertical,
-          const CustomInputField(
+          CustomInputField(
             hintText: 'Ex: Leonardo Dias',
+            controller: textController,
             keyboardType: TextInputType.name,
-            labelWidget: InputLabel(
-              label: 'Digite seu nome completo',
-            ),
+            validators: const [
+              FormValidators.emptyField,
+              FormValidators.invalidFullName,
+            ],
+            onChanged: validateFullName,
+            labelWidget: const InputLabel(label: 'Digite seu nome completo'),
           ),
           Spacing.sm.vertical,
-          CustomButton.text(text: 'Avançar'),
+          CustomButton.text(
+            text: 'Avançar',
+            isEnabled: fullNameIsValid,
+            onPressed: () => widget.onConfirm(textController.text),
+          ),
         ],
       ),
     );

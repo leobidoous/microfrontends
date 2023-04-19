@@ -134,12 +134,7 @@ class CouponCard extends StatelessWidget {
                               text: Tr.of(context).seeCoupons,
                               onTap: () {
                                 Nav.to.pushNamed(
-                                  ParkingRoutes.root.concate(
-                                    [
-                                      CouponRoutes.root,
-                                      CouponRoutes.couponsList
-                                    ],
-                                  ).prevPath(),
+                                  CouponRoutes.couponsList,
                                   arguments: coupon.canGetFreeParking,
                                 );
                               },

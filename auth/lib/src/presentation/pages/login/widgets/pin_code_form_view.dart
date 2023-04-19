@@ -9,12 +9,12 @@ class PinCodeFormView extends StatefulWidget {
   const PinCodeFormView({
     super.key,
     required this.onConfirm,
-    required this.onRequestCode,
+    required this.onRequestPhoneCode,
     required this.textController,
   });
 
   final Future Function(String phone, String code) onConfirm;
-  final Function(String phone) onRequestCode;
+  final Function(String phone) onRequestPhoneCode;
   final TextEditingController textController;
 
   @override
@@ -41,7 +41,7 @@ class _PinCodeFormViewState extends State<PinCodeFormView> {
     super.dispose();
   }
 
-  Future<void> _onValidateCode(String code) async {
+  Future<void> _onValidatePhoneCode(String code) async {
     controller.clearError();
     formKey.currentState?.validate();
     await widget.onConfirm(phoneNumber, code).then((value) {
@@ -79,7 +79,7 @@ class _PinCodeFormViewState extends State<PinCodeFormView> {
                   focusNode: pinFocus,
                   onChanged: (input) => controller.validateCode(input ?? ''),
                   controller: widget.textController,
-                  onComplete: _onValidateCode,
+                  onComplete: _onValidatePhoneCode,
                   errorText: controller.error?.message,
                   validator: (input) {
                     String? error;
@@ -131,7 +131,8 @@ class _PinCodeFormViewState extends State<PinCodeFormView> {
                 text: 'Confirmar',
                 isEnabled: controller.codeIsValid,
                 isLoading: controller.isLoading,
-                onPressed: () => _onValidateCode(widget.textController.text),
+                onPressed: () =>
+                    _onValidatePhoneCode(widget.textController.text),
               );
             },
           ),

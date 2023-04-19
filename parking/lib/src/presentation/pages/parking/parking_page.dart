@@ -222,7 +222,7 @@ class _ParkingPageState extends State<ParkingPage> {
     return CustomCard(
       child: ValueListenableBuilder<TicketEntity>(
         valueListenable: controller.ticketController,
-        builder: (_, state, child) {
+        builder: (_, state, __) {
           if (controller.ticketController.isLoading) {
             return SizedBox(
               height: const Spacing(50).value.responsiveHeight,
@@ -230,7 +230,8 @@ class _ParkingPageState extends State<ParkingPage> {
             );
           }
           if (controller.ticketController.error.runtimeType ==
-              NoTicketFoundError) {
+                  NoTicketFoundError ||
+              (state.plate != null && state.ticket != null)) {
             return Padding(
               padding: EdgeInsets.all(const Spacing(1.5).value),
               child: ValueListenableBuilder<CouponEntity>(

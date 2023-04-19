@@ -1,6 +1,6 @@
-import 'package:core/core.dart' hide ServerError, UnknowError;
+import 'package:core/core.dart';
 
-import '../../domain/failures/login/login_failure.dart';
+import '../../domain/failures/login_failure.dart';
 import '../../infra/datasources/i_login_datasource.dart';
 import '../../presentation/graphql/mutations/auth_mutations.dart';
 
@@ -10,7 +10,7 @@ class LoginDatasource extends ILoginDatasource {
   LoginDatasource({required this.graphQlClient});
 
   @override
-  Future<Either<ILoginFailure, Unit>> onRequestCode({
+  Future<Either<ILoginFailure, Unit>> onRequestPhoneCode({
     required String phone,
   }) async {
     final response = await graphQlClient.request(
@@ -47,7 +47,7 @@ class LoginDatasource extends ILoginDatasource {
   }
 
   @override
-  Future<Either<ILoginFailure, TokenEntity>> onValidateCode({
+  Future<Either<ILoginFailure, TokenEntity>> onValidatePhoneCode({
     required String phone,
     required String code,
   }) async {

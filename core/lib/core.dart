@@ -2,6 +2,7 @@ library core;
 
 export 'package:cached_network_image/cached_network_image.dart';
 export 'package:carousel_slider/carousel_slider.dart';
+export 'package:circular_countdown_timer/circular_countdown_timer.dart';
 export 'package:cloud_firestore/cloud_firestore.dart';
 export 'package:connectivity_plus/connectivity_plus.dart';
 export 'package:core/src/core/enums/flavors_enum.dart';
@@ -126,6 +127,7 @@ export 'package:intl/date_symbol_data_local.dart';
 export 'package:intl/intl.dart' hide DateFormat, NumberFormat;
 export 'package:package_info_plus/package_info_plus.dart';
 export 'package:path_provider/path_provider.dart';
+export 'package:percent_indicator/circular_percent_indicator.dart';
 export 'package:photo_view/photo_view.dart';
 export 'package:photo_view/photo_view_gallery.dart';
 export 'package:pinput/pinput.dart';

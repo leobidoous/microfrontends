@@ -40,9 +40,9 @@ class BasePath<T> with EquatableMixin {
     return '$base${!base.endsWith('/') ? path : path.replaceFirst('/', '')}';
   }
 
-  BasePath<S> concate<S>(List<BasePath> childs) {
+  BasePath<S> concate<S>(BasePath child) {
     return BasePath<S>(
-      [this, ...childs.map((e) => e.relativePath)].join().replaceAll('//', '/'),
+      [this, child.relativePath].join().replaceAll('//', '/'),
     );
   }
 

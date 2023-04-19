@@ -19,11 +19,11 @@ class BillingAddressModel extends BillingAddressEntity with EquatableMixin {
   factory BillingAddressModel.fromMap(Map<String, dynamic> map) {
     return BillingAddressModel(
       city: map['city'] ?? '',
-      line2: map['line2'] ?? '',
       postalCode: map['postalCode'] ?? '',
       countryCode: map['countryCode'] ?? '',
       neighborhood: map['neighborhood'] ?? '',
       line1: map['line1'] ?? '',
+      line2: map['line2'] ?? '',
       line3: map['line3'] ?? '',
       state: map['state'] ?? '',
     );
@@ -52,11 +52,11 @@ class BillingAddressModel extends BillingAddressEntity with EquatableMixin {
   Map<String, dynamic> get toMap {
     return {
       'city': city,
-      'line2': line2,
       'postalCode': postalCode,
       'countryCode': countryCode,
       'neighborhood': neighborhood,
       'line1': line1,
+      'line2': line2,
       'line3': line3,
       'state': state,
     };
