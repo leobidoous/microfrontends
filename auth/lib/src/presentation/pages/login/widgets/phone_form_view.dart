@@ -1,8 +1,9 @@
 import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-import '../../../controllers/login/login_controller.dart';
+import '../../../controllers/login_controller.dart';
 import 'form_header.dart';
 
 class PhoneFormView extends StatefulWidget {
@@ -68,7 +69,10 @@ class _PhoneFormViewState extends State<PhoneFormView> {
               onFieldSubmitted: (_) => widget.onConfirm(_),
               onChanged: (_) => controller.validatePhone(_ ?? ''),
               validators: const [FormValidators.emptyField],
-              inputFormatters: [FormMasks.phone()],
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+                FormMasks.phone(),
+              ],
               keyboardType: TextInputType.number,
             ),
             Spacing.xs.vertical,

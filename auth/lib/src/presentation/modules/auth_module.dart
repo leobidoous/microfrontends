@@ -1,16 +1,16 @@
 import 'package:core/core.dart';
 
-import '../../../data/datasources/auth_datasource.dart';
-import '../../../data/datasources/user_datasource.dart';
-import '../../../infra/repositories/auth_repository.dart';
-import '../../../infra/repositories/user_repository.dart';
-import '../../../infra/usecases/auth_usecase.dart';
-import '../../../infra/usecases/user_usecase.dart';
-import '../../auth_routes.dart';
-import '../../controllers/auth/auth_controller.dart';
-import '../../pages/auth/auth_page.dart';
-import '../login/login_module.dart';
-import '../register/register_module.dart';
+import '../../data/datasources/auth_datasource.dart';
+import '../../data/datasources/user_datasource.dart';
+import '../../infra/repositories/auth_repository.dart';
+import '../../infra/repositories/user_repository.dart';
+import '../../infra/usecases/auth_usecase.dart';
+import '../../infra/usecases/user_usecase.dart';
+import '../auth_routes.dart';
+import '../controllers/auth_controller.dart';
+import '../pages/auth/auth_page.dart';
+import 'login_module.dart';
+import 'register_module.dart';
 
 class AuthModule extends Module {
   static late final BasePath _redirectTo;

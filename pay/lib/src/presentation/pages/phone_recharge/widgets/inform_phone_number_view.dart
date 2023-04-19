@@ -1,6 +1,7 @@
 import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../domain/entities/phone_entity.dart';
 import '../../../../domain/enums/operator_type_enum.dart';
@@ -40,7 +41,10 @@ class _InformPhoneNumberViewState extends State<InformPhoneNumberView> {
               Spacing.sm.vertical,
               CustomInputField(
                 hintText: 'DDD + Número',
-                inputFormatters: [FormMasks.phone()],
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  FormMasks.phone(),
+                ],
                 validators: const [FormValidators.emptyField],
               ),
               Spacing.md.vertical,

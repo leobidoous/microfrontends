@@ -11,4 +11,4 @@ export 'package:auth/src/infra/repositories/user_repository.dart';
 export 'package:auth/src/infra/usecases/auth_usecase.dart';
 export 'package:auth/src/infra/usecases/user_usecase.dart';
 export 'package:auth/src/presentation/auth_routes.dart';
-export 'package:auth/src/presentation/modules/auth/auth_module.dart';
+export 'package:auth/src/presentation/modules/auth_module.dart';

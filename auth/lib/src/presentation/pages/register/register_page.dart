@@ -3,6 +3,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../../controllers/register/register_controller.dart';
+import '../widgets/phone_pin_code_view.dart';
 import 'widgets/register_address_view.dart.dart';
 import 'widgets/register_cpf_view.dart.dart';
 import 'widgets/register_email_view.dart';
@@ -71,7 +72,7 @@ class _RegisterPageState extends State<RegisterPage> {
             setState(() => pageIndex = index);
           },
           controller: pageController,
-          physics: const NeverScrollableScrollPhysics(),
+          // physics: const NeverScrollableScrollPhysics(),
           children: [
             RegisterFullNameView(
               onConfirm: (fullName) {
@@ -87,6 +88,13 @@ class _RegisterPageState extends State<RegisterPage> {
               onConfirm: (fullName) {
                 onNextPage();
               },
+            ),
+            PhonePinCodeView(
+              onConfirm: (code) async {
+                await Future.delayed(const Duration(seconds: 1));
+              },
+              phoneNumber: controller.phoneNumber,
+              onRequestPhoneCode: () {},
             ),
             RegisterEmailView(
               onConfirm: (fullName) {
