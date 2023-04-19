@@ -37,7 +37,7 @@ class _DetailsShopPageState extends State<DetailsShopPage> {
   String get shText => 'Conheça a Loja ${widget.store.displayName} no'
       '${widget.store.storeMall.shortName}\n'
       '$address\n'
-      'Contato: ${Formatters.formatPhoneMask(widget.store.callNumber)}';
+      'Contato: ${UtilsFormats.phone(widget.store.callNumber)}';
 
   Uri get wppUrl => Uri.parse(
         'whatsapp://send?phone=+55${widget.store.whatsappNumber}&text=$shText',
@@ -834,7 +834,7 @@ Widget shareableWidget({
                           ),
                           SizedBox(height: const Spacing(2).value),
                           Text(
-                            Formatters.formatPhoneMask(
+                            UtilsFormats.phone(
                               store.callNumber,
                             ),
                             style: contactStyle,
