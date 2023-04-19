@@ -1,6 +1,7 @@
 import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+
 import '../../../../domain/failures/coupon/coupon_failure.dart';
 
 class SearchPlaceErrorView extends StatelessWidget {
@@ -12,7 +13,6 @@ class SearchPlaceErrorView extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(
         automaticallyImplyLeading: false,
-        showDivider: false,
         actions: [
           AppBarButton(
             onTap: () => Nav.to.pop(response: error),

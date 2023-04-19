@@ -10,7 +10,6 @@ class CustomAppBar extends StatefulWidget with PreferredSizeWidget {
     this.backgroundColor,
     this.onBackTap,
     this.toolbarHeight,
-    this.showDivider = true,
     this.centerTitle = true,
     this.automaticallyImplyLeading = true,
   });
@@ -20,7 +19,6 @@ class CustomAppBar extends StatefulWidget with PreferredSizeWidget {
   final List<Widget>? actions;
   final VoidCallback? onBackTap;
   final Color? backgroundColor;
-  final bool showDivider;
   final double? toolbarHeight;
   final bool centerTitle;
   final bool automaticallyImplyLeading;
@@ -35,7 +33,6 @@ class CustomAppBar extends StatefulWidget with PreferredSizeWidget {
   factory CustomAppBar.zero() {
     return const CustomAppBar(
       toolbarHeight: 0,
-      showDivider: false,
       automaticallyImplyLeading: false,
     );
   }
@@ -54,57 +51,45 @@ class _CustomAppBarState extends State<CustomAppBar> {
             centerTitle: widget.centerTitle,
             toolbarHeight: widget.toolbarHeight,
             automaticallyImplyLeading: widget.automaticallyImplyLeading,
-            backgroundColor: widget.backgroundColor ?? Colors.transparent,
+            backgroundColor:
+                widget.backgroundColor ?? context.colorScheme.background,
             title: Text(
               widget.title ?? '',
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: context.textTheme.bodyMedium?.copyWith(
+                fontFamily: GoogleFonts.inter().fontFamily,
                 fontWeight: context.textTheme.fontWeightMedium,
-                color: context.colorScheme.onBackground,
+                color: AppColorsBase.neutrla7,
               ),
             ),
             leading: widget.automaticallyImplyLeading
-                ? Nav.to.canPop()
-                    ? Semantics(
-                        button: true,
-                        child: InkWell(
-                          onTap: widget.onBackTap ?? Nav.to.pop,
-                          borderRadius: AppThemeBase.borderRadiusSM,
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              left: const Spacing(2).value,
-                            ),
-                            child: SizedBox(
-                              height: const Spacing(3).value,
-                              width: const Spacing(3).value,
-                              child: (widget.leadingIcon != null)
-                                  ? widget.leadingIcon
-                                  : Icon(
-                                      Icons.arrow_back_ios,
-                                      color: context.colorScheme.onBackground,
-                                    ),
-                            ),
+                ? Semantics(
+                    button: true,
+                    child: SizedBox(
+                      height: const Spacing(3).value,
+                      width: const Spacing(3).value,
+                      child: InkWell(
+                        onTap: widget.onBackTap ?? Nav.to.pop,
+                        borderRadius: AppThemeBase.borderRadiusSM,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: const Spacing(2).value,
+                            horizontal: const Spacing(4).value,
                           ),
+                          child: (widget.leadingIcon != null)
+                              ? widget.leadingIcon
+                              : Icon(
+                                  CoreIcons.chevronLeft,
+                                  color: AppColorsBase.neutrla7,
+                                ),
                         ),
-                      )
-                    : null
-                : SizedBox(
-                    height: const Spacing(3).value,
-                    width: const Spacing(3).value,
-                    child: widget.leadingIcon,
-                  ),
+                      ),
+                    ),
+                  )
+                : null,
           ),
         ),
-        if (widget.showDivider)
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: const Spacing(3).value),
-            child: Divider(
-              height: 0,
-              color: AppColorsBase.grey3,
-              thickness: context.textTheme.lineHeightRegular,
-            ),
-          )
       ],
     );
   }

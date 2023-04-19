@@ -108,6 +108,7 @@ export 'package:core/src/presentation/controllers/zendesk_controller.dart';
 export 'package:core/src/presentation/extensions/build_context_extensions.dart';
 export 'package:core/src/presentation/extensions/string_extension.dart';
 export 'package:dio/dio.dart';
+export 'package:dropdown_button2/dropdown_button2.dart';
 export 'package:equatable/equatable.dart' show EquatableMixin;
 export 'package:firebase_analytics/firebase_analytics.dart';
 export 'package:firebase_auth/firebase_auth.dart';

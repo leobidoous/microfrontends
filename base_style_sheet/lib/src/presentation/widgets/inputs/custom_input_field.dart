@@ -17,6 +17,7 @@ class CustomInputField extends StatefulWidget {
     this.keyboardType,
     this.controller,
     this.suffixIcon,
+    this.prefixIcon,
     this.validators,
     this.validator,
     this.onChanged,
@@ -47,6 +48,7 @@ class CustomInputField extends StatefulWidget {
   final String? labelText;
   final String? errorText;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
   final String? hintText;
   final String? prefix;
   final String? Function(String?)? validator;
@@ -136,6 +138,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
               suffixIconConstraints: boxConstraints,
               prefixIconConstraints: boxConstraints,
               suffixIcon: widget.suffixIcon,
+              prefixIcon: widget.prefixIcon,
               hintText: widget.hintText,
               labelText: widget.labelText,
               errorText: widget.errorText == '' ? null : widget.errorText,

@@ -53,7 +53,6 @@ class _CouponSuccessfullyRegisteredPageState
     return Scaffold(
       appBar: CustomAppBar(
         automaticallyImplyLeading: false,
-        showDivider: false,
         actions: [
           AppBarButton(
             onTap: Nav.to.pop,

@@ -107,7 +107,6 @@ class _LoginPagePageState extends State<LoginPage> {
         backgroundColor: Colors.white,
         appBar: CustomAppBar(
           title: 'Login',
-          showDivider: false,
           onBackTap: () {
             if (pageController.page?.round() == 0) {
               Nav.to.pop();
