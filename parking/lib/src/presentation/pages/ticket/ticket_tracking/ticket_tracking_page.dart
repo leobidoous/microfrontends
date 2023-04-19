@@ -151,7 +151,8 @@ class _TicketTrackingPageState extends State<TicketTrackingPage> {
                 textCircularIndicator(state),
                 Spacing.sm.vertical,
 
-                ///TODO: DESCOMENTAR QUANDO IMPLEMENTAR INJEÇÃO DO [ShoppingEntity]
+                ///TODO: DESCOMENTAR QUANDO IMPLEMENTAR
+                ///INJEÇÃO DO [ShoppingEntity]
                 // Padding(
                 //   padding: EdgeInsets.symmetric(
                 //     horizontal: const Spacing(2).value,

@@ -49,11 +49,11 @@ class _GenBottomNavBarState extends State<GenBottomNavBar> {
     return InkWell(
       onTap: () {
         switch (item) {
-          case BottomNavBarType.search:
-            Nav.to.pushNamed(item.route);
-            break;
+          // case BottomNavBarType.search:
+          //   Nav.to.pushNamed(item.route);
+          //   break;
           case BottomNavBarType.payment:
-            Nav.to.pushNamed(item.route);
+            Nav.to.pushNamed(item.route, forRoot: true);
             break;
           default:
             Nav.to.navigate(item.route);

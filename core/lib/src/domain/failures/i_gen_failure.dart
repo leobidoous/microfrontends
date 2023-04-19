@@ -4,21 +4,3 @@ abstract class IGenFailure implements Exception {
   final String? detailError;
   final StackTrace? stackTrace;
 }
-
-class UnknowError extends IGenFailure {
-  UnknowError(this.error, {this.detailsMessage});
-  final String error;
-  final String? detailsMessage;
-
-  @override
-  String? get message => error;
-}
-
-class ServerError extends IGenFailure {
-  ServerError(this.error, {this.detailsMessage});
-  final String error;
-  final String? detailsMessage;
-
-  @override
-  String? get message => error;
-}

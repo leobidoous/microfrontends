@@ -178,7 +178,6 @@ class AppModule extends Module {
         },
         redirectTo: DashboardRoutes.root,
       ),
-      guards: [AuthRouterGuard(path: DashboardRoutes.root)],
     ),
     ChildRoute(
       SharedRoutes.comming.completePath,

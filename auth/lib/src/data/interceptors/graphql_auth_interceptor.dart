@@ -89,7 +89,7 @@ class GraphQlAuthInterceptor extends GraphQlInterceptor {
             );
           },
           (session) async {
-            debugPrint('DioAuthInterceptor => REFRESHING TOKEN...');
+            debugPrint('GraphQlAuthInterceptor => REFRESHING TOKEN...');
             final responseToken = await _authUsecase.refreshFirebaseToken(
               refreshToken: session.token.refreshToken,
             );
@@ -157,14 +157,7 @@ class GraphQlAuthInterceptor extends GraphQlInterceptor {
       Nav.to.context!,
       CustomAlert.serverError(Nav.to.context!),
       showClose: true,
-    ).whenComplete(
-      () async {
-        // final response = await _authUsecase.logout();
-        // response.fold((l) => null, (r) {
-        //   Nav.to.navigate(AuthRoutes.root);
-        // });
-      },
-    );
+    ).whenComplete(() => _authUsecase.logout());
   }
 
   Future<Either<GraphQLResponseError, GraphQLResponse>> _getResponse({

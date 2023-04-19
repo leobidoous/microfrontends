@@ -1,7 +1,5 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:credit_card_validator/credit_card_validator.dart';
-
-import 'cnpj_validator.dart';
-import 'cpf_validator.dart';
 
 class FormValidators {
   static String? emptyField(String? input) {
@@ -19,6 +17,14 @@ class FormValidators {
     return null;
   }
 
+  static String? zipCode(String? input) {
+    if (input == null || input.isEmpty) return null;
+    if (input.replaceAll(RegExp(r'[^0-9]'), '').length < 8) {
+      return 'CEP inválido.';
+    }
+    return null;
+  }
+
   static String? invalidDouble(String? input) {
     if (input == null || input.isEmpty) return null;
     if (double.tryParse(input.replaceAll(',', '.')) == null) {
@@ -27,27 +33,37 @@ class FormValidators {
     return null;
   }
 
+  static String? invalidPhone(String? input) {
+    if (input == null || input.isEmpty) return null;
+
+    if (input.length < 14) {
+      return 'Número de telefone inválido.';
+    }
+    return null;
+  }
+
   static String? invalidFullName(String? input) {
-    if (emptyField(input) != null) {
-      return emptyField(input);
-    }
-    if (input!.trim().split(' ').length < 2) {
+    if (input == null || input.isEmpty) return null;
+
+    if (input.trim().split(' ').length < 2) {
       return 'Campo deve conter nome completo.';
-    }
-    if (input.contains(RegExp(r'[0-9]'))) {
+    } else if (input.contains(RegExp(r'[0-9]'))) {
       return 'Campo não deve conter números.';
-    }
-    if (RegExp(r'[$#@!%.*\|/?><,º;:&_ª•¶§∞¢£™πø¥†®œå()+-=]+').hasMatch(input)) {
+    } else if (RegExp(r'[$#@!%.*\|/?><,º;:&_ª•¶§∞¢£™πø¥†®œå()+-=]+')
+        .hasMatch(input)) {
       return 'Nome não pode conter caracteres especiais';
+    } else if (input.trim().split(' ').any((e) => e.length <= 2)) {
+      return 'Campo deve conter nome completo.';
     }
     return null;
   }
 
   static String? invalidEmail(String? input) {
-    if (emptyField(input) != null) {
-      return emptyField(input);
-    }
-    if (!input!.contains('@')) {
+    if (input == null || input.isEmpty) {
+      return null;
+    } else if (!input.contains('@')) {
+      return 'E-mail inválido.';
+    } else if (input.split('@').any((e) => e.length < 3)) {
       return 'E-mail inválido.';
     }
     return null;

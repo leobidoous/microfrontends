@@ -83,6 +83,19 @@ class CustomerModel extends CustomerEntity with EquatableMixin {
     };
   }
 
+  Map<String, dynamic> get toNewCustomerMap {
+    return {
+      'address': BillingAddressModel.fromEntity(address).toMap,
+      'cpf': cpf,
+      'email': email,
+      'name': name,
+      'phone': phone,
+      'emailVerifiedAt': emailVerifiedAt,
+      'termAcceptedAt': termAcceptedAt,
+      'termVersion': '1.0.1',
+    };
+  }
+
   @override
   List<Object?> get props => [
         address,

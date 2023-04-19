@@ -25,9 +25,8 @@ class CustomCheckboxTile extends StatelessWidget {
       checkboxShape: RoundedRectangleBorder(
         borderRadius: context.theme.borderRadiusXSM,
       ),
-      checkColor: context.colorScheme.primary,
-      activeColor: context.colorScheme.secondary,
-      selectedTileColor: context.colorScheme.primary,
+      checkColor: context.colorScheme.background,
+      activeColor: context.colorScheme.primary,
       visualDensity: VisualDensity.compact,
       controlAffinity: ListTileControlAffinity.leading,
     );

@@ -5,13 +5,32 @@ import 'package:flutter/material.dart';
 import '../../login/widgets/form_header.dart';
 
 class RegisterEmailView extends StatefulWidget {
-  const RegisterEmailView({super.key});
+  const RegisterEmailView({super.key, required this.onConfirm});
+
+  final Function(String) onConfirm;
 
   @override
   State<RegisterEmailView> createState() => _RegisterEmailViewState();
 }
 
 class _RegisterEmailViewState extends State<RegisterEmailView> {
+  final textController = TextEditingController();
+  bool emailIsValid = false;
+
+  bool validateEmail(String? input) {
+    setState(() {
+      emailIsValid = FormValidators.invalidEmail(input) == null &&
+          FormValidators.emptyField(input) == null;
+    });
+    return emailIsValid;
+  }
+
+  @override
+  void dispose() {
+    textController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollContent(
@@ -22,21 +41,27 @@ class _RegisterEmailViewState extends State<RegisterEmailView> {
           const FormHeader(text: 'Agora, informe seu e-mail'),
           Spacing.sm.vertical,
           Text(
-            'Você irá receber um código de validação para autenticação do e-mail.',
-            textScaleFactor: 1.0,
-            style: GoogleFonts.poppins(
-              fontSize: 14.0,
-              fontWeight: FontWeight.w300,
-            ),
+            '''Você irá receber um código de validação para autenticação do e-mail.''',
+            style: context.textTheme.bodyMedium,
           ),
           Spacing.sm.vertical,
-          const CustomInputField(
+          CustomInputField(
             hintText: 'Ex: email@exemplo.com.br',
+            controller: textController,
             keyboardType: TextInputType.name,
-            labelWidget: InputLabel(label: 'Insira seu e-mail'),
+            validators: const [
+              FormValidators.emptyField,
+              FormValidators.invalidEmail,
+            ],
+            onChanged: validateEmail,
+            labelWidget: const InputLabel(label: 'Insira seu e-mail'),
           ),
           Spacing.sm.vertical,
-          CustomButton.text(text: 'Avançar'),
+          CustomButton.text(
+            text: 'Avançar',
+            isEnabled: emailIsValid,
+            onPressed: () => widget.onConfirm(textController.text),
+          ),
         ],
       ),
     );

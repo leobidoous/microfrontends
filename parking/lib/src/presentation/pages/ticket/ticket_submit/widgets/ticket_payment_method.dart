@@ -177,8 +177,8 @@ class _TicketPaymentMethodState extends State<TicketPaymentMethod> {
             onTap: () {
               Nav.to.pushNamed(
                 DM.i.get<BasePath<WalletRoutes>>().concate(
-                  [WalletRoutes.selectPaymentMethod],
-                ),
+                      WalletRoutes.selectPaymentMethod,
+                    ),
                 arguments: (credCard) {
                   widget.paymentMethodController.onChangeCard(credCard);
                   Nav.to.pop();

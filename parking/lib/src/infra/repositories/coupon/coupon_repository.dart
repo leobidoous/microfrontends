@@ -1,4 +1,4 @@
-import 'package:core/core.dart' hide UnknowError;
+import 'package:core/core.dart';
 import 'package:wallet/wallet.dart';
 
 import '../../../domain/enums/desk_cart_status_enum.dart';

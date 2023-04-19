@@ -1,12 +1,10 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/services.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class FormMasks {
   static TextInputFormatter cpf() {
-    return MaskTextInputFormatter(
-      mask: '###.###.###-##',
-      filter: {'#': RegExp(r'\d')},
-    );
+    return CpfInputFormatter();
   }
 
   static TextInputFormatter cnpj() {
@@ -17,10 +15,7 @@ class FormMasks {
   }
 
   static TextInputFormatter phone() {
-    return MaskTextInputFormatter(
-      mask: '(##) # ####-####',
-      filter: {'#': RegExp(r'\d')},
-    );
+    return TelefoneInputFormatter();
   }
 
   static TextInputFormatter date() {
@@ -38,10 +33,7 @@ class FormMasks {
   }
 
   static TextInputFormatter zipCode() {
-    return MaskTextInputFormatter(
-      mask: '##.###-###',
-      filter: {'#': RegExp(r'\d')},
-    );
+    return CepInputFormatter();
   }
 
   static TextInputFormatter cvc() {

@@ -1,4 +1,4 @@
-import 'package:core/core.dart' hide UnknowError, ServerError;
+import 'package:core/core.dart';
 
 import '../../../domain/entities/dashboard/coupon_entity.dart';
 import '../../../domain/entities/dashboard/ticket_entity.dart';

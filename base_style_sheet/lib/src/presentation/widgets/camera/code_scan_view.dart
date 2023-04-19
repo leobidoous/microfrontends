@@ -128,7 +128,7 @@ class _CodeScanViewState extends State<CodeScanView> {
                   child: Padding(
                     padding: EdgeInsets.all(const Spacing(2).value),
                     child: Text(
-                      'Aponte sua câmera para o QR Code do cupom fiscal',
+                      'Aponte sua câmera para \no QR Code',
                       textAlign: TextAlign.center,
                       style: context.textTheme.titleLarge?.copyWith(
                         fontWeight: context.textTheme.fontWeightLight,
@@ -186,7 +186,7 @@ class _CodeScanViewState extends State<CodeScanView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              '''Aponte a sua câmera para o código de \nbarras do tíquete do estacionamento''',
+              '''Aponte a sua câmera para \no código de barras''',
               textAlign: TextAlign.center,
               style: context.textTheme.titleLarge?.copyWith(
                 fontWeight: context.textTheme.fontWeightLight,

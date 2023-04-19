@@ -79,13 +79,7 @@ class ParkingAmountInfoPage extends StatelessWidget {
               Spacing.sm.vertical,
               CustomButton.text(
                 onPressed: () {
-                  Nav.to.pushNamed(
-                    ParkingRoutes.root.concate([
-                      CouponRoutes.root,
-                      CouponRoutes.couponsList,
-                    ]),
-                    arguments: false,
-                  );
+                  Nav.to.pushNamed(CouponRoutes.couponsList, arguments: false);
                 },
                 text: 'Ver cupons fiscais',
                 type: ButtonType.background,

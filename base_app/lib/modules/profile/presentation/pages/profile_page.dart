@@ -34,7 +34,7 @@ class _ProfilePageState extends State<ProfilePage> {
           assetIcon: '',
           onTap: () {
             Nav.to.pushNamed(
-              HomeRoutes.start.concate([WalletRoutes.root]),
+              HomeRoutes.start.concate(WalletRoutes.root),
               forRoot: true,
             );
           },

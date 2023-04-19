@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:core/core.dart' hide ServerError, UnknowError;
-import '../../../domain/failures/login/login_failure.dart';
+import 'package:core/core.dart';
+import '../../../domain/failures/login_failure.dart';
 import '../../../domain/usecases/i_auth_usecase.dart';
 import '../../../domain/usecases/i_login_usecase.dart';
 import '../../../domain/usecases/i_user_usecase.dart';
@@ -24,10 +24,10 @@ class LoginController extends GenController<ILoginFailure, bool> {
   final AuthController authController;
   final TimerController timerController;
 
-  Future<void> onRequestCode({required String phone}) async {
+  Future<void> onRequestPhoneCode({required String phone}) async {
     timerController.startTimer();
     await execute(
-      () => loginUsecase.onRequestCode(phone: phone).then((value) {
+      () => loginUsecase.onRequestPhoneCode(phone: phone).then((value) {
         return value.fold((l) => Left(l), (r) => Right(false));
       }),
     );
@@ -35,15 +35,17 @@ class LoginController extends GenController<ILoginFailure, bool> {
 
   Future<void> onResendCode() async {
     timerController.startTimer();
-    loginUsecase.onRequestCode(phone: phoneNumber);
+    loginUsecase.onRequestPhoneCode(phone: phoneNumber);
   }
 
-  Future<void> onValidateCode({
+  Future<void> onValidatePhoneCode({
     required String code,
     required String phone,
   }) async {
     await execute(
-      () => loginUsecase.onValidateCode(phone: phone, code: code).then((value) {
+      () => loginUsecase
+          .onValidatePhoneCode(phone: phone, code: code)
+          .then((value) {
         return value.fold((l) => Left(l), (token) async {
           authController.token = token;
           final response = await authUsecase.firebaseSignIn(

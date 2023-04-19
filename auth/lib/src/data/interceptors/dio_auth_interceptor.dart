@@ -91,14 +91,7 @@ class DioAuthInterceptor extends QueuedInterceptor {
       Nav.to.context!,
       CustomAlert.serverError(Nav.to.context!),
       showClose: true,
-    ).whenComplete(
-      () async {
-        final response = await authUsecase.logout();
-        response.fold((l) => null, (r) {
-          Nav.to.navigate(AuthRoutes.root);
-        });
-      },
-    );
+    ).whenComplete(() => authUsecase.logout());
   }
 
   Future<Either<DioError, Response>> _getResponse(
