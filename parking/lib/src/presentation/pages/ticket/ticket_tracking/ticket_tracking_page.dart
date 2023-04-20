@@ -57,7 +57,6 @@ class _TicketTrackingPageState extends State<TicketTrackingPage> {
     return Scaffold(
       appBar: CustomAppBar(
         title: Tr.of(context).ticketTitle,
-        showDivider: false,
         onBackTap: Nav.to.pop,
         actions: [
           AppBarButton(

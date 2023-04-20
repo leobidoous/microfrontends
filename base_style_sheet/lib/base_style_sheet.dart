@@ -17,6 +17,7 @@ export 'package:base_style_sheet/src/presentation/widgets/custom_app_bar.dart';
 export 'package:base_style_sheet/src/presentation/widgets/custom_bottom_sheet.dart';
 export 'package:base_style_sheet/src/presentation/widgets/custom_checkbox_tile.dart';
 export 'package:base_style_sheet/src/presentation/widgets/custom_dialog.dart';
+export 'package:base_style_sheet/src/presentation/widgets/custom_dropdown.dart';
 export 'package:base_style_sheet/src/presentation/widgets/custom_expansion.dart';
 export 'package:base_style_sheet/src/presentation/widgets/custom_loading.dart';
 export 'package:base_style_sheet/src/presentation/widgets/custom_radio_tile.dart';

@@ -39,7 +39,6 @@ class _VehiclesPageState extends State<VehiclesPage> {
       backgroundColor: context.colorScheme.background,
       appBar: CustomAppBar(
         title: Tr.of(context).titleVehicle,
-        showDivider: false,
         onBackTap: Nav.to.pop,
       ),
       body: ValueListenableBuilder<List<VehicleModel>>(

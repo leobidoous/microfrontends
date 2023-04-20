@@ -117,7 +117,6 @@ class _TakePicturePageState extends State<TakePicturePage> {
             child: LocalTheme.dark(
               builder: (context) {
                 return CustomAppBar(
-                  showDivider: false,
                   backgroundColor:
                       context.colorScheme.background.withOpacity(.5),
                   toolbarHeight: context.theme.appBarTheme.appBarHeight,

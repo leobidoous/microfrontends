@@ -37,7 +37,6 @@ class _EnterPlateNumberPageState extends State<EnterPlateNumberPage> {
     return Scaffold(
       appBar: CustomAppBar(
         title: 'Estacionamento',
-        showDivider: false,
         actions: [
           AppBarButton(
             onTap: DM.i.get<ZendeskController>().openChat,

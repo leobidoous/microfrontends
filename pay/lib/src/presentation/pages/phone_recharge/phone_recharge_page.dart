@@ -29,7 +29,6 @@ class _PhoneRechargePageState extends State<PhoneRechargePage> {
     return Scaffold(
       appBar: const CustomAppBar(
         title: 'Recarga de celular',
-        showDivider: false,
       ),
       body: SafeArea(
         child: Column(

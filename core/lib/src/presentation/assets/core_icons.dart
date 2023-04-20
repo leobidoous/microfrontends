@@ -288,4 +288,16 @@ class CoreIcons {
       IconData(0xe8b7, fontFamily: _fontFamily, fontPackage: _fontPackage);
   static const wallet =
       IconData(0xe8b8, fontFamily: _fontFamily, fontPackage: _fontPackage);
+  static const chevronRight =
+      IconData(0xe831, fontFamily: _fontFamily, fontPackage: _fontPackage);
+  static const chevronUp =
+      IconData(0xe832, fontFamily: _fontFamily, fontPackage: _fontPackage);
+  static const chevronDown =
+      IconData(0xe812, fontFamily: _fontFamily, fontPackage: _fontPackage);
+  static const chevronLeft =
+      IconData(0xe813, fontFamily: _fontFamily, fontPackage: _fontPackage);
+  static const filter =
+      IconData(0xe83d, fontFamily: _fontFamily, fontPackage: _fontPackage);
+  static const xmark =
+      IconData(0xe83e, fontFamily: _fontFamily, fontPackage: _fontPackage);
 }

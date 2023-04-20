@@ -150,7 +150,6 @@ class _ScanCouponPageState extends State<ScanCouponPage> {
                 left: 0,
                 right: 0,
                 child: CustomAppBar(
-                  showDivider: false,
                   automaticallyImplyLeading: false,
                   toolbarHeight: context.theme.appBarTheme.appBarHeight,
                   backgroundColor: Colors.transparent,
