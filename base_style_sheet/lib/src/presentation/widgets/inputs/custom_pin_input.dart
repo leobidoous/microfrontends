@@ -121,6 +121,7 @@ class _CustomPinFieldState extends State<CustomPinField> {
           ],
           Pinput(
             length: 6,
+            forceErrorState: widget.errorText != null,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             focusNode: widget.focusNode,
             controller: widget.controller,

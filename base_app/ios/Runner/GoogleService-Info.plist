@@ -2,20 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CLIENT_ID</key>
+	<string>1065194326637-8ato40ikj46hi43vhiu6f6cvh7cseieb.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1065194326637-8ato40ikj46hi43vhiu6f6cvh7cseieb</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>442408618435-05hmv877lj7aqle87iia02op4bdbka90.apps.googleusercontent.com</string>
+	<string>1065194326637-0ajsmgc45kfr2sn6lpeni9ned4f67c46.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyA2695yVKjL8LedSOTwrvukZ9xVjXG7_yk</string>
+	<string>AIzaSyDixbgUBDExzH3yfSjHp0SEl7eQVJltkG8</string>
 	<key>GCM_SENDER_ID</key>
-	<string>442408618435</string>
+	<string>1065194326637</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>br.com.gen.dev</string>
+	<string>br.com.gen</string>
 	<key>PROJECT_ID</key>
-	<string>neru-teste</string>
+	<string>genpag-app</string>
 	<key>STORAGE_BUCKET</key>
-	<string>neru-teste.appspot.com</string>
+	<string>genpag-app.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -27,8 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:442408618435:ios:ed062355a693fca243d576</string>
-	<key>DATABASE_URL</key>
-	<string>https://neru-teste.firebaseio.com</string>
+	<string>1:1065194326637:ios:8f5629d7cdc69e32e80d64</string>
 </dict>
 </plist>

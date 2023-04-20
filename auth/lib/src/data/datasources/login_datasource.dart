@@ -36,11 +36,17 @@ class LoginDatasource extends ILoginDatasource {
         )) {
           return Left(
             AccountNotExist(
-              '''Não identificamos o número informado, crie sua conta para realizar login no aplicativo''',
+              '''Não achamos uma conta associada o numero +55$phone''',
+              detailsMessage: errors.map((e) => e.message).join('\n'),
             ),
           );
         }
-        return Left(UnknowError(l.message));
+        return Left(
+          UnknowError(
+            'Erro na solicitação do código',
+            detailsMessage: errors.map((e) => e.message).join('\n'),
+          ),
+        );
       },
       (r) => Right(unit),
     );
@@ -74,10 +80,18 @@ class LoginDatasource extends ILoginDatasource {
           (err) => err.message.contains('Código de verificação inválido'),
         )) {
           return Left(
-            InvalidCodeError('Código de verificação inválido'),
+            InvalidCodeError(
+              'Erro na verificação do código',
+              detailsMessage: errors.map((e) => e.message).join('\n'),
+            ),
           );
         }
-        return Left(UnknowError(l.message));
+        return Left(
+          UnknowError(
+            l.message,
+            detailsMessage: errors.map((e) => e.message).join('\n'),
+          ),
+        );
       },
       (r) {
         try {
@@ -85,7 +99,12 @@ class LoginDatasource extends ILoginDatasource {
             TokenModel.fromMap(r.data['validateVerificationCodeFirebase']),
           );
         } catch (e) {
-          return Left(UnknowError(e.toString()));
+          return Left(
+            UnknowError(
+              'Erro na verificação do código',
+              detailsMessage: e.toString(),
+            ),
+          );
         }
       },
     );

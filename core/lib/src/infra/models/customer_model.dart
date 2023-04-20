@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 
+import '../../domain/entities/billing_address_entity.dart';
 import '../../domain/entities/customer_entity.dart';
 import 'billing_address_model.dart';
 
@@ -61,6 +62,38 @@ class CustomerModel extends CustomerEntity with EquatableMixin {
   factory CustomerModel.fromJson(String source) =>
       CustomerModel.fromMap(json.decode(source));
 
+  CustomerModel copyWith({
+    BillingAddressEntity? address,
+    String? birthDate,
+    String? cnpj,
+    String? cpf,
+    String? email,
+    String? emailVerifiedAt,
+    String? id,
+    String? marketplaceId,
+    String? name,
+    String? phone,
+    String? phoneVerifiedAt,
+    String? termAcceptedAt,
+    String? termVersion,
+  }) {
+    return CustomerModel(
+      address: address ?? this.address,
+      birthDate: birthDate ?? this.birthDate,
+      cnpj: cnpj ?? this.cnpj,
+      cpf: cpf ?? this.cpf,
+      email: email ?? this.email,
+      emailVerifiedAt: emailVerifiedAt ?? this.emailVerifiedAt,
+      id: id ?? this.id,
+      marketplaceId: marketplaceId ?? this.marketplaceId,
+      name: name ?? this.name,
+      phone: phone ?? this.phone,
+      phoneVerifiedAt: phoneVerifiedAt ?? this.phoneVerifiedAt,
+      termAcceptedAt: termAcceptedAt ?? this.termAcceptedAt,
+      termVersion: termVersion ?? this.termVersion,
+    );
+  }
+
   String get toJson => json.encode(toMap);
 
   CustomerEntity get toEntity => this;
@@ -87,10 +120,7 @@ class CustomerModel extends CustomerEntity with EquatableMixin {
     return {
       'address': BillingAddressModel.fromEntity(address).toMap,
       'cpf': cpf,
-      'email': email,
       'name': name,
-      'phone': phone,
-      'emailVerifiedAt': emailVerifiedAt,
       'termAcceptedAt': termAcceptedAt,
       'termVersion': '1.0.1',
     };

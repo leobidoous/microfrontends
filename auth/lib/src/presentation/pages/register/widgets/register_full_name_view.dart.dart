@@ -2,7 +2,7 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../../login/widgets/form_header.dart';
+import '../../widgets/form_header.dart';
 
 class RegisterFullNameView extends StatefulWidget {
   const RegisterFullNameView({super.key, required this.onConfirm});
@@ -52,6 +52,8 @@ class _RegisterFullNameViewState extends State<RegisterFullNameView> {
             hintText: 'Ex: Leonardo Dias',
             controller: textController,
             keyboardType: TextInputType.name,
+            onFieldSubmitted: widget.onConfirm,
+            textCapitalization: TextCapitalization.words,
             validators: const [
               FormValidators.emptyField,
               FormValidators.invalidFullName,

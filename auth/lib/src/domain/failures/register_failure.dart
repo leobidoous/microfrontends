@@ -9,6 +9,9 @@ class CouponQueryError extends IRegisterFailure {
 
   @override
   String? get message => error;
+
+  @override
+  String? get detailError => detailsMessage;
 }
 
 class SendCodeError extends IRegisterFailure {
@@ -18,6 +21,9 @@ class SendCodeError extends IRegisterFailure {
 
   @override
   String? get message => error;
+
+  @override
+  String? get detailError => detailsMessage;
 }
 
 class InvalidCodeError extends IRegisterFailure {
@@ -27,6 +33,9 @@ class InvalidCodeError extends IRegisterFailure {
 
   @override
   String? get message => error;
+
+  @override
+  String? get detailError => detailsMessage;
 }
 
 class CpfAlreadyExist extends IRegisterFailure {
@@ -36,6 +45,9 @@ class CpfAlreadyExist extends IRegisterFailure {
 
   @override
   String? get message => error;
+
+  @override
+  String? get detailError => detailsMessage;
 }
 
 class PhoneAlreadyExist extends IRegisterFailure {
@@ -45,6 +57,9 @@ class PhoneAlreadyExist extends IRegisterFailure {
 
   @override
   String? get message => error;
+
+  @override
+  String? get detailError => detailsMessage;
 }
 
 class EmailAlreadyExist extends IRegisterFailure {
@@ -54,6 +69,9 @@ class EmailAlreadyExist extends IRegisterFailure {
 
   @override
   String? get message => error;
+
+  @override
+  String? get detailError => detailsMessage;
 }
 
 class UnknowError extends IRegisterFailure {
@@ -63,6 +81,9 @@ class UnknowError extends IRegisterFailure {
 
   @override
   String? get message => error;
+
+  @override
+  String? get detailError => detailsMessage;
 }
 
 class DeactivedAccountError extends IRegisterFailure {
@@ -72,6 +93,9 @@ class DeactivedAccountError extends IRegisterFailure {
 
   @override
   String? get message => error;
+
+  @override
+  String? get detailError => detailsMessage;
 }
 
 class ServerError extends IRegisterFailure {
@@ -81,4 +105,7 @@ class ServerError extends IRegisterFailure {
 
   @override
   String? get message => error;
+
+  @override
+  String? get detailError => detailsMessage;
 }

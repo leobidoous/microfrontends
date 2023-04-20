@@ -5,23 +5,23 @@ import 'package:flutter/material.dart';
 import '../../controllers/timer_controller.dart';
 import 'form_header.dart';
 
-class PhonePinCodeView extends StatefulWidget {
-  const PhonePinCodeView({
+class EmailPinCodeView extends StatefulWidget {
+  const EmailPinCodeView({
     super.key,
+    required this.email,
     required this.onConfirm,
-    required this.phoneNumber,
     required this.onRequestPhoneCode,
   });
 
   final Future<String?> Function(String code) onConfirm;
   final Function() onRequestPhoneCode;
-  final String phoneNumber;
+  final String email;
 
   @override
-  State<PhonePinCodeView> createState() => _PhonePinCodeViewState();
+  State<EmailPinCodeView> createState() => _EmailPinCodeViewState();
 }
 
-class _PhonePinCodeViewState extends State<PhonePinCodeView> {
+class _EmailPinCodeViewState extends State<EmailPinCodeView> {
   final textController = TextEditingController();
   final timerController = TimerController();
   final formKey = GlobalKey<FormState>();
@@ -69,13 +69,13 @@ class _PhonePinCodeViewState extends State<PhonePinCodeView> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const FormHeader(
-            text: 'Valide o número do seu celular',
+            text: 'Valide o seu e-mail',
           ),
           Spacing.sm.vertical,
           Align(
             alignment: Alignment.topLeft,
             child: Text(
-              '''Insira o código de 6 dígitos que enviamos para o número +55 ${widget.phoneNumber}.''',
+              '''Insira o código de 6 dígitos que enviamos para o email ${widget.email}.''',
               style: context.textTheme.bodyMedium?.copyWith(
                 fontWeight: context.textTheme.fontWeightLight,
               ),
@@ -90,9 +90,9 @@ class _PhonePinCodeViewState extends State<PhonePinCodeView> {
               controller: textController,
               keyboardType: TextInputType.number,
               onComplete: (_) => onConfirm(),
-              validators: [
+              validators: const [
                 FormValidators.emptyField,
-                (input) => FormValidators.invalidLength(input, 6),
+                FormValidators.invalidEmail,
               ],
             ),
           ),

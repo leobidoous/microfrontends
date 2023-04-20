@@ -9,6 +9,9 @@ class CouponQueryError extends ILoginFailure {
 
   @override
   String? get message => error;
+
+  @override
+  String? get detailError => detailsMessage;
 }
 
 class SendCodeError extends ILoginFailure {
@@ -18,6 +21,9 @@ class SendCodeError extends ILoginFailure {
 
   @override
   String? get message => error;
+
+  @override
+  String? get detailError => detailsMessage;
 }
 
 class InvalidCodeError extends ILoginFailure {
@@ -27,6 +33,9 @@ class InvalidCodeError extends ILoginFailure {
 
   @override
   String? get message => error;
+
+  @override
+  String? get detailError => detailsMessage;
 }
 
 class AccountNotExist extends ILoginFailure {
@@ -36,6 +45,9 @@ class AccountNotExist extends ILoginFailure {
 
   @override
   String? get message => error;
+
+  @override
+  String? get detailError => detailsMessage;
 }
 
 class UnknowError extends ILoginFailure {
@@ -45,6 +57,9 @@ class UnknowError extends ILoginFailure {
 
   @override
   String? get message => error;
+
+  @override
+  String? get detailError => detailsMessage;
 }
 
 class DeactivedAccountError extends ILoginFailure {
@@ -54,6 +69,9 @@ class DeactivedAccountError extends ILoginFailure {
 
   @override
   String? get message => error;
+
+  @override
+  String? get detailError => detailsMessage;
 }
 
 class ServerError extends ILoginFailure {
@@ -63,4 +81,7 @@ class ServerError extends ILoginFailure {
 
   @override
   String? get message => error;
+
+  @override
+  String? get detailError => detailsMessage;
 }

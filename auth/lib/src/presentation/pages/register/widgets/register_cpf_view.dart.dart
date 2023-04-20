@@ -3,12 +3,12 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../login/widgets/form_header.dart';
+import '../../widgets/form_header.dart';
 
 class RegisterCpfView extends StatefulWidget {
   const RegisterCpfView({super.key, required this.onConfirm});
 
-  final Function(String) onConfirm;
+  final Future Function(String) onConfirm;
 
   @override
   State<RegisterCpfView> createState() => _RegisterCpfViewState();
@@ -17,7 +17,9 @@ class RegisterCpfView extends StatefulWidget {
 class _RegisterCpfViewState extends State<RegisterCpfView> {
   final cpfField = const ValueKey('cpf_field');
   final textController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
   bool cpfIsValid = false;
+  bool isLoading = false;
 
   bool validateCpf(String? input) {
     setState(() {
@@ -25,6 +27,13 @@ class _RegisterCpfViewState extends State<RegisterCpfView> {
           FormValidators.emptyField(input) == null;
     });
     return cpfIsValid;
+  }
+
+  Future<void> onConfirm() async {
+    if (!(formKey.currentState?.validate() ?? true)) return;
+    setState(() => isLoading = true);
+    await widget.onConfirm(textController.text);
+    setState(() => isLoading = false);
   }
 
   @override
@@ -49,27 +58,32 @@ class _RegisterCpfViewState extends State<RegisterCpfView> {
             style: context.textTheme.bodyMedium,
           ),
           Spacing.sm.vertical,
-          CustomInputField(
-            key: cpfField,
-            hintText: 'Ex: 000.000.000-00',
-            keyboardType: TextInputType.number,
-            controller: textController,
-            validators: const [
-              FormValidators.emptyField,
-              FormValidators.invalidCPF,
-            ],
-            inputFormatters: [
-              FilteringTextInputFormatter.digitsOnly,
-              FormMasks.cpf(),
-            ],
-            onChanged: validateCpf,
-            labelWidget: const InputLabel(label: 'Digite seu CPF'),
+          Form(
+            key: formKey,
+            child: CustomInputField(
+              key: cpfField,
+              controller: textController,
+              hintText: 'Ex: 000.000.000-00',
+              keyboardType: TextInputType.number,
+              onFieldSubmitted: (_) => onConfirm(),
+              validators: const [
+                FormValidators.emptyField,
+                FormValidators.invalidCPF,
+              ],
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+                FormMasks.cpf(),
+              ],
+              onChanged: validateCpf,
+              labelWidget: const InputLabel(label: 'Digite seu CPF'),
+            ),
           ),
           Spacing.sm.vertical,
           CustomButton.text(
             text: 'Avançar',
             isEnabled: cpfIsValid,
-            onPressed: () => widget.onConfirm(textController.text),
+            isLoading: isLoading,
+            onPressed: onConfirm,
           ),
         ],
       ),

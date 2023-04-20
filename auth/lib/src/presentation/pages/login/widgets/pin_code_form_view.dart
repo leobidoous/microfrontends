@@ -3,7 +3,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../../../controllers/login_controller.dart';
-import 'form_header.dart';
+import '../../widgets/form_header.dart';
 
 class PinCodeFormView extends StatefulWidget {
   const PinCodeFormView({

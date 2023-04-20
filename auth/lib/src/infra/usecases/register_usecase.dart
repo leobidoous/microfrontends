@@ -12,8 +12,12 @@ class RegisterUsecase extends IRegisterUsecase {
   @override
   Future<Either<IRegisterFailure, Unit>> onFinishRegister({
     required CustomerEntity customer,
+    required String accessToken,
   }) {
-    return repository.onFinishRegister(customer: customer);
+    return repository.onFinishRegister(
+      customer: customer,
+      accessToken: accessToken,
+    );
   }
 
   @override
@@ -35,10 +39,18 @@ class RegisterUsecase extends IRegisterUsecase {
   }
 
   @override
-  Future<Either<IRegisterFailure, Unit>> onValidateCpfAlreadyExists({
+  Future<Either<IRegisterFailure, bool>> onValidateCpfAlreadyExists({
     required String cpf,
   }) {
     return repository.onValidateCpfAlreadyExists(cpf: cpf);
+  }
+
+  @override
+  Future<Either<IRegisterFailure, String>> onValidatePhoneCode({
+    required String phone,
+    required String code,
+  }) {
+    return repository.onValidatePhoneCode(phone: phone, code: code);
   }
 
   @override
