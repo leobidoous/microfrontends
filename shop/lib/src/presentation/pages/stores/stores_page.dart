@@ -63,7 +63,7 @@ class _StoresPageState extends State<StoresPage> {
                     autofocus: false,
                     hintText: 'Pesquisar',
                     prefixIcon: Icon(
-                      CoreIcons.searchOutline,
+                      CoreIcons.search,
                       color: AppColorsBase.neutrla3,
                       size: 20.0,
                     ),

@@ -56,7 +56,7 @@ class _BrandsPageState extends State<BrandsPage> {
                     autofocus: false,
                     hintText: 'Pesquisar',
                     prefixIcon: Icon(
-                      CoreIcons.searchOutline,
+                      CoreIcons.search,
                       color: AppColorsBase.neutrla3,
                       size: 20.0,
                     ),
