@@ -7,8 +7,12 @@ abstract class IRegisterRepository {
   Future<Either<IRegisterFailure, Unit>> onValidateEmailCode({
     required String token,
   });
-  Future<Either<IRegisterFailure, Unit>> onValidateCpfAlreadyExists({
+  Future<Either<IRegisterFailure, bool>> onValidateCpfAlreadyExists({
     required String cpf,
+  });
+  Future<Either<IRegisterFailure, String>> onValidatePhoneCode({
+    required String phone,
+    required String code,
   });
   Future<Either<IRegisterFailure, Unit>> onStartRegister({
     required String phone,
@@ -17,5 +21,6 @@ abstract class IRegisterRepository {
   });
   Future<Either<IRegisterFailure, Unit>> onFinishRegister({
     required CustomerEntity customer,
+    required String accessToken,
   });
 }

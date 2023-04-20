@@ -5,10 +5,16 @@ import 'package:flutter/material.dart';
 import '../../../controllers/register/register_controller.dart';
 
 class RegisterTermsView extends StatefulWidget {
-  const RegisterTermsView({Key? key, required this.scrollController})
-      : super(key: key);
+  const RegisterTermsView({
+    Key? key,
+    required this.scrollController,
+    required this.onConfirm,
+    required this.onCancel,
+  }) : super(key: key);
 
   final ScrollController scrollController;
+  final Future Function() onConfirm;
+  final Future Function() onCancel;
 
   @override
   State<RegisterTermsView> createState() => _RegisterTermsViewState();
@@ -66,6 +72,8 @@ class _RegisterTermsViewState extends State<RegisterTermsView> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   CustomButton.text(
+                    onPressed: widget.onConfirm,
+                    isLoading: controller.isLoading,
                     isEnabled: isValid && !controller.isLoading,
                     text: 'ACEITAR',
                   ),
@@ -73,7 +81,7 @@ class _RegisterTermsViewState extends State<RegisterTermsView> {
                   CustomButton.text(
                     text: 'RECUSAR',
                     isEnabled: !controller.isLoading,
-                    onPressed: Nav.to.pop,
+                    onPressed: widget.onCancel,
                     type: ButtonType.background,
                   ),
                 ],

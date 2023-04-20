@@ -13,12 +13,16 @@ class RegisterDatasource extends IRegisterDatasource {
   @override
   Future<Either<IRegisterFailure, Unit>> onFinishRegister({
     required CustomerEntity customer,
+    required String accessToken,
   }) async {
     final response = await graphQlClient.request(
       data: GraphRequestData(
         document: RegisterMutations.finishCustomerOnboarding,
-        variables: CustomerModel.fromEntity(customer).toNewCustomerMap,
+        variables: {
+          'params': CustomerModel.fromEntity(customer).toNewCustomerMap
+        },
         options: GraphQlDriverOptions(
+          accessToken: accessToken,
           operationName: 'finishCustomerOnboarding',
         ),
       ),
@@ -29,7 +33,12 @@ class RegisterDatasource extends IRegisterDatasource {
           l.exception?.graphqlErrors ?? [],
           growable: true,
         );
-        return Left(UnknowError(errors.join('\n')));
+        return Left(
+          UnknowError(
+            'Ocorreu um erro inesperado',
+            detailsMessage: errors.map((e) => e.message).join('\n'),
+          ),
+        );
       },
       (r) => Right(unit),
     );
@@ -78,16 +87,40 @@ class RegisterDatasource extends IRegisterDatasource {
       (l) {
         final errors = List<GraphQLError>.from(
           l.exception?.graphqlErrors ?? [],
-          growable: true,
         );
-        return Left(UnknowError(errors.join('\n')));
+        if (errors.any(
+          (e) => e.message.contains(
+            'Faça login no aplicativo utilizando o número *****-0024',
+          ),
+        )) {
+          return Left(
+            PhoneAlreadyExist(
+              'Conta já cadastrada',
+              detailsMessage: errors.map((e) => e.message).join('\n'),
+            ),
+          );
+        } else if (errors
+            .any((e) => e.message.contains('Não foi possível enviar a SMS'))) {
+          return Left(
+            InvalidCodeError(
+              'Número inválido',
+              detailsMessage: errors.map((e) => e.message).join('\n'),
+            ),
+          );
+        }
+        return Left(
+          UnknowError(
+            'Ocorreu um erro inesperado',
+            detailsMessage: errors.map((e) => e.message).join('\n'),
+          ),
+        );
       },
       (r) => Right(unit),
     );
   }
 
   @override
-  Future<Either<IRegisterFailure, Unit>> onValidateCpfAlreadyExists({
+  Future<Either<IRegisterFailure, bool>> onValidateCpfAlreadyExists({
     required String cpf,
   }) async {
     final response = await graphQlClient.request(
@@ -103,9 +136,29 @@ class RegisterDatasource extends IRegisterDatasource {
           l.exception?.graphqlErrors ?? [],
           growable: true,
         );
-        return Left(UnknowError(errors.join('\n')));
+        return Left(
+          UnknowError(
+            'Ocorreu um erro ao validar seu CPF',
+            detailsMessage: errors.map((e) => e.message).join('\n'),
+          ),
+        );
       },
-      (r) => Right(unit),
+      (r) {
+        try {
+          final bool cpfAlreadyExists = r.data['customerAlreadyExists'];
+          if (cpfAlreadyExists) {
+            return Left(
+              CpfAlreadyExist(
+                'Conta já cadastrada',
+                detailsMessage: '',
+              ),
+            );
+          }
+          return Right(cpfAlreadyExists);
+        } catch (e) {
+          return Left(UnknowError(e.toString()));
+        }
+      },
     );
   }
 
@@ -131,6 +184,61 @@ class RegisterDatasource extends IRegisterDatasource {
         return Left(UnknowError(errors.join('\n')));
       },
       (r) => Right(unit),
+    );
+  }
+
+  @override
+  Future<Either<IRegisterFailure, String>> onValidatePhoneCode({
+    required String phone,
+    required String code,
+  }) async {
+    final response = await graphQlClient.request(
+      data: GraphRequestData(
+        document: RegisterMutations.validateVerificationCode,
+        variables: {
+          'phoneNumber': '+55${phone.replaceAll(RegExp(r'[^0-9]'), '')}',
+          'code': code,
+        },
+        options: GraphQlDriverOptions(
+          operationName: 'validateVerificationCode',
+        ),
+      ),
+    );
+    return response.fold(
+      (l) {
+        final errors = List<GraphQLError>.from(
+          l.exception?.graphqlErrors ?? [],
+          growable: true,
+        );
+        if (errors.any(
+          (err) => err.message.contains('Código de verificação inválido'),
+        )) {
+          return Left(
+            InvalidCodeError(
+              'Erro na verificação do código',
+              detailsMessage: errors.map((e) => e.message).join('\n'),
+            ),
+          );
+        }
+        return Left(
+          UnknowError(
+            l.message,
+            detailsMessage: errors.map((e) => e.message).join('\n'),
+          ),
+        );
+      },
+      (r) {
+        try {
+          return Right(r.data['validateVerificationCode']);
+        } catch (e) {
+          return Left(
+            UnknowError(
+              'Erro na verificação do código',
+              detailsMessage: e.toString(),
+            ),
+          );
+        }
+      },
     );
   }
 }

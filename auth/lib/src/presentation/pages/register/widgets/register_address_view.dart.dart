@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../controllers/register/register_address_controller.dart';
-import '../../login/widgets/form_header.dart';
+import '../../widgets/form_header.dart';
 
 class RegisterAddressView extends StatefulWidget {
   const RegisterAddressView({super.key, required this.onConfirm});
@@ -19,25 +19,33 @@ class _RegisterAddressViewState extends State<RegisterAddressView> {
   late final BillingAddressEntity address;
   final formKey = GlobalKey<FormState>();
   final controller = DM.i.get<RegisterAddressController>();
-  final postalCodeController = TextEditingController();
+  late final TextEditingController postalCodeController;
+  late final TextEditingController streetController;
+  late final TextEditingController numberController;
+  late final TextEditingController districtController;
+  late final TextEditingController complementController;
+  late final TextEditingController cityController;
+  late final TextEditingController ufController;
   final postalCodeFocus = FocusNode();
-  final streetController = TextEditingController();
   final streetFocus = FocusNode();
-  final numberController = TextEditingController();
   final numberFocus = FocusNode();
-  final districtController = TextEditingController();
   final districtFocus = FocusNode();
-  final complementController = TextEditingController();
   final complementFocus = FocusNode();
-  final cityController = TextEditingController();
   final cityFocus = FocusNode();
-  final ufController = TextEditingController();
   final ufFocus = FocusNode();
   bool addressIsValid = false;
 
   @override
   void initState() {
     super.initState();
+    postalCodeController = TextEditingController();
+    streetController = TextEditingController();
+    numberController = TextEditingController();
+    districtController = TextEditingController();
+    complementController = TextEditingController();
+    cityController = TextEditingController();
+    ufController = TextEditingController();
+
     address = BillingAddressEntity(
       city: cityController.text,
       postalCode: postalCodeController.text,
@@ -87,6 +95,25 @@ class _RegisterAddressViewState extends State<RegisterAddressView> {
               FormValidators.emptyField(ufController.text) == null;
     });
     return addressIsValid;
+  }
+
+  @override
+  void dispose() {
+    postalCodeController.dispose();
+    postalCodeFocus.dispose();
+    streetController.dispose();
+    streetFocus.dispose();
+    numberController.dispose();
+    numberFocus.dispose();
+    districtController.dispose();
+    districtFocus.dispose();
+    complementController.dispose();
+    complementFocus.dispose();
+    cityController.dispose();
+    cityFocus.dispose();
+    ufController.dispose();
+    ufFocus.dispose();
+    super.dispose();
   }
 
   @override

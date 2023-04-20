@@ -32,24 +32,28 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
               CustomInputField(
                 readOnly: true,
                 initialValue: customer.name,
+                hintText: 'Nome completo',
                 labelWidget: const InputLabel(label: 'Nome'),
               ),
               Spacing.sm.vertical,
               CustomInputField(
                 readOnly: true,
                 initialValue: UtilsFormats.cpf(customer.cpf),
+                hintText: 'CPF',
                 labelWidget: const InputLabel(label: 'CPF'),
               ),
               Spacing.sm.vertical,
               CustomInputField(
                 readOnly: true,
                 initialValue: customer.email,
+                hintText: 'E-mail',
                 labelWidget: const InputLabel(label: 'E-mail'),
               ),
               Spacing.sm.vertical,
               CustomInputField(
                 readOnly: true,
                 initialValue: UtilsFormats.phone(customer.phone),
+                hintText: 'Telefone',
                 labelWidget: const InputLabel(label: 'Telefone'),
               ),
               Spacing.md.vertical,
@@ -61,6 +65,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
               Spacing.sm.vertical,
               CustomInputField(
                 hintText: '000.000-00',
+                readOnly: true,
                 initialValue: customer.address.postalCode,
                 labelWidget: const InputLabel(label: 'CEP'),
               ),
@@ -72,6 +77,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                     flex: 7,
                     child: CustomInputField(
                       hintText: 'Nome da rua',
+                      readOnly: true,
                       initialValue: customer.address.line1,
                       labelWidget: const InputLabel(label: 'Rua'),
                     ),
@@ -81,6 +87,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                     flex: 3,
                     child: CustomInputField(
                       hintText: '0',
+                      readOnly: true,
                       initialValue: customer.address.line2,
                       labelWidget: const InputLabel(label: 'Número'),
                     ),
@@ -93,6 +100,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                 children: [
                   Expanded(
                     child: CustomInputField(
+                      readOnly: true,
                       hintText: 'Nome do bairro',
                       initialValue: customer.address.neighborhood,
                       labelWidget: const InputLabel(label: 'Bairro'),
@@ -101,6 +109,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                   Spacing.sm.horizontal,
                   Expanded(
                     child: CustomInputField(
+                      readOnly: true,
                       hintText: 'Ex.: Próximo à...',
                       initialValue: customer.address.line3,
                       labelWidget: const InputLabel(label: 'Complemento'),
@@ -115,6 +124,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                   Expanded(
                     flex: 7,
                     child: CustomInputField(
+                      readOnly: true,
                       hintText: 'Nome da cidade',
                       initialValue: customer.address.city,
                       labelWidget: const InputLabel(label: 'Cidade'),
@@ -124,6 +134,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                   Expanded(
                     flex: 3,
                     child: CustomInputField(
+                      readOnly: true,
                       hintText: 'UF',
                       initialValue: customer.address.state,
                       labelWidget: const InputLabel(label: 'UF'),

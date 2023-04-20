@@ -2,7 +2,7 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../../login/widgets/form_header.dart';
+import '../../widgets/form_header.dart';
 
 class RegisterEmailView extends StatefulWidget {
   const RegisterEmailView({super.key, required this.onConfirm});
@@ -48,12 +48,14 @@ class _RegisterEmailViewState extends State<RegisterEmailView> {
           CustomInputField(
             hintText: 'Ex: email@exemplo.com.br',
             controller: textController,
-            keyboardType: TextInputType.name,
+            textCapitalization: TextCapitalization.none,
+            keyboardType: TextInputType.emailAddress,
             validators: const [
               FormValidators.emptyField,
               FormValidators.invalidEmail,
             ],
             onChanged: validateEmail,
+            onFieldSubmitted: widget.onConfirm,
             labelWidget: const InputLabel(label: 'Insira seu e-mail'),
           ),
           Spacing.sm.vertical,

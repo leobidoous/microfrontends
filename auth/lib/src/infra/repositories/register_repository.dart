@@ -12,13 +12,25 @@ class RegisterRepository extends IRegisterRepository {
   @override
   Future<Either<IRegisterFailure, Unit>> onFinishRegister({
     required CustomerEntity customer,
+    required String accessToken,
   }) {
-    return datasource.onFinishRegister(customer: customer);
+    return datasource.onFinishRegister(
+      customer: customer,
+      accessToken: accessToken,
+    );
   }
 
   @override
   Future<Either<IRegisterFailure, Unit>> onRequestEmailCode() {
     return datasource.onRequestEmailCode();
+  }
+
+  @override
+  Future<Either<IRegisterFailure, String>> onValidatePhoneCode({
+    required String phone,
+    required String code,
+  }) {
+    return datasource.onValidatePhoneCode(phone: phone, code: code);
   }
 
   @override
@@ -35,7 +47,7 @@ class RegisterRepository extends IRegisterRepository {
   }
 
   @override
-  Future<Either<IRegisterFailure, Unit>> onValidateCpfAlreadyExists({
+  Future<Either<IRegisterFailure, bool>> onValidateCpfAlreadyExists({
     required String cpf,
   }) {
     return datasource.onValidateCpfAlreadyExists(cpf: cpf);
