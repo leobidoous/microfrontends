@@ -146,17 +146,14 @@ runBuildAndroid() {
   cd base_app || exit;
 
   if [ -f "pubspec.yaml" ]; then
-    flutter pub run ../tools/generate_envs.dart
     if [[ "$1" = "prod" ]]; then
       echo "Building prod..."
+      flutter pub run ../tools/generate_envs.dart
       flutter build apk --release --flavor prod -t lib/main_prod.dart
-    fi
-    if [[ $1 = "hml" ]]; then
-      echo "Building hml..."
-      flutter build apk --release --flavor hml -t lib/main_hml.dart
     fi
     if [[ $1 = "dev" ]]; then
       echo "Building dev..."
+      flutter pub run ../tools/generate_envs.dart
       flutter build apk --release --flavor dev -t lib/main_dev.dart
     fi
   fi
@@ -169,17 +166,14 @@ runBuildIOS() {
   cd base_app || exit;
 
   if [ -f "pubspec.yaml" ]; then
-    flutter pub run ../tools/generate_envs.dart
     if [[ "$1" = "prod" ]]; then
       echo "Building prod..."
+      flutter pub run ../tools/generate_envs.dart
       flutter build ios --release --flavor prod -t lib/main_prod.dart
-    fi
-    if [[ $1 = "hml" ]]; then
-      echo "Building hml..."
-      flutter build ios --release --flavor hml -t lib/main_hml.dart
     fi
     if [[ $1 = "dev" ]]; then
       echo "Building dev..."
+      flutter pub run ../tools/generate_envs.dart
       flutter build ios --release --flavor dev -t lib/main_dev.dart
     fi
   fi
