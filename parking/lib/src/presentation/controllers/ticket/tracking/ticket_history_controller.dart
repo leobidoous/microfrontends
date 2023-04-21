@@ -1,15 +1,13 @@
 import 'package:core/core.dart';
 
-import '../../../../domain/entities/dashboard/tickets_history_entity.dart';
 import '../../../../domain/usecases/parking/i_parking_usecase.dart';
-import '../../../../infra/models/dashboard/tickets_history_model.dart';
+import '../../../../infra/models/ticket/history_ticket_model.dart';
 
 class TicketHistoryController
-    extends GenController<Exception, TicketsHistoryEntity> {
+    extends GenController<Exception, List<HistoryTicketModel>> {
   final IParkingUsecase usecase;
 
-  TicketHistoryController({required this.usecase})
-      : super(TicketsHistoryModel.fromMap({}));
+  TicketHistoryController({required this.usecase}) : super([]);
 
   Future<void> fetchTicketHistory({
     required String page,

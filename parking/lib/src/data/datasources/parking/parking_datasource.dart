@@ -1,15 +1,15 @@
 import 'package:core/core.dart';
 
+import '../../../../parking.dart';
 import '../../../domain/entities/dashboard/coupon_entity.dart';
 import '../../../domain/entities/dashboard/ticket_entity.dart';
-import '../../../domain/entities/dashboard/tickets_history_entity.dart';
 import '../../../domain/entities/ticket/ticket_payment_entity.dart';
 import '../../../domain/entities/ticket/ticket_payment_request_entity.dart';
 import '../../../domain/failures/dashboard/dashboard_failure.dart';
 import '../../../infra/datasources/parking/i_parking_datasource.dart';
 import '../../../infra/models/dashboard/coupon_model.dart';
 import '../../../infra/models/dashboard/ticket_model.dart';
-import '../../../infra/models/dashboard/tickets_history_model.dart';
+import '../../../infra/models/ticket/history_ticket_model.dart';
 import '../../../infra/models/ticket/ticket_payment_model.dart';
 import '../../../infra/models/ticket/ticket_payment_request_model.dart';
 
@@ -126,7 +126,7 @@ class ParkingDatasource implements IParkingDatasource {
   }
 
   @override
-  Future<Either<Exception, TicketsHistoryEntity>> fetchHistoryTicket({
+  Future<Either<Exception, List<HistoryTicketModel>>> fetchHistoryTicket({
     required String page,
     required String perPage,
   }) async {
@@ -134,7 +134,19 @@ class ParkingDatasource implements IParkingDatasource {
 
     return response.fold(
       (l) => Left(Exception(l.data)),
-      (r) => Right(TicketsHistoryModel.fromMap(r.data)),
+      (r) {
+        try {
+          final List<HistoryTicketModel> historys = r.data['rows']
+              .map<HistoryTicketModel>(
+                (element) => HistoryTicketModel.fromMap(element),
+              )
+              .toList();
+          return Right(historys);
+        } catch (e, s) {
+          printException(exception: e, stackTrace: s);
+          return Left(Exception(e));
+        }
+      },
     );
   }
 

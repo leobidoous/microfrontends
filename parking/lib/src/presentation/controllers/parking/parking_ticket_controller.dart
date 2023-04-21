@@ -11,7 +11,7 @@ class ParkingTicketController
       : super(TicketModel.fromMap({}));
   final IParkingUsecase usecase;
 
-  void fecthInfoTicket({required String idShopping}) {
-    execute(() => usecase.fecthInfoTicket(idShopping: idShopping));
+  void fecthInfoTicket({required String idShopping}) async {
+    await execute(() => usecase.fecthInfoTicket(idShopping: idShopping));
   }
 }

@@ -2,12 +2,12 @@ import 'package:core/core.dart';
 
 import '../../../domain/entities/dashboard/coupon_entity.dart';
 import '../../../domain/entities/dashboard/ticket_entity.dart';
-import '../../../domain/entities/dashboard/tickets_history_entity.dart';
 import '../../../domain/entities/ticket/ticket_payment_entity.dart';
 import '../../../domain/entities/ticket/ticket_payment_request_entity.dart';
 import '../../../domain/failures/dashboard/dashboard_failure.dart';
 import '../../../domain/repositories/parking/i_parking_repository.dart';
 import '../../../domain/usecases/parking/i_parking_usecase.dart';
+import '../../models/ticket/history_ticket_model.dart';
 
 class ParkingUsecase implements IParkingUsecase {
   final IParkingRepository repository;
@@ -45,7 +45,7 @@ class ParkingUsecase implements IParkingUsecase {
   }
 
   @override
-  Future<Either<Exception, TicketsHistoryEntity>> fetchHistoryTicket({
+  Future<Either<Exception, List<HistoryTicketModel>>> fetchHistoryTicket({
     required String page,
     required String perPage,
   }) async {

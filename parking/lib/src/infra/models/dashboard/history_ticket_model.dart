@@ -1,8 +1,6 @@
 import 'dart:convert';
-
 import 'package:core/core.dart';
-
-import '../../../domain/entities/dashboard/history_ticket_entity.dart';
+import '../../../domain/entities/dashboard/history_entity.dart';
 
 class HistoryModel extends HistoryEntity with EquatableMixin {
   HistoryModel({

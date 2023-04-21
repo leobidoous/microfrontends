@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:core/core.dart';
 
-import '../../../domain/entities/dashboard/history_ticket_entity.dart';
+import '../../../domain/entities/dashboard/history_entity.dart';
 import '../../../domain/entities/dashboard/ticket_entity.dart';
 import '../ticket/discount_model.dart';
 import 'analysis_model.dart';

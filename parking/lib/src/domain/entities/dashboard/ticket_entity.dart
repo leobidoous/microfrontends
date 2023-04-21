@@ -1,6 +1,6 @@
 import '../ticket/discount_entity.dart';
 import 'analysis_entity.dart';
-import 'history_ticket_entity.dart';
+import 'history_entity.dart';
 import 'status_class_entity.dart';
 
 class TicketEntity {

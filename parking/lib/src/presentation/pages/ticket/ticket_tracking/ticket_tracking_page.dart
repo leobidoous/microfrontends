@@ -15,7 +15,7 @@ import '../../../routes/ticket_routes.dart';
 import '../../ticket/widgets/ticket_card_details.dart';
 import '../ticket_submit/ticket_submit_page.dart';
 import 'ticket_tracking_empty_page.dart';
-import 'widgets/info_ticket_history.dart';
+import 'widgets/historys_info.dart';
 
 part '../ticket_tracking/widgets/circular_indicator_timer.dart';
 
@@ -37,9 +37,9 @@ class _TicketTrackingPageState extends State<TicketTrackingPage> {
   @override
   void initState() {
     super.initState();
-    // controller.fecthInfoTicket(
-    //   idShopping: shopping.id.toString(),
-    // );
+    controller.fecthInfoTicket(
+      idShopping: '3', //shopping.id.toString(),
+    );
     ticketHistoryController.fetchTicketHistory(
       page: '0',
       perPage: '100',
@@ -164,97 +164,95 @@ class _TicketTrackingPageState extends State<TicketTrackingPage> {
                   child: TicketCardDetails(ticket: state),
                 ),
                 Spacing.sm.vertical,
-                if (ticketHistoryController.state.itemsTicketHistory != null &&
-                    ticketHistoryController
-                        .state.itemsTicketHistory!.isNotEmpty) ...{
-                  Visibility(
-                    visible: ticketHistoryController.state.itemsTicketHistory !=
-                                null &&
-                            ticketHistoryController
-                                .state.itemsTicketHistory!.isNotEmpty
-                        ? true
-                        : false,
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: const Spacing(3).value,
-                          ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                      top: const Spacing(2.5).value,
-                                    ),
-                                    child: Text(
-                                      Tr.of(context).historyValue,
-                                      softWrap: true,
-                                      style:
-                                          context.textTheme.bodySmall?.copyWith(
-                                        color: AppColorsBase.grey6,
-                                      ),
-                                    ),
-                                  ),
-                                  Text(
-                                    DateFormat.toDateTime(
-                                      DateTime.now(),
-                                    ),
-                                    style:
-                                        context.textTheme.titleMedium?.copyWith(
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                      top: const Spacing(2.5).value,
-                                    ),
-                                    child: Text(
-                                      Tr.of(context).amountSaved,
-                                      softWrap: true,
-                                      style:
-                                          context.textTheme.bodySmall?.copyWith(
-                                        color: AppColorsBase.grey6,
-                                      ),
-                                    ),
-                                  ),
-                                  Text(
-                                    'R\$ ${NumberFormat.toCurrency(
-                                      0,
-                                      symbol: '',
-                                    )}',
-                                    style:
-                                        context.textTheme.titleMedium?.copyWith(
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                            vertical: const Spacing(1).value,
-                          ),
-                          child: TicketHistoryList(
-                            controller: ticketHistoryController,
-                            authController: authController,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                },
+                const HistorysInfo(),
+                // ValueListenableBuilder(
+                //   valueListenable: ticketHistoryController,
+                //   builder: (_, historys, __) {
+                //     if (ticketHistoryController.isLoading) {
+                //       return const LimitedBox();
+                //     } else if (historys.isNotEmpty) {
+                //       return Column(
+                //         children: [
+                //           Padding(
+                //             padding: EdgeInsets.symmetric(
+                //               horizontal: const Spacing(3).value,
+                //             ),
+                //             child: Row(
+                //               crossAxisAlignment: CrossAxisAlignment.center,
+                //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //               children: [
+                //                 Column(
+                //                   crossAxisAlignment: CrossAxisAlignment.start,
+                //                   children: [
+                //                     Padding(
+                //                       padding: EdgeInsets.only(
+                //                         top: const Spacing(2.5).value,
+                //                       ),
+                //                       child: Text(
+                //                         Tr.of(context).historyValue,
+                //                         softWrap: true,
+                //                         style: context.textTheme.bodySmall
+                //                             ?.copyWith(
+                //                           color: AppColorsBase.grey6,
+                //                         ),
+                //                       ),
+                //                     ),
+                //                     Text(
+                //                       historys.first.data ?? '??/??/????',
+                //                       style: context.textTheme.titleMedium
+                //                           ?.copyWith(
+                //                         fontWeight: FontWeight.w500,
+                //                       ),
+                //                     ),
+                //                   ],
+                //                 ),
+                //                 Column(
+                //                   crossAxisAlignment: CrossAxisAlignment.end,
+                //                   children: [
+                //                     Padding(
+                //                       padding: EdgeInsets.only(
+                //                         top: const Spacing(2.5).value,
+                //                       ),
+                //                       child: Text(
+                //                         Tr.of(context).amountSaved,
+                //                         softWrap: true,
+                //                         style: context.textTheme.bodySmall
+                //                             ?.copyWith(
+                //                           color: AppColorsBase.grey6,
+                //                         ),
+                //                       ),
+                //                     ),
+                //                     Text(
+                //                       'R\$ ${NumberFormat.toCurrency(
+                //                         historys.first.valorEconomizado,
+                //                         symbol: '',
+                //                       )}',
+                //                       style: context.textTheme.titleMedium
+                //                           ?.copyWith(
+                //                         fontWeight: FontWeight.w500,
+                //                       ),
+                //                     ),
+                //                   ],
+                //                 ),
+                //               ],
+                //             ),
+                //           ),
+                //           Padding(
+                //             padding: EdgeInsets.symmetric(
+                //               vertical: const Spacing(1).value,
+                //             ),
+                //             child: TicketHistoryList(
+                //               historyController: ticketHistoryController,
+                //               authController: authController,
+                //             ),
+                //           ),
+                //         ],
+                //       );
+                //     }
+                //     return const LimitedBox();
+                //   },
+                // ),
+
                 SizedBox(
                   height: Spacing.xxxl.height,
                 ),
