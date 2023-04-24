@@ -46,6 +46,7 @@ class HomeModule extends Module {
         localUserUsecase: i.get<LocalUserUsecase>(),
       ),
     ),
+    Bind.lazySingleton<SessionEntity>((i) => i.get<SessionController>().state),
 
     /// Shopping
     Bind.factory<ShoppingEntity>(
