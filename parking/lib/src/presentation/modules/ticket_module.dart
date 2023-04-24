@@ -20,22 +20,22 @@ class TicketModule extends Module {
 
     /// Controllers
     Bind.factory<TicketSubmitController>(
-      (i) => TicketSubmitController(usecase: DM.i.get<ParkingUsecase>()),
+      (i) => TicketSubmitController(usecase: i.get<ParkingUsecase>()),
     ),
     Bind.factory<TicketPaymentMethodController>(
       (i) => TicketPaymentMethodController(
-        usecase: DM.i.get<CreditCardUsecase>(),
+        usecase: i.get<CreditCardUsecase>(),
       ),
     ),
     Bind.factory<TicketPaymentController>(
-      (i) => TicketPaymentController(usecase: DM.i.get<ParkingUsecase>()),
+      (i) => TicketPaymentController(usecase: i.get<ParkingUsecase>()),
     ),
 
     Bind.lazySingleton<TicketHistoryController>(
-      (i) => TicketHistoryController(usecase: DM.i.get<ParkingUsecase>()),
+      (i) => TicketHistoryController(usecase: i.get<ParkingUsecase>()),
     ),
     Bind.factory<ParkingTicketController>(
-      (i) => ParkingTicketController(usecase: DM.i.get<ParkingUsecase>()),
+      (i) => ParkingTicketController(usecase: i.get<ParkingUsecase>()),
     ),
 
     Bind.factory<TicketCountDownController>(

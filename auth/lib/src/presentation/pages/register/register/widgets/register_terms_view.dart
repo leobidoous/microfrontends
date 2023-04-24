@@ -2,7 +2,7 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../../../controllers/register/register_controller.dart';
+import '../../../../controllers/register/register_controller.dart';
 
 class RegisterTermsView extends StatefulWidget {
   const RegisterTermsView({

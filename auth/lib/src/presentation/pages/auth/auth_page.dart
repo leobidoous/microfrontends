@@ -76,7 +76,7 @@ class _AuthPageState extends State<AuthPage> {
                       type: ButtonType.background,
                       onPressed: () {
                         Nav.to.pushNamed(
-                          AuthRoutes.register,
+                          RegisterRoutes.root,
                           arguments: {
                             'redirectTo': controller.redirectTo,
                             'onLoginCallback': controller.onLoginCallback,

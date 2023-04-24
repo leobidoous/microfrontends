@@ -18,7 +18,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  final session = DM.i.get<SessionEntity>();
   final sessionController = DM.i.get<SessionController>();
 
   List<ProfileMenuItemEntity> get menuItems => [
@@ -91,7 +90,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   children: [
                     _avatarHeader,
                     Spacing.md.vertical,
-                    if (!sessionController.hasEmailVerified) ...[
+                    if (sessionController.hasEmailVerified) ...[
                       _validateEmailWarning,
                       Spacing.md.vertical,
                     ],
@@ -161,7 +160,13 @@ class _ProfilePageState extends State<ProfilePage> {
         horizontal: const Spacing(2).value,
       ),
       onTap: () {
-        Nav.to.pushNamed(AuthRoutes.login, forRoot: true);
+        Nav.to.pushNamed(
+          RegisterRoutes.validateEmail,
+          forRoot: true,
+          arguments: (CustomerEntity customer) async {
+            sessionController.updateSession(customer: customer);
+          },
+        );
       },
       color: AppColorsBase.neutrla2,
       child: Row(
@@ -230,7 +235,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget get _avatarHeader {
-    final breakName = session.customer.name.trim().split(' ');
+    final breakName = sessionController.state.customer.name.trim().split(' ');
     return Column(
       children: [
         DecoratedBox(
@@ -251,20 +256,20 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ),
         Text(
-          session.customer.name.capitalize,
+          sessionController.state.customer.name.capitalize,
           style: context.textTheme.bodyLarge?.copyWith(
             fontWeight: context.textTheme.fontWeightMedium,
           ),
         ),
         Spacing.xs.vertical,
         Text(
-          session.customer.phone,
+          sessionController.state.customer.phone,
           style: context.textTheme.labelMedium?.copyWith(
             color: AppColorsBase.neutrla5,
           ),
         ),
         Text(
-          session.customer.email,
+          sessionController.state.customer.email,
           style: context.textTheme.labelMedium?.copyWith(
             color: AppColorsBase.neutrla5,
           ),

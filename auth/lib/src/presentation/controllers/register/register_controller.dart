@@ -2,26 +2,17 @@ import 'package:core/core.dart';
 
 import '../../../domain/failures/register_failure.dart';
 import '../../../domain/usecases/i_auth_usecase.dart';
-import '../../../domain/usecases/i_login_usecase.dart';
 import '../../../domain/usecases/i_register_usecase.dart';
-import '../auth_controller.dart';
-import '../login_controller.dart';
 
 class RegisterController extends GenController<IRegisterFailure, Unit> {
   RegisterController({
-    required this.loginController,
     required this.registerUsecase,
-    required this.loginUsecase,
-    required this.authController,
     required this.authUsecase,
   }) : super(unit);
 
   String phoneNumber = '';
   String accessToken = '';
-  final LoginController loginController;
   final IRegisterUsecase registerUsecase;
-  final ILoginUsecase loginUsecase;
-  final AuthController authController;
   final IAuthUsecase authUsecase;
 
   CustomerModel _customer = CustomerModel.fromMap({});
@@ -79,6 +70,16 @@ class RegisterController extends GenController<IRegisterFailure, Unit> {
         return value.fold((l) => Left(l), (r) => Right(unit));
       }),
     );
+  }
+
+  Future<void> onRequestEmailCode({String? accessToken}) async {
+    await execute(
+      () => registerUsecase.onRequestEmailCode(accessToken: accessToken),
+    );
+  }
+
+  Future<void> onValidateEmailCode(String token) async {
+    await execute(() => registerUsecase.onValidateEmailCode(token: token));
   }
 
   Future<void> onFinishRegister(CustomerEntity customer) async {

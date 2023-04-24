@@ -2,13 +2,13 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../auth.dart';
-import '../../../domain/failures/register_failure.dart';
-import '../../controllers/register/register_controller.dart';
-import '../widgets/phone_pin_code_view.dart';
+import '../../../../../auth.dart';
+import '../../../../domain/failures/register_failure.dart';
+import '../../../controllers/register/register_controller.dart';
+import '../../widgets/email_view.dart';
+import '../../widgets/phone_pin_code_view.dart';
 import 'widgets/register_address_view.dart.dart';
 import 'widgets/register_cpf_view.dart.dart';
-import 'widgets/register_email_view.dart';
 import 'widgets/register_full_name_view.dart.dart';
 import 'widgets/register_phone_view.dart';
 import 'widgets/register_terms_view.dart';
@@ -181,6 +181,7 @@ class _RegisterPageState extends State<RegisterPage> {
       child: Scaffold(
         appBar: CustomAppBar(
           title: isLastStep ? 'Termos e Condições' : 'Cadastro',
+          progress: (pageIndex + 1) / 6,
           onBackTap: () {
             if (pageIndex > 0) {
               pageController.animateToPage(
@@ -222,8 +223,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   isResend: true,
                 ),
               ),
-              RegisterEmailView(
-                onConfirm: (email) {
+              EmailView(
+                onConfirm: (email) async {
                   controller.onUpdateForm(email: email);
                   onNextPage();
                 },

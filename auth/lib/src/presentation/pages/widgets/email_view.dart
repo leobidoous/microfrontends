@@ -2,20 +2,22 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../../widgets/form_header.dart';
+import 'form_header.dart';
 
-class RegisterEmailView extends StatefulWidget {
-  const RegisterEmailView({super.key, required this.onConfirm});
+class EmailView extends StatefulWidget {
+  const EmailView({super.key, required this.onConfirm});
 
-  final Function(String) onConfirm;
+  final Future Function(String) onConfirm;
 
   @override
-  State<RegisterEmailView> createState() => _RegisterEmailViewState();
+  State<EmailView> createState() => _EmailViewState();
 }
 
-class _RegisterEmailViewState extends State<RegisterEmailView> {
+class _EmailViewState extends State<EmailView> {
   final textController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
   bool emailIsValid = false;
+  bool isLoading = false;
 
   bool validateEmail(String? input) {
     setState(() {
@@ -23,6 +25,13 @@ class _RegisterEmailViewState extends State<RegisterEmailView> {
           FormValidators.emptyField(input) == null;
     });
     return emailIsValid;
+  }
+
+  Future<void> onConfirm() async {
+    if (!(formKey.currentState?.validate() ?? true)) return;
+    setState(() => isLoading = true);
+    await widget.onConfirm(textController.text);
+    setState(() => isLoading = false);
   }
 
   @override
@@ -38,7 +47,7 @@ class _RegisterEmailViewState extends State<RegisterEmailView> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const FormHeader(text: 'Agora, informe seu e-mail'),
+          const FormHeader(text: 'Informe seu e-mail'),
           Spacing.sm.vertical,
           Text(
             '''Você irá receber um código de validação para autenticação do e-mail.''',
@@ -62,7 +71,8 @@ class _RegisterEmailViewState extends State<RegisterEmailView> {
           CustomButton.text(
             text: 'Avançar',
             isEnabled: emailIsValid,
-            onPressed: () => widget.onConfirm(textController.text),
+            isLoading: isLoading,
+            onPressed: onConfirm,
           ),
         ],
       ),

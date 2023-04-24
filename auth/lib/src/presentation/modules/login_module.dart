@@ -11,34 +11,29 @@ import '../controllers/timer_controller.dart';
 import '../pages/login/login_page.dart';
 
 class LoginModule extends Module {
-  static List<Bind> get exportedBinds => [
-        Bind.lazySingleton(
-          (i) =>
-              LoginDatasource(graphQlClient: DM.i.get<GraphQlClientDriver>()),
-        ),
-        Bind.lazySingleton(
-          (i) => LoginRepository(datasource: DM.i.get<LoginDatasource>()),
-        ),
-        Bind.lazySingleton(
-          (i) => LoginUsecase(repository: DM.i.get<LoginRepository>()),
-        ),
-
-        /// Controllers
-        Bind.lazySingleton<LoginController>(
-          (i) => LoginController(
-            userUsecase: DM.i.get<UserUsecase>(),
-            authUsecase: DM.i.get<AuthUsecase>(),
-            loginUsecase: DM.i.get<LoginUsecase>(),
-            authController: DM.i.get<AuthController>(),
-            timerController: DM.i.get<TimerController>(),
-          ),
-        ),
-        Bind.factory<TimerController>((i) => TimerController()),
-      ];
-
   @override
   final List<Bind> binds = [
-    ...exportedBinds,
+    Bind.lazySingleton(
+      (i) => LoginDatasource(graphQlClient: DM.i.get<GraphQlClientDriver>()),
+    ),
+    Bind.lazySingleton(
+      (i) => LoginRepository(datasource: DM.i.get<LoginDatasource>()),
+    ),
+    Bind.lazySingleton(
+      (i) => LoginUsecase(repository: DM.i.get<LoginRepository>()),
+    ),
+
+    /// Controllers
+    Bind.lazySingleton<LoginController>(
+      (i) => LoginController(
+        userUsecase: DM.i.get<UserUsecase>(),
+        authUsecase: DM.i.get<AuthUsecase>(),
+        loginUsecase: DM.i.get<LoginUsecase>(),
+        authController: DM.i.get<AuthController>(),
+        timerController: DM.i.get<TimerController>(),
+      ),
+    ),
+    Bind.factory<TimerController>((i) => TimerController()),
   ];
 
   @override

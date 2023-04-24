@@ -2,8 +2,8 @@ import 'package:core/core.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../infra/datasources/i_auth_datasource.dart';
-import '../../presentation/auth_routes.dart';
 import '../../presentation/graphql/mutations/auth_mutations.dart';
+import '../../presentation/routes/auth_routes.dart';
 
 class AuthDatasource extends IAuthDatasource {
   final IHttpDriver client;

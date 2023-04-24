@@ -14,26 +14,26 @@ class GenDeskModule extends Module {
     Bind.factory<DeskDatasource>(
       (i) => DeskDatasource(
         client: i.get<DioClientDriver>(),
-        storageDriver: DM.i.get<FirebaseStorageDriver>(),
+        storageDriver: i.get<FirebaseStorageDriver>(),
         baseUrl: i.get<EnvironmentEntity>().baseUrlParking,
       ),
     ),
     Bind.factory<DeskRepository>(
-      (i) => DeskRepository(datasource: DM.i.get<DeskDatasource>()),
+      (i) => DeskRepository(datasource: i.get<DeskDatasource>()),
     ),
     Bind.factory<DeskUsecase>(
       (i) => DeskUsecase(
-        repository: DM.i.get<DeskRepository>(),
-        session: DM.i.get<SessionEntity>(),
+        repository: i.get<DeskRepository>(),
+        session: i.get<SessionEntity>(),
       ),
     ),
 
     /// Controllers
     Bind.lazySingleton<FetchFAQController>(
-      (i) => FetchFAQController(usecase: DM.i.get<DeskUsecase>()),
+      (i) => FetchFAQController(usecase: i.get<DeskUsecase>()),
     ),
     Bind.lazySingleton<GenDeskController>(
-      (i) => GenDeskController(usecase: DM.i.get<DeskUsecase>()),
+      (i) => GenDeskController(usecase: i.get<DeskUsecase>()),
     ),
   ];
 

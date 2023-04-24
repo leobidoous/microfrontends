@@ -4,18 +4,20 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends StatefulWidget with PreferredSizeWidget {
   const CustomAppBar({
     super.key,
-    this.leadingIcon,
     this.title,
     this.actions,
-    this.backgroundColor,
+    this.progress,
     this.onBackTap,
+    this.leadingIcon,
     this.toolbarHeight,
+    this.backgroundColor,
     this.centerTitle = true,
     this.automaticallyImplyLeading = true,
   });
 
   final Widget? leadingIcon;
   final String? title;
+  final double? progress;
   final List<Widget>? actions;
   final VoidCallback? onBackTap;
   final Color? backgroundColor;
@@ -90,6 +92,19 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 : null,
           ),
         ),
+        if (widget.progress != null)
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: const Spacing(3).value),
+            child: ClipRRect(
+              borderRadius: context.theme.borderRadiusLG,
+              child: LinearProgressIndicator(
+                value: widget.progress,
+                minHeight: 2,
+                backgroundColor: AppColorsBase.neutrla1,
+                color: context.colorScheme.primary,
+              ),
+            ),
+          )
       ],
     );
   }

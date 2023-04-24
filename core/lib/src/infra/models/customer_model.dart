@@ -116,6 +116,15 @@ class CustomerModel extends CustomerEntity with EquatableMixin {
     };
   }
 
+  Map<String, dynamic> get toUpdateCustomerMap {
+    return {
+      'address': BillingAddressModel.fromEntity(address).toMap,
+      'birthDate': birthDate,
+      'email': email,
+      'name': name,
+    };
+  }
+
   Map<String, dynamic> get toNewCustomerMap {
     return {
       'address': BillingAddressModel.fromEntity(address).toMap,

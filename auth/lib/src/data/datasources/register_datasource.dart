@@ -45,11 +45,14 @@ class RegisterDatasource extends IRegisterDatasource {
   }
 
   @override
-  Future<Either<IRegisterFailure, Unit>> onRequestEmailCode() async {
+  Future<Either<IRegisterFailure, Unit>> onRequestEmailCode({
+    String? accessToken,
+  }) async {
     final response = await graphQlClient.request(
       data: GraphRequestData(
         document: RegisterMutations.sendCustomerEmailVerificationCode,
         options: GraphQlDriverOptions(
+          accessToken: accessToken,
           operationName: 'sendCustomerEmailVerificationCode',
         ),
       ),
@@ -60,9 +63,28 @@ class RegisterDatasource extends IRegisterDatasource {
           l.exception?.graphqlErrors ?? [],
           growable: true,
         );
-        return Left(UnknowError(errors.join('\n')));
+        return Left(
+          UnknowError(
+            'Erro ao enviar o código',
+            detailsMessage: errors.map((e) => e.message).join('\n'),
+          ),
+        );
       },
-      (r) => Right(unit),
+      (r) {
+        try {
+          final bool hasSuccess = r.data['sendCustomerEmailVerificationCode'];
+          if (hasSuccess) return Right(unit);
+
+          return Left(
+            SendCodeError(
+              'Erro ao enviar o código',
+              detailsMessage: 'Não foi possível enviar o código de validação',
+            ),
+          );
+        } catch (e) {
+          return Left(UnknowError(e.toString()));
+        }
+      },
     );
   }
 
@@ -181,7 +203,12 @@ class RegisterDatasource extends IRegisterDatasource {
           l.exception?.graphqlErrors ?? [],
           growable: true,
         );
-        return Left(UnknowError(errors.join('\n')));
+        return Left(
+          UnknowError(
+            'Não foi possível validar o código',
+            detailsMessage: errors.map((e) => e.message).join('\n'),
+          ),
+        );
       },
       (r) => Right(unit),
     );

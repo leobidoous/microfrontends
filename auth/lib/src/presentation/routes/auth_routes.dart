@@ -10,5 +10,4 @@ class AuthRoutes {
 
   static BasePath root = BasePath('/auth/', _parent);
   static BasePath login = BasePath('/login/', root);
-  static BasePath register = BasePath('/register/', root);
 }

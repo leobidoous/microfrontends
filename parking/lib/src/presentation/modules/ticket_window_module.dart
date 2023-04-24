@@ -22,31 +22,31 @@ class TicketWindowModule extends Module {
     /// Ticket window
     Bind.factory<TicketWindowDatasource>(
       (i) => TicketWindowDatasource(
-        graphQlClient: DM.i.get<GraphQlClientDriver>(),
-        client: DM.i.get<DioClientDriver>(),
+        graphQlClient: i.get<GraphQlClientDriver>(),
+        client: i.get<DioClientDriver>(),
       ),
     ),
     Bind.factory<TicketWindowRepository>(
       (i) => TicketWindowRepository(
-        datasource: DM.i.get<TicketWindowDatasource>(),
+        datasource: i.get<TicketWindowDatasource>(),
       ),
     ),
     Bind.factory<TicketWindowUsecase>(
       (i) => TicketWindowUsecase(
-        repository: DM.i.get<TicketWindowRepository>(),
-        session: DM.i.get<SessionEntity>(),
+        repository: i.get<TicketWindowRepository>(),
+        session: i.get<SessionEntity>(),
       ),
     ),
 
     /// Controllers
     Bind.factory<OcrRecognizerController>(
-      (i) => OcrRecognizerController(usecase: DM.i.get<TicketWindowUsecase>()),
+      (i) => OcrRecognizerController(usecase: i.get<TicketWindowUsecase>()),
     ),
     Bind.factory<TakePictureController>((i) => TakePictureController()),
     Bind.lazySingleton<ReviewPhotosController>((i) => ReviewPhotosController()),
     Bind.factory<EnterCouponManuallyController>(
       (i) => EnterCouponManuallyController(
-        usecase: DM.i.get<TicketWindowUsecase>(),
+        usecase: i.get<TicketWindowUsecase>(),
       ),
     ),
   ];

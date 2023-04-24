@@ -2,7 +2,7 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../../widgets/form_header.dart';
+import '../../../widgets/form_header.dart';
 
 class RegisterFullNameView extends StatefulWidget {
   const RegisterFullNameView({super.key, required this.onConfirm});

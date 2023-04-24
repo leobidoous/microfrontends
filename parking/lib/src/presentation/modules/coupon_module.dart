@@ -21,35 +21,35 @@ class CouponModule extends Module {
     Bind.factory<CouponDatasource>(
       (i) => CouponDatasource(
         client: i.get<DioClientDriver>(),
-        storageDriver: DM.i.get<FirebaseStorageDriver>(),
+        storageDriver: i.get<FirebaseStorageDriver>(),
         baseUrl: i.get<EnvironmentEntity>().baseUrlParking,
       ),
     ),
     Bind.factory<CouponRepository>(
-      (i) => CouponRepository(datasource: DM.i.get<CouponDatasource>()),
+      (i) => CouponRepository(datasource: i.get<CouponDatasource>()),
     ),
     Bind.factory<CouponUsecase>(
       (i) => CouponUsecase(
-        session: DM.i.get<SessionEntity>(),
-        repository: DM.i.get<CouponRepository>(),
+        session: i.get<SessionEntity>(),
+        repository: i.get<CouponRepository>(),
       ),
     ),
 
     /// Controllers
     Bind.factory<CouponsListController>(
-      (i) => CouponsListController(usecase: DM.i.get<CouponUsecase>()),
+      (i) => CouponsListController(usecase: i.get<CouponUsecase>()),
     ),
     Bind.factory<CouponSubmitController>(
       (i) => CouponSubmitController(
-        couponUsecase: DM.i.get<CouponUsecase>(),
-        parkingUsecase: DM.i.get<ParkingUsecase>(),
+        couponUsecase: i.get<CouponUsecase>(),
+        parkingUsecase: i.get<ParkingUsecase>(),
       ),
     ),
     Bind.factory<CodeScanController>((i) => CodeScanController()),
     Bind.factory<ScanCouponController>(
       (i) => ScanCouponController(
-        couponUsecase: DM.i.get<CouponUsecase>(),
-        scanController: DM.i.get<CodeScanController>(),
+        couponUsecase: i.get<CouponUsecase>(),
+        scanController: i.get<CodeScanController>(),
       ),
     ),
   ];

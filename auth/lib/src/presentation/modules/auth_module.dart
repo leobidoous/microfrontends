@@ -6,9 +6,10 @@ import '../../infra/repositories/auth_repository.dart';
 import '../../infra/repositories/user_repository.dart';
 import '../../infra/usecases/auth_usecase.dart';
 import '../../infra/usecases/user_usecase.dart';
-import '../auth_routes.dart';
 import '../controllers/auth_controller.dart';
 import '../pages/auth/auth_page.dart';
+import '../routes/login_routes.dart';
+import '../routes/register_routes.dart';
 import 'login_module.dart';
 import 'register_module.dart';
 
@@ -81,7 +82,7 @@ class AuthModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ChildRoute(Modular.initialRoute, child: (_, args) => const AuthPage()),
-    ModuleRoute(AuthRoutes.login.path, module: LoginModule()),
-    ModuleRoute(AuthRoutes.register.path, module: RegisterModule()),
+    ModuleRoute(LoginRoutes.root.path, module: LoginModule()),
+    ModuleRoute(RegisterRoutes.root.path, module: RegisterModule()),
   ];
 }

@@ -19,4 +19,11 @@ class UserRepository extends IUserRepository {
   }) {
     return datasource.getFirebaseUser(forceRefresh: forceRefresh);
   }
+
+  @override
+  Future<Either<Exception, CustomerEntity>> updateUser({
+    required CustomerEntity customer,
+  }) {
+    return datasource.updateUser(customer: customer);
+  }
 }

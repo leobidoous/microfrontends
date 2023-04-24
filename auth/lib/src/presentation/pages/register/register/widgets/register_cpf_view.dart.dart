@@ -3,7 +3,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../widgets/form_header.dart';
+import '../../../widgets/form_header.dart';
 
 class RegisterCpfView extends StatefulWidget {
   const RegisterCpfView({super.key, required this.onConfirm});
