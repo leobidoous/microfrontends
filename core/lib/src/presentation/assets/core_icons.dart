@@ -300,4 +300,6 @@ class CoreIcons {
       IconData(0xe83d, fontFamily: _fontFamily, fontPackage: _fontPackage);
   static const xmark =
       IconData(0xe83e, fontFamily: _fontFamily, fontPackage: _fontPackage);
+  static const IconData buildingCar =
+      IconData(0xe844, fontFamily: _fontFamily, fontPackage: _fontPackage);
 }
