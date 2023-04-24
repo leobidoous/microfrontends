@@ -78,7 +78,10 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'Configurações'),
+      appBar: CustomAppBar(
+        title: 'Configurações',
+        automaticallyImplyLeading: Nav.to.canPop(),
+      ),
       body: SafeArea(
         child: Column(
           children: [
@@ -90,7 +93,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   children: [
                     _avatarHeader,
                     Spacing.md.vertical,
-                    if (sessionController.hasEmailVerified) ...[
+                    if (!sessionController.hasEmailVerified) ...[
                       _validateEmailWarning,
                       Spacing.md.vertical,
                     ],

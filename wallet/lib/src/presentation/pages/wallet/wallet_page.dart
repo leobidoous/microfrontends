@@ -107,7 +107,7 @@ class _WalletPageState extends State<WalletPage> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Padding(
-                        padding: EdgeInsets.all(const Spacing(2).value),
+                        padding: EdgeInsets.all(const Spacing(3).value),
                         child: Text(
                           'Cartões Cadastrados',
                           style: context.textTheme.bodyLarge,
@@ -128,7 +128,7 @@ class _WalletPageState extends State<WalletPage> {
                       Spacing.sm.vertical,
                       Padding(
                         padding: EdgeInsets.symmetric(
-                          horizontal: const Spacing(2).value,
+                          horizontal: const Spacing(3).value,
                         ),
                         child: Text(
                           'Transações',
@@ -151,7 +151,7 @@ class _WalletPageState extends State<WalletPage> {
   Widget get _transactionsList {
     return PagedListView<TransactionEntity, Exception>(
       listController: listController,
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(const Spacing(3).value),
       safeAreaLastItem: false,
       separatorBuilder: (_) => Spacing.sm.vertical,
       noItemsFoundIndicatorBuilder: (_, onPressed) {

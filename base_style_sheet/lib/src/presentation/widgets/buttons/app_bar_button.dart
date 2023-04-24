@@ -23,7 +23,7 @@ class AppBarButton extends StatelessWidget {
           onTap: isEnabled ? onTap : null,
           borderRadius: AppThemeBase.borderRadiusSM,
           child: Padding(
-            padding: EdgeInsets.all(const Spacing(2).value),
+            padding: EdgeInsets.only(right: const Spacing(3).value),
             child: SizedBox(
               width: const Spacing(3).value.responsiveWidth,
               height: const Spacing(3).value.responsiveHeight,
