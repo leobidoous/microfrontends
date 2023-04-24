@@ -66,10 +66,10 @@ class _CreditCardDataFormState extends State<CreditCardDataForm> {
         Expanded(
           child: CustomScrollContent(
             padding: EdgeInsets.fromLTRB(
-              const Spacing(2).value,
-              const Spacing(2).value,
-              const Spacing(2).value,
-              Spacing.orKeyboardPadding(context, const Spacing(2).value),
+              const Spacing(3).value,
+              const Spacing(3).value,
+              const Spacing(3).value,
+              Spacing.orKeyboardPadding(context, const Spacing(3).value),
             ),
             child: Column(
               children: [
@@ -105,7 +105,7 @@ class _CreditCardDataFormState extends State<CreditCardDataForm> {
         ),
         SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(const Spacing(3).value),
             child: StreamBuilder<bool>(
               stream: stream,
               initialData: false,

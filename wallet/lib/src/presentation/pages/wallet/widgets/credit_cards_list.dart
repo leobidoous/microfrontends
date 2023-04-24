@@ -45,7 +45,7 @@ class _CreditCardsListState extends State<CreditCardsList> {
                 child: CustomScrollContent(
                   scrollDirection: Axis.horizontal,
                   padding: EdgeInsets.symmetric(
-                    horizontal: const Spacing(2).value,
+                    horizontal: const Spacing(3).value,
                   ),
                   child: Row(
                     children: List.generate(
@@ -61,7 +61,7 @@ class _CreditCardsListState extends State<CreditCardsList> {
           return Center(
             child: RequestError(
               maxHeight: const Spacing(15).value.responsiveHeight,
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(const Spacing(3).value),
               message: widget.cardController.error.toString(),
               onPressed: widget.cardController.fetchCreditCards,
             ),
@@ -75,7 +75,7 @@ class _CreditCardsListState extends State<CreditCardsList> {
                 child: CustomScrollContent(
                   scrollDirection: Axis.horizontal,
                   padding: EdgeInsets.symmetric(
-                    horizontal: const Spacing(2).value,
+                    horizontal: const Spacing(3).value,
                   ),
                   child: Row(
                     children: [
@@ -105,7 +105,7 @@ class _CreditCardsListState extends State<CreditCardsList> {
     return Padding(
       padding: isLast
           ? EdgeInsets.zero
-          : EdgeInsets.only(right: const Spacing(2).value),
+          : EdgeInsets.only(right: const Spacing(3).value),
       child: CustomCard(
         border: Border.all(
           color: AppColorsBase.neutrla2,
@@ -246,17 +246,22 @@ class _CreditCardsListState extends State<CreditCardsList> {
                         width: const Spacing(3).value,
                       );
                     }
-                    return InkWell(
-                      onTap: () {
-                        widget.favoriteCardController.onChangingFavorite(card);
-                        widget.onChangeFavorite(card.id, !card.isFavorite);
-                      },
-                      child: Icon(
-                        card.isFavorite
-                            ? Icons.star_rounded
-                            : Icons.star_outline_rounded,
-                        color: context.colorScheme.primary,
-                        size: const Spacing(3).value,
+                    return Semantics(
+                      button: true,
+                      child: InkWell(
+                        onTap: () {
+                          widget.favoriteCardController.onChangingFavorite(
+                            card,
+                          );
+                          widget.onChangeFavorite(card.id, !card.isFavorite);
+                        },
+                        child: Icon(
+                          card.isFavorite
+                              ? Icons.star_rounded
+                              : Icons.star_outline_rounded,
+                          color: context.colorScheme.primary,
+                          size: const Spacing(3).value,
+                        ),
                       ),
                     );
                   },

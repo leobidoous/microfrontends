@@ -104,10 +104,10 @@ class _CreditCardAddressFormState extends State<CreditCardAddressForm> {
         Expanded(
           child: CustomScrollContent(
             padding: EdgeInsets.fromLTRB(
-              const Spacing(2).value,
-              const Spacing(2).value,
-              const Spacing(2).value,
-              Spacing.orKeyboardPadding(context, const Spacing(2).value),
+              const Spacing(3).value,
+              const Spacing(3).value,
+              const Spacing(3).value,
+              Spacing.orKeyboardPadding(context, const Spacing(3).value),
             ),
             child: Column(
               children: [
@@ -125,7 +125,7 @@ class _CreditCardAddressFormState extends State<CreditCardAddressForm> {
         ),
         SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(const Spacing(3).value),
             child: CustomButton.text(
               type: ButtonType.tertiary,
               isLoading: widget.isLoading,

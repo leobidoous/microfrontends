@@ -60,32 +60,26 @@ class _CustomAppBarState extends State<CustomAppBar> {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: context.textTheme.bodyMedium?.copyWith(
-                fontFamily: GoogleFonts.inter().fontFamily,
+                fontFamily: context.textTheme.secodaryFontFamily,
                 fontWeight: context.textTheme.fontWeightMedium,
                 color: AppColorsBase.neutrla7,
               ),
             ),
             leading: widget.automaticallyImplyLeading
-                ? Semantics(
-                    button: true,
-                    child: SizedBox(
-                      height: const Spacing(3).value,
-                      width: const Spacing(3).value,
+                ? SizedBox(
+                    height: const Spacing(3).value,
+                    width: const Spacing(3).value,
+                    child: Semantics(
+                      button: true,
                       child: InkWell(
-                        onTap: widget.onBackTap ?? Nav.to.pop,
+                        onTap: widget.onBackTap ??
+                            () => Nav.to.pop(context: context),
                         borderRadius: AppThemeBase.borderRadiusSM,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            vertical: const Spacing(2).value,
-                            horizontal: const Spacing(4).value,
-                          ),
-                          child: (widget.leadingIcon != null)
-                              ? widget.leadingIcon
-                              : Icon(
-                                  CoreIcons.chevronLeft,
-                                  color: AppColorsBase.neutrla7,
-                                ),
-                        ),
+                        child: widget.leadingIcon ??
+                            Icon(
+                              CoreIcons.chevronLeft,
+                              color: AppColorsBase.neutrla7,
+                            ),
                       ),
                     ),
                   )
