@@ -2,8 +2,8 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../../controllers/timer_controller.dart';
 import 'form_header.dart';
+import 'resend_code_timer.dart';
 
 class PhonePinCodeView extends StatefulWidget {
   const PhonePinCodeView({
@@ -23,7 +23,6 @@ class PhonePinCodeView extends StatefulWidget {
 
 class _PhonePinCodeViewState extends State<PhonePinCodeView> {
   final textController = TextEditingController();
-  final timerController = TimerController();
   final formKey = GlobalKey<FormState>();
   String? errorText;
   bool pinCodeIsValid = false;
@@ -48,14 +47,7 @@ class _PhonePinCodeViewState extends State<PhonePinCodeView> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    timerController.startTimer();
-  }
-
-  @override
   void dispose() {
-    timerController.dispose();
     textController.dispose();
     super.dispose();
   }
@@ -68,9 +60,7 @@ class _PhonePinCodeViewState extends State<PhonePinCodeView> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const FormHeader(
-            text: 'Valide o número do seu celular',
-          ),
+          const FormHeader(text: 'Valide o número do seu celular'),
           Spacing.sm.vertical,
           Align(
             alignment: Alignment.topLeft,
@@ -97,31 +87,7 @@ class _PhonePinCodeViewState extends State<PhonePinCodeView> {
             ),
           ),
           Spacing.lg.vertical,
-          ValueListenableBuilder(
-            valueListenable: timerController,
-            builder: (context, value, child) {
-              return Semantics(
-                button: true,
-                child: InkWell(
-                  onTap: !timerController.showTimer
-                      ? () {
-                          timerController.startTimer();
-                          widget.onRequestPhoneCode();
-                        }
-                      : null,
-                  child: Text(
-                    '''Não recebi o código ${timerController.showTimer ? '(${timerController.counter} seg)' : ''}''',
-                    style: context.textTheme.bodyLarge?.copyWith(
-                      fontWeight: context.textTheme.fontWeightMedium,
-                      color: !timerController.showTimer
-                          ? Colors.black
-                          : Colors.grey,
-                    ),
-                  ),
-                ),
-              );
-            },
-          ),
+          ResendCodeTimer(onResendCode: widget.onRequestPhoneCode),
           Spacing.md.vertical,
           CustomButton.text(
             text: 'Confirmar',

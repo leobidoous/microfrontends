@@ -27,9 +27,7 @@ class _PhoneRechargePageState extends State<PhoneRechargePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(
-        title: 'Recarga de celular',
-      ),
+      appBar: const CustomAppBar(title: 'Recarga de celular'),
       body: SafeArea(
         child: Column(
           children: [

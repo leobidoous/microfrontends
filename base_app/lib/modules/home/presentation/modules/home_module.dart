@@ -39,13 +39,14 @@ class HomeModule extends Module {
     ),
 
     /// Session
-    Bind.lazySingleton<SessionEntity>((i) => i.get<AppController>().session),
     Bind.lazySingleton<SessionController>(
       (i) => SessionController(
-        i.get<SessionEntity>(),
+        i.get<AppController>().session,
         authUsecase: i.get<AuthUsecase>(),
+        localUserUsecase: i.get<LocalUserUsecase>(),
       ),
     ),
+    Bind.lazySingleton<SessionEntity>((i) => i.get<SessionController>().state),
 
     /// Shopping
     Bind.factory<ShoppingEntity>(

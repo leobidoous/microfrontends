@@ -7,8 +7,8 @@ class AppController extends GenController<Exception, Unit> {
     required this.authUsecase,
   }) : super(unit);
 
-  final IAuthUsecase authUsecase;
   late SessionEntity session;
+  final IAuthUsecase authUsecase;
   final ILocalUserUsecase localUserUsecase;
 
   Future<Either<Exception, SessionEntity>> getSession() async {

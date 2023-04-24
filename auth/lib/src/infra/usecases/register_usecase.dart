@@ -21,8 +21,10 @@ class RegisterUsecase extends IRegisterUsecase {
   }
 
   @override
-  Future<Either<IRegisterFailure, Unit>> onRequestEmailCode() {
-    return repository.onRequestEmailCode();
+  Future<Either<IRegisterFailure, Unit>> onRequestEmailCode({
+    String? accessToken,
+  }) {
+    return repository.onRequestEmailCode(accessToken: accessToken);
   }
 
   @override

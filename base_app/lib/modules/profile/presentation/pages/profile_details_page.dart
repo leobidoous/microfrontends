@@ -2,6 +2,8 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
+import '../../../app/presentation/controllers/session_controller.dart';
+
 class ProfileDetailsPage extends StatefulWidget {
   const ProfileDetailsPage({super.key});
 
@@ -10,7 +12,7 @@ class ProfileDetailsPage extends StatefulWidget {
 }
 
 class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
-  final customer = DM.i.get<SessionEntity>().customer;
+  final customer = DM.i.get<SessionController>().customer;
 
   @override
   Widget build(BuildContext context) {

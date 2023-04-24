@@ -19,4 +19,11 @@ class UserUsecase extends IUserUsecase {
   }) {
     return repository.getFirebaseUser(forceRefresh: forceRefresh);
   }
+
+  @override
+  Future<Either<Exception, CustomerEntity>> updateUser({
+    required CustomerEntity customer,
+  }) {
+    return repository.updateUser(customer: customer);
+  }
 }

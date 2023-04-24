@@ -3,8 +3,8 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../controllers/register/register_address_controller.dart';
-import '../../widgets/form_header.dart';
+import '../../../../controllers/register/register_address_controller.dart';
+import '../../../widgets/form_header.dart';
 
 class RegisterAddressView extends StatefulWidget {
   const RegisterAddressView({super.key, required this.onConfirm});

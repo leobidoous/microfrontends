@@ -89,7 +89,7 @@ class _LoginPagePageState extends State<LoginPage> {
         showClose: true,
       ).then((value) {
         Nav.to.pushReplacementNamed(
-          AuthRoutes.register.prevPath(),
+          RegisterRoutes.root.prevPath(),
           arguments: {
             'onLoginCallback': widget.onLoginCallback,
             'redirectTo': widget.redirectTo,

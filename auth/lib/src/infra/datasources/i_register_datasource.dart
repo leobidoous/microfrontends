@@ -3,7 +3,9 @@ import 'package:core/core.dart';
 import '../../domain/failures/register_failure.dart';
 
 abstract class IRegisterDatasource {
-  Future<Either<IRegisterFailure, Unit>> onRequestEmailCode();
+  Future<Either<IRegisterFailure, Unit>> onRequestEmailCode({
+    String? accessToken,
+  });
   Future<Either<IRegisterFailure, Unit>> onValidateEmailCode({
     required String token,
   });

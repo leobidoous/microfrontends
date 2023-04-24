@@ -22,21 +22,25 @@ class SplashController extends GenController<Exception, bool> {
       return value.fold(
         (l) => setError(l),
         (session) async {
-          return await appController.authUsecase
+          await appController.authUsecase
               .createExternalUser(user: session.user)
               .then((value) async {
-            return value.fold((l) => setError(Exception(l.data)), (r) async {
-              return await appController.localUserUsecase
-                  .setSession(
-                session: SessionModel.fromEntity(session).copyWith(
-                  externalUser: r,
-                ),
-              )
-                  .then((value) async {
-                return await userUsecase
-                    .getUserById(id: session.customer.id)
-                    .then((value) {
-                  return value.fold((l) => setError(l), (r) => update(true));
+            return value.fold((l) => setError(Exception(l.data)),
+                (externalUser) async {
+              await userUsecase
+                  .getUserById(id: session.customer.id)
+                  .then((value) {
+                return value.fold((l) => setError(l), (customer) async {
+                  await appController.localUserUsecase
+                      .setSession(
+                    session: SessionModel.fromEntity(session).copyWith(
+                      externalUser: externalUser,
+                      customer: customer,
+                    ),
+                  )
+                      .then((value) {
+                    return value.fold((l) => setError(l), (r) => update(true));
+                  });
                 });
               });
             });
@@ -45,32 +49,6 @@ class SplashController extends GenController<Exception, bool> {
       );
     });
   }
-  // Future<void> onInit() async {
-  //   await appController.getSession().then((value) async {
-  //     await checkLatestVersion();
-  //     return value.fold(
-  //       (l) => setError(l),
-  //       (session) {
-  // return appController.authUsecase
-  //     .createExternalUser(user: session.user)
-  //     .then((value) {
-  //   return value.fold((l) => Left(l), (r) {
-  //     return userUsecase
-  //         .getUserById(id: session.customer.id)
-  //         .then((value) async {
-  //       print(1231231231);
-  //       await Future.delayed(const Duration(seconds: 2));
-  //       return value.fold(
-  //         (l) => setError(l),
-  //         (r) => update(true),
-  //       );
-  //     });
-  //           });
-  //         });
-  //       },
-  //     );
-  //   });
-  // }
 
   Future<void> checkLatestVersion() async {}
 }

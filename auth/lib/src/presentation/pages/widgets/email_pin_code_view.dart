@@ -2,19 +2,19 @@ import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../../controllers/timer_controller.dart';
 import 'form_header.dart';
+import 'resend_code_timer.dart';
 
 class EmailPinCodeView extends StatefulWidget {
   const EmailPinCodeView({
     super.key,
     required this.email,
     required this.onConfirm,
-    required this.onRequestPhoneCode,
+    required this.onRequestEmailCode,
   });
 
   final Future<String?> Function(String code) onConfirm;
-  final Function() onRequestPhoneCode;
+  final Function() onRequestEmailCode;
   final String email;
 
   @override
@@ -23,7 +23,6 @@ class EmailPinCodeView extends StatefulWidget {
 
 class _EmailPinCodeViewState extends State<EmailPinCodeView> {
   final textController = TextEditingController();
-  final timerController = TimerController();
   final formKey = GlobalKey<FormState>();
   String? errorText;
   bool pinCodeIsValid = false;
@@ -48,14 +47,7 @@ class _EmailPinCodeViewState extends State<EmailPinCodeView> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    timerController.startTimer();
-  }
-
-  @override
   void dispose() {
-    timerController.dispose();
     textController.dispose();
     super.dispose();
   }
@@ -68,9 +60,7 @@ class _EmailPinCodeViewState extends State<EmailPinCodeView> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const FormHeader(
-            text: 'Valide o seu e-mail',
-          ),
+          const FormHeader(text: 'Valide o seu e-mail'),
           Spacing.sm.vertical,
           Align(
             alignment: Alignment.topLeft,
@@ -90,38 +80,11 @@ class _EmailPinCodeViewState extends State<EmailPinCodeView> {
               controller: textController,
               keyboardType: TextInputType.number,
               onComplete: (_) => onConfirm(),
-              validators: const [
-                FormValidators.emptyField,
-                FormValidators.invalidEmail,
-              ],
+              validators: const [FormValidators.emptyField],
             ),
           ),
           Spacing.lg.vertical,
-          ValueListenableBuilder(
-            valueListenable: timerController,
-            builder: (context, value, child) {
-              return Semantics(
-                button: true,
-                child: InkWell(
-                  onTap: !timerController.showTimer
-                      ? () {
-                          timerController.startTimer();
-                          widget.onRequestPhoneCode();
-                        }
-                      : null,
-                  child: Text(
-                    '''Não recebi o código ${timerController.showTimer ? '(${timerController.counter} seg)' : ''}''',
-                    style: context.textTheme.bodyLarge?.copyWith(
-                      fontWeight: context.textTheme.fontWeightMedium,
-                      color: !timerController.showTimer
-                          ? Colors.black
-                          : Colors.grey,
-                    ),
-                  ),
-                ),
-              );
-            },
-          ),
+          ResendCodeTimer(onResendCode: widget.onRequestEmailCode),
           Spacing.md.vertical,
           CustomButton.text(
             text: 'Confirmar',

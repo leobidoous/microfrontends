@@ -21,8 +21,10 @@ class RegisterRepository extends IRegisterRepository {
   }
 
   @override
-  Future<Either<IRegisterFailure, Unit>> onRequestEmailCode() {
-    return datasource.onRequestEmailCode();
+  Future<Either<IRegisterFailure, Unit>> onRequestEmailCode({
+    String? accessToken,
+  }) {
+    return datasource.onRequestEmailCode(accessToken: accessToken);
   }
 
   @override

@@ -41,4 +41,31 @@ class UserDatasource extends IUserDatasource {
   }) {
     return firebaseAuthDriver.getFirebaseTokenResult(forceRefresh: false);
   }
+
+  @override
+  Future<Either<Exception, CustomerEntity>> updateUser({
+    required CustomerEntity customer,
+  }) async {
+    final response = await graphQlClient.request(
+      data: GraphRequestData(
+        document: CustomerMutations.updateCustomer,
+        variables: {
+          'id': customer.id,
+          'params': CustomerModel.fromEntity(customer).toUpdateCustomerMap
+        },
+        options: GraphQlDriverOptions(operationName: 'updateCustomer'),
+      ),
+    );
+
+    return response.fold(
+      (l) => Left(Exception(l)),
+      (r) {
+        try {
+          return Right(CustomerModel.fromMap(r.data['updateCustomer']));
+        } catch (e) {
+          return Left(Exception(e));
+        }
+      },
+    );
+  }
 }
