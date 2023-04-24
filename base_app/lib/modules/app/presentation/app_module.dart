@@ -35,7 +35,11 @@ class AppModule extends Module {
     Bind.factory<GraphQLClient>(
       (i) => GraphQLClient(
         link: Link.from([]),
-        cache: GraphQLCache(store: HiveStore()),
+        defaultPolicies: DefaultPolicies(),
+        cache: GraphQLCache(
+          store: HiveStore(),
+          partialDataPolicy: PartialDataCachePolicy.acceptForOptimisticData,
+        ),
       ),
     ),
     Bind.factory<GraphQlClientDriver>(

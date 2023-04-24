@@ -64,7 +64,7 @@ class _EmailViewState extends State<EmailView> {
               FormValidators.invalidEmail,
             ],
             onChanged: validateEmail,
-            onFieldSubmitted: widget.onConfirm,
+            onFieldSubmitted: (_) => onConfirm(),
             labelWidget: const InputLabel(label: 'Insira seu e-mail'),
           ),
           Spacing.sm.vertical,

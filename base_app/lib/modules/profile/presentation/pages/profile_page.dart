@@ -93,10 +93,20 @@ class _ProfilePageState extends State<ProfilePage> {
                   children: [
                     _avatarHeader,
                     Spacing.md.vertical,
-                    if (!sessionController.hasEmailVerified) ...[
-                      _validateEmailWarning,
-                      Spacing.md.vertical,
-                    ],
+                    ValueListenableBuilder(
+                      valueListenable: sessionController,
+                      builder: (_, session, child) {
+                        return Visibility(
+                          visible: !sessionController.hasEmailVerified,
+                          child: Column(
+                            children: [
+                              _validateEmailWarning,
+                              Spacing.md.vertical
+                            ],
+                          ),
+                        );
+                      },
+                    ),
                     ListView.separated(
                       shrinkWrap: true,
                       itemCount: menuItems.length,
@@ -166,8 +176,10 @@ class _ProfilePageState extends State<ProfilePage> {
         Nav.to.pushNamed(
           RegisterRoutes.validateEmail,
           forRoot: true,
-          arguments: (CustomerEntity customer) async {
-            sessionController.updateSession(customer: customer);
+          arguments: {
+            'onValidateCallback': (CustomerEntity customer) async {
+              sessionController.updateSession(customer: customer);
+            },
           },
         );
       },

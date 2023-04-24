@@ -94,6 +94,10 @@ class CustomerModel extends CustomerEntity with EquatableMixin {
     );
   }
 
+  bool get hasEmailVerified => emailVerifiedAt.isNotEmpty;
+
+  bool get hasPhoneVerified => phoneVerifiedAt.isNotEmpty;
+
   String get toJson => json.encode(toMap);
 
   CustomerEntity get toEntity => this;
@@ -130,6 +134,7 @@ class CustomerModel extends CustomerEntity with EquatableMixin {
       'address': BillingAddressModel.fromEntity(address).toMap,
       'cpf': cpf,
       'name': name,
+      'email': email,
       'termAcceptedAt': termAcceptedAt,
       'termVersion': '1.0.1',
     };

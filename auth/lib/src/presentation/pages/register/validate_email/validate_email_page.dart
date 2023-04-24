@@ -8,9 +8,14 @@ import '../../widgets/email_pin_code_view.dart';
 import '../../widgets/email_view.dart';
 
 class ValidateEmailPage extends StatefulWidget {
-  const ValidateEmailPage({super.key, required this.onValidateCallback});
+  const ValidateEmailPage({
+    super.key,
+    required this.onValidateCallback,
+    required this.redirectTo,
+  });
 
   final Future Function(CustomerEntity) onValidateCallback;
+  final Function()? redirectTo;
 
   @override
   State<ValidateEmailPage> createState() => _ValidateEmailPageState();
@@ -73,7 +78,11 @@ class _ValidateEmailPageState extends State<ValidateEmailPage> {
           onConfirm: Nav.to.pop,
         ),
       );
-      Nav.to.pop();
+      final customer = CustomerModel.fromEntity(this.customer).copyWith(
+        emailVerifiedAt: DateTime.now().toIso8601String(),
+      );
+      await widget.onValidateCallback(customer);
+      widget.redirectTo?.call() ?? Nav.to.pop();
       return null;
     });
   }
