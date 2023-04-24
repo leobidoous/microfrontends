@@ -165,10 +165,10 @@ class _HistorysInfoState extends State<HistorysInfo> {
   Widget _ticketHistoryListItem(HistoryTicketModel history) {
     return Row(
       children: [
-        // const Icon(
-        //   CoreIcons.buildingCar,
-        //   size: 25,
-        // ),
+        const Icon(
+          CoreIcons.buildingCar,
+          size: 25,
+        ),
         Spacing.sm.horizontal,
         Expanded(
           child: Column(
