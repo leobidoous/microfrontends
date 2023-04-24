@@ -57,7 +57,10 @@ class RegisterModule extends Module {
     ),
     ChildRoute(
       RegisterRoutes.validateEmail.path,
-      child: (_, args) => ValidateEmailPage(onValidateCallback: args.data),
+      child: (_, args) => ValidateEmailPage(
+        onValidateCallback: args.data['onValidateCallback'],
+        redirectTo: args.data['redirectTo'],
+      ),
     ),
   ];
 }

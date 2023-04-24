@@ -7,4 +7,9 @@ abstract class INotificationDatasource {
     required String marketplaceId,
     required String customerId,
   });
+  Future<Either<Exception, Unit>> markAsRead({
+    required String marketplaceId,
+    required String customerId,
+    required String notificationId,
+  });
 }

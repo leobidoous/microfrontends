@@ -18,12 +18,12 @@ class WalletPage extends StatefulWidget {
 }
 
 class _WalletPageState extends State<WalletPage> {
-  final session = DM.i.get<SessionEntity>();
   final cardsController = DM.i.get<FetchCreditCardsController>();
   final removeCardController = DM.i.get<RemoveCreditCardController>();
   final transactionsController = DM.i.get<FetchTransactionsController>();
   final favoriteCardController = DM.i.get<ChangeFavoriteCardController>();
   late final PagedListController<TransactionEntity, Exception> listController;
+  final customer = CustomerModel.fromEntity(DM.i.get<SessionEntity>().customer);
 
   @override
   void initState() {
@@ -121,8 +121,7 @@ class _WalletPageState extends State<WalletPage> {
                           onChangeFavorite: onChangeFavorite,
                           removeCardController: removeCardController,
                           onRemoveCard: onRemoveCard,
-                          emailVerified:
-                              session.customer.emailVerifiedAt.isNotEmpty,
+                          emailVerified: customer.hasEmailVerified,
                         ),
                       ),
                       Spacing.sm.vertical,

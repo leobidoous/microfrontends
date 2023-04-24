@@ -18,6 +18,7 @@ class SessionController extends GenController<Exception, SessionEntity> {
   UserEntity get user => state.user;
 
   bool get hasEmailVerified => customer.emailVerifiedAt.isNotEmpty;
+  bool get hasPhoneVerified => customer.phoneVerifiedAt.isNotEmpty;
 
   Future<void> updateSession({
     ExternalUserEntity? externalUser,

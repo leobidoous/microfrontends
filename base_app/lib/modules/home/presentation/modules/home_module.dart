@@ -6,6 +6,8 @@ import 'package:wallet/wallet.dart';
 
 import '../../../app/presentation/controllers/app_controller.dart';
 import '../../../app/presentation/controllers/session_controller.dart';
+import '../../../notification/presentation/notification_module.dart';
+import '../../../notification/presentation/notification_routes.dart';
 import '../../../profile/presentation/profile_module.dart';
 import '../../../profile/presentation/profile_routes.dart';
 import '../../../shared/presentation/pages/fallback_page.dart';
@@ -46,7 +48,7 @@ class HomeModule extends Module {
         localUserUsecase: i.get<LocalUserUsecase>(),
       ),
     ),
-    Bind.factory<SessionEntity>((i) => i.get<SessionController>().state),
+    Bind.lazySingleton<SessionEntity>((i) => i.get<SessionController>().state),
 
     /// Shopping
     Bind.factory<ShoppingEntity>(
@@ -106,6 +108,7 @@ class HomeModule extends Module {
       ),
     ),
     ModuleRoute(PayRoutes.root.path, module: PayModule()),
+    ModuleRoute(NotificationRoutes.root.path, module: NotificationModule()),
     ChildRoute(
       SharedRoutes.fallback.path,
       child: (_, args) => const FallbackPage(),

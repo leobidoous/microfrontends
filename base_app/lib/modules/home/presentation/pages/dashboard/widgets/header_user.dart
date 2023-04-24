@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../app/presentation/controllers/session_controller.dart';
+import '../../../../../notification/presentation/notification_routes.dart';
 import '../../../controllers/dashboard_controller.dart';
 import 'avatar_user.dart';
 import 'hello_user.dart';
@@ -31,11 +32,7 @@ class HeaderUser extends StatelessWidget {
             ),
             Spacing.md.horizontal,
             InkWell(
-              ///TODO: ADICIONAR FLOW DE NOTIFICAÇÕES
-              // onTap: () => Nav.to.pushNamed(
-              //   Routes.NOTIFICATIONS_PAGE,
-              //   arguments: controller.resultNotifications,
-              // ),
+              onTap: () => Nav.to.pushNamed(NotificationRoutes.root),
               child: Stack(
                 children: [
                   Icon(

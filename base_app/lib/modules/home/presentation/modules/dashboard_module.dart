@@ -1,15 +1,12 @@
 import 'package:core/core.dart';
 import 'package:wallet/wallet.dart';
 
-import '../../../app/presentation/controllers/session_controller.dart';
+import '../../../notification/infra/usecases/notification_usecase.dart';
+import '../../../notification/presentation/notification_controller.dart';
 import '../../data/dashboard_datasource.dart';
-import '../../data/notification_datasource.dart';
 import '../../infra/repositories/dashboard_repository.dart';
-import '../../infra/repositories/notification_repository.dart';
 import '../../infra/usecases/dashboard_usecase.dart';
-import '../../infra/usecases/notification_usecase.dart';
 import '../controllers/dashboard_controller.dart';
-import '../controllers/notifications_controller.dart';
 import '../pages/dashboard/dashboard_page.dart';
 
 class DashboardModule extends Module {
@@ -17,23 +14,6 @@ class DashboardModule extends Module {
   final List<Bind> binds = [
     /// Wallet
     ...WalletModule.exportedBinds,
-
-    /// Notifications
-    Bind.lazySingleton<NotificationDatasource>(
-      (i) => NotificationDatasource(
-        storageDriver: i.get<FirebaseStorageDriver>(),
-      ),
-    ),
-    Bind.lazySingleton<NotificationRepository>(
-      (i) => NotificationRepository(
-        datasource: i.get<NotificationDatasource>(),
-      ),
-    ),
-    Bind.lazySingleton<NotificationUsecase>(
-      (i) => NotificationUsecase(
-        repository: i.get<NotificationRepository>(),
-      ),
-    ),
 
     /// Dashboard
     Bind.lazySingleton<DashboardDatasource>(
@@ -60,9 +40,8 @@ class DashboardModule extends Module {
         dashboardUsecase: i.get<DashboardUsecase>(),
       ),
     ),
-    Bind.factory<NotificationsController>(
-      (i) => NotificationsController(
-        sessionController: i.get<SessionController>(),
+    Bind.factory<NotificationController>(
+      (i) => NotificationController(
         notificationUsecase: i.get<NotificationUsecase>(),
       ),
     ),

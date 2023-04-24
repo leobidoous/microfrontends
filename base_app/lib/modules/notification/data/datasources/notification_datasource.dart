@@ -1,15 +1,13 @@
 import 'package:core/core.dart';
 
-import '../domain/entities/notification_entity.dart';
-import '../infra/datasource/i_notification_datasource.dart';
-import '../infra/models/notification_model.dart';
+import '../../domain/entities/notification_entity.dart';
+import '../../infra/datasources/i_notification_datasource.dart';
+import '../../infra/models/notification_model.dart';
 
 class NotificationDatasource implements INotificationDatasource {
-  final IFirebaseStorageDriver storageDriver;
+  NotificationDatasource({required this.storageDriver});
 
-  NotificationDatasource({
-    required this.storageDriver,
-  });
+  final IFirebaseStorageDriver storageDriver;
 
   @override
   Future<Either<Exception, List<NotificationEntity>>> fetchNotifications({
@@ -42,5 +40,22 @@ class NotificationDatasource implements INotificationDatasource {
         }
       },
     );
+  }
+
+  @override
+  Future<Either<Exception, Unit>> markAsRead({
+    required String marketplaceId,
+    required String customerId,
+    required String notificationId,
+  }) async {
+    final path =
+        'marketplaces/$marketplaceId/customers/$customerId/notifications';
+
+    final response = await storageDriver.docUpdate(
+      collectionDoc: path,
+      id: notificationId,
+      data: {'read': true},
+    );
+    return response.fold((l) => Left(l), (r) => Right(unit));
   }
 }
