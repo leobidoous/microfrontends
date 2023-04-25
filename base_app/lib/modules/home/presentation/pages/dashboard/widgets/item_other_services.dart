@@ -16,34 +16,31 @@ class ItemOtherServices extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return CustomCard(
       onTap: onTap,
-      child: CustomCard(
-        radius: BorderRadius.circular(const Spacing(1).value),
-        child: SizedBox(
-          width: 96,
-          height: 96,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Icon(
-                icon,
-                color: AppColorsBase.neutrla7,
-                size: 20,
+      radius: BorderRadius.circular(const Spacing(1).value),
+      child: SizedBox(
+        width: 96,
+        height: 96,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              color: AppColorsBase.neutrla7,
+            ),
+            Spacing.sm.vertical,
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: context.textTheme.bodySmall!.copyWith(
+                fontSize: 10,
+                fontWeight: AppFontWeight.regular.value,
+                color: AppColorsBase.neutrla5,
               ),
-              Spacing.sm.vertical,
-              Text(
-                title,
-                textAlign: TextAlign.center,
-                style: context.textTheme.bodySmall!.copyWith(
-                  fontSize: 10,
-                  fontWeight: AppFontWeight.regular.value,
-                  color: AppColorsBase.neutrla5,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

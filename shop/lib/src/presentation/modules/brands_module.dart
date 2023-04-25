@@ -7,35 +7,39 @@ import '../controllers/brands/fetch_store_brands_controller.dart';
 import '../pages/Brands/Brands_page.dart';
 
 class BrandsModule extends Module {
-  static List<Bind> get exportedBind => [
-        // Datasources
-        Bind.factory(
-          (i) => StoreBrandsDataSource(
+  static List<Bind> get exportedBinds => [
+        /// Datasources
+        Bind.factory<StoreBrandsDatasource>(
+          (i) => StoreBrandsDatasource(
             graphQlClient: i.get<GraphQlClientDriver>(),
           ),
         ),
-        //Repositories
+
+        ///Repositories
         Bind.factory<StoreBrandsRepository>(
           (i) => StoreBrandsRepository(
-            dataSource: i.get<StoreBrandsDataSource>(),
+            dataSource: i.get<StoreBrandsDatasource>(),
           ),
         ),
-        // Usecases
+
+        /// Usecases
         Bind.factory<FetchStoreBrandsUsecase>(
           (i) => FetchStoreBrandsUsecase(
             repository: i.get<StoreBrandsRepository>(),
+          ),
+        ),
+
+        /// Controllers
+        Bind.factory<FetchStoreBrandsController>(
+          (i) => FetchStoreBrandsController(
+            usecase: i.get<FetchStoreBrandsUsecase>(),
           ),
         ),
       ];
 
   @override
   final List<Bind> binds = [
-    // Controllers
-    Bind.factory(
-      (i) => FetchStoreBrandsController(
-        usecase: i.get<FetchStoreBrandsUsecase>(),
-      ),
-    ),
+    ...exportedBinds,
   ];
 
   @override

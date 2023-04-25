@@ -18,25 +18,18 @@ class ItemMainServices extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        InkWell(
+        CustomCard(
           onTap: onTap,
-          child: CustomCard(
-            radius: BorderRadius.circular(const Spacing(1).value),
-            child: SizedBox(
-              width: 56,
-              height: 56,
-              child: Center(
-                child: Icon(
-                  icon,
-                  size: 20,
-                ),
-              ),
-            ),
+          child: SizedBox(
+            width: 64.responsiveHeight,
+            height: 64.responsiveHeight,
+            child: Icon(icon, color: context.colorScheme.primary),
           ),
         ),
         Spacing.xs.vertical,
         Text(
           title,
+          overflow: TextOverflow.ellipsis,
           style: context.textTheme.bodySmall?.copyWith(
             color: AppColorsBase.neutrla5,
           ),

@@ -72,7 +72,6 @@ class _CarouselBannerState extends State<CarouselBanner> {
                 ),
               ),
             ),
-            Spacing.lg.vertical,
           ],
         );
       },

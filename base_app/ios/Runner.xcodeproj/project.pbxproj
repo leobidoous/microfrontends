@@ -462,8 +462,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8831C1D618DA46D160F67698 /* Pods-Runner.debug-dev.xcconfig */;
 			buildSettings = {
+				CURRENT_PROJECT_VERSION = "";
 				DEVELOPMENT_TEAM = W98GWG7WQ6;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = "1.2.2\n1.2.2";
 				PRODUCT_NAME = Runner;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -476,8 +478,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 31A46A3E0B4F0EAF43A1A2DA /* Pods-Runner.profile-dev.xcconfig */;
 			buildSettings = {
+				CURRENT_PROJECT_VERSION = "";
 				DEVELOPMENT_TEAM = W98GWG7WQ6;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = "1.2.2\n1.2.2";
 				PRODUCT_NAME = Runner;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -490,8 +494,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1B2C933EF76DC4C16EB609EE /* Pods-Runner.release-dev.xcconfig */;
 			buildSettings = {
+				CURRENT_PROJECT_VERSION = "";
 				DEVELOPMENT_TEAM = W98GWG7WQ6;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = "1.2.2\n1.2.2";
 				PRODUCT_NAME = Runner;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -504,8 +510,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0DABDBFAA8959A12FE366291 /* Pods-Runner.debug-prod.xcconfig */;
 			buildSettings = {
+				CURRENT_PROJECT_VERSION = "";
 				DEVELOPMENT_TEAM = W98GWG7WQ6;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = "1.2.2\n1.2.2";
 				PRODUCT_NAME = Runner;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -518,8 +526,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D89C28AFAC7320D2E261CA45 /* Pods-Runner.profile-prod.xcconfig */;
 			buildSettings = {
+				CURRENT_PROJECT_VERSION = "";
 				DEVELOPMENT_TEAM = W98GWG7WQ6;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = "1.2.2\n1.2.2";
 				PRODUCT_NAME = Runner;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -532,8 +542,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0D921763D35BEB4768CD5C13 /* Pods-Runner.release-prod.xcconfig */;
 			buildSettings = {
+				CURRENT_PROJECT_VERSION = "";
 				DEVELOPMENT_TEAM = W98GWG7WQ6;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = "1.2.2\n1.2.2";
 				PRODUCT_NAME = Runner;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -598,7 +610,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				CURRENT_PROJECT_VERSION = 70;
 				DEVELOPMENT_TEAM = W98GWG7WQ6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -607,6 +619,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = "1.2.2\n1.2.2";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.teste;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -875,7 +888,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				CURRENT_PROJECT_VERSION = 70;
 				DEVELOPMENT_TEAM = W98GWG7WQ6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -884,6 +897,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = "1.2.2\n1.2.2";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.teste;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -903,7 +917,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				CURRENT_PROJECT_VERSION = 70;
 				DEVELOPMENT_TEAM = W98GWG7WQ6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -912,6 +926,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = "1.2.2\n1.2.2";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.teste;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

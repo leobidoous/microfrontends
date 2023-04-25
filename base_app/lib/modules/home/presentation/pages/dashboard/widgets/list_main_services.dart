@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import '../../../controllers/dashboard_controller.dart';
 import 'item_main_services.dart';
 
-class ListMainServicesWidgets extends StatelessWidget {
+class ListMainServices extends StatelessWidget {
   final controller = DM.i.get<DashboardController>();
 
-  ListMainServicesWidgets({
+  ListMainServices({
     super.key,
   });
 

@@ -2,7 +2,7 @@ name: genpag_voce
 description: Genpag Você project
 publish_to: 'none'
 
-version: 1.1.0+65
+version: 1.2.2+70
 
 environment:
   sdk: ">=2.19.6 <3.0.0"

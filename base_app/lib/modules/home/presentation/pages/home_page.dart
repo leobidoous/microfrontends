@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/enums/bottom_nav_bar_type_enum.dart';
 import '../controllers/home_controller.dart';
-import '../widgets/gen_bottom_nav_bar.dart';
+import '../widgets/custom_bottom_nav_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
         bottomNavigationBar: ValueListenableBuilder<BottomNavBarType>(
           valueListenable: controller,
           builder: (context_, type, child) {
-            return GenBottomNavBar(selected: controller.state);
+            return CustomBottomNavBar(selected: controller.state);
           },
         ),
       ),

@@ -5,15 +5,15 @@ import 'package:flutter/material.dart';
 import '../../../../core/enums/bottom_nav_bar_type_enum.dart';
 import '../controllers/home_controller.dart';
 
-class GenBottomNavBar extends StatefulWidget {
+class CustomBottomNavBar extends StatefulWidget {
   final BottomNavBarType selected;
-  const GenBottomNavBar({super.key, required this.selected});
+  const CustomBottomNavBar({super.key, required this.selected});
 
   @override
-  State<GenBottomNavBar> createState() => _GenBottomNavBarState();
+  State<CustomBottomNavBar> createState() => _CustomBottomNavBarState();
 }
 
-class _GenBottomNavBarState extends State<GenBottomNavBar> {
+class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
   final controller = DM.i.get<HomeController>();
   @override
   Widget build(BuildContext context) {
@@ -49,9 +49,9 @@ class _GenBottomNavBarState extends State<GenBottomNavBar> {
     return InkWell(
       onTap: () {
         switch (item) {
-          // case BottomNavBarType.search:
-          //   Nav.to.pushNamed(item.route);
-          //   break;
+          case BottomNavBarType.search:
+            Nav.to.pushNamed(item.route, forRoot: true);
+            break;
           case BottomNavBarType.payment:
             Nav.to.pushNamed(item.route, forRoot: true);
             break;

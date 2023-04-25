@@ -2,6 +2,7 @@ import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:parking/parking.dart';
 import 'package:pay/pay.dart';
+import 'package:shop/shop.dart';
 import 'package:wallet/wallet.dart';
 
 import '../../../app/presentation/controllers/app_controller.dart';
@@ -93,11 +94,6 @@ class HomeModule extends Module {
           transition: TransitionType.fadeIn,
           module: WalletModule(),
         ),
-        ModuleRoute(
-          PayRoutes(parent: HomeRoutes.start).initial.path,
-          transition: TransitionType.fadeIn,
-          module: PayModule(),
-        ),
         ModuleRoute(ProfileRoutes.root.path, module: ProfileModule()),
       ],
     ),
@@ -107,11 +103,26 @@ class HomeModule extends Module {
         walletPath: HomeRoutes.start.concate<WalletRoutes>(WalletRoutes.root),
       ),
     ),
-    ModuleRoute(PayRoutes.root.path, module: PayModule()),
+    ModuleRoute(
+      PayRoutes(parent: HomeRoutes.root).initial.path,
+      module: PayModule(),
+    ),
     ModuleRoute(NotificationRoutes.root.path, module: NotificationModule()),
     ChildRoute(
       SharedRoutes.fallback.path,
       child: (_, args) => const FallbackPage(),
+    ),
+    ModuleRoute(
+      ShopRoutes(parent: HomeRoutes.root).initial.path,
+      module: ShopModule(),
+    ),
+    ModuleRoute(
+      BrandsRoutes(parent: HomeRoutes.root).initial.path,
+      module: BrandsModule(),
+    ),
+    ModuleRoute(
+      StoresRoutes(parent: HomeRoutes.root).initial.path,
+      module: StoresModule(),
     ),
   ];
 }

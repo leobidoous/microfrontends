@@ -7,13 +7,9 @@ class FetchStoreBrandsController
     extends GenController<Exception, List<StoreBrandEntity>> {
   final IStoreBrandsUsecase usecase;
 
-  FetchStoreBrandsController({
-    required this.usecase,
-  }) : super([]);
+  FetchStoreBrandsController({required this.usecase}) : super([]);
 
-  Future<void> fetchStoreBrands({
-    Map<String, dynamic> params = const {},
-  }) async {
-    execute(() => usecase.fetchStoreBrands(params: params));
+  Future<void> fetchStoreBrands({Map<String, dynamic>? params}) async {
+    await execute(() => usecase.fetchStoreBrands(params: params ?? {}));
   }
 }

@@ -13,7 +13,7 @@ abstract class IWalletException implements Exception, Equatable {
   List<Object?> get props => [message, stackTrace];
 }
 
-class UnknowRemoteDataSourceException extends IWalletException {}
+class UnknowRemoteDatasourceException extends IWalletException {}
 
 class UnknowRepositoryException extends IWalletException {}
 

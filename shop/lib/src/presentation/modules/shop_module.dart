@@ -12,45 +12,32 @@ import '../pages/shop/filter_shop_page.dart';
 import '../pages/shop/shop_page.dart';
 
 class ShopModule extends Module {
-  static List<Bind> get exportedBind => [
+  static List<Bind> get exportedBinds => [
         // Datasources
-        Bind.factory(
-          (i) => StoreDataSource(
-            graphQlClient: i.get<GraphQlClientDriver>(),
-          ),
+        Bind.factory<StoreDatasource>(
+          (i) => StoreDatasource(graphQlClient: i.get<GraphQlClientDriver>()),
         ),
         // Repositories
         Bind.factory<StoreRepository>(
-          (i) => StoreRepository(
-            dataSource: i.get<StoreDataSource>(),
-          ),
+          (i) => StoreRepository(dataSource: i.get<StoreDatasource>()),
         ),
         // Usecases
         Bind.factory<StoreUsecase>(
-          (i) => StoreUsecase(
-            repository: i.get<StoreRepository>(),
-          ),
+          (i) => StoreUsecase(repository: i.get<StoreRepository>()),
         ),
       ];
 
   @override
   final List<Bind> binds = [
+    ...exportedBinds,
     // Controllers
-    Bind.factory(
-      (i) => FilterShopController(),
+    Bind.factory<FilterShopController>((i) => FilterShopController()),
+    Bind.factory<DashboardShopController>((i) => DashboardShopController()),
+    Bind.factory<FetchStoresController>(
+      (i) => FetchStoresController(usecase: i.get<StoreUsecase>()),
     ),
-    Bind.factory(
-      (i) => DashboardShopController(),
-    ),
-    Bind.factory(
-      (i) => FetchStoresController(
-        usecase: i.get<StoreUsecase>(),
-      ),
-    ),
-    Bind.factory(
-      (i) => FetchStoreMallsController(
-        usecase: i.get<StoreUsecase>(),
-      ),
+    Bind.factory<FetchStoreMallsController>(
+      (i) => FetchStoreMallsController(usecase: i.get<StoreUsecase>()),
     ),
   ];
 

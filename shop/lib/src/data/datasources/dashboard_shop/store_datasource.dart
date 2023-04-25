@@ -7,10 +7,10 @@ import '../../../infra/models/store_mall_model.dart';
 import '../../../infra/models/store_model.dart';
 import '../../../presentation/graphql/queries/shop_queries.dart';
 
-class StoreDataSource implements IStoreDatasource {
+class StoreDatasource implements IStoreDatasource {
   final IGraphQlDriver graphQlClient;
 
-  StoreDataSource({
+  StoreDatasource({
     required this.graphQlClient,
   });
 

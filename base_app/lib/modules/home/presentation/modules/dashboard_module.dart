@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:shop/shop.dart';
 import 'package:wallet/wallet.dart';
 
 import '../../../notification/infra/usecases/notification_usecase.dart';
@@ -8,12 +9,16 @@ import '../../infra/repositories/dashboard_repository.dart';
 import '../../infra/usecases/dashboard_usecase.dart';
 import '../controllers/dashboard_controller.dart';
 import '../pages/dashboard/dashboard_page.dart';
+import '../routes/dashboard_routes.dart';
 
 class DashboardModule extends Module {
   @override
   final List<Bind> binds = [
     /// Wallet
     ...WalletModule.exportedBinds,
+
+    /// Brands
+    ...BrandsModule.exportedBinds,
 
     /// Dashboard
     Bind.lazySingleton<DashboardDatasource>(

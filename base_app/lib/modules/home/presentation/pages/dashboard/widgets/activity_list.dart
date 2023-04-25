@@ -3,8 +3,8 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:wallet/wallet.dart';
 
-class ListActivity extends StatelessWidget {
-  const ListActivity({super.key, required this.controller});
+class ActivityList extends StatelessWidget {
+  const ActivityList({super.key, required this.controller});
 
   final FetchTransactionsController controller;
 

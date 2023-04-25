@@ -10,49 +10,37 @@ import '../pages/details_shop/details_shop_page.dart';
 import '../routes/stores_routes.dart';
 
 class StoresModule extends Module {
-  static List<Bind> get exportedBind => [
+  static List<Bind> get exportedBinds => [
         // Datasources
-        Bind.factory(
-          (i) => StoreDataSource(
-            graphQlClient: i.get<GraphQlClientDriver>(),
-          ),
+        Bind.factory<StoreDatasource>(
+          (i) => StoreDatasource(graphQlClient: i.get<GraphQlClientDriver>()),
         ),
         //Repositories
         Bind.factory<StoreRepository>(
-          (i) => StoreRepository(
-            dataSource: i.get<StoreDataSource>(),
-          ),
+          (i) => StoreRepository(dataSource: i.get<StoreDatasource>()),
         ),
         // Usecases
         Bind.factory<StoreUsecase>(
-          (i) => StoreUsecase(
-            repository: i.get<StoreRepository>(),
-          ),
+          (i) => StoreUsecase(repository: i.get<StoreRepository>()),
         ),
       ];
 
   @override
   final List<Bind> binds = [
-    // Controllers
-    Bind.factory(
-      (i) => FetchStoresController(
-        usecase: i.get<StoreUsecase>(),
-      ),
-    ),
+    ...exportedBinds,
 
-    /// Controllerss
-    Bind.factory(
-      (i) => DetailsShopController(),
+    /// Controllers
+    Bind.factory<FetchStoresController>(
+      (i) => FetchStoresController(usecase: i.get<StoreUsecase>()),
     ),
+    Bind.factory<DetailsShopController>((i) => DetailsShopController()),
   ];
 
   @override
   final List<ModularRoute> routes = [
     ChildRoute(
       Modular.initialRoute,
-      child: (_, args) => StoresPage(
-        brand: args.data,
-      ),
+      child: (_, args) => StoresPage(brand: args.data),
     ),
     ChildRoute(
       StoresRoutes.detailsStore.path,
