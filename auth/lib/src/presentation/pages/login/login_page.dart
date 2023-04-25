@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import '../../../../auth.dart';
 import '../../../domain/failures/login_failure.dart';
 import '../../controllers/login_controller.dart';
+import '../widgets/phone_pin_code_view.dart';
 import 'widgets/phone_form_view.dart';
-import 'widgets/pin_code_form_view.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({
@@ -34,7 +34,7 @@ class _LoginPagePageState extends State<LoginPage> {
     super.dispose();
   }
 
-  Future<void> onRequestPhoneCode(String phone) async {
+  Future<void> onRequestPhoneCode(String phone, {bool isResend = false}) async {
     FocusScope.of(context).requestFocus(FocusNode());
     controller.phoneNumber = phone;
     await controller.onRequestPhoneCode(phone: phone).then((value) async {
@@ -42,6 +42,8 @@ class _LoginPagePageState extends State<LoginPage> {
         await _showDialogError(controller.error);
         return;
       }
+
+      if (isResend) return;
       pageController.animateToPage(
         1,
         duration: const Duration(milliseconds: 250),
@@ -50,16 +52,17 @@ class _LoginPagePageState extends State<LoginPage> {
     });
   }
 
-  Future<void> onValidatePhoneCode(String phone, String code) async {
+  Future<String?> onValidatePhoneCode(String code) async {
     FocusScope.of(context).requestFocus(FocusNode());
-    await controller
-        .onValidatePhoneCode(phone: phone, code: code)
+    return await controller
+        .onValidatePhoneCode(code: code, phone: controller.phoneNumber)
         .then((value) async {
       if (controller.hasError) {
         await _showDialogError(controller.error);
-        return;
+        return controller.error?.message;
       }
       Nav.to.navigate(widget.redirectTo);
+      return null;
     });
   }
 
@@ -84,18 +87,18 @@ class _LoginPagePageState extends State<LoginPage> {
           title: 'Você não tem um cadastro ativo conosco.',
           content: controller.error?.message ?? '',
           btnConfirmLabel: 'Ir para o cadastro',
-          onConfirm: Nav.to.pop,
+          onConfirm: () {
+            Nav.to.pushReplacementNamed(
+              RegisterRoutes.root.prevPath(),
+              arguments: {
+                'onLoginCallback': widget.onLoginCallback,
+                'redirectTo': widget.redirectTo,
+              },
+            );
+          },
         ),
         showClose: true,
-      ).then((value) {
-        Nav.to.pushReplacementNamed(
-          RegisterRoutes.root.prevPath(),
-          arguments: {
-            'onLoginCallback': widget.onLoginCallback,
-            'redirectTo': widget.redirectTo,
-          },
-        );
-      });
+      );
     }
   }
 
@@ -123,14 +126,14 @@ class _LoginPagePageState extends State<LoginPage> {
           controller: pageController,
           physics: const NeverScrollableScrollPhysics(),
           children: [
-            PhoneFormView(
-              textController: phoneController,
-              onConfirm: onRequestPhoneCode,
-            ),
-            PinCodeFormView(
-              textController: codeController,
-              onRequestPhoneCode: onRequestPhoneCode,
+            PhoneFormView(onConfirm: onRequestPhoneCode),
+            PhonePinCodeView(
               onConfirm: onValidatePhoneCode,
+              phoneNumber: controller.phoneNumber,
+              onRequestPhoneCode: () => onRequestPhoneCode(
+                controller.phoneNumber,
+                isResend: true,
+              ),
             ),
           ],
         ),

@@ -3,34 +3,35 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../controllers/login_controller.dart';
 import '../../widgets/form_header.dart';
 
 class PhoneFormView extends StatefulWidget {
-  const PhoneFormView({
-    super.key,
-    required this.onConfirm,
-    required this.textController,
-  });
+  const PhoneFormView({super.key, required this.onConfirm});
 
   final Function(String phone) onConfirm;
-  final TextEditingController textController;
 
   @override
   State<PhoneFormView> createState() => _PhoneFormViewState();
 }
 
 class _PhoneFormViewState extends State<PhoneFormView> {
-  final controller = DM.i.get<LoginController>();
   final textController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  bool phoneIsValid = false;
+  bool isLoading = false;
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      controller.validatePhone(textController.text);
+  bool validatePhone(String? input) {
+    setState(() {
+      phoneIsValid = FormValidators.emptyField(input) == null;
     });
+    return phoneIsValid;
+  }
+
+  Future<void> onConfirm() async {
+    if (!(formKey.currentState?.validate() ?? true)) return;
+    setState(() => isLoading = true);
+    await widget.onConfirm(textController.text);
+    setState(() => isLoading = false);
   }
 
   @override
@@ -67,7 +68,7 @@ class _PhoneFormViewState extends State<PhoneFormView> {
               controller: textController,
               hintText: 'Ex: (00) 00000-0000',
               onFieldSubmitted: (_) => widget.onConfirm(_),
-              onChanged: (_) => controller.validatePhone(_ ?? ''),
+              onChanged: validatePhone,
               validators: const [FormValidators.emptyField],
               inputFormatters: [
                 FilteringTextInputFormatter.digitsOnly,
@@ -86,16 +87,11 @@ class _PhoneFormViewState extends State<PhoneFormView> {
               ),
             ),
             Spacing.xxl.vertical,
-            ValueListenableBuilder(
-              valueListenable: controller,
-              builder: (context, value, child) {
-                return CustomButton.text(
-                  text: 'Receber código por SMS',
-                  isEnabled: controller.phoneIsValid,
-                  isLoading: controller.isLoading,
-                  onPressed: () => widget.onConfirm(textController.text),
-                );
-              },
+            CustomButton.text(
+              text: 'Receber código por SMS',
+              isEnabled: phoneIsValid,
+              isLoading: isLoading,
+              onPressed: onConfirm,
             ),
           ],
         ),

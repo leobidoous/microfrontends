@@ -6,10 +6,15 @@ import '../../home/presentation/modules/home_module.dart';
 import '../../home/presentation/routes/dashboard_routes.dart';
 import '../../home/presentation/routes/home_routes.dart';
 import '../../shared/presentation/controllers/splash_controller.dart';
+import '../../shared/presentation/controllers/warning_new_version_controller.dart';
 import '../../shared/presentation/pages/fallback_page.dart';
 import '../../shared/presentation/pages/feat_comming_soon_page.dart';
 import '../../shared/presentation/pages/splash_page.dart';
+import '../../shared/presentation/pages/warning_new_version_page.dart';
 import '../../shared/presentation/shared_routes.dart';
+import '../data/datasources/app_datasource.dart';
+import '../infra/repositories/app_repository.dart';
+import '../infra/usecases/app_usecase.dart';
 import 'app_configuration.dart';
 import 'app_routes.dart';
 import 'controllers/app_controller.dart';
@@ -30,6 +35,15 @@ class AppModule extends Module {
     /// App configuration and environment
     Bind.singleton<AppConfiguration>((i) => _appConfiguration),
     Bind.singleton<EnvironmentEntity>((i) => _appConfiguration.environment),
+    Bind.factory<AppDatasource>(
+      (i) => AppDatasource(storageDriver: i.get<FirebaseStorageDriver>()),
+    ),
+    Bind.factory<AppRepository>(
+      (i) => AppRepository(datasource: i.get<AppDatasource>()),
+    ),
+    Bind.factory<AppUsecase>(
+      (i) => AppUsecase(repository: i.get<AppRepository>()),
+    ),
 
     /// GraphQl
     Bind.factory<GraphQLClient>(
@@ -158,17 +172,31 @@ class AppModule extends Module {
     Bind.factory<ThemeController>(
       (i) => ThemeController(localUserUsecase: i.get<LocalUserUsecase>()),
     ),
+    Bind.factory<WarningNewVersionController>(
+      (i) => WarningNewVersionController(),
+    ),
     Bind.factory<SplashController>(
       (i) => SplashController(
+        appConfiguration: i.get<AppConfiguration>(),
         appController: i.get<AppController>(),
         userUsecase: i.get<UserUsecase>(),
+        appUsecase: i.get<AppUsecase>(),
       ),
     ),
   ];
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute(AppRoutes.root.path, child: (_, args) => const SplashPage()),
+    ChildRoute(
+      AppRoutes.root.path,
+      transition: TransitionType.fadeIn,
+      child: (_, args) => const SplashPage(),
+    ),
+    ChildRoute(
+      SharedRoutes.warningNewVersion.path,
+      transition: TransitionType.fadeIn,
+      child: (_, args) => WarningNewVersionPage(args: args.data),
+    ),
     ModuleRoute(
       HomeRoutes.root.path,
       module: HomeModule(),

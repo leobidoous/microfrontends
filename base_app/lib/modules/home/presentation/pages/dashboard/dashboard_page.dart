@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:wallet/wallet.dart';
 
 import '../../controllers/dashboard_controller.dart';
-import 'widgets/banner/carousel_banner.dart';
+import 'widgets/carousel_banner.dart';
 import 'widgets/header_user.dart';
 import 'widgets/list_activity.dart';
 

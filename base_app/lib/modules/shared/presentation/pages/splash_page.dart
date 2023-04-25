@@ -6,6 +6,7 @@ import '../../../home/presentation/routes/dashboard_routes.dart';
 import '../controllers/splash_controller.dart';
 import '../shared_routes.dart';
 import '../widgets/logo_widget.dart';
+import 'warning_new_version_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -20,18 +21,38 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    controller.onInit().then((value) async {
+    controller.verifySession().then((value) async {
       if (controller.hasError) {
         await Future.delayed(const Duration(seconds: 1));
         if (controller.needUpdate) {
-          Nav.to.navigate(SharedRoutes.warningNewVersion);
+          Nav.to.navigate(
+            SharedRoutes.warningNewVersion.relativePath,
+            arguments: WarningNewVersionPageArgs(
+              forceUpdate: controller.forceUpdate,
+              onContinue: () {
+                Nav.to.navigate(
+                  AuthRoutes.root,
+                  arguments: controller.appController.userPreferences,
+                );
+              },
+            ),
+          );
         } else {
-          Nav.to.navigate(AuthRoutes.root);
+          Nav.to.navigate(
+            AuthRoutes.root,
+            arguments: controller.appController.userPreferences,
+          );
         }
         return;
       }
       if (controller.needUpdate) {
-        Nav.to.navigate(SharedRoutes.warningNewVersion);
+        Nav.to.navigate(
+          SharedRoutes.warningNewVersion.relativePath,
+          arguments: WarningNewVersionPageArgs(
+            forceUpdate: controller.forceUpdate,
+            onContinue: () => Nav.to.navigate(DashboardRoutes.root),
+          ),
+        );
       } else {
         Nav.to.navigate(DashboardRoutes.root);
       }

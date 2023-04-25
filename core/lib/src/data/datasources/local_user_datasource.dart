@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart' show ThemeMode;
-
 import '../../core/constants/user_constants.dart';
 import '../../domain/entities/session_entity.dart';
+import '../../domain/entities/user_preferences_entity.dart';
 import '../../domain/interfaces/either.dart';
 import '../../infra/datasources/i_local_user_datasource.dart';
 import '../../infra/drivers/preferences_storage_driver.dart';
 import '../../infra/models/session_model.dart';
+import '../../infra/models/user_preferences_model.dart';
 
 class LocalUserDatasource extends ILocalUserDatasource {
   final IPreferencesStorageDriver prefsDriver;
@@ -45,38 +45,42 @@ class LocalUserDatasource extends ILocalUserDatasource {
   }
 
   @override
-  Future<Either<Exception, ThemeMode>> getThemeMode() async {
+  Future<Either<Exception, UserPreferencesEntity>> getUserPreferences({
+    required String userId,
+  }) async {
     final response = await prefsDriver.getStringByKey(
-      key: UserConstants.themeMode,
+      key: '${UserConstants.preferences}_$userId',
     );
-
     return response.fold(
       (l) => Left(l),
       (r) {
-        late final ThemeMode themeMode;
-        switch (r) {
-          case 'dark':
-            themeMode = ThemeMode.dark;
-            break;
-          case 'light':
-            themeMode = ThemeMode.light;
-            break;
-          default:
-            themeMode = ThemeMode.system;
-            break;
+        try {
+          return Right(UserPreferencesModel.fromJson(r));
+        } catch (e) {
+          return Left(
+            Exception('LocalUserDatasource().getUserPreferences: $e'),
+          );
         }
-        return Right(themeMode);
       },
     );
   }
 
   @override
-  Future<Either<Exception, Unit>> setThemeMode({
-    required ThemeMode themeMode,
-  }) async {
-    return await prefsDriver.setStringByKey(
-      key: UserConstants.themeMode,
-      value: themeMode.name,
+  Future<Either<Exception, Unit>> removePreferencesByUser({
+    required String userId,
+  }) {
+    return prefsDriver.removeStringByKey(
+      key: '${UserConstants.preferences}_$userId',
+    );
+  }
+
+  @override
+  Future<Either<Exception, Unit>> setUserPreferences({
+    required UserPreferencesEntity preferences,
+  }) {
+    return prefsDriver.setStringByKey(
+      key: '${UserConstants.preferences}_${preferences.id}',
+      value: UserPreferencesModel.fromEntity(preferences).toJson,
     );
   }
 }

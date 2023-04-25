@@ -67,10 +67,11 @@ class AppConfiguration {
   Future<PackageInfoEntity> getAppInfo() async {
     final info = await PackageInfo.fromPlatform();
     return PackageInfoEntity(
+      forceUpdate: false,
       appName: info.appName,
       name: info.packageName,
       version: info.version,
-      buildNumber: info.buildNumber,
+      buildNumber: int.tryParse(info.buildNumber) ?? 0,
       buildSignature: info.buildSignature,
     );
   }
