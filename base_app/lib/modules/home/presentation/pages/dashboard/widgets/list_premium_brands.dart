@@ -41,7 +41,7 @@ class ListPremiumBrands extends StatelessWidget {
             return index < 9
                 ? ItemPremiumBrand(brand: state[index])
                 : InkWell(
-                    onTap: () => Nav.to.pushNamed(StoresRoutes.root),
+                    onTap: () => Nav.to.pushNamed(BrandsRoutes.root),
                     child: Column(
                       children: [
                         Spacing.sm.vertical,

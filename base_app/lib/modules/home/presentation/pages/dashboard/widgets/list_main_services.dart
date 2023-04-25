@@ -1,6 +1,6 @@
-import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:shop/shop.dart';
 
 import '../../../controllers/dashboard_controller.dart';
 import 'item_main_services.dart';
@@ -20,13 +20,7 @@ class ListMainServices extends StatelessWidget {
         ItemMainServices(
           title: 'Comprar',
           icon: CoreIcons.carShopping,
-          onTap: () => CustomDialog.show(
-            context,
-            CustomAlert.noImplementation(
-              context,
-            ),
-            showClose: true,
-          ),
+          onTap: () => Nav.to.pushNamed(ShopRoutes.root),
         ),
         const ItemMainServices(
           title: 'Nas lojas',
