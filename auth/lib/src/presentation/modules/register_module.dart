@@ -50,6 +50,7 @@ class RegisterModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute(
       Modular.initialRoute,
+      transition: TransitionType.defaultTransition,
       child: (_, args) => RegisterPage(
         onLoginCallback: args.data['onLoginCallback'],
         redirectTo: args.data['redirectTo'],
@@ -57,6 +58,7 @@ class RegisterModule extends Module {
     ),
     ChildRoute(
       RegisterRoutes.validateEmail.path,
+      transition: TransitionType.defaultTransition,
       child: (_, args) => ValidateEmailPage(
         onValidateCallback: args.data['onValidateCallback'],
         redirectTo: args.data['redirectTo'],

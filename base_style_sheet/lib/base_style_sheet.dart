@@ -6,6 +6,7 @@ export 'package:base_style_sheet/src/presentation/shapes/inverse_border_shape.da
 export 'package:base_style_sheet/src/presentation/views/confirm_exit_view.dart';
 export 'package:base_style_sheet/src/presentation/widgets/alerts/custom_alert.dart';
 export 'package:base_style_sheet/src/presentation/widgets/alerts/end_session_alert.dart';
+export 'package:base_style_sheet/src/presentation/widgets/animated_dot.dart';
 export 'package:base_style_sheet/src/presentation/widgets/buttons/app_bar_button.dart';
 export 'package:base_style_sheet/src/presentation/widgets/buttons/custom_button.dart';
 export 'package:base_style_sheet/src/presentation/widgets/camera/camera_view.dart';

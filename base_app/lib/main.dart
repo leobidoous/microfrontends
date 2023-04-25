@@ -72,6 +72,8 @@ Future<void> runBaseApp({required AppConfiguration appConfiguration}) async {
         DeviceOrientation.portraitUp,
         DeviceOrientation.portraitDown,
       ]),
+      appConfiguration.getAppInfo(),
+      appConfiguration.getDeviceInfo(),
       configureLogs(firebaseDriver: GlobalConfigs.firebaseDriver),
     ]);
 
@@ -84,7 +86,7 @@ Future<void> runBaseApp({required AppConfiguration appConfiguration}) async {
       GlobalConfigs.graphQlService.init(),
       GlobalConfigs.locationService.init(),
     ]);
-    
+
     return runApp(
       ModularApp(
         module: AppModule(appConfiguration: appConfiguration),

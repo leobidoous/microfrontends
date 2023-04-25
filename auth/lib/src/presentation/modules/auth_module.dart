@@ -81,7 +81,11 @@ class AuthModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute(Modular.initialRoute, child: (_, args) => const AuthPage()),
+    ChildRoute(
+      Modular.initialRoute,
+      transition: TransitionType.fadeIn,
+      child: (_, args) => AuthPage(userPreferences: args.data),
+    ),
     ModuleRoute(LoginRoutes.root.path, module: LoginModule()),
     ModuleRoute(RegisterRoutes.root.path, module: RegisterModule()),
   ];

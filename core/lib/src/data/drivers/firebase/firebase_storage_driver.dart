@@ -204,10 +204,16 @@ class FirebaseStorageDriver extends IFirebaseStorageDriver {
   }
 
   @override
-  Future<DocumentSnapshot<Map<String, dynamic>>> docGet({
-    required String collectionDoc,
+  Future<Either<Exception, DocumentSnapshot<Map<String, dynamic>>>> docGet({
+    required String doc,
+    required String collection,
   }) async {
-    return await instance.doc(collectionDoc).get();
+    try {
+      final response = await instance.collection(collection).doc(doc).get();
+      return Right(response);
+    } catch (e, s) {
+      return Left(Exception('$e $s'));
+    }
   }
 
   @override

@@ -60,4 +60,8 @@ class AuthController extends GenController<Exception, Unit> {
       return localUserUsecase.setSession(session: session);
     });
   }
+
+  Future<void> setUserPreferences(UserPreferencesEntity userPreferences) async {
+    await localUserUsecase.setUserPreferences(preferences: userPreferences);
+  }
 }

@@ -35,11 +35,12 @@ abstract class IFirebaseStorageDriver {
   Future<Either<Exception, Unit>> docSet({
     required String collectionDoc,
     required Map<String, Object> data,
-   String? id,
+    String? id,
   });
 
-  Future<DocumentSnapshot<Map<String, dynamic>>> docGet({
-    required String collectionDoc,
+  Future<Either<Exception, DocumentSnapshot<Map<String, dynamic>>>> docGet({
+    required String doc,
+    required String collection,
   });
 
   Future<Either<Exception, Unit>> docUpdate({

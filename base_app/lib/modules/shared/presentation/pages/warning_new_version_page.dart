@@ -6,9 +6,12 @@ import '../controllers/warning_new_version_controller.dart';
 
 class WarningNewVersionPageArgs {
   final bool forceUpdate;
-  final String route;
+  final Function() onContinue;
 
-  WarningNewVersionPageArgs({required this.forceUpdate, required this.route});
+  WarningNewVersionPageArgs({
+    required this.forceUpdate,
+    required this.onContinue,
+  });
 }
 
 class WarningNewVersionPage extends StatefulWidget {
@@ -56,9 +59,7 @@ class _WarningNewVersionPageState extends State<WarningNewVersionPage> {
               CustomButton.text(
                 text: 'Continuar',
                 type: ButtonType.background,
-                onPressed: () {
-                  Nav.to.pushReplacementNamed(widget.args.route);
-                },
+                onPressed: widget.args.onContinue,
               ),
             ],
             Spacing.xxl.vertical,

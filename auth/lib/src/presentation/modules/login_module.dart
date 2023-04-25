@@ -40,6 +40,7 @@ class LoginModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute(
       Modular.initialRoute,
+      transition: TransitionType.defaultTransition,
       child: (_, args) => LoginPage(
         onLoginCallback: args.data['onLoginCallback'],
         redirectTo: args.data['redirectTo'],

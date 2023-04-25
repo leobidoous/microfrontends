@@ -3,10 +3,9 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:parking/parking.dart';
 
-import '../../../../../domain/entities/campaign_mall_entity.dart';
-import '../../../../controllers/dashboard_controller.dart';
-import '../../../../routes/home_routes.dart';
-import 'animated_dot.dart';
+import '../../../../domain/entities/campaign_mall_entity.dart';
+import '../../../controllers/dashboard_controller.dart';
+import '../../../routes/home_routes.dart';
 
 class CarouselBanner extends StatefulWidget {
   const CarouselBanner({super.key, required this.controller});
