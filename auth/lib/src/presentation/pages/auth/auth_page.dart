@@ -9,9 +9,7 @@ import 'widgets/auth_logo.dart';
 import 'widgets/onboarding_view.dart';
 
 class AuthPage extends StatefulWidget {
-  const AuthPage({Key? key, required this.userPreferences}) : super(key: key);
-
-  final UserPreferencesEntity? userPreferences;
+  const AuthPage({Key? key}) : super(key: key);
 
   @override
   State<AuthPage> createState() => _AuthPageState();
@@ -19,13 +17,17 @@ class AuthPage extends StatefulWidget {
 
 class _AuthPageState extends State<AuthPage> {
   final controller = DM.i.get<AuthController>();
-  late final PageController pageController;
+  final pageController = PageController(initialPage: 1);
 
   @override
   void initState() {
-    pageController = PageController(
-      initialPage: widget.userPreferences?.showOnboarding ?? true ? 0 : 1,
-    );
+    controller.getUserPreferences().then(
+          (value) => value.fold((l) => null, (r) {
+            if (r.showOnboarding ?? false) {
+              pageController.jumpToPage(0);
+            }
+          }),
+        );
     super.initState();
   }
 
@@ -44,12 +46,9 @@ class _AuthPageState extends State<AuthPage> {
       children: [
         OnboardingView(
           onClose: () {
-            if (widget.userPreferences != null) {
-              controller.setUserPreferences(
-                UserPreferencesModel.fromEntity(widget.userPreferences!)
-                    .copyWith(showOnboarding: false),
-              );
-            }
+            controller.setUserPreferences(
+              UserPreferencesEntity(id: '', showOnboarding: false),
+            );
             pageController.animateToPage(
               1,
               duration: const Duration(milliseconds: 250),

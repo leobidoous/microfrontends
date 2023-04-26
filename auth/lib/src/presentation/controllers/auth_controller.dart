@@ -64,4 +64,8 @@ class AuthController extends GenController<Exception, Unit> {
   Future<void> setUserPreferences(UserPreferencesEntity userPreferences) async {
     await localUserUsecase.setUserPreferences(preferences: userPreferences);
   }
+
+  Future<Either<Exception, UserPreferencesEntity>> getUserPreferences() {
+    return localUserUsecase.getUserPreferences(userId: '');
+  }
 }

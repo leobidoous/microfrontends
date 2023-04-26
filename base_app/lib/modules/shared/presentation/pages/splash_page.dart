@@ -30,18 +30,12 @@ class _SplashPageState extends State<SplashPage> {
             arguments: WarningNewVersionPageArgs(
               forceUpdate: controller.forceUpdate,
               onContinue: () {
-                Nav.to.navigate(
-                  AuthRoutes.root,
-                  arguments: controller.appController.userPreferences,
-                );
+                Nav.to.navigate(AuthRoutes.root);
               },
             ),
           );
         } else {
-          Nav.to.navigate(
-            AuthRoutes.root,
-            arguments: controller.appController.userPreferences,
-          );
+          Nav.to.navigate(AuthRoutes.root);
         }
         return;
       }

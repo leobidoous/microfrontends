@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
+
 import '../../domain/failures/login_failure.dart';
 import '../../domain/usecases/i_auth_usecase.dart';
 import '../../domain/usecases/i_login_usecase.dart';
@@ -48,25 +49,52 @@ class LoginController extends GenController<ILoginFailure, bool> {
     final response = await authUsecase.firebaseSignIn(
       token: token.customToken,
     );
-    return response.fold((l) => Left(UnknowError(l.toString())), (r) async {
+    return response.fold(
+        (l) => Left(
+              UnknowError(
+                'Erro ao realizar firebaseSignIn',
+                detailsMessage: l.toString(),
+              ),
+            ), (r) async {
       final response = await userUsecase.getFirebaseUser(
         forceRefresh: false,
       );
-      return response.fold((l) => Left(UnknowError(l.toString())),
-          (firebase) async {
+      return response.fold(
+          (l) => Left(
+                UnknowError(
+                  'Erro ao realizar getFirebaseUser',
+                  detailsMessage: l.toString(),
+                ),
+              ), (firebase) async {
         if (firebase.claims.customerId.isEmpty) {
-          return Left(UnknowError('firebase.claims.customerId.isEmpty'));
+          return Left(
+            UnknowError(
+              'Nenhum customer claims encontrado',
+              detailsMessage: 'Erro ao obter Customer Claims',
+            ),
+          );
         }
         authController.claims = firebase.claims;
         final response = await authController.setSession(
           token: authController.token,
         );
-        return response.fold((l) => Left(UnknowError(l.toString())), (r) async {
+        return response.fold(
+            (l) => Left(
+                  UnknowError(
+                    'Erro ao salvar sessão',
+                    detailsMessage: l.toString(),
+                  ),
+                ), (r) async {
           final response = await userUsecase.getUserById(
             id: firebase.claims.customerId,
           );
-          return response.fold((l) => Left(UnknowError(l.toString())),
-              (customer) async {
+          return response.fold(
+              (l) => Left(
+                    UnknowError(
+                      'Erro ao obter detalhes do usuário',
+                      detailsMessage: l.toString(),
+                    ),
+                  ), (customer) async {
             authController.customer = customer;
             authController.user = UserEntity(
               name: customer.name,
@@ -84,7 +112,12 @@ class LoginController extends GenController<ILoginFailure, bool> {
                 password: customer.id,
               );
               return response.fold(
-                (l) => Left(UnknowError(l.toString())),
+                (l) => Left(
+                  UnknowError(
+                    'Erro ao criar usuário externo',
+                    detailsMessage: l.toString(),
+                  ),
+                ),
                 (externalUser) async {
                   authController.externalUser = externalUser;
                   return _onSaveSession();
@@ -108,8 +141,15 @@ class LoginController extends GenController<ILoginFailure, bool> {
       token: authController.token,
       user: authController.user,
     );
+    // UserPreferencesEntity(id: id)
+    // authController.setUserPreferences(userPreferences)
     return sessionResponse.fold(
-      (l) => Left(UnknowError(l.toString())),
+      (l) => Left(
+        UnknowError(
+          'Erro ao salvar sessão do usuário',
+          detailsMessage: l.toString(),
+        ),
+      ),
       (r) => Right(true),
     );
   }

@@ -84,7 +84,7 @@ class AuthModule extends Module {
     ChildRoute(
       Modular.initialRoute,
       transition: TransitionType.fadeIn,
-      child: (_, args) => AuthPage(userPreferences: args.data),
+      child: (_, args) => const AuthPage(),
     ),
     ModuleRoute(LoginRoutes.root.path, module: LoginModule()),
     ModuleRoute(RegisterRoutes.root.path, module: RegisterModule()),
