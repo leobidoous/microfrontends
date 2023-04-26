@@ -61,6 +61,7 @@ import 'translations_pt.dart';
 // ignore_for_file: lines_longer_than_80_chars
 // ignore_for_file: unnecessary_string_interpolations
 // ignore_for_file: no_leading_underscores_for_local_identifiers
+// ignore_for_file: depend_on_referenced_packages
 abstract class Tr {
   Tr(String locale)
       : localeName = intl.Intl.canonicalizedLocale(locale.toString());
@@ -94,11 +95,11 @@ abstract class Tr {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[Locale('pt')];
 
-  /// Labels de open banking
+  /// Labels de fidelidade
   ///
   /// In pt, this message translates to:
-  /// **'Pagamento'**
-  String get openBanking;
+  /// **'Fidelidade'**
+  String get fidelity;
 }
 
 class _TrDelegate extends LocalizationsDelegate<Tr> {

@@ -179,10 +179,12 @@ class _TicketTrackingPageState extends State<TicketTrackingPage> {
                 //             ),
                 //             child: Row(
                 //               crossAxisAlignment: CrossAxisAlignment.center,
-                //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //               mainAxisAlignment:
+                // MainAxisAlignment.spaceBetween,
                 //               children: [
                 //                 Column(
-                //                   crossAxisAlignment: CrossAxisAlignment.start,
+                //                   crossAxisAlignment:
+                // CrossAxisAlignment.start,
                 //                   children: [
                 //                     Padding(
                 //                       padding: EdgeInsets.only(

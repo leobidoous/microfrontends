@@ -134,7 +134,7 @@ runGet() {
 runTranslate() {
   cd "$1" || exit
   if [ -f "pubspec.yaml" ]; then
-    echo "Generating translations $1..."
+    echo "Generating translations in $1..."
     flutter gen-l10n --arb-dir=lib/core/l10n/ --template-arb-file=intl_pt.arb --output-localization-file=translations.dart --output-class=Tr --output-dir=lib/l10n --no-synthetic-package
   fi
 
