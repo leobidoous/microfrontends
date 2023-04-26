@@ -7,6 +7,7 @@ import '../../infra/usecases/login_usecase.dart';
 import '../../infra/usecases/user_usecase.dart';
 import '../controllers/auth_controller.dart';
 import '../controllers/login_controller.dart';
+import '../controllers/timer_controller.dart';
 import '../pages/login/login_page.dart';
 
 class LoginModule extends Module {
@@ -35,7 +36,10 @@ class LoginModule extends Module {
       ];
 
   @override
-  final List<Bind> binds = [...exportedBinds];
+  final List<Bind> binds = [
+    ...exportedBinds,
+    Bind.factory<TimerController>((i) => TimerController()),
+  ];
 
   @override
   final List<ModularRoute> routes = [
