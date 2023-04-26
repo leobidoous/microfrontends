@@ -10,5 +10,5 @@ class PayRoutes {
 
   static BasePath root = BasePath('/pay/', _parent);
   static BasePath phoneRecharge = BasePath('/phone_recharge/', root);
-  static BasePath qrCode = BasePath('/qr_code/', root);
+  static BasePath scanQrCode = BasePath('/scan_qr_code/', root);
 }

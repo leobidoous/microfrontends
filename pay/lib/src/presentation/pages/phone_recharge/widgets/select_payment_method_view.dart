@@ -29,13 +29,12 @@ class _SelectPaymentMethodViewState extends State<SelectPaymentMethodView> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: const Spacing(2).value),
+          padding: EdgeInsets.all(const Spacing(3).value),
           child: Text(
             'Escolha uma forma de pagamento',
             style: context.textTheme.titleMedium,
           ),
         ),
-        Spacing.sm.vertical,
         Expanded(
           child: ValueListenableBuilder<List<CreditCardEntity>>(
             valueListenable: cardsController,
@@ -46,7 +45,7 @@ class _SelectPaymentMethodViewState extends State<SelectPaymentMethodView> {
                 return Center(
                   child: RequestError(
                     maxHeight: const Spacing(15).value.responsiveHeight,
-                    padding: const EdgeInsets.all(16),
+                    padding: EdgeInsets.all(const Spacing(3).value),
                     message: cardsController.error.toString(),
                     onPressed: cardsController.fetchCreditCards,
                   ),
@@ -56,7 +55,7 @@ class _SelectPaymentMethodViewState extends State<SelectPaymentMethodView> {
                   child: ListEmpty(
                     asset: 'assets/images/wallet/transactions.svg',
                     message: 'Nenhum cartão cadastrado',
-                    padding: const EdgeInsets.all(16),
+                    padding: EdgeInsets.all(const Spacing(3).value),
                     onPressed: cardsController.fetchCreditCards,
                   ),
                 );
@@ -69,9 +68,11 @@ class _SelectPaymentMethodViewState extends State<SelectPaymentMethodView> {
                   );
                 },
                 padding: EdgeInsets.symmetric(
-                  horizontal: const Spacing(2).value,
+                  horizontal: const Spacing(3).value,
                 ),
-                physics: const BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
                 separatorBuilder: (_, __) => Divider(
                   height: const Spacing(2).value,
                   color: AppColorsBase.neutrla1,

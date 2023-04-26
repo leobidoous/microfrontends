@@ -9,5 +9,4 @@ class AuthRoutes {
   static late final BasePath _parent;
 
   static BasePath root = BasePath('/auth/', _parent);
-  static BasePath login = BasePath('/login/', root);
 }

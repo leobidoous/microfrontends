@@ -1,11 +1,6 @@
 import '../../../core.dart';
 
 class GraphQlInterceptor extends IGraphQlInterceptor {
-  // static final GraphQlInterceptor _singleton =
-  // GraphQlInterceptor._internal();
-  // factory GraphQlInterceptor() => _singleton;
-  // GraphQlInterceptor._internal();
-
   @override
   Future<GraphQlDriverOptions> onRequest({
     required GraphRequestData requestData,

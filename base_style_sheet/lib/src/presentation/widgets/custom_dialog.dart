@@ -122,7 +122,9 @@ class _CustomDialog extends StatelessWidget {
                         child: GestureDetector(
                           onTap: () => Nav.to.pop(response: false),
                           child: Padding(
-                            padding: const EdgeInsets.only(bottom: 16),
+                            padding: EdgeInsets.only(
+                              bottom: const Spacing(2).value,
+                            ),
                             child: GestureDetector(
                               onTap: () => Nav.to.pop(response: false),
                               child: Icon(

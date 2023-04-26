@@ -9,7 +9,7 @@ abstract class IRegisterUsecase {
   Future<Either<IRegisterFailure, Unit>> onValidateEmailCode({
     required String token,
   });
-  Future<Either<IRegisterFailure, String>> onValidatePhoneCode({
+  Future<Either<IRegisterFailure, TokenEntity>> onValidatePhoneCode({
     required String phone,
     required String code,
   });

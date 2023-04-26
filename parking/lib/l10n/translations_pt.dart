@@ -3,6 +3,9 @@ import 'package:intl/intl.dart' as intl;
 import 'translations.dart';
 
 /// The translations for Portuguese (`pt`).
+// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: unnecessary_string_interpolations
+// ignore_for_file: no_leading_underscores_for_local_identifiers
 class TrPt extends Tr {
   TrPt([String locale = 'pt']) : super(locale);
 
@@ -70,7 +73,8 @@ class TrPt extends Tr {
   String get validateYourParking => 'Valide seu estacionamento';
 
   @override
-  String get descriptionParking => 'Caso utilize TAG, informe a placa do veículo no campo abaixo:';
+  String get descriptionParking =>
+      'Caso utilize TAG, informe a placa do veículo no campo abaixo:';
 
   @override
   String get enterPlate => 'Digite a placa do veículo';
@@ -82,7 +86,8 @@ class TrPt extends Tr {
   String get titleParkingDashBoard => 'Estacionamento';
 
   @override
-  String get subtitleParkingDashBoard => 'Veja os principais serviços e campanhas relacionados ao estacionamento.';
+  String get subtitleParkingDashBoard =>
+      'Veja os principais serviços e campanhas relacionados ao estacionamento.';
 
   @override
   String get ticketTitle => 'Tíquete';
@@ -121,7 +126,6 @@ class TrPt extends Tr {
   String validCoupons(num count) {
     final intl.NumberFormat countNumberFormat = intl.NumberFormat.compact(
       locale: localeName,
-      
     );
     final String countString = countNumberFormat.format(count);
 
@@ -139,7 +143,8 @@ class TrPt extends Tr {
   String get fiftyDiscount => 'Pague seu estacionamento \ncom 50% de desconto';
 
   @override
-  String get fullDiscount => 'Valide agora e ganhe o \n estacionamento gratuito';
+  String get fullDiscount =>
+      'Valide agora e ganhe o \n estacionamento gratuito';
 
   @override
   String get offDiscount => 'Pague seu estacionamento';
@@ -154,7 +159,8 @@ class TrPt extends Tr {
   String get registerNewCard => 'Cadastrar novo cartao';
 
   @override
-  String get voucherToEmail => 'O comprovante de pagamento foi enviado para o seu e-mail';
+  String get voucherToEmail =>
+      'O comprovante de pagamento foi enviado para o seu e-mail';
 
   @override
   String get information => 'Informações';
@@ -187,7 +193,8 @@ class TrPt extends Tr {
   String get seeCoupons => 'Ver cupons';
 
   @override
-  String get anotationCoupons => '* Seus cupons serão válidos somente na data da compra.';
+  String get anotationCoupons =>
+      '* Seus cupons serão válidos somente na data da compra.';
 
   @override
   String missingMessage(int value) {
@@ -222,7 +229,8 @@ class TrPt extends Tr {
   String get canWeHelpYou => 'Podemos te ajudar?';
 
   @override
-  String get contactSupport => 'Fale com o nosso time de Suporte e tire suas dúvidas.';
+  String get contactSupport =>
+      'Fale com o nosso time de Suporte e tire suas dúvidas.';
 
   @override
   String get contactUs => 'Fale conosco';
@@ -264,7 +272,8 @@ class TrPt extends Tr {
   String get close => 'Fechar';
 
   @override
-  String get registerVehicle => 'Cadastre o seu veículo para agilizar a liberação do estacionamento.';
+  String get registerVehicle =>
+      'Cadastre o seu veículo para agilizar a liberação do estacionamento.';
 
   @override
   String get whichBrand => 'Qual é a marca do veículo?';
@@ -297,10 +306,12 @@ class TrPt extends Tr {
   String get totalAmountRegistered => 'Valor total registrado';
 
   @override
-  String get deskDoubtsInfo => 'Tire suas dúvidas relacionadas aos \ncupons fiscais, estacionamento e \npagamentos.';
+  String get deskDoubtsInfo =>
+      'Tire suas dúvidas relacionadas aos \ncupons fiscais, estacionamento e \npagamentos.';
 
   @override
-  String get deskDoubtsInfoPending => 'Realize a liberação para resolver seus \nproblemas relacionados aos cupons fiscais, \nestacionamento ou pagamentos.';
+  String get deskDoubtsInfoPending =>
+      'Realize a liberação para resolver seus \nproblemas relacionados aos cupons fiscais, \nestacionamento ou pagamentos.';
 
   @override
   String get noItemAvailable => 'Nenhum item disponível';
@@ -314,7 +325,8 @@ class TrPt extends Tr {
   }
 
   @override
-  String get addCouponsLabel => 'Adicione seus cupons fiscais para ganhar estacionamento gratuito';
+  String get addCouponsLabel =>
+      'Adicione seus cupons fiscais para ganhar estacionamento gratuito';
 
   @override
   String get typePlate => 'Digitar placa';

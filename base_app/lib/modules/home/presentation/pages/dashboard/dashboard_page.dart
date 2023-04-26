@@ -5,9 +5,9 @@ import 'package:shop/shop.dart';
 import 'package:wallet/wallet.dart';
 
 import '../../controllers/dashboard_controller.dart';
+import 'widgets/activity_list.dart';
 import 'widgets/carousel_banner.dart';
 import 'widgets/header_user.dart';
-import 'widgets/activity_list.dart';
 import 'widgets/list_main_services.dart';
 import 'widgets/list_other_services.dart';
 import 'widgets/list_premium_brands.dart';

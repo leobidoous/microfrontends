@@ -1,5 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:parking/parking.dart';
+import 'package:pay/pay.dart';
 import 'package:shop/shop.dart';
 
 import '../../../controllers/dashboard_controller.dart';
@@ -25,18 +27,19 @@ class ListMainServices extends StatelessWidget {
         const ItemMainServices(
           title: 'Nas lojas',
           icon: CoreIcons.shop,
-          // onTap: () => Nav.to.pushNamed(
-          //   Routes.IN_SHOPS,
-          //   arguments: controller.isCouponEnabled,
-          // ),
         ),
-        const ItemMainServices(
+        ItemMainServices(
           title: 'Pagamentos',
           icon: CoreIcons.coinsAlt,
-          // onTap: () => Nav.to.pushNamed(
-          //   Routes.PAYMENT_OPTIONS,
-          //   arguments: controller.isLinkC.value,
-          // ),
+          onTap: () => Nav.to.pushNamed(
+            PayRoutes.root,
+            arguments: {
+              'isLinkC': controller.isLinkC,
+              'goToParking': () {
+                Nav.to.pushNamed(ParkingRoutes.root);
+              }
+            },
+          ),
         ),
       ],
     );

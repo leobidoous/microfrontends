@@ -48,7 +48,7 @@ extension BottomNavBarTypeExt on BottomNavBarType {
       case BottomNavBarType.search:
         return ShopRoutes.root;
       case BottomNavBarType.payment:
-        return PayRoutes.root;
+        return PayRoutes.scanQrCode;
       case BottomNavBarType.wallet:
         return WalletRoutes.root;
       case BottomNavBarType.profile:

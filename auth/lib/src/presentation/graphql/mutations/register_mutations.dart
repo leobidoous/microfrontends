@@ -5,9 +5,14 @@ class RegisterMutations {
         }
       ''';
 
-  static const String validateVerificationCode = r'''
-        mutation validateVerificationCode($phoneNumber: String!, $code: String!){
-          validateVerificationCode(phoneNumber: $phoneNumber, code: $code)
+  static const String validateVerificationCodeFirebase = r'''
+        mutation validateVerificationCodeFirebase($code: String!, $phoneNumber: String!) {
+          validateVerificationCodeFirebase(code: $code, phoneNumber: $phoneNumber) {
+            accessToken
+            customToken
+            expiresIn
+            refreshToken
+          }
         }
       ''';
 

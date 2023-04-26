@@ -20,13 +20,6 @@ class GraphQlAuthInterceptor extends GraphQlInterceptor {
     return _singleton;
   }
 
-  // GraphQlAuthInterceptor({
-  //   required this.localUserUsecase,
-  //   required this.authUsecase,
-  // }) {
-  // log('GraphQlAuthInterceptor: $hashCode');
-  // }
-
   static late IAuthUsecase _authUsecase;
   static late ILocalUserUsecase _localUserUsecase;
 

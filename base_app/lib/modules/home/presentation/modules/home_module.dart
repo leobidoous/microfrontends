@@ -49,13 +49,13 @@ class HomeModule extends Module {
         localUserUsecase: i.get<LocalUserUsecase>(),
       ),
     ),
-    Bind.lazySingleton<SessionEntity>((i) => i.get<SessionController>().state),
+    Bind.factory<SessionEntity>((i) => i.get<SessionController>().state),
 
     /// Shopping
     Bind.factory<ShoppingEntity>(
       (i) => ShoppingEntity(
         id: 3,
-        name: 'Shopping bonsucesso',
+        name: 'Shopping Bonsucesso',
         type: 'tiaguinho',
         latitude: 'latitude',
         longitude: 'longitude',
@@ -65,7 +65,7 @@ class HomeModule extends Module {
         createdAt: 'createdAt',
         address: 'Rua das oliveiras, nº 20 - 65040-380',
         logoImage: '',
-        cnpj: 'cnpj',
+        cnpj: '63555053000199',
       ),
     ),
 

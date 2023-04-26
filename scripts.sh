@@ -244,11 +244,7 @@ case $1 in
   runBuildIOS $2
   ;;
 --translate)
-  # exclude hidden
-  dirs=($(find . -not -path '*/\.*' -not -path '*/storybook' -maxdepth 1 -type d))
-  for dir in "${dirs[@]}"; do
-    runTranslate $dir $2
-  done
+  runTranslate $2
   ;;
 --runner)
   # exclude hidden

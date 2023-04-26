@@ -48,7 +48,7 @@ class RegisterUsecase extends IRegisterUsecase {
   }
 
   @override
-  Future<Either<IRegisterFailure, String>> onValidatePhoneCode({
+  Future<Either<IRegisterFailure, TokenEntity>> onValidatePhoneCode({
     required String phone,
     required String code,
   }) {

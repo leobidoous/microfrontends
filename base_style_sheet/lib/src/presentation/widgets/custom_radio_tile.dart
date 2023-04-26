@@ -26,7 +26,7 @@ class CustomRadioTile<T> extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
-                  width: isSelected ? 5 : 1,
+                  width: 1,
                   color: isSelected
                       ? context.colorScheme.primary
                       : AppColorsBase.neutrla4,
@@ -34,14 +34,17 @@ class CustomRadioTile<T> extends StatelessWidget {
               ),
               height: const Spacing(2.75).value,
               width: const Spacing(2.75).value,
+              padding: EdgeInsets.all(const Spacing(.4).value),
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: context.colorScheme.background,
+                  color: isSelected
+                      ? context.colorScheme.primary
+                      : context.colorScheme.background,
                 ),
               ),
             ),
-            Spacing.xs.horizontal,
+            Spacing.sm.horizontal,
             Flexible(child: title),
           ],
         ),

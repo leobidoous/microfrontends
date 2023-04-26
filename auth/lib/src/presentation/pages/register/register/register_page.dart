@@ -14,14 +14,9 @@ import 'widgets/register_phone_view.dart';
 import 'widgets/register_terms_view.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({
-    Key? key,
-    required this.redirectTo,
-    required this.onLoginCallback,
-  }) : super(key: key);
+  const RegisterPage({Key? key, required this.redirectTo}) : super(key: key);
 
   final BasePath redirectTo;
-  final Future Function(SessionEntity) onLoginCallback;
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -139,17 +134,10 @@ class _RegisterPageState extends State<RegisterPage> {
         context,
         CustomAlert(
           asset: 'assets/images/parking/ticket_paid_success.svg',
-          title: 'Conta criada com sucesso',
-          content:
-              'Realize seu login para aproveitar nossas funcionalidades 😄',
-          btnConfirmLabel: 'Ir para o login',
-          onConfirm: () => Nav.to.pushReplacementNamed(
-            AuthRoutes.login,
-            arguments: {
-              'onLoginCallback': widget.onLoginCallback,
-              'redirectTo': widget.redirectTo,
-            },
-          ),
+          title: 'Conta criada com sucesso 🥳',
+          content: 'Agora você pode aproveitar nossas funcionalidades 😄',
+          btnConfirmLabel: 'Fechar',
+          onConfirm: () => Nav.to.navigate(widget.redirectTo),
         ),
       );
     });

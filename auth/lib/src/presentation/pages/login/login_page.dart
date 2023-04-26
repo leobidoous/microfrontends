@@ -9,14 +9,9 @@ import '../widgets/phone_pin_code_view.dart';
 import 'widgets/phone_form_view.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({
-    Key? key,
-    required this.redirectTo,
-    required this.onLoginCallback,
-  }) : super(key: key);
+  const LoginPage({Key? key, required this.redirectTo}) : super(key: key);
 
   final BasePath redirectTo;
-  final Future Function(SessionEntity) onLoginCallback;
 
   @override
   State<LoginPage> createState() => _LoginPagePageState();
@@ -89,11 +84,8 @@ class _LoginPagePageState extends State<LoginPage> {
           btnConfirmLabel: 'Ir para o cadastro',
           onConfirm: () {
             Nav.to.pushReplacementNamed(
-              RegisterRoutes.root.prevPath(),
-              arguments: {
-                'onLoginCallback': widget.onLoginCallback,
-                'redirectTo': widget.redirectTo,
-              },
+              RegisterRoutes.root,
+              arguments: {'redirectTo': widget.redirectTo},
             );
           },
         ),

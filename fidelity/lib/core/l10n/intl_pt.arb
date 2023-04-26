@@ -1,0 +1,7 @@
+{
+    "@@locale": "pt",
+    "fidelity": "Fidelidade",
+    "@fidelity": {
+        "description": "Labels de fidelidade"
+    }
+}

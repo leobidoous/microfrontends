@@ -9,7 +9,6 @@ import '../../infra/repositories/dashboard_repository.dart';
 import '../../infra/usecases/dashboard_usecase.dart';
 import '../controllers/dashboard_controller.dart';
 import '../pages/dashboard/dashboard_page.dart';
-import '../routes/dashboard_routes.dart';
 
 class DashboardModule extends Module {
   @override

@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 
 import '../../domain/failures/register_failure.dart';
 import '../../infra/datasources/i_register_datasource.dart';
+import '../../presentation/graphql/mutations/auth_mutations.dart';
 import '../../presentation/graphql/mutations/register_mutations.dart';
 import '../../presentation/graphql/queries/register_queries.dart';
 
@@ -215,19 +216,19 @@ class RegisterDatasource extends IRegisterDatasource {
   }
 
   @override
-  Future<Either<IRegisterFailure, String>> onValidatePhoneCode({
+  Future<Either<IRegisterFailure, TokenEntity>> onValidatePhoneCode({
     required String phone,
     required String code,
   }) async {
     final response = await graphQlClient.request(
       data: GraphRequestData(
-        document: RegisterMutations.validateVerificationCode,
+        document: AuthMutations.validateVerificationCodeFirebase,
         variables: {
           'phoneNumber': '+55${phone.replaceAll(RegExp(r'[^0-9]'), '')}',
           'code': code,
         },
         options: GraphQlDriverOptions(
-          operationName: 'validateVerificationCode',
+          operationName: 'validateVerificationCodeFirebase',
         ),
       ),
     );
@@ -256,7 +257,9 @@ class RegisterDatasource extends IRegisterDatasource {
       },
       (r) {
         try {
-          return Right(r.data['validateVerificationCode']);
+          return Right(
+            TokenModel.fromMap(r.data['validateVerificationCodeFirebase']),
+          );
         } catch (e) {
           return Left(
             UnknowError(

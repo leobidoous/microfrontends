@@ -12,7 +12,7 @@ abstract class IRegisterRepository {
   Future<Either<IRegisterFailure, bool>> onValidateCpfAlreadyExists({
     required String cpf,
   });
-  Future<Either<IRegisterFailure, String>> onValidatePhoneCode({
+  Future<Either<IRegisterFailure, TokenEntity>> onValidatePhoneCode({
     required String phone,
     required String code,
   });

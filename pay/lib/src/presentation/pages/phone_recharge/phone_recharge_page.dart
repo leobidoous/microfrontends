@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'widgets/choose_recharge_value_view.dart';
 import 'widgets/inform_phone_number_view.dart';
-import 'widgets/recharge_progress.dart';
 import 'widgets/select_payment_method_view.dart';
 
 class PhoneRechargePage extends StatefulWidget {
@@ -16,7 +15,7 @@ class PhoneRechargePage extends StatefulWidget {
 
 class _PhoneRechargePageState extends State<PhoneRechargePage> {
   final pageController = PageController();
-  double rechargePercent = 25;
+  int pageIndex = 0;
 
   @override
   void dispose() {
@@ -27,57 +26,47 @@ class _PhoneRechargePageState extends State<PhoneRechargePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'Recarga de celular'),
+      appBar: CustomAppBar(
+        title: 'Recarga de celular',
+        progress: (pageIndex + 1) / 4,
+      ),
       body: SafeArea(
-        child: Column(
+        child: PageView(
+          controller: pageController,
+          onPageChanged: (value) {
+            setState(() {
+              pageIndex = value;
+            });
+          },
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: const Spacing(3).value,
-              ),
-              child: RechargeProgress(percent: rechargePercent),
+            InformPhoneNumberView(
+              onInformPhone: (phone) {
+                pageController.animateToPage(
+                  1,
+                  duration: const Duration(milliseconds: 250),
+                  curve: Curves.decelerate,
+                );
+              },
             ),
-            Spacing.sm.vertical,
-            Expanded(
-              child: PageView(
-                controller: pageController,
-                onPageChanged: (value) {
-                  setState(() {
-                    rechargePercent = (value + 1) / 4 * 100;
-                  });
-                },
-                children: [
-                  InformPhoneNumberView(
-                    onInformPhone: (phone) {
-                      pageController.animateToPage(
-                        1,
-                        duration: const Duration(milliseconds: 250),
-                        curve: Curves.decelerate,
-                      );
-                    },
-                  ),
-                  ChooseRechargeValueView(
-                    onChooseValue: (p0) {
-                      pageController.animateToPage(
-                        2,
-                        duration: const Duration(milliseconds: 250),
-                        curve: Curves.decelerate,
-                      );
-                    },
-                  ),
-                  SelectPaymentMethodView(
-                    onSelected: (paymentMethod) {
-                      pageController.animateToPage(
-                        3,
-                        duration: const Duration(milliseconds: 250),
-                        curve: Curves.decelerate,
-                      );
-                    },
-                  ),
-                  _reviewRecharge,
-                ],
-              ),
+            ChooseRechargeValueView(
+              onChooseValue: (p0) {
+                pageController.animateToPage(
+                  2,
+                  duration: const Duration(milliseconds: 250),
+                  curve: Curves.decelerate,
+                );
+              },
             ),
+            SelectPaymentMethodView(
+              onSelected: (paymentMethod) {
+                pageController.animateToPage(
+                  3,
+                  duration: const Duration(milliseconds: 250),
+                  curve: Curves.decelerate,
+                );
+              },
+            ),
+            _reviewRecharge,
           ],
         ),
       ),
@@ -86,12 +75,7 @@ class _PhoneRechargePageState extends State<PhoneRechargePage> {
 
   Widget get _reviewRecharge {
     return Padding(
-      padding: EdgeInsets.fromLTRB(
-        const Spacing(2).value,
-        0,
-        const Spacing(2).value,
-        const Spacing(2).value,
-      ),
+      padding: EdgeInsets.all(const Spacing(3).value),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -151,11 +135,28 @@ class _PhoneRechargePageState extends State<PhoneRechargePage> {
           Spacing.sm.vertical,
           CustomButton.text(
             text: 'Confirmar pagamento',
+            onPressed: () {
+              CustomDialog.show(
+                context,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.min,
+                ),
+                showClose: true,
+              );
+            },
             type: ButtonType.tertiary,
           ),
           Spacing.sm.vertical,
           CustomButton.text(
             text: 'Cancelar',
+            onPressed: () {
+              CustomBottomSheet.show(
+                context,
+                BottomSheetAlert.emailVerified(context),
+                showClose: true,
+              );
+            },
             type: ButtonType.background,
           ),
         ],

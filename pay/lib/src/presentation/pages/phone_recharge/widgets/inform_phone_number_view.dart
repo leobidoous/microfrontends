@@ -22,7 +22,7 @@ class _InformPhoneNumberViewState extends State<InformPhoneNumberView> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: const Spacing(3).value),
+          padding: EdgeInsets.all(const Spacing(3).value),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [

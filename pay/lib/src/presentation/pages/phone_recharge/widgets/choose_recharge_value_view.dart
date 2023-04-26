@@ -13,13 +13,12 @@ class ChooseRechargeValueView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: const Spacing(3).value),
+          padding: EdgeInsets.all(const Spacing(3).value),
           child: Text(
             'Qual é o valor da recarga?',
             style: context.textTheme.titleMedium,
           ),
         ),
-        Spacing.md.vertical,
         Expanded(
           child: ValueListenableBuilder(
             valueListenable: ValueNotifier(false),
@@ -29,7 +28,7 @@ class ChooseRechargeValueView extends StatelessWidget {
                 child: ListView.separated(
                   itemCount: 10,
                   padding: EdgeInsets.symmetric(
-                    horizontal: const Spacing(2).value,
+                    horizontal: const Spacing(3).value,
                   ),
                   physics: const BouncingScrollPhysics(
                     parent: AlwaysScrollableScrollPhysics(),

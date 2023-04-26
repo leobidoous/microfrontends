@@ -28,6 +28,8 @@ dependencies:
     path: ../shop
   pay:
     path: ../pay
+  fidelity:
+    path: ../fidelity
 
 dev_dependencies:
   flutter_test:

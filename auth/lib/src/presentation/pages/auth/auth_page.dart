@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 
 import '../../../../auth.dart';
 import '../../controllers/auth_controller.dart';
+import '../../routes/login_routes.dart';
 import 'widgets/auth_logo.dart';
 import 'widgets/onboarding_view.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({Key? key, required this.userPreferences}) : super(key: key);
 
-  final UserPreferencesEntity userPreferences;
+  final UserPreferencesEntity? userPreferences;
 
   @override
   State<AuthPage> createState() => _AuthPageState();
@@ -23,7 +24,7 @@ class _AuthPageState extends State<AuthPage> {
   @override
   void initState() {
     pageController = PageController(
-      initialPage: widget.userPreferences.showOnboarding ?? true ? 0 : 1,
+      initialPage: widget.userPreferences?.showOnboarding ?? true ? 0 : 1,
     );
     super.initState();
   }
@@ -43,10 +44,12 @@ class _AuthPageState extends State<AuthPage> {
       children: [
         OnboardingView(
           onClose: () {
-            controller.setUserPreferences(
-              UserPreferencesModel.fromEntity(widget.userPreferences)
-                  .copyWith(showOnboarding: false),
-            );
+            if (widget.userPreferences != null) {
+              controller.setUserPreferences(
+                UserPreferencesModel.fromEntity(widget.userPreferences!)
+                    .copyWith(showOnboarding: false),
+              );
+            }
             pageController.animateToPage(
               1,
               duration: const Duration(milliseconds: 250),
@@ -86,11 +89,8 @@ class _AuthPageState extends State<AuthPage> {
                       CustomButton.text(
                         onPressed: () {
                           Nav.to.pushNamed(
-                            AuthRoutes.login,
-                            arguments: {
-                              'redirectTo': controller.redirectTo,
-                              'onLoginCallback': controller.onLoginCallback,
-                            },
+                            LoginRoutes.root,
+                            arguments: {'redirectTo': controller.redirectTo},
                           );
                         },
                         text: 'Login',
