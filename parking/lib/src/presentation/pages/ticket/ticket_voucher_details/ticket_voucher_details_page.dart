@@ -54,7 +54,7 @@ class _TicketVoucherDetailsPageState extends State<TicketVoucherDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar.zero(),
+      appBar: const CustomAppBar(),
       body: SafeArea(
         child: ValueListenableBuilder<TicketEntity>(
           valueListenable: controller,
