@@ -14,6 +14,7 @@ import '../../../controllers/ticket/tracking/ticket_history_controller.dart';
 import '../../../routes/ticket_routes.dart';
 import '../../ticket/widgets/ticket_card_details.dart';
 import '../ticket_submit/ticket_submit_page.dart';
+import '../widgets/ticket_shopping_info.dart';
 import 'ticket_tracking_empty_page.dart';
 import 'widgets/historys_info.dart';
 
@@ -30,20 +31,18 @@ class _TicketTrackingPageState extends State<TicketTrackingPage> {
   final ticketHistoryController = DM.i.get<TicketHistoryController>();
   final controller = DM.i.get<ParkingTicketController>();
   final authController = DM.i.get<SessionEntity>();
-
-  ///TODO: pendencia do [BIDÓ]
-  // final shopping = DM.i.get<ShoppingModel>();
+  final shopping = DM.i.get<ShoppingEntity>();
 
   @override
   void initState() {
     super.initState();
-    controller.fecthInfoTicket(
-      idShopping: '3', //shopping.id.toString(),
-    );
-    ticketHistoryController.fetchTicketHistory(
-      page: '0',
-      perPage: '100',
-    );
+    // controller.fecthInfoTicket(
+    //   idShopping: shopping.id.toString(),
+    // );
+    // ticketHistoryController.fetchTicketHistory(
+    //   page: '0',
+    //   perPage: '100',
+    // );
   }
 
   @override
@@ -76,6 +75,7 @@ class _TicketTrackingPageState extends State<TicketTrackingPage> {
             return const Center(child: CustomLoading());
           } else if (controller.hasError ||
               (state.plate == null && state.ticket == null)) {
+            /// TODO: CORRIGIR BUG AO CHAMAR DUAS VEZES FETCHINFOTÍCKET
             return const TicketTrackingEmptyPage();
           }
           return CustomScrollContent(
@@ -147,15 +147,12 @@ class _TicketTrackingPageState extends State<TicketTrackingPage> {
                 _CircularIndicatorTimer(entity: state),
                 textCircularIndicator(state),
                 Spacing.sm.vertical,
-
-                ///TODO: DESCOMENTAR QUANDO IMPLEMENTAR
-                ///INJEÇÃO DO [ShoppingEntity]
-                // Padding(
-                //   padding: EdgeInsets.symmetric(
-                //     horizontal: const Spacing(2).value,
-                //   ),
-                //   child: TicketShoppingInfo(shopping: shopping),
-                // ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: const Spacing(2).value,
+                  ),
+                  child: TicketShoppingInfo(shopping: shopping),
+                ),
                 Spacing.sm.vertical,
                 Padding(
                   padding: EdgeInsets.symmetric(
@@ -165,96 +162,6 @@ class _TicketTrackingPageState extends State<TicketTrackingPage> {
                 ),
                 Spacing.sm.vertical,
                 const HistorysInfo(),
-                // ValueListenableBuilder(
-                //   valueListenable: ticketHistoryController,
-                //   builder: (_, historys, __) {
-                //     if (ticketHistoryController.isLoading) {
-                //       return const LimitedBox();
-                //     } else if (historys.isNotEmpty) {
-                //       return Column(
-                //         children: [
-                //           Padding(
-                //             padding: EdgeInsets.symmetric(
-                //               horizontal: const Spacing(3).value,
-                //             ),
-                //             child: Row(
-                //               crossAxisAlignment: CrossAxisAlignment.center,
-                //               mainAxisAlignment:
-                // MainAxisAlignment.spaceBetween,
-                //               children: [
-                //                 Column(
-                //                   crossAxisAlignment:
-                // CrossAxisAlignment.start,
-                //                   children: [
-                //                     Padding(
-                //                       padding: EdgeInsets.only(
-                //                         top: const Spacing(2.5).value,
-                //                       ),
-                //                       child: Text(
-                //                         Tr.of(context).historyValue,
-                //                         softWrap: true,
-                //                         style: context.textTheme.bodySmall
-                //                             ?.copyWith(
-                //                           color: AppColorsBase.grey6,
-                //                         ),
-                //                       ),
-                //                     ),
-                //                     Text(
-                //                       historys.first.data ?? '??/??/????',
-                //                       style: context.textTheme.titleMedium
-                //                           ?.copyWith(
-                //                         fontWeight: FontWeight.w500,
-                //                       ),
-                //                     ),
-                //                   ],
-                //                 ),
-                //                 Column(
-                //                   crossAxisAlignment: CrossAxisAlignment.end,
-                //                   children: [
-                //                     Padding(
-                //                       padding: EdgeInsets.only(
-                //                         top: const Spacing(2.5).value,
-                //                       ),
-                //                       child: Text(
-                //                         Tr.of(context).amountSaved,
-                //                         softWrap: true,
-                //                         style: context.textTheme.bodySmall
-                //                             ?.copyWith(
-                //                           color: AppColorsBase.grey6,
-                //                         ),
-                //                       ),
-                //                     ),
-                //                     Text(
-                //                       'R\$ ${NumberFormat.toCurrency(
-                //                         historys.first.valorEconomizado,
-                //                         symbol: '',
-                //                       )}',
-                //                       style: context.textTheme.titleMedium
-                //                           ?.copyWith(
-                //                         fontWeight: FontWeight.w500,
-                //                       ),
-                //                     ),
-                //                   ],
-                //                 ),
-                //               ],
-                //             ),
-                //           ),
-                //           Padding(
-                //             padding: EdgeInsets.symmetric(
-                //               vertical: const Spacing(1).value,
-                //             ),
-                //             child: TicketHistoryList(
-                //               historyController: ticketHistoryController,
-                //               authController: authController,
-                //             ),
-                //           ),
-                //         ],
-                //       );
-                //     }
-                //     return const LimitedBox();
-                //   },
-                // ),
-
                 SizedBox(
                   height: Spacing.xxxl.height,
                 ),

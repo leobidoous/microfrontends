@@ -65,7 +65,7 @@ class HomeModule extends Module {
         createdAt: 'createdAt',
         address: 'Rua das oliveiras, nº 20 - 65040-380',
         logoImage: '',
-        cnpj: '63555053000199',
+        cnpj: '41.516.969/0001-05',
       ),
     ),
 

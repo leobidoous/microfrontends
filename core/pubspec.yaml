@@ -26,7 +26,7 @@ dependencies:
   screenshot: ^1.2.3
   device_info: ^2.0.3
   url_launcher: ^6.1.5
-  brasil_fields: ^1.4.5
+  brasil_fields: ^1.4.5 #remover esse pakcage
   google_fonts: ^4.0.3
   flutter_dotenv: ^5.0.2
   auto_size_text: ^3.0.0

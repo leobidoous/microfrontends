@@ -22,14 +22,13 @@ class TicketTrackingEmptyPage extends StatefulWidget {
 class _TicketTrackingEmptyPageState extends State<TicketTrackingEmptyPage> {
   final authController = DM.i.get<SessionEntity>();
   final controller = DM.i.get<ParkingController>();
-
-  // final shopping = DM.i.get<ShoppingModel>();
+  final shopping = DM.i.get<ShoppingEntity>();
 
   @override
   void initState() {
     super.initState();
     controller.ticketController.fecthInfoTicket(
-      idShopping: '1', //shopping.id.toString(),
+      idShopping: shopping.id.toString(),
     );
   }
 
