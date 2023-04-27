@@ -16,10 +16,9 @@ import '../widgets/ticket_header.dart';
 import 'widgets/ticket_payment_method.dart';
 
 class TicketSubmitPageArgs {
+  TicketSubmitPageArgs({required this.ticketOrPlate, this.onPop});
   final String ticketOrPlate;
   final VoidCallback? onPop;
-
-  TicketSubmitPageArgs({required this.ticketOrPlate, this.onPop});
 }
 
 class TicketSubmitPage extends StatefulWidget {
@@ -136,7 +135,7 @@ class _TicketSubmitPageState extends State<TicketSubmitPage> {
           controller.state.plate != null
               ? () {}
               : await Nav.to.pushNamed(
-                  TicketRoutes.ticketVoucherDetails.prevPath(),
+                  TicketRoutes.ticketVoucherDetails.relativePath,
                   arguments: [
                     paymentController.state,
                     paymentMethodController.state,
@@ -145,7 +144,7 @@ class _TicketSubmitPageState extends State<TicketSubmitPage> {
                   Nav.to.popUntil(
                     ModalRoute.withName(TicketRoutes.root.completePath),
                   );
-                  Nav.to.pushNamed(TicketRoutes.ticketTracking.prevPath(2));
+                  Nav.to.pushNamed(TicketRoutes.ticketTracking.relativePath);
                 });
         });
       }
