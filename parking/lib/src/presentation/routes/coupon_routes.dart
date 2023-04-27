@@ -8,7 +8,7 @@ class CouponRoutes {
   static BasePath couponsList = BasePath('/coupons_list/', root);
   static BasePath couponDetails = BasePath(
     '/coupons_details/',
-    couponsList,
+    root,
   );
   static BasePath couponSuccessfullyRegistered = BasePath(
     '/coupon_successfully_registered/',

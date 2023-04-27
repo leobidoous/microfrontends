@@ -148,7 +148,7 @@ class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
       onTap: () {
         Nav.to
             .pushNamed(
-          WalletRoutes.addCreditCard.prevPath(),
+          WalletRoutes.addCreditCard.relativePath,
           forRoot: true,
         )
             .then((value) {

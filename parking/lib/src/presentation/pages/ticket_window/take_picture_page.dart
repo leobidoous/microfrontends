@@ -46,7 +46,7 @@ class _TakePicturePageState extends State<TakePicturePage> {
         (pic) {
           controller.onUpdateValue(File(pic.path));
           Nav.to.pushNamed(
-            TicketWindowRoutes.reviewPhoto.prevPath(),
+            TicketWindowRoutes.reviewPhoto,
             arguments: controller.state,
           );
         },

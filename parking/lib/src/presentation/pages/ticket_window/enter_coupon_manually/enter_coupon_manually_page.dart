@@ -6,14 +6,17 @@ import 'package:flutter/material.dart';
 
 import '../../../../domain/entities/ticket_window/unique_coupon_entity.dart';
 import '../../../controllers/ticket_window/enter_coupon_manually_controller.dart';
-import '../../../controllers/ticket_window/review_photos_controller.dart';
 import '../../../routes/ticket_window_routes.dart';
 import 'widgets/coupon_list_item.dart';
 
 class EnterCouponManuallyPage extends StatefulWidget {
-  const EnterCouponManuallyPage({super.key, required this.files});
-
+  const EnterCouponManuallyPage({
+    super.key,
+    required this.files,
+    required this.onClear,
+  });
   final List<File> files;
+  final VoidCallback onClear;
 
   @override
   State<EnterCouponManuallyPage> createState() =>
@@ -22,7 +25,6 @@ class EnterCouponManuallyPage extends StatefulWidget {
 
 class _EnterCouponManuallyPageState extends State<EnterCouponManuallyPage> {
   final controller = DM.i.get<EnterCouponManuallyController>();
-  final reviewController = DM.i.get<ReviewPhotosController>();
   final formKey = GlobalKey<FormState>();
   final scrollController = ScrollController();
   final textController = TextEditingController();
@@ -134,9 +136,9 @@ class _EnterCouponManuallyPageState extends State<EnterCouponManuallyPage> {
                     );
                     return;
                   }
-                  reviewController.onClear();
+                  widget.onClear();
                   Nav.to.pushNamed(
-                    TicketWindowRoutes.couponSubmissionResult.prevPath(),
+                    TicketWindowRoutes.couponSubmissionResult,
                   );
                 });
               },

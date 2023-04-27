@@ -88,9 +88,9 @@ class _CouponSubmissionResultPageState
                       CustomButton.text(
                         onPressed: () {
                           Nav.to.pushNamed(
-                            ParkingRoutes.root,
-                            arguments: (code) {
-                              Nav.to.pushReplacementNamed(
+                            ParkingRoutes.scanTicket,
+                            arguments: (code) async {
+                              await Nav.to.pushReplacementNamed(
                                 TicketRoutes.root,
                                 arguments: TicketSubmitPageArgs(
                                   ticketOrPlate: code,
@@ -115,8 +115,7 @@ class _CouponSubmissionResultPageState
                       CustomButton.text(
                         onPressed: () {
                           Nav.to.pushNamed(
-                            TicketWindowRoutes.scanTicketOrEnterPlate
-                                .prevPath(),
+                            TicketWindowRoutes.scanTicketOrEnterPlate,
                           );
                         },
                         text: 'Escanear tíquete',
@@ -128,7 +127,7 @@ class _CouponSubmissionResultPageState
                         onPressed: () {
                           Nav.to.popUntil(
                             ModalRoute.withName(
-                              TicketWindowRoutes.takePhoto.prevPath(),
+                              TicketWindowRoutes.takePicture.completePath,
                             ),
                           );
                         },

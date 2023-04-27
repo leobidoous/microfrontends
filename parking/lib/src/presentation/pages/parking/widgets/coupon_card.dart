@@ -11,6 +11,7 @@ import '../../../routes/coupon_routes.dart';
 import '../../../routes/parking_routes.dart';
 import '../../../routes/ticket_routes.dart';
 import '../../../widgets/coupon_registration_status.dart';
+import '../../ticket/ticket_submit/ticket_submit_page.dart';
 import 'shopping_location.dart';
 
 class CouponCard extends StatelessWidget {
@@ -201,7 +202,18 @@ class CouponCard extends StatelessWidget {
                   arguments: ticket.ticket ?? ticket.plate,
                 );
               } else {
-                Nav.to.pushNamed(TicketRoutes.root);
+                Nav.to.pushNamed(
+                  TicketRoutes.root,
+                  arguments: TicketSubmitPageArgs(
+                    ticketOrPlate: ticket.ticket ?? ticket.plate ?? '',
+                    onPop: () {
+                      Nav.to.popUntil(
+                        ModalRoute.withName(ParkingRoutes.root.completePath),
+                      );
+                      onRefresh();
+                    },
+                  ),
+                );
               }
             },
           );

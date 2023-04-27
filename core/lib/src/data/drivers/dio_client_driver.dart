@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../../core/helpers/errors/print_exception.dart';
 import '../../domain/interfaces/either.dart';
 import '../../infra/drivers/i_http_driver.dart';
 
@@ -13,7 +14,7 @@ class DioClientDriver extends IHttpDriver with Disposable {
 
   DioClientDriver({required this.client});
 
-  HttpDriverResponse _responseError(DioError e) {
+  HttpDriverResponse _responseError(DioError e, {StackTrace? s}) {
     late String statusMessage;
     final String data = json.encode(e.response?.data);
 
@@ -27,7 +28,8 @@ class DioClientDriver extends IHttpDriver with Disposable {
               statusMessage += '\n';
             }
           });
-        } catch (err) {
+        } catch (err, s) {
+          printException(exception: err, stackTrace: s);
           statusMessage = '${e.message}\n$data';
         }
 
@@ -36,6 +38,9 @@ class DioClientDriver extends IHttpDriver with Disposable {
         statusMessage = '${e.message}\n$data';
         break;
     }
+
+    printException(exception: e, stackTrace: s);
+
     return HttpDriverResponse(
       data: data,
       statusCode: e.response?.statusCode,
@@ -70,8 +75,8 @@ class DioClientDriver extends IHttpDriver with Disposable {
           statusMessage: response.statusMessage,
         ),
       );
-    } on DioError catch (e) {
-      return Left(_responseError(e));
+    } on DioError catch (e, s) {
+      return Left(_responseError(e, s: s));
     }
   }
 
@@ -102,8 +107,8 @@ class DioClientDriver extends IHttpDriver with Disposable {
           statusMessage: response.statusMessage,
         ),
       );
-    } on DioError catch (e) {
-      return Left(_responseError(e));
+    } on DioError catch (e, s) {
+      return Left(_responseError(e, s: s));
     }
   }
 
@@ -139,17 +144,8 @@ class DioClientDriver extends IHttpDriver with Disposable {
           statusMessage: response.statusMessage,
         ),
       );
-    } on DioError catch (e) {
-      return Left(
-        HttpDriverResponse(
-          data: e.response?.data ?? 'Ocorreu um erro inesperado.\n${e.message}',
-          statusCode: e.response?.statusCode,
-          statusMessage: e.response?.statusCode == null
-              ? 'Ocorreu um erro inesperado, talvez você '
-                  'esteja sem acesso à internet.\n${e.message}'
-              : e.message,
-        ),
-      );
+    } on DioError catch (e, s) {
+      return Left(_responseError(e, s: s));
     }
   }
 
@@ -201,8 +197,8 @@ class DioClientDriver extends IHttpDriver with Disposable {
           statusMessage: response.statusMessage,
         ),
       );
-    } on DioError catch (e) {
-      return Left(_responseError(e));
+    } on DioError catch (e, s) {
+      return Left(_responseError(e, s: s));
     }
   }
 

@@ -49,7 +49,7 @@ class _ScanCouponPageState extends State<ScanCouponPage> {
         controller.onAddError(value);
       }
       if ((controller.error?.length ?? 0) >= 3) {
-        Nav.to.pushReplacementNamed(TicketWindowRoutes.root.prevPath());
+        Nav.to.pushReplacementNamed(TicketWindowRoutes.root);
       }
     });
   }
@@ -81,7 +81,7 @@ class _ScanCouponPageState extends State<ScanCouponPage> {
         return Scaffold(
           appBar: CustomAppBar.zero(),
           backgroundColor: context.colorScheme.background.withOpacity(
-            .85,
+            .95,
           ),
           body: SafeArea(
             child: Padding(

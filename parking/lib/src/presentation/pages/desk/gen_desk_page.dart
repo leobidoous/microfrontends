@@ -91,7 +91,7 @@ class _GenDeskPageState extends State<GenDeskPage> {
                         text: Tr.of(context).seeRegulation,
                         onTap: () {
                           Nav.to.pushNamed(
-                            ParkingRoutes.regulation.prevPath(),
+                            ParkingRoutes.regulation,
                             arguments: couponController.parkingRoleUrl,
                           );
                         },

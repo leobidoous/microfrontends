@@ -17,4 +17,10 @@ class CodeScanController extends GenController<Exception, Barcode> {
     scanController = controller;
     update(state, force: true);
   }
+
+  @override
+  void dispose() {
+    scanController?.dispose();
+    super.dispose();
+  }
 }

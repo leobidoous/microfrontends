@@ -74,7 +74,7 @@ class _ScanTicketPageState extends State<ScanTicketPage> {
         return Scaffold(
           appBar: CustomAppBar.zero(),
           backgroundColor: context.colorScheme.background.withOpacity(
-            .85,
+            .95,
           ),
           body: SafeArea(
             child: Padding(

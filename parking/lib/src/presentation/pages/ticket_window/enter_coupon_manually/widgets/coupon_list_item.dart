@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:base_style_sheet/base_style_sheet.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../../domain/entities/ticket_window/unique_coupon_entity.dart';
 
@@ -76,6 +77,10 @@ class _CouponListItemState extends State<CouponListItem> {
         child: CustomInputField(
           hintText: 'Ex.: 150,00',
           keyboardType: TextInputType.number,
+          inputFormatters: [
+            FilteringTextInputFormatter.digitsOnly,
+            // FormMasks.currency(),
+          ],
           validators: [
             FormValidators.emptyField,
             FormValidators.invalidDouble,

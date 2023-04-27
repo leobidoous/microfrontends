@@ -19,6 +19,6 @@ class ReviewPhotosController
   }
 
   void onClear() {
-    update(state..clear());
+    state.clear();
   }
 }
