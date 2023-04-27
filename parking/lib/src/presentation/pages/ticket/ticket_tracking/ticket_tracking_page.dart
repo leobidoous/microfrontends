@@ -36,13 +36,13 @@ class _TicketTrackingPageState extends State<TicketTrackingPage> {
   @override
   void initState() {
     super.initState();
-    // controller.fecthInfoTicket(
-    //   idShopping: shopping.id.toString(),
-    // );
-    // ticketHistoryController.fetchTicketHistory(
-    //   page: '0',
-    //   perPage: '100',
-    // );
+    controller.fecthInfoTicket(
+      idShopping: shopping.id.toString(),
+    );
+    ticketHistoryController.fetchTicketHistory(
+      page: '0',
+      perPage: '100',
+    );
   }
 
   @override
@@ -84,7 +84,7 @@ class _TicketTrackingPageState extends State<TicketTrackingPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Visibility(
-                  visible: controller.state.plate != null,
+                  visible: true, //controller.state.plate != null,
                   child: Padding(
                     padding: EdgeInsets.all(const Spacing(1).value),
                     child: Card(
