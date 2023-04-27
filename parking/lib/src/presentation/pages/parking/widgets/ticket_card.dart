@@ -15,7 +15,7 @@ Color statusTicketColor(int id) {
       return AppColorsBase.primary;
     case 2:
       //status pago
-      return AppColorsBase.success0;
+      return AppColorsBase.success2;
     case 3:
       //status expirado
       return AppColorsBase.error2;
