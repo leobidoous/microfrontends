@@ -18,12 +18,10 @@ import '../routes/coupon_routes.dart';
 import '../routes/desk_routes.dart';
 import '../routes/parking_routes.dart';
 import '../routes/ticket_routes.dart';
-import '../routes/ticket_window_routes.dart';
 import '../routes/vehicles_routes.dart';
 import 'coupon_module.dart';
 import 'desk_module.dart';
 import 'ticket_module.dart';
-import 'ticket_window_module.dart';
 import 'vehicles_module.dart';
 
 class ParkingModule extends Module {
@@ -114,6 +112,5 @@ class ParkingModule extends Module {
     ModuleRoute(TicketRoutes.root.path, module: TicketModule()),
     ModuleRoute(CouponRoutes.root.path, module: CouponModule()),
     ModuleRoute(VehiclesRoutes.root.path, module: VehiclesModule()),
-    ModuleRoute(TicketWindowRoutes.root.path, module: TicketWindowModule()),
   ];
 }

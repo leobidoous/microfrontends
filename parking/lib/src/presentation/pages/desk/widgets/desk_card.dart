@@ -182,7 +182,7 @@ class _DeskCardState extends State<DeskCard> {
                 return CustomButton.text(
                   onPressed: () async {
                     await Nav.to
-                        .pushNamed(TicketWindowRoutes.root.prevPath())
+                        .pushNamed(TicketWindowRoutes.root.relativePath)
                         .then((value) => widget.onReturn());
                   },
                   text: status == DeskCardStatus.pending

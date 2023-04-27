@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
+import '../../core/helpers/errors/print_exception.dart';
 import '../../domain/interfaces/either.dart';
 import '../../infra/drivers/i_graphql_driver.dart';
 import '../../infra/interfaces/i_graphql_interceptor.dart';
@@ -37,6 +38,11 @@ class GraphQlClientDriver extends IGraphQlDriver with Disposable {
       }
       final result = await _getClient(opt).mutate(mutationOptions);
       if (result.hasException) {
+        printException(
+          exception: result.exception,
+          stackTrace: result.exception?.originalStackTrace,
+        );
+
         GraphQLResponseError error = GraphQLResponseError(
           message: result.exception.toString(),
           exception: result.exception,
@@ -61,7 +67,8 @@ class GraphQlClientDriver extends IGraphQlDriver with Disposable {
         );
       }
       return Right(response);
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
+      printException(exception: e, stackTrace: s);
       return Left(GraphQLResponseError(message: e.toString()));
     }
   }

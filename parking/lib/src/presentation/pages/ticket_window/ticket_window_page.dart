@@ -49,7 +49,7 @@ class _TicketWindowPageState extends State<TicketWindowPage> {
               Spacing.sm.vertical,
               CustomButton.text(
                 onPressed: () {
-                  Nav.to.pushNamed(TicketWindowRoutes.takePhoto.relativePath);
+                  Nav.to.pushNamed(TicketWindowRoutes.takePicture.relativePath);
                 },
                 text: Tr.of(context).takePicture,
               ),

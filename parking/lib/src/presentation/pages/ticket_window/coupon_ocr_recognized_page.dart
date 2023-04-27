@@ -109,7 +109,7 @@ class _CouponOcrRecognizedPageState extends State<CouponOcrRecognizedPage> {
                 onPressed: () {
                   Nav.to.popUntil(
                     ModalRoute.withName(
-                      TicketWindowRoutes.takePhoto.completePath,
+                      TicketWindowRoutes.takePicture.completePath,
                     ),
                   );
                 },

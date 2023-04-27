@@ -9,16 +9,15 @@ import '../../../../domain/failures/dashboard/dashboard_failure.dart';
 import '../../../controllers/ticket/ticket_payment_controller.dart';
 import '../../../controllers/ticket/ticket_payment_method_controller.dart';
 import '../../../controllers/ticket/ticket_submit_controller.dart';
-import '../../../routes/parking_routes.dart';
 import '../../../routes/ticket_routes.dart';
 import '../widgets/ticket_card_details.dart';
 import '../widgets/ticket_header.dart';
 import 'widgets/ticket_payment_method.dart';
 
 class TicketSubmitPageArgs {
-  TicketSubmitPageArgs({required this.ticketOrPlate, this.onPop});
+  TicketSubmitPageArgs({required this.ticketOrPlate, required this.onPop});
   final String ticketOrPlate;
-  final VoidCallback? onPop;
+  final VoidCallback onPop;
 }
 
 class TicketSubmitPage extends StatefulWidget {
@@ -116,9 +115,7 @@ class _TicketSubmitPageState extends State<TicketSubmitPage> {
             CustomAlert.freeTicketSuccess(context),
             showClose: true,
           ).then((value) {
-            Nav.to.popUntil(
-              ModalRoute.withName(ParkingRoutes.root.completePath),
-            );
+            widget.args.onPop();
           });
           return;
         }
@@ -134,17 +131,15 @@ class _TicketSubmitPageState extends State<TicketSubmitPage> {
         ).then((value) async {
           controller.state.plate != null
               ? () {}
-              : await Nav.to.pushNamed(
-                  TicketRoutes.ticketVoucherDetails.relativePath,
+              : await Nav.to.pushReplacementNamed(
+                  TicketRoutes.ticketVoucherDetails,
                   arguments: [
                     paymentController.state,
                     paymentMethodController.state,
                   ],
                 ).then((value) {
-                  Nav.to.popUntil(
-                    ModalRoute.withName(TicketRoutes.root.completePath),
-                  );
-                  Nav.to.pushNamed(TicketRoutes.ticketTracking.relativePath);
+                  widget.args.onPop();
+                  Nav.to.pushNamed(TicketRoutes.ticketTracking);
                 });
         });
       }

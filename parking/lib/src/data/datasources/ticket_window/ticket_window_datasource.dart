@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:path/path.dart';
 
+import '../../../../parking.dart';
 import '../../../domain/entities/ticket_window/unique_coupon_entity.dart';
 import '../../../infra/datasources/ticket_window/i_ticket_window_datasource.dart';
 import '../../../presentation/graphql/mutations/ticket_window_mutations.dart';
@@ -117,7 +118,8 @@ class TicketWindowDatasource extends ITicketWindowDatasource {
               ),
             );
             return response.fold((l) => errors.add(l), (r) => null);
-          } catch (e) {
+          } catch (e, s) {
+            printException(exception: e, stackTrace: s);
             return errors.add(GraphQLResponseError(message: e.toString()));
           }
         },

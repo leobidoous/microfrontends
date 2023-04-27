@@ -144,7 +144,7 @@ class _CouponDetailsPageState extends State<CouponDetailsPage> {
                 onPressed: () {
                   Nav.to.pop();
                   Nav.to.pushReplacementNamed(
-                    CouponRoutes.root.prevPath(2),
+                    CouponRoutes.root,
                   );
                 },
                 text: 'Registrar novo cupom',

@@ -97,12 +97,12 @@ class _CouponsListPageState extends State<CouponsListPage> {
                           onPressed: () {
                             if (widget.freeParking) {
                               Nav.to.pushReplacementNamed(
-                                ParkingRoutes.enterTicketNumber.prevPath(2),
+                                ParkingRoutes.enterTicketNumber,
                               );
                               return;
                             }
                             Nav.to.pushReplacementNamed(
-                              CouponRoutes.root.prevPath(2),
+                              CouponRoutes.root,
                             );
                           },
                           type: widget.freeParking
@@ -128,7 +128,7 @@ class _CouponsListPageState extends State<CouponsListPage> {
     return InkWell(
       onTap: () {
         Nav.to.pushNamed(
-          CouponRoutes.couponDetails.prevPath(),
+          CouponRoutes.couponDetails,
           arguments: transaction,
         );
       },

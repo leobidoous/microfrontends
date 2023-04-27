@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 
+import '../../../core/helpers/errors/print_exception.dart';
 import '../../../domain/interfaces/either.dart';
 import '../../../domain/interfaces/gen_controller.dart';
 
@@ -37,9 +38,11 @@ class CamController
         enableAudio: false,
       );
       await cameraController?.initialize();
-    } on CameraException catch (e) {
+    } on CameraException catch (e, s) {
+      printException(exception: e, stackTrace: s);
       setError(e);
-    } catch (e) {
+      printException(exception: e, stackTrace: s);
+
       setError(CameraException('', e.toString()));
     }
     setLoading(false);
@@ -50,7 +53,8 @@ class CamController
       final pic = await cameraController?.takePicture();
       if (pic != null) return Right(pic);
       return Left(CameraException('', ''));
-    } on CameraException catch (e) {
+    } on CameraException catch (e, s) {
+      printException(exception: e, stackTrace: s);
       return Left(e);
     }
   }

@@ -58,12 +58,15 @@ class TicketWindowModule extends Module {
       child: (_, args) => const TicketWindowPage(),
     ),
     ChildRoute(
-      TicketWindowRoutes.takePhoto.path,
+      TicketWindowRoutes.takePicture.path,
       child: (_, args) => const TakePicturePage(),
     ),
     ChildRoute(
       TicketWindowRoutes.enterCouponManually.path,
-      child: (_, args) => EnterCouponManuallyPage(files: args.data),
+      child: (_, args) => EnterCouponManuallyPage(
+        files: args.data['files'],
+        onClear: args.data['onClear'],
+      ),
     ),
     ChildRoute(
       TicketWindowRoutes.reviewPhoto.path,

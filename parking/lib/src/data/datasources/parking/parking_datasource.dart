@@ -48,6 +48,7 @@ class ParkingDatasource implements IParkingDatasource {
                 'O cliente não possui ticket/placa associado ao dia atual.',
               ),
             );
+
           case 401:
             return Left(
               NoTicketFoundError(
