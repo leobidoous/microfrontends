@@ -45,6 +45,7 @@ class AppColorsBase {
 
   static Color get primary => const Color(0xFF6D54FC);
   static Color get primary8 => const Color(0xFF531DAB);
+  static Color get primary10 => const Color(0xFF1A142A);
   static Color get primaryBlue => const Color(0xFF2E3B96);
 
   static Color get greyText01 => const Color(0xFF585858);

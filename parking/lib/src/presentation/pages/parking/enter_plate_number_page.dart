@@ -69,11 +69,11 @@ class _EnterPlateNumberPageState extends State<EnterPlateNumberPage> {
 class _HasVehicleRegistered extends StatelessWidget {
   _HasVehicleRegistered({required this.vehicles});
 
-  final List<VehicleModel> vehicles;
   final controller = DM.i.get<ParkingEnterPlateNumberController>();
   final shopping = DM.i.get<ShoppingEntity>();
-  final textController = TextEditingController();
+  final plateController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  final List<VehicleModel> vehicles;
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +95,7 @@ class _HasVehicleRegistered extends StatelessWidget {
             height: const Spacing(7).value,
             child: ListView.separated(
               physics: const AlwaysScrollableScrollPhysics(),
-              padding: EdgeInsets.zero,
+              padding: EdgeInsets.symmetric(horizontal: const Spacing(2).value),
               scrollDirection: Axis.horizontal,
               itemCount: vehicles.length,
               separatorBuilder: (context, index) => SizedBox(
@@ -124,7 +124,7 @@ class _HasVehicleRegistered extends StatelessWidget {
               Nav.to.pushNamed(
                 TicketRoutes.root,
                 arguments: TicketSubmitPageArgs(
-                  ticketOrPlate: textController.text,
+                  ticketOrPlate: controller.selectedPlate!.replaceAll('-', ''),
                   onPop: () {
                     Nav.to.popUntil(
                       ModalRoute.withName(ParkingRoutes.root.completePath),
@@ -148,7 +148,7 @@ class _HasVehicleRegistered extends StatelessWidget {
           Form(
             key: formKey,
             child: CustomInputField(
-              controller: textController,
+              controller: plateController,
               keyboardType: TextInputType.text,
               textCapitalization: TextCapitalization.characters,
               hintText: Tr.of(context).enterPlate,
@@ -172,7 +172,7 @@ class _HasVehicleRegistered extends StatelessWidget {
               Nav.to.pushNamed(
                 TicketRoutes.root,
                 arguments: TicketSubmitPageArgs(
-                  ticketOrPlate: textController.text,
+                  ticketOrPlate: plateController.text.replaceAll('-', ''),
                   onPop: () {
                     Nav.to.popUntil(
                       ModalRoute.withName(ParkingRoutes.root.completePath),
@@ -241,7 +241,7 @@ class _NotHasVehicleRegistered extends StatelessWidget {
               Nav.to.pushNamed(
                 TicketRoutes.root,
                 arguments: TicketSubmitPageArgs(
-                  ticketOrPlate: textController.text,
+                  ticketOrPlate: textController.text.replaceAll('-', ''),
                   onPop: () {
                     Nav.to.popUntil(
                       ModalRoute.withName(ParkingRoutes.root.completePath),

@@ -55,6 +55,28 @@ class CustomAlert extends StatelessWidget {
         onConfirm: Nav.to.pop,
       );
 
+  factory CustomAlert.additionalValue(BuildContext context) => CustomAlert(
+        asset: 'assets/images/parking/warning_discount.svg',
+        title: 'Valor adicional',
+        content:
+            '''Você excedeu o tempo limite de saída do estabelecimento e um valor adicional será cobrado.''',
+        btnConfirmLabel: 'Entendi',
+        onConfirm: Nav.to.pop,
+      );
+  factory CustomAlert.discountValue(
+    BuildContext context, {
+    required double discount,
+  }) =>
+      CustomAlert(
+        asset: 'assets/images/parking/warning_discount.svg',
+        title: 'Por que o valor não está exibido?',
+        content: (discount < 1)
+            ? '''Em caso de TAG veicular, o valor a ser pago com ${(discount * 100).toInt()}% de desconto só será calculado após a validação via app e a saída na cancela do estabelecimento, considerando o tempo total de permanência. Você pode conferir o valor cobrado junto a operadora.'''
+            : ''' Em caso de TAG veicular, você não terá a estadia cobrada junto a sua operadora. O benefício da gratuidade do estacionamento será aplicado após a validação via app e a saída na cancela do estabelecimento.''',
+        btnConfirmLabel: 'Entendi',
+        onConfirm: Nav.to.pop,
+      );
+
   /// Confirm
   factory CustomAlert.validateAfterConfirm(
     BuildContext context, {

@@ -1,21 +1,22 @@
+import '../dashboard/status_class_entity.dart';
 import 'mall_entity.dart';
 
 class HistoryTicketEntity {
-  HistoryTicketEntity({
-    this.idMall,
-    this.data,
-    this.hora,
+  const HistoryTicketEntity({
+    this.valor,
+    this.isPlate,
+    this.ticket,
     this.valorEconomizado,
     this.tipo,
     this.createdAt,
     this.mall,
   });
 
-  final int? idMall;
-  final String? data;
-  final String? hora;
-  final String? valorEconomizado;
-  final String? tipo;
+  final double? valorEconomizado;
+  final double? valor;
+  final bool? isPlate;
+  final String? ticket;
+  final StatusClassEntity? tipo;
   final DateTime? createdAt;
   final MallEntity? mall;
 }

@@ -3,13 +3,14 @@ import 'dart:convert';
 import 'package:core/core.dart';
 
 import '../../../domain/entities/ticket/history_ticket_entity.dart';
+import '../dashboard/status_class_model.dart';
 import 'mall_model.dart';
 
 class HistoryTicketModel extends HistoryTicketEntity with EquatableMixin {
   HistoryTicketModel({
-    super.idMall,
-    super.data,
-    super.hora,
+    super.isPlate,
+    super.ticket,
+    super.valor,
     super.valorEconomizado,
     super.tipo,
     super.createdAt,
@@ -18,10 +19,10 @@ class HistoryTicketModel extends HistoryTicketEntity with EquatableMixin {
 
   factory HistoryTicketModel.fromEntity(HistoryTicketEntity entity) {
     return HistoryTicketModel(
-      idMall: entity.idMall,
-      data: entity.data,
-      hora: entity.hora,
       valorEconomizado: entity.valorEconomizado,
+      valor: entity.valor,
+      isPlate: entity.isPlate,
+      ticket: entity.ticket,
       tipo: entity.tipo,
       createdAt: entity.createdAt,
       mall: entity.mall,
@@ -33,11 +34,11 @@ class HistoryTicketModel extends HistoryTicketEntity with EquatableMixin {
 
   factory HistoryTicketModel.fromMap(Map<String, dynamic> map) {
     return HistoryTicketModel(
-      idMall: map['id_mall'] ?? 0,
-      data: map['data'],
-      hora: map['hora'],
-      valorEconomizado: map['valor_economizado'] ?? '',
-      tipo: map['tipo'] ?? '',
+      valorEconomizado: (map['valor_economizado'] as int).toDouble(),
+      valor: (map['valor'] as int).toDouble(),
+      isPlate: map['data'],
+      ticket: map['hora'],
+      tipo: StatusClassModel.fromMap(map['tipo']),
       createdAt: DateFormat.tryParseOrDateNow(map['created_at']),
       mall: MallModel.fromMap(map['Mall']),
     );
@@ -49,10 +50,10 @@ class HistoryTicketModel extends HistoryTicketEntity with EquatableMixin {
 
   Map<String, dynamic> get toMap {
     return {
-      'id_mall': idMall,
-      'data': data,
-      'hora': hora,
       'valor_economizado': valorEconomizado,
+      'valor': valor,
+      'is_plate': isPlate,
+      'ticket': ticket,
       'tipo': tipo,
       'created_at': createdAt,
       'Mall': mall,
@@ -61,10 +62,10 @@ class HistoryTicketModel extends HistoryTicketEntity with EquatableMixin {
 
   @override
   List<Object?> get props => [
-        idMall,
-        data,
-        hora,
         valorEconomizado,
+        valor,
+        isPlate,
+        ticket,
         tipo,
         createdAt,
         mall,

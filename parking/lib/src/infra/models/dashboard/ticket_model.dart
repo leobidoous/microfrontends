@@ -2,17 +2,18 @@ import 'dart:convert';
 
 import 'package:core/core.dart';
 
-import '../../../domain/entities/dashboard/history_entity.dart';
 import '../../../domain/entities/dashboard/ticket_entity.dart';
 import '../ticket/discount_model.dart';
 import 'analysis_model.dart';
 import 'history_ticket_model.dart';
+import 'sample_vehicle_model.dart';
 import 'status_class_model.dart';
 
 class TicketModel extends TicketEntity with EquatableMixin {
   TicketModel({
     super.plate,
     super.ticket,
+    super.vehicle,
     required super.tempoLimitePermanencia,
     required super.status,
     required super.entradaDatahora,
@@ -34,6 +35,9 @@ class TicketModel extends TicketEntity with EquatableMixin {
     return TicketModel(
       plate: map['placa'],
       ticket: map['ticket'],
+      vehicle: (map['vehicle'] != null)
+          ? SampleVehicleModel.fromMap(map['vehicle'])
+          : null,
       tempoLimitePermanencia:
           DateFormat.tryParseOrDateNow(map['tempo_limite_permanencia']),
       status: StatusClassModel.fromMap(map['status'] ?? {}),
@@ -50,11 +54,11 @@ class TicketModel extends TicketEntity with EquatableMixin {
       ),
       analysis: AnalysisModel.fromMap(map['analise'] ?? {}),
       discount: DiscountModel.fromMap(map['discount'] ?? {}),
-      historys: (map['history'] is List<HistoryEntity>)
+      historys: (map['history'] != null)
           ? map['history']
-              .map((element) => HistoryModel.fromMap(element))
+              .map<HistoryModel>((element) => HistoryModel.fromMap(element))
               .toList()
-          : [],
+          : <HistoryModel>[],
       isPaid: map['is_paid'] ?? false,
     );
   }
@@ -63,6 +67,7 @@ class TicketModel extends TicketEntity with EquatableMixin {
     return TicketModel(
       plate: entity.plate,
       ticket: entity.ticket,
+      vehicle: entity.vehicle,
       tempoLimitePermanencia: entity.tempoLimitePermanencia,
       status: entity.status,
       entradaDatahora: entity.entradaDatahora,
@@ -92,6 +97,7 @@ class TicketModel extends TicketEntity with EquatableMixin {
     return {
       'placa': plate,
       'ticket': ticket,
+      'vehicle': vehicle,
       'tempo_limite_permanencia': tempoLimitePermanencia,
       'status': StatusClassModel.fromEntity(status).toMap,
       'entrada_datahora': entradaDatahora,
@@ -113,6 +119,7 @@ class TicketModel extends TicketEntity with EquatableMixin {
   List<Object?> get props => [
         plate,
         ticket,
+        vehicle,
         tempoLimitePermanencia,
         status,
         entradaDatahora,

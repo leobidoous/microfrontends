@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'ticket_window_module.dart';
 
 import '../../data/datasources/desk/desk_datasource.dart';
 import '../../infra/repositories/desk/desk_repository.dart';
@@ -8,6 +7,7 @@ import '../controllers/gen_desk/fetch_faq_controller.dart';
 import '../controllers/gen_desk/gen_desk_controller.dart';
 import '../pages/desk/gen_desk_page.dart';
 import '../routes/ticket_window_routes.dart';
+import 'ticket_window_module.dart';
 
 class GenDeskModule extends Module {
   @override

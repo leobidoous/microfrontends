@@ -36,6 +36,7 @@ class _TicketCardDetailsState extends State<TicketCardDetails> {
       (diff.inSeconds % 3600) ~/ 60,
       diff.inSeconds % 60,
     );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -90,9 +91,25 @@ class _TicketCardDetailsState extends State<TicketCardDetails> {
                       children: [
                         _label('Saída'),
                         Spacing.xs.vertical,
-                        _hour(dateNow),
-                        Spacing.xs.vertical,
-                        _label(DateFormat.toDate(dateNow)),
+                        if (widget.ticket.status.code == 2) ...[
+                          _hour(
+                            (widget.ticket.historys!.isNotEmpty)
+                                ? widget.ticket.historys!.first.saidaAte
+                                : dateNow,
+                          ),
+                          Spacing.xs.vertical,
+                          _label(
+                            DateFormat.toDate(
+                              (widget.ticket.historys!.isNotEmpty)
+                                  ? widget.ticket.historys!.first.saidaAte
+                                  : dateNow,
+                            ),
+                          )
+                        ] else ...[
+                          _hour(dateNow),
+                          Spacing.xs.vertical,
+                          _label(DateFormat.toDate(dateNow))
+                        ]
                       ],
                     ),
                   ),
@@ -101,6 +118,7 @@ class _TicketCardDetailsState extends State<TicketCardDetails> {
               Spacing.lg.vertical,
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
                     child: Padding(
@@ -120,45 +138,48 @@ class _TicketCardDetailsState extends State<TicketCardDetails> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         if (widget.ticket.discount.percentOfDiscount > 0)
-                          Text.rich(
-                            TextSpan(
-                              text: 'Valor ',
-                              style: context.textTheme.labelMedium?.copyWith(
-                                color: AppColorsBase.neutrla6,
-                                fontWeight: context.textTheme.fontWeightRegular,
-                              ),
-                              children: [
-                                TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text:
-                                          '''com desconto ${(widget.ticket.discount.percentOfDiscount * 100).round()}%''',
-                                      style: context.textTheme.labelMedium
-                                          ?.copyWith(
-                                        color: AppColorsBase.neutrla6,
-                                        fontWeight:
-                                            context.textTheme.fontWeightMedium,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        if (widget.ticket.discount.percentOfDiscount == 0)
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Expanded(
-                                child: (widget.ticket.status.code == 1)
-                                    ? _label('Valor atual')
-                                    : _label('Valor adicional'),
+                                child: Text.rich(
+                                  TextSpan(
+                                    text: 'Valor ',
+                                    style:
+                                        context.textTheme.labelMedium?.copyWith(
+                                      color: AppColorsBase.neutrla6,
+                                      fontWeight:
+                                          context.textTheme.fontWeightRegular,
+                                    ),
+                                    children: [
+                                      TextSpan(
+                                        children: [
+                                          TextSpan(
+                                            text:
+                                                '''com desconto ${(widget.ticket.discount.percentOfDiscount * 100).round()}%''',
+                                            style: context.textTheme.labelMedium
+                                                ?.copyWith(
+                                              color: AppColorsBase.neutrla6,
+                                              fontWeight: context
+                                                  .textTheme.fontWeightMedium,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
                               Spacing.xs.horizontal,
                               InkWell(
                                 onTap: () {
                                   CustomDialog.show(
                                     context,
-                                    CustomAlert.paymentMethodWarning(context),
+                                    CustomAlert.discountValue(
+                                      context,
+                                      discount: widget
+                                          .ticket.discount.percentOfDiscount,
+                                    ),
                                     showClose: true,
                                   );
                                 },
@@ -172,6 +193,41 @@ class _TicketCardDetailsState extends State<TicketCardDetails> {
                               )
                             ],
                           ),
+                        if (widget.ticket.discount.percentOfDiscount == 0) ...[
+                          Row(
+                            children: [
+                              Expanded(
+                                child: (widget.ticket.status.code == 1)
+                                    ? _label('Valor atual')
+                                    : _label('Valor adicional'),
+                              ),
+                              Spacing.xs.horizontal,
+                              InkWell(
+                                onTap: () {
+                                  (widget.ticket.status.code == 1)
+                                      ? CustomDialog.show(
+                                          context,
+                                          CustomAlert.paymentMethodWarning(
+                                            context,
+                                          ),
+                                          showClose: true,
+                                        )
+                                      : CustomDialog.show(
+                                          context,
+                                          CustomAlert.additionalValue(context),
+                                        );
+                                },
+                                splashColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                child: Icon(
+                                  Icons.info_outline_rounded,
+                                  size: const Spacing(2).value,
+                                  color: AppColorsBase.grey7,
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
                         Spacing.xs.vertical,
                         _price(
                           widget.ticket.valorDevido,
@@ -203,6 +259,26 @@ class _TicketCardDetailsState extends State<TicketCardDetails> {
                     _price(widget.ticket.valorAdquirente),
                   ],
                 ),
+              ],
+              if (widget.ticket.plate == null) ...[
+                if (widget.isLoading) ...[
+                  CustomShimmer(height: const Spacing(2.5).value)
+                ] else ...[
+                  Spacing.lg.vertical,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      _label('Número do Tíquete'),
+                      Spacing.xs.vertical,
+                      Text(
+                        widget.ticket.ticket ?? '-',
+                        style: context.textTheme.labelMedium?.copyWith(
+                          fontSize: const Spacing(2.25).value,
+                        ),
+                      ),
+                    ],
+                  ),
+                ]
               ]
             ],
           ),
