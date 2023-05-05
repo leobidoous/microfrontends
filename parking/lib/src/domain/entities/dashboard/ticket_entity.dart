@@ -1,12 +1,14 @@
 import '../ticket/discount_entity.dart';
 import 'analysis_entity.dart';
 import 'history_entity.dart';
+import 'sample_vehicle_entity.dart';
 import 'status_class_entity.dart';
 
 class TicketEntity {
   const TicketEntity({
     this.plate,
     this.ticket,
+    this.vehicle,
     required this.tempoLimitePermanencia,
     required this.status,
     required this.entradaDatahora,
@@ -29,6 +31,7 @@ class TicketEntity {
   final DateTime transacaoValidadeDatahora;
   final DateTime tempoLimitePermanencia;
   final String? plate;
+  final SampleVehicleEntity? vehicle;
   final String? ticket;
   final StatusClassEntity status;
   final String valorTotal;

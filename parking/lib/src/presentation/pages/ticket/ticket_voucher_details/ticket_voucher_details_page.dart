@@ -89,7 +89,7 @@ class _TicketVoucherDetailsPageState extends State<TicketVoucherDetailsPage> {
                           // Visibility(
                           //   visible: !controllerScreenShot.showButton,
                           //   child: IconButton(
-                          //     onPressed: controllerScreenShot.takeScreenShoot,
+                          //    onPressed: controllerScreenShot.takeScreenShoot,
                           //     icon: Image.asset(
                           //       CustomAssets.arrowUpRightFromSquare,
                           //       height: 16,

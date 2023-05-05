@@ -1,5 +1,6 @@
 class MallEntity {
-  MallEntity({this.name});
+  const MallEntity({this.id, this.name});
 
+  final int? id;
   final String? name;
 }

@@ -41,10 +41,18 @@ class _CircularIndicatorTimerState extends State<_CircularIndicatorTimer> {
         );
         break;
       case TicketStatusEnum.paid:
-        countDownController.showPaidProgress(
-          stayLimit: widget.entity.tempoLimitePermanencia,
-          paymentDate: widget.entity.transacaoValidadeDatahora,
-        );
+        if (widget.entity.historys != null &&
+            widget.entity.historys!.isNotEmpty) {
+          countDownController.showPaidProgress(
+            stayLimit: widget.entity.historys!.first.saidaAte,
+            paymentDate: widget.entity.historys!.first.pagoEm,
+          );
+        } else {
+          countDownController.showOpenProgress(
+            entryTime: widget.entity.entradaDatahora,
+          );
+        }
+
         break;
       case TicketStatusEnum.exceeded:
         countDownController.showExpiredProgress(
@@ -59,34 +67,176 @@ class _CircularIndicatorTimerState extends State<_CircularIndicatorTimer> {
     return ValueListenableBuilder<TimerData>(
       valueListenable: countDownController,
       builder: (context, state, child) {
-        return RepaintBoundary(
-          child: TweenAnimationBuilder<double>(
-            tween: Tween<double>(begin: 0.0, end: state.percent),
-            curve: Curves.easeOut,
-            duration: const Duration(seconds: 2),
-            builder: (context, value, _) => CircularPercentIndicator(
-              backgroundColor: progressBackgroundColor(
-                type: TicketStatusEnum.values[widget.entity.status.code],
-              ),
-              radius: 80.0,
-              lineWidth: 10.0,
-              percent: value,
-              circularStrokeCap: CircularStrokeCap.round,
-              center: Text(
-                DateFormat.toDateTime(
-                  state.timer,
-                  pattern: 'HH:mm:ss',
+        return Column(
+          children: [
+            RepaintBoundary(
+              child: TweenAnimationBuilder<double>(
+                tween: Tween<double>(begin: 0.0, end: state.percent),
+                curve: Curves.easeOut,
+                duration: const Duration(seconds: 2),
+                builder: (context, value, _) => CircularPercentIndicator(
+                  backgroundColor: progressBackgroundColor(
+                    type: (widget.entity.historys != null &&
+                            widget.entity.historys!.isNotEmpty)
+                        ? TicketStatusEnum.values[widget.entity.status.code]
+                        : TicketStatusEnum.open,
+                  ),
+                  radius: 80.0,
+                  lineWidth: 10.0,
+                  percent: value,
+                  circularStrokeCap: CircularStrokeCap.round,
+                  center: Text(
+                    DateFormat.toDateTime(
+                      state.timer,
+                      pattern: 'HH:mm:ss',
+                    ),
+                    style: context.textTheme.headlineSmall,
+                  ),
+                  progressColor: progressColor(
+                    type: TicketStatusEnum.values[widget.entity.status.code],
+                  ),
                 ),
-                style: context.textTheme.headlineSmall,
-              ),
-              progressColor: progressColor(
-                type: TicketStatusEnum.values[widget.entity.status.code],
               ),
             ),
-          ),
+            Spacing.xs.vertical,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Status: ',
+                  style: context.textTheme.titleMedium,
+                ),
+                Spacing.xs.vertical,
+                Text(
+                  widget.entity.status.status.capitalize,
+                  overflow: TextOverflow.ellipsis,
+                  style: context.textTheme.bodyMedium?.copyWith(
+                    fontWeight: context.textTheme.fontWeightMedium,
+                    color: statusTicketColor(widget.entity.status.code),
+                  ),
+                ),
+              ],
+            ),
+            Spacing.xs.vertical,
+            textCircularIndicator(widget.entity.status.code)
+          ],
         );
       },
     );
+  }
+
+  Widget textCircularIndicator(int code) {
+    switch (code) {
+      case 0:
+        return Center(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                Tr.of(context).exitLimited,
+                style: context.textTheme.headlineSmall!.copyWith(fontSize: 18),
+              ),
+              Text(
+                DateFormat.toTime(
+                  widget.entity.validadeDatahora,
+                  pattern: 'HH:mm',
+                ),
+                style: context.textTheme.headlineSmall!.copyWith(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+        );
+      case 1:
+        return Center(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '${Tr.of(context).estimatedValue}: ',
+                style: context.textTheme.headlineSmall!.copyWith(fontSize: 18),
+              ),
+              Text(
+                'R\$ ${NumberFormat.toCurrency(
+                  widget.entity.valorTotal,
+                  symbol: '',
+                )}',
+                style: context.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+        );
+      case 2:
+        return Center(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                Tr.of(context).exitLimited,
+                style: context.textTheme.headlineSmall!.copyWith(
+                  fontSize: 18,
+                ),
+              ),
+              Text(
+                DateFormat.toTime(
+                  widget.entity.validadeDatahora,
+                ),
+                style: context.textTheme.headlineSmall!.copyWith(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+        );
+      case 3:
+        return Center(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                Tr.of(context).outputLimitExceeded,
+                style: context.textTheme.headlineSmall!.copyWith(
+                  fontSize: 18,
+                ),
+              ),
+            ],
+          ),
+        );
+      default:
+        return Center(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                Tr.of(context).exitLimited,
+                style: context.textTheme.headlineSmall!.copyWith(
+                  fontSize: 18,
+                ),
+              ),
+              Text(
+                DateFormat.toTime(
+                  widget.entity.validadeDatahora,
+                  pattern: 'HH:mm',
+                ),
+                style: context.textTheme.headlineSmall!.copyWith(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+        );
+    }
   }
 }
 

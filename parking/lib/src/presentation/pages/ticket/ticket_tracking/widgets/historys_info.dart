@@ -7,8 +7,13 @@ import '../../../../../infra/models/ticket/history_ticket_model.dart';
 import '../../../../controllers/ticket/tracking/ticket_history_controller.dart';
 
 class HistorysInfo extends StatefulWidget {
-  const HistorysInfo({super.key, this.activeSeeHistoryButton = false});
-  final bool? activeSeeHistoryButton;
+  const HistorysInfo({
+    super.key,
+    this.showMessageEmpty = false,
+    this.onTapScanButton,
+  });
+  final bool? showMessageEmpty;
+  final VoidCallback? onTapScanButton;
 
   @override
   State<HistorysInfo> createState() => _HistorysInfoState();
@@ -46,118 +51,166 @@ class _HistorysInfoState extends State<HistorysInfo> {
               onPressed: () {
                 controller.fetchTicketHistory(
                   page: '0',
-                  perPage: '10',
+                  perPage: '100',
                 );
               },
             ),
           );
         } else if (controller.state.isNotEmpty) {
           state.forEach(
-            (element) => fullAmountSaved +=
-                (double.tryParse(element.valorEconomizado ?? '0') ?? 0),
+            (element) => fullAmountSaved += (element.valorEconomizado ?? 0),
           );
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: const Spacing(3).value,
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(
-                            top: const Spacing(2.5).value,
-                          ),
-                          child: Text(
-                            Tr.of(context).historyValue,
-                            softWrap: true,
-                            style: context.textTheme.bodySmall?.copyWith(
-                              color: AppColorsBase.grey6,
+
+          return SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: const Spacing(3).value,
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                              top: const Spacing(2.5).value,
+                            ),
+                            child: Text(
+                              Tr.of(context).historyValue,
+                              softWrap: true,
+                              style: context.textTheme.bodySmall?.copyWith(
+                                color: AppColorsBase.grey6,
+                              ),
                             ),
                           ),
-                        ),
-                        Text(
-                          DateFormat.toDateTime(
-                            state.first.createdAt,
-                            pattern: 'dd/MM/yyyy - HH:mm',
-                          ),
-                          style: context.textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(
-                            top: const Spacing(2.5).value,
-                          ),
-                          child: Text(
-                            Tr.of(context).amountSaved,
-                            softWrap: true,
-                            style: context.textTheme.bodySmall?.copyWith(
-                              color: AppColorsBase.grey6,
+                          Text(
+                            DateFormat.toDateTime(
+                              state.first.createdAt,
+                              pattern: 'dd/MM/yyyy - HH:mm',
+                            ),
+                            style: context.textTheme.titleMedium?.copyWith(
+                              fontWeight: context.textTheme.fontWeightBold,
                             ),
                           ),
-                        ),
-                        Text(
-                          'R\$ ${NumberFormat.toCurrency(
-                            fullAmountSaved,
-                            symbol: '',
-                          )}',
-                          style: context.textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.w500,
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                              top: const Spacing(2.5).value,
+                            ),
+                            child: Text(
+                              Tr.of(context).amountSaved,
+                              softWrap: true,
+                              style: context.textTheme.bodySmall?.copyWith(
+                                color: AppColorsBase.grey6,
+                              ),
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: const Spacing(4).value,
-                  left: const Spacing(2).value,
-                ),
-                child: Text(
-                  Tr.of(context).historyTicket,
-                  textAlign: TextAlign.left,
-                  style: context.textTheme.labelLarge?.copyWith(
-                    fontFamily: GoogleFonts.inter().fontFamily,
-                    fontWeight: FontWeight.w400,
+                          Text(
+                            'R\$ ${NumberFormat.toCurrency(
+                              fullAmountSaved,
+                              symbol: '',
+                            )}',
+                            style: context.textTheme.titleMedium?.copyWith(
+                              fontWeight: context.textTheme.fontWeightBold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: const Spacing(2).value,
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: const Spacing(4).value,
+                    left: const Spacing(2).value,
+                  ),
+                  child: Text(
+                    Tr.of(context).historyTicket,
+                    textAlign: TextAlign.left,
+                    style: context.textTheme.labelLarge?.copyWith(
+                      fontFamily: context.textTheme.secodaryFontFamily,
+                    ),
+                  ),
                 ),
-                child: const Divider(),
-              ),
-              ListView.separated(
-                shrinkWrap: true,
-                itemCount: controller.state.length,
-                physics: const NeverScrollableScrollPhysics(),
-                padding: EdgeInsets.all(const Spacing(2).value),
-                separatorBuilder: (_, __) => const Divider(),
-                itemBuilder: (_, index) {
-                  return _ticketHistoryListItem(
-                    controller.state[index],
-                  );
-                },
-              ),
-            ],
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: const Spacing(2).value,
+                  ),
+                  child: const Divider(),
+                ),
+                ListView.separated(
+                  shrinkWrap: true,
+                  itemCount: controller.state.length,
+                  physics: const NeverScrollableScrollPhysics(),
+                  padding: EdgeInsets.all(const Spacing(2).value),
+                  separatorBuilder: (_, __) => const Divider(),
+                  itemBuilder: (_, index) {
+                    return _ticketHistoryListItem(
+                      controller.state[index],
+                    );
+                  },
+                ),
+                if (widget.onTapScanButton != null) ...[
+                  const Spacer(),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: const Spacing(2).value,
+                    ),
+                    child: CustomButton.text(
+                      text: Tr.of(context).scanTicketButton,
+                      onPressed: widget.onTapScanButton,
+                    ),
+                  ),
+                ]
+              ],
+            ),
           );
         }
-        return const LimitedBox();
+        if (widget.showMessageEmpty!) {
+          return SafeArea(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Spacer(flex: 2),
+                SvgPicture.asset(
+                  'assets/images/parking/history_ticket_empty.svg',
+                  width: 120.0,
+                  height: 140.0,
+                ),
+                Spacing.sm.vertical,
+                Text(
+                  'Você ainda não tem histórico de tíquetes',
+                  textAlign: TextAlign.center,
+                  style: context.textTheme.bodyMedium?.copyWith(
+                    color: AppColorsBase.neutrla5,
+                  ),
+                ),
+                const Spacer(flex: 2),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: const Spacing(2).value,
+                  ),
+                  child: CustomButton.text(
+                    text: Tr.of(context).scanTicketButton,
+                    onPressed: widget.onTapScanButton,
+                  ),
+                ),
+              ],
+            ),
+          );
+        } else {
+          return const LimitedBox();
+        }
       },
     );
   }
@@ -166,7 +219,7 @@ class _HistorysInfoState extends State<HistorysInfo> {
     return Row(
       children: [
         const Icon(
-          CoreIcons.buildingCar,
+          CoreIcons.building,
           size: 25,
         ),
         Spacing.sm.horizontal,
@@ -198,7 +251,7 @@ class _HistorysInfoState extends State<HistorysInfo> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
-              NumberFormat.toCurrency(history.valorEconomizado),
+              NumberFormat.toCurrency(history.valor),
               style: context.textTheme.titleMedium?.copyWith(
                 fontWeight: context.textTheme.fontWeightRegular,
               ),
@@ -206,8 +259,9 @@ class _HistorysInfoState extends State<HistorysInfo> {
             Spacing.xxs.vertical,
             DecoratedBox(
               decoration: BoxDecoration(
-                color:
-                    history.tipo != 'Pago' ? context.colorScheme.primary : null,
+                color: history.tipo?.code == 2
+                    ? null
+                    : context.colorScheme.primary,
                 borderRadius: AppThemeBase.borderRadiusMD,
                 border: Border.all(
                   width: context.theme.borderWidthXS,
@@ -220,12 +274,12 @@ class _HistorysInfoState extends State<HistorysInfo> {
                   horizontal: const Spacing(1).value,
                 ),
                 child: Text(
-                  history.tipo!,
+                  history.tipo?.status ?? '-',
                   style: context.textTheme.labelSmall?.copyWith(
                     fontFamily: GoogleFonts.inter().fontFamily,
-                    color: history.tipo != 'Pago'
-                        ? context.colorScheme.background
-                        : context.colorScheme.primary,
+                    color: history.tipo?.code == 2
+                        ? context.colorScheme.primary
+                        : context.colorScheme.background,
                   ),
                 ),
               ),

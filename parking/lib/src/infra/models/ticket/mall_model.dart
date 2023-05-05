@@ -1,14 +1,12 @@
 import 'dart:convert';
-
-import 'package:core/core.dart';
-
+import 'package:equatable/equatable.dart';
 import '../../../domain/entities/ticket/mall_entity.dart';
 
 class MallModel extends MallEntity with EquatableMixin {
-  MallModel({super.name});
+  const MallModel({super.name, super.id});
 
   factory MallModel.fromEntity(MallEntity entity) {
-    return MallModel(name: entity.name);
+    return MallModel(name: entity.name, id: entity.id);
   }
 
   factory MallModel.fromJson(String source) =>
@@ -16,12 +14,13 @@ class MallModel extends MallEntity with EquatableMixin {
 
   factory MallModel.fromMap(Map<String, dynamic> map) {
     return MallModel(
+      id: map['id_mall'] ?? '',
       name: map['name'] ?? '',
     );
   }
 
   Map<String, dynamic> get toMap {
-    return {'name': name};
+    return {'id_mall': id, 'name': name};
   }
 
   String get toJson => json.encode(toMap);
@@ -29,7 +28,7 @@ class MallModel extends MallEntity with EquatableMixin {
   MallEntity get toEntity => this;
 
   @override
-  List<Object?> get props => [name];
+  List<Object?> get props => [id, name];
 
   @override
   bool? get stringify => true;
