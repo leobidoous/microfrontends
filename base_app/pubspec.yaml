@@ -22,6 +22,8 @@ dependencies:
     path: ../auth
   wallet:
     path: ../wallet
+  open_banking:
+    path: ../open_banking
   parking:
     path: ../parking
   shop:
@@ -56,6 +58,8 @@ flutter:
     - assets/images/parking/
     - assets/images/server/
     - assets/images/payment/
+    - assets/images/open_banking/
+    - assets/images/open_banking/institutions/
 
 
 

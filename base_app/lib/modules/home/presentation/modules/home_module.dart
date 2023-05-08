@@ -1,5 +1,6 @@
 import 'package:auth/auth.dart';
 import 'package:core/core.dart';
+import 'package:open_banking/open_banking.dart';
 import 'package:parking/parking.dart';
 import 'package:pay/pay.dart';
 import 'package:wallet/wallet.dart';
@@ -89,6 +90,11 @@ class HomeModule extends Module {
           WalletRoutes(parent: HomeRoutes.start).initial.path,
           transition: TransitionType.fadeIn,
           module: WalletModule(),
+        ),
+        ModuleRoute(
+          OpenBankingRoutes(parent: HomeRoutes.start).initial.path,
+          transition: TransitionType.fadeIn,
+          module: OpenBaningModule(),
         ),
         ModuleRoute(ProfileRoutes.root.path, module: ProfileModule()),
       ],

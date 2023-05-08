@@ -22,6 +22,7 @@ class AppColorsBase {
   static Color get grey11 => const Color(0xFF828282);
   static Color get grey12 => const Color(0xFFDBDBDB);
   static Color get grey19 => const Color(0xFF4E4B59);
+  static Color get grey20 => const Color(0xff666666);
 
   static Color get neutrla0 => const Color(0xFFFCFCFC);
   static Color get neutrla1 => const Color(0xFFF5F5F5);
@@ -35,6 +36,7 @@ class AppColorsBase {
   static Color get success0 => const Color(0xFFE4FFF1);
   static Color get success1 => const Color(0xFF00D494);
   static Color get success2 => const Color(0xFF02A573);
+  static Color get success3 => const Color(0xff10ad7d);
 
   static Color get warning => const Color(0xFFFFCD1C);
   static Color get warning1 => const Color(0xFFD7AC16);

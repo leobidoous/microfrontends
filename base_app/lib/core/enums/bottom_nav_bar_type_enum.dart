@@ -1,13 +1,13 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart' show IconData;
-import 'package:wallet/wallet.dart';
+import 'package:open_banking/open_banking.dart';
 
 import '../../modules/home/presentation/routes/dashboard_routes.dart';
 import '../../modules/home/presentation/routes/home_routes.dart';
 import '../../modules/profile/presentation/profile_routes.dart';
 import '../../modules/shared/presentation/shared_routes.dart';
 
-enum BottomNavBarType { home, search, payment, wallet, profile }
+enum BottomNavBarType { home, search, payment, finance, profile }
 
 // TODO item search foi escondido por hora, para o lançamento do app
 extension BottomNavBarTypeExt on BottomNavBarType {
@@ -19,8 +19,8 @@ extension BottomNavBarTypeExt on BottomNavBarType {
         return 'Buscar';
       case BottomNavBarType.payment:
         return 'Pagar';
-      case BottomNavBarType.wallet:
-        return 'Carteira';
+      case BottomNavBarType.finance:
+        return 'Finanças';
       case BottomNavBarType.profile:
         return 'Perfil';
     }
@@ -34,7 +34,7 @@ extension BottomNavBarTypeExt on BottomNavBarType {
         return CoreIcons.search;
       case BottomNavBarType.payment:
         return CoreIcons.payment;
-      case BottomNavBarType.wallet:
+      case BottomNavBarType.finance:
         return CoreIcons.wallet;
       case BottomNavBarType.profile:
         return CoreIcons.profile;
@@ -49,8 +49,8 @@ extension BottomNavBarTypeExt on BottomNavBarType {
         return SharedRoutes.comming;
       case BottomNavBarType.payment:
         return SharedRoutes.comming;
-      case BottomNavBarType.wallet:
-        return HomeRoutes.start.concate([WalletRoutes.root]);
+      case BottomNavBarType.finance:
+        return HomeRoutes.start.concate([OpenBankingRoutes.root]);
       case BottomNavBarType.profile:
         return ProfileRoutes.root;
     }

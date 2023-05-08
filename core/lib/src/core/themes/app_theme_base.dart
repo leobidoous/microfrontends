@@ -72,6 +72,10 @@ class AppThemeBase {
         blurRadius: 8,
         offset: Offset(2, 0),
       );
+  static BoxShadow get shadowLightmodeLevel6 => const BoxShadow(
+        color: Color.fromRGBO(172, 186, 202, 0.035),
+      );
+
 
   static double get appBarHeight => 60.responsiveHeight;
   static double get customRadioCircleSize => 15.fontSize;
